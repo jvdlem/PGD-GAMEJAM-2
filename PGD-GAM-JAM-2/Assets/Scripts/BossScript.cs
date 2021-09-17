@@ -155,6 +155,11 @@ public class BossScript : MonoBehaviour
 
             //boss dies state;
             case 5:
+                if (Eyes[2].transform.childCount != 0)
+                {
+                    Destroy(Eyes[2].transform.GetChild(0).gameObject);
+                }
+
                 if (BossDiesFadeTimer < BossDiesFadeTime)
                 {
                     BossDiesFadeTimer += Time.deltaTime;
