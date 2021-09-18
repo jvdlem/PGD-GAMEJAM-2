@@ -5,16 +5,20 @@ using UnityEngine;
 public class enemymove : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    float speed = 5;
+    float speed = 10;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<GameObject>();
+        player = GameObject.Find("Sphere");
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        float dist = Vector3.Distance(player.transform.position, transform.position);
+        if (dist < 10)
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
     }
 }
