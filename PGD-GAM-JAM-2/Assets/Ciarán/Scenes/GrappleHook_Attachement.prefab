@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 4528854216630219809}
   - component: {fileID: 8687794937358175648}
   - component: {fileID: 505105519439681823}
-  - component: {fileID: 3999669087456309405}
   m_Layer: 0
   m_Name: GrappleHook_Attachement
   m_TagString: Untagged
@@ -499,20 +498,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd262c1265b6f346bd72d9bbb38fb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3999669087456309405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282077466770157881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b86e9cee1ed04264498b7e474adb6380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  roomIsCleared: 0
-  spawner: {fileID: 4885268100554368845, guid: 7d07979012db253439a06382bbdbad01, type: 3}
 --- !u!1 &7344212716695376981
 GameObject:
   m_ObjectHideFlags: 0

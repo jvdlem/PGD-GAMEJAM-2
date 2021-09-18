@@ -5,12 +5,18 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public bool roomIsCleared;
-    public GameObject spawner;
-    Vector3 startPos;
+    public GameObject Attachement1, Attachement2, Attachement3;
+    public GameObject[] randomAttachemt = new GameObject[3];
+    public int randomIndex;
+    
     // Start is called before the first frame update
     void Start()
     {
-        startPos = spawner.transform.position;
+        randomAttachemt[1] = Attachement1;
+        randomAttachemt[2] = Attachement2;
+        randomAttachemt[3] = Attachement3;
+        randomIndex = Random.Range(0, 2);
+        
     }
 
     // Update is called once per frame
@@ -18,7 +24,7 @@ public class Spawn : MonoBehaviour
     {
         if (roomIsCleared)
         {
-            transform.position = startPos;
+            randomAttachemt[randomIndex].transform.position = transform.position;
         }
     }
 }
