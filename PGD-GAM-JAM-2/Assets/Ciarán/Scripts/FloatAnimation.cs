@@ -7,7 +7,7 @@ public class FloatAnimation : MonoBehaviour
 {
     float floatSpan = 2.0f;
     float speed = 1.0f;
-    float bobbingVariable = 6.0f;
+    float bobbingVariable = 20.0f;
 
     private float startY;
 
@@ -21,9 +21,9 @@ public class FloatAnimation : MonoBehaviour
     void Update()
     {
         
-        Vector3 bobbingEffect = new Vector3(0, (float)(startY + Mathf.Sin(Time.time * speed) * floatSpan / bobbingVariable), 0);
+        Vector3 bobbingEffect = new Vector3(transform.position.x, (float)(startY + Mathf.Sin(Time.time * speed) * floatSpan / bobbingVariable), transform.position.z);
         
-        this.transform.position = bobbingEffect;
+        transform.position = bobbingEffect;
        
     } 
 }

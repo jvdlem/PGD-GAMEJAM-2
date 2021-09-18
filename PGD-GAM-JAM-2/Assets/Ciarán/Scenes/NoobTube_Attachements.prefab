@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 6361943422549586039}
   - component: {fileID: 1983490085054079335}
   - component: {fileID: 4369067428103997348}
+  - component: {fileID: -6415280387154184394}
   m_Layer: 0
   m_Name: NoobTube_Attachements
   m_TagString: Untagged
@@ -206,3 +207,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcd262c1265b6f346bd72d9bbb38fb71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-6415280387154184394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4521281867622413007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86e9cee1ed04264498b7e474adb6380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomIsCleared: 0
+  spawner: {fileID: 4885268100554368845, guid: 7d07979012db253439a06382bbdbad01, type: 3}

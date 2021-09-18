@@ -199,6 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7923784866236723087}
+  - component: {fileID: 3213532409692665459}
   m_Layer: 0
   m_Name: Attachement_SpawnPoint
   m_TagString: Untagged
@@ -222,3 +223,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3213532409692665459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885268100554368845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86e9cee1ed04264498b7e474adb6380, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomIsCleared: 0
+  attachement: {fileID: 6062971266477497955, guid: 5a3fdb706ee4a474786f1500c72cdc3a, type: 3}
