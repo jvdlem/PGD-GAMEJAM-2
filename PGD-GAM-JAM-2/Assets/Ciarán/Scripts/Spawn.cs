@@ -12,10 +12,10 @@ public class Spawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        randomAttachemt[1] = Attachement1;
-        randomAttachemt[2] = Attachement2;
-        randomAttachemt[3] = Attachement3;
-        randomIndex = Random.Range(0, 2);
+        randomAttachemt[0] = Attachement1;
+        randomAttachemt[1] = Attachement2;
+        randomAttachemt[2] = Attachement3;
+        randomIndex = Random.Range(0, 3);
         
     }
 
