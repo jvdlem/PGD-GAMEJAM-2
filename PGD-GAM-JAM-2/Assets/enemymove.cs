@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemymove : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
     [SerializeField] GameObject player;
-    float speed = 10;
+
+    float speed = 10; //speed of the goblin.
+    int trackDistance = 20; //tracking distance of the goblin vs the player.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,12 @@ public class enemymove : MonoBehaviour
     void Update()
     {
         float dist = Vector3.Distance(player.transform.position, transform.position);
-        if (dist < 10)
+        float step = speed * Time.deltaTime; // calculate distance to move
+
+        if (dist < trackDistance)
         {
-            transform.position += Vector3.right * speed * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
+            transform.LookAt(player.transform);
         }
     }
 }
