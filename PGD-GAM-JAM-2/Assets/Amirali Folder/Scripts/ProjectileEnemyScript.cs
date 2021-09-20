@@ -9,6 +9,7 @@ public class ProjectileEnemyScript : MonoBehaviour
     public float lookAtRange = 50.0f;
     public float AttackRange = 20.0f;
     public float bulletSpeed = 20.0f;
+    public float speed = 2.0f;
 
     public bool  projectileEnemyDeath = false;
     private bool inLookAtRange = false;
@@ -50,7 +51,12 @@ public class ProjectileEnemyScript : MonoBehaviour
         inLookAtRange = Vector3.Distance(transform.position, player.position) < lookAtRange;
 
         if (inAttackRange) { transform.LookAt(player); gameObject.GetComponent<Renderer>().material.color = Color.red; }
-        else if (inLookAtRange) { transform.LookAt(player); gameObject.GetComponent<Renderer>().material.color = Color.yellow; }
+        else if (inLookAtRange) 
+        { 
+            transform.LookAt(player); gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            Debug.DrawLine(player.position, gameObject.transform.position, Color.yellow);
+            gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
+        }
         else gameObject.GetComponent<Renderer>().material.color = Color.green; ;
 
         
