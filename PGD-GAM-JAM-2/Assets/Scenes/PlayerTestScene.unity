@@ -407,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charControl: {fileID: 785219793}
   speed: 25
-  gravity: -9.18
+  gravity: -20
   jumpHeight: 3
   groundCheck: {fileID: 2129255146}
   groundDistance: 0.4
@@ -423,11 +423,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 785219792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ae850c6e4558143aad3a73f3fe6069, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bc3eb9bb2ed6464f964aa4babe7514b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  currentHealth: 0
+  currentHealth: 10
   healthBar: {fileID: 1667110331}
 --- !u!1 &1319536511
 GameObject:

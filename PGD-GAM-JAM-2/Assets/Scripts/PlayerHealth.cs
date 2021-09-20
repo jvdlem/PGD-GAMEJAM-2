@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(1);
+            TakeDamage(2);
         }
     }
 
