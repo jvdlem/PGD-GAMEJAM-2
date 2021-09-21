@@ -6,7 +6,7 @@ public class EnemyMove : MonoBehaviour
 {
     [SerializeField] GameObject player;
 
-    float speed = 10; //speed of the goblin.
+    float speed = 8; //speed of the goblin.
     int trackDistance = 20; //tracking distance of the goblin vs the player.
 
     // Start is called before the first frame update
@@ -25,6 +25,15 @@ public class EnemyMove : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, player.transform.position, step);
             transform.LookAt(player.transform);
-        }
+        }   
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if (collision.gameObject.tag == "MeleeEnemy")
+        //{
+        //    transform.position = Vector3.up * 50;
+        //    Destroy(this);
+        //}
     }
 }
