@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBar.SetHealth(currentHealth);
 
         //Set conditions for taking damage
 
