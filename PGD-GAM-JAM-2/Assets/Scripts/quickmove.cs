@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class quickmove : MonoBehaviour
 {
-    float speed = 5;
+    float speed = 10;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
