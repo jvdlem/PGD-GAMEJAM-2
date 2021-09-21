@@ -20,11 +20,10 @@ public class ProjectileEnemyScript : MonoBehaviour
     public Rigidbody projectile;
     void Start()
     {
+        player = GameObject.Find("Player").transform;
+
         float rand = Random.Range(1.0f, 2.0f);
         InvokeRepeating("shoot", 2, rand);
-
-        
-
     }
     void shoot() 
     {
