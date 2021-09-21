@@ -6,6 +6,7 @@ public class CreateBullet : MonoBehaviour
 {
 
     public Rigidbody bullet;
+    [SerializeField] public float speed = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +28,7 @@ public class CreateBullet : MonoBehaviour
                 Quaternion.identity);
 
             projectile.transform.position += projectile.velocity;
-            projectile.AddForce(transform.right * 50, ForceMode.Impulse);
+            projectile.AddForce(transform.right * speed, ForceMode.Impulse);
         }        
     }
 }
