@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.tag == "Playboy")
+            if (hitCollider.tag == "Player")
             {
                 
                 spawnParticle.Play();
