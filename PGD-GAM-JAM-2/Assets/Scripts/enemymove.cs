@@ -12,7 +12,7 @@ public class EnemyMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Sphere");
     }
 
     // Update is called once per frame

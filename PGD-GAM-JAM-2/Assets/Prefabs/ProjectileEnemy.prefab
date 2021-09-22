@@ -114,9 +114,7 @@ MonoBehaviour:
   lookAtRange: 50
   AttackRange: 20
   bulletSpeed: 10
-  speed: 2
   projectileEnemyDeath: 0
-  destroyedVersion: {fileID: 0}
   projectile: {fileID: 835197095977224090, guid: 44c0e8e931fcca648bff852a709dd56c, type: 3}
 --- !u!54 &4520715594560370714
 Rigidbody:
@@ -132,7 +130,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!1001 &4520715594516666970
 PrefabInstance:

@@ -45,8 +45,6 @@ public class BossScript : MonoBehaviour
         {
             Eyes[i] = gameObject.transform.GetChild(i).GetComponent<EyeBossScript>();
         }
-        healthSlider = GameObject.Find("UI").GetComponent<UiManager>().BossHealthbar;
-        Player = GameObject.Find("Player");
     }
 
     void Update()
