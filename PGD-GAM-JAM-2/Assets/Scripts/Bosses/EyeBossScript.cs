@@ -6,7 +6,6 @@ public class EyeBossScript : MonoBehaviour
 {
     private BossScript parentBoss;
     private GameObject player;
-    public new Animation animation;
     public float lookSpeed = 3f;
 
     public new Renderer renderer;
@@ -17,7 +16,6 @@ public class EyeBossScript : MonoBehaviour
     {
         parentBoss = transform.parent.GetComponent<BossScript>();
         renderer = GetComponent<Renderer>();
-        animation = GetComponent<Animation>();
         player = parentBoss.Player;
     }
 
