@@ -4885,7 +4885,7 @@ GameObject:
   - component: {fileID: 752510696120938186}
   - component: {fileID: 225680951318395147}
   m_Layer: 0
-  m_Name: Spawn Barrel 1
+  m_Name: Spawn Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4933,7 +4933,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 680cb8060c82ad44fa6570c3557390c2, type: 2}
+  - {fileID: 2100000, guid: d96b74cfea94fc049b8e45b967c1e8f0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4980,6 +4980,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdc4ac7e985f35c4ea3c7b6d2fae760a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawn: {fileID: 6379390820004686315, guid: 9e41fe84174392046b82ec5ef8a50f90, type: 3}
+  spawn: {fileID: 2170286114117571390, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
   radius: 10
   spawnParticle: {fileID: 1858027375016782422}
