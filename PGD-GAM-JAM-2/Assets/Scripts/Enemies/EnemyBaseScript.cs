@@ -8,7 +8,7 @@ public class EnemyBaseScript : MonoBehaviour
     public int Damage;
     public int Tier;
     private Rigidbody Rigidbody;
-    private GameObject Player;
+    public GameObject Player;
 
     void Start()
     {
