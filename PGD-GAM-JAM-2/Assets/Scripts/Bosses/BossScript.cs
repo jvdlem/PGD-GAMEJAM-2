@@ -16,6 +16,7 @@ public class BossScript : MonoBehaviour
     public GameObject Minions;
     private int minionAmount = 5;
     private bool minionsSpawned;
+    private int previousEye;
 
     private float EyeLookSpeedDefault = 3;
     private float EyeLookSpeedTracking = 10;
@@ -48,7 +49,7 @@ public class BossScript : MonoBehaviour
             Eyes[i] = gameObject.transform.GetChild(i).GetComponent<EyeBossScript>();
         }
         healthSlider = GameObject.Find("Canvas").GetComponent<UIManager>().Bossslider;
-        Player = GameObject.FindGameObjectWithTag("Playboy");
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void Update()
@@ -83,6 +84,10 @@ public class BossScript : MonoBehaviour
                 else
                 {
                     bossState = Random.Range(2, 5);
+                    while (bossState == previousEye)
+                    {
+                        bossState = Random.Range(2, 5);
+                    }
                     bossIsWaitingTimer = 0;
                 }
                 break;
@@ -91,6 +96,7 @@ public class BossScript : MonoBehaviour
             case 2:
                 Eyes[0].EyeIsActive = true;
                 Eyes[0].lookSpeed = EyeLookSpeedTracking;
+                previousEye = bossState;
 
                 if (eyeShootTimer < eyeShootDelay)
                 {
@@ -113,6 +119,8 @@ public class BossScript : MonoBehaviour
             //boss uses middle eye state
             case 3:
                 Eyes[1].EyeIsActive = true;
+                previousEye = bossState;
+
                 if (Minions != null && minionsSpawned == false)
                 {
                     for (int i = 0; i < minionAmount; i++)
@@ -133,6 +141,7 @@ public class BossScript : MonoBehaviour
             case 4:
                 Eyes[2].EyeIsActive = true;
                 Eyes[2].lookSpeed = EyeLookSpeedTracking;
+                previousEye = bossState;
 
                 if (laserChargeTimer < laserChargeTime)
                 {
