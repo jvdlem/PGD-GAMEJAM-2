@@ -10,7 +10,7 @@ public class EnemyBaseScript : MonoBehaviour
     private Rigidbody Rigidbody;
     public GameObject Player;
 
-    void Start()
+    public virtual void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -29,7 +29,7 @@ public class EnemyBaseScript : MonoBehaviour
         }
     }
 
-    void Update()
+    public virtual void Update()
     {
         
     }
