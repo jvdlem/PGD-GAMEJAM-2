@@ -10,4 +10,6 @@ public class WatchUi : MonoBehaviour
     {
         healthText.text = "" + FindObjectOfType<PlayerHealthScript>().currentHealth;
     }
+
+
 }

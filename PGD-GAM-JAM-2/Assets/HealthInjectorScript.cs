@@ -11,10 +11,9 @@ public class HealthInjectorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (injectorActive == false) { gameObject.GetComponent<Renderer>().material.color = Color.red; }
     }
-    public void OnCollisionEnter(Collision collision)
+    public void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.name == "XR Rig" && injectorActive) 
         {
@@ -27,4 +26,5 @@ public class HealthInjectorScript : MonoBehaviour
         injectorActive = true;
         gameObject.GetComponent<Renderer>().material.color = Color.green;
     }
+ 
 }
