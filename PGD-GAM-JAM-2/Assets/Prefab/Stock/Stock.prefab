@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510086358330548248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.291}
+  m_LocalPosition: {x: 0, y: 0, z: -0.27599996}
   m_LocalScale: {x: 0.10313658, y: 0.10313658, z: 0.51998895}
   m_Children: []
   m_Father: {fileID: 3323154272844294938}
@@ -122,7 +122,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4995857129513023136}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: -0.025, z: -0.586}
+  m_LocalPosition: {x: 0, y: -0.025, z: -0.571}
   m_LocalScale: {x: 0.10313658, y: 0.7704096, z: 0.13854462}
   m_Children: []
   m_Father: {fileID: 3323154272844294938}
@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 3323154272844294938}
   - component: {fileID: 8008831336420507262}
   - component: {fileID: 8323018602336146125}
+  - component: {fileID: 5793565073726413160}
   m_Layer: 6
   m_Name: Stock
   m_TagString: Stock
@@ -239,7 +240,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &8323018602336146125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,3 +347,21 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &5793565073726413160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8357656364833336842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca5fb68c21fb6245817ad0b8fc43e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statList: []
+  spread: 10
+  amountOfBullets: 4
+  damage: 1
+  fullAutoCount: 1
+  bulletTime: 1
