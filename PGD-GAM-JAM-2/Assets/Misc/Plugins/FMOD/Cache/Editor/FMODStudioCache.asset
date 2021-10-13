@@ -1,0 +1,289 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6393814529241084958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/Grenade Launcher/Explosion/Muffled Explosion 01
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/Grenade Launcher/Explosion/Muffled Explosion 01
+  Guid:
+    Data1: -2085789353
+    Data2: 1209583532
+    Data3: 504701342
+    Data4: 410778417
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-4360853434122852593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/MiniGun/Shot/Gun 9 Loop
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/MiniGun/Shot/Gun 9 Loop
+  Guid:
+    Data1: -691408147
+    Data2: 1209820410
+    Data3: -310495075
+    Data4: 2126406094
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-3640028923333108303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/Grenade Launcher/Explosion/Big Explosion 06
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/Grenade Launcher/Explosion/Big Explosion 06
+  Guid:
+    Data1: 303497129
+    Data2: 1268393886
+    Data3: -1130081911
+    Data4: 722947543
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1665433370852241058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../OneDrive/Documents/FMOD Studio/Team13 VR/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 637697210819310357
+  FileSizes:
+  - Name: Desktop
+    Value: 1182
+  Exists: 1
+--- !u!114 &-1155092300047146206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/Pistol/Shot/Gun 8_1
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/Pistol/Shot/Gun 8_1
+  Guid:
+    Data1: -2029514044
+    Data2: 1187782006
+    Data3: -613029974
+    Data4: -1578358936
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -1665433370852241058}
+  - {fileID: 3869696480386329221}
+  EditorEvents:
+  - {fileID: -4360853434122852593}
+  - {fileID: 5549586683524186326}
+  - {fileID: -3640028923333108303}
+  - {fileID: -1155092300047146206}
+  - {fileID: 6038884280605925328}
+  - {fileID: -6393814529241084958}
+  - {fileID: 7058351471211377788}
+  - {fileID: 7537892535104957169}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: 3869696480386329221}
+  StringsBanks:
+  - {fileID: -1665433370852241058}
+  cacheTime: 637697210819310357
+  cacheVersion: 9
+--- !u!114 &3869696480386329221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: ../../../OneDrive/Documents/FMOD Studio/Team13 VR/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 637697210819259416
+  FileSizes:
+  - Name: Desktop
+    Value: 167040
+  Exists: 1
+--- !u!114 &5549586683524186326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/Shotgun/Shot/Shotgunshot
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/Shotgun/Shot/Shotgunshot
+  Guid:
+    Data1: -1970145455
+    Data2: 1116073863
+    Data3: -1717018463
+    Data4: 1863021577
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 460
+--- !u!114 &6038884280605925328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/Grenade Launcher/Explosion/Thick Explosion 4
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/Grenade Launcher/Explosion/Thick Explosion 4
+  Guid:
+    Data1: -725752749
+    Data2: 1195946728
+    Data3: 347391134
+    Data4: -1263284058
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7058351471211377788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Gun/Grenade Launcher/Explosion/Big Explosion 05
+  m_EditorClassIdentifier: 
+  Path: event:/Gun/Grenade Launcher/Explosion/Big Explosion 05
+  Guid:
+    Data1: 1391863129
+    Data2: 1152764765
+    Data3: -1484214087
+    Data4: -605382985
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &7537892535104957169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Enemy/Bat/Flying
+  m_EditorClassIdentifier: 
+  Path: event:/Enemy/Bat/Flying
+  Guid:
+    Data1: 419092676
+    Data2: 1218841076
+    Data3: -979372665
+    Data4: -947795486
+  Banks:
+  - {fileID: 3869696480386329221}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
