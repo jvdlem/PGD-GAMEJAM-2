@@ -1,4 +1,4 @@
-﻿#if (UNITY_TIMELINE_EXIST || !UNITY_2019_1_OR_NEWER)
+﻿#if UNITY_TIMELINE_EXIST
 
 using System.Collections.Generic;
 using UnityEditor;
@@ -64,17 +64,17 @@ namespace FMODUnity
             RefreshTimelineEditor();
         }
 
-        string eventName;
+        string eventPath;
 
         private void RefreshEventRef()
         {
-            if (eventName != eventPlayable.eventName)
+            if (eventPath != eventPlayable.eventReference.Path)
             {
-                eventName = eventPlayable.eventName;
+                eventPath = eventPlayable.eventReference.Path;
 
-                if (!string.IsNullOrEmpty(eventName))
+                if (!string.IsNullOrEmpty(eventPath))
                 {
-                    editorEventRef = EventManager.EventFromPath(eventName);
+                    editorEventRef = EventManager.EventFromPath(eventPath);
                 }
                 else
                 {
@@ -165,10 +165,14 @@ namespace FMODUnity
 
             RefreshEventRef();
 
-            var ev = serializedObject.FindProperty("eventName");
+            var eventReference = serializedObject.FindProperty("eventReference");
             var stopType = serializedObject.FindProperty("stopType");
 
-            EditorGUILayout.PropertyField(ev, new GUIContent("Event"));
+            const string EventReferenceLabel = "Event";
+
+            EditorUtils.DrawLegacyEvent(serializedObject.FindProperty("eventName"), EventReferenceLabel);
+
+            EditorGUILayout.PropertyField(eventReference, new GUIContent(EventReferenceLabel));
             EditorGUILayout.PropertyField(stopType, new GUIContent("Stop Mode"));
 
             DrawInitialParameterValues();
@@ -443,11 +447,7 @@ namespace FMODUnity
 
         static bool ClipHasCurves(TimelineClip clip)
         {
-#if UNITY_2019_OR_NEWER
             return clip.hasCurves;
-#else
-            return clip.curves != null && !clip.curves.empty;
-#endif
         }
 
         void DeleteParameterAutomation(string name)
@@ -499,37 +499,7 @@ namespace FMODUnity
 
         static void RefreshTimelineEditor()
         {
-#if UNITY_2018_3_OR_NEWER
             TimelineEditor.Refresh(RefreshReason.ContentsAddedOrRemoved);
-#else
-            object[] noParameters = new object[] { };
-
-            Type timelineType = typeof(TimelineEditor);
-
-            Assembly assembly = timelineType.Assembly;
-            Type windowType = assembly.GetType("UnityEditor.Timeline.TimelineWindow");
-
-            PropertyInfo windowInstanceProperty = windowType.GetProperty("instance");
-            object windowInstance = windowInstanceProperty.GetValue(null, noParameters);
-
-            if (windowInstance == null)
-            {
-                return;
-            }
-
-            PropertyInfo windowStateProperty = windowType.GetProperty("state");
-            object windowState = windowStateProperty.GetValue(windowInstance, noParameters);
-
-            if (windowState == null)
-            {
-                return;
-            }
-
-            Type windowStateType = windowState.GetType();
-            MethodInfo refreshMethod = windowStateType.GetMethod("Refresh", new Type[] { });
-
-            refreshMethod.Invoke(windowState, noParameters);
-#endif
         }
     }
 }

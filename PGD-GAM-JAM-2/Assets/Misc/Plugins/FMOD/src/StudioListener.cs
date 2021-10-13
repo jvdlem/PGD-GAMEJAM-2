@@ -5,12 +5,12 @@ namespace FMODUnity
     [AddComponentMenu("FMOD Studio/FMOD Studio Listener")]
     public class StudioListener : MonoBehaviour
     {
-        #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
         Rigidbody rigidBody;
-        #endif
-        #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#endif
+#if UNITY_PHYSICS2D_EXIST
         Rigidbody2D rigidBody2D;
-        #endif
+#endif
 
         public GameObject attenuationObject;
 
@@ -19,12 +19,12 @@ namespace FMODUnity
         void OnEnable()
         {
             RuntimeUtils.EnforceLibraryOrder();
-            #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
             rigidBody = gameObject.GetComponent<Rigidbody>();
-            #endif
-            #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#endif
+#if UNITY_PHYSICS2D_EXIST
             rigidBody2D = gameObject.GetComponent<Rigidbody2D>();
-            #endif
+#endif
             ListenerNumber = RuntimeManager.AddListener(this);
         }
 
@@ -43,20 +43,20 @@ namespace FMODUnity
 
         void SetListenerLocation()
         {
-            #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
             if (rigidBody)
             {
                 RuntimeManager.SetListenerLocation(ListenerNumber, gameObject, rigidBody, attenuationObject);
             }
             else
-            #endif
-            #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#endif
+#if UNITY_PHYSICS2D_EXIST
             if (rigidBody2D)
             {
                 RuntimeManager.SetListenerLocation(ListenerNumber, gameObject, rigidBody2D, attenuationObject);
             }
             else
-            #endif
+#endif
             {
                 RuntimeManager.SetListenerLocation(ListenerNumber, gameObject, attenuationObject);
             }

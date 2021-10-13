@@ -21,9 +21,9 @@ namespace FMODUnity
             for (int i = 0; i < Emitters.Length; i++)
             {
                 var emitterRef = Emitters[i];
-                if (emitterRef.Target != null && !string.IsNullOrEmpty(emitterRef.Target.Event))
+                if (emitterRef.Target != null && !emitterRef.Target.EventReference.IsNull)
                 {
-                    FMOD.Studio.EventDescription eventDesc = FMODUnity.RuntimeManager.GetEventDescription(emitterRef.Target.Event);
+                    FMOD.Studio.EventDescription eventDesc = RuntimeManager.GetEventDescription(emitterRef.Target.EventReference);
                     if (eventDesc.isValid())
                     {
                         for (int j = 0; j < Emitters[i].Params.Length; j++)

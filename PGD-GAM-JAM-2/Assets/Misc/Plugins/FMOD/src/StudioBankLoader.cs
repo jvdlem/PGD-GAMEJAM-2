@@ -45,7 +45,7 @@ namespace FMODUnity
             }
         }
 
-        #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
         void OnTriggerEnter(Collider other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
@@ -61,9 +61,9 @@ namespace FMODUnity
                 HandleGameEvent(LoaderGameEvent.TriggerExit);
             }
         }
-        #endif
+#endif
 
-        #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS2D_EXIST
         void OnTriggerEnter2D(Collider2D other)
         {
             if (string.IsNullOrEmpty(CollisionTag) || other.CompareTag(CollisionTag))
@@ -79,7 +79,7 @@ namespace FMODUnity
                 HandleGameEvent(LoaderGameEvent.TriggerExit2D);
             }
         }
-        #endif
+#endif
 
         void OnEnable()
         {
@@ -101,7 +101,7 @@ namespace FMODUnity
                 }
                 catch (BankLoadException e)
                 {
-                    UnityEngine.Debug.LogException(e);
+                    RuntimeUtils.DebugLogException(e);
                 }
             }
             RuntimeManager.WaitForAllLoads();

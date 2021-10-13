@@ -1,4 +1,4 @@
-﻿#if (UNITY_TIMELINE_EXIST || !UNITY_2019_1_OR_NEWER)
+﻿#if UNITY_TIMELINE_EXIST
 
 using System;
 using System.ComponentModel;

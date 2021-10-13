@@ -5,22 +5,114 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+namespace FMOD
+{
+    [Serializable]
+    public partial struct GUID : IEquatable<GUID>
+    {
+        public GUID(Guid guid)
+        {
+            byte[] bytes = guid.ToByteArray();
+
+            Data1 = BitConverter.ToInt32(bytes,  0);
+            Data2 = BitConverter.ToInt32(bytes,  4);
+            Data3 = BitConverter.ToInt32(bytes,  8);
+            Data4 = BitConverter.ToInt32(bytes, 12);
+        }
+
+        public static GUID Parse(string s)
+        {
+            return new GUID(new Guid(s));
+        }
+
+        public bool IsNull
+        {
+            get
+            {
+                return Data1 == 0
+                    && Data2 == 0
+                    && Data3 == 0
+                    && Data4 == 0;
+            }
+        }
+
+        public override bool Equals(object other)
+        {
+            return (other is GUID) && Equals((GUID)other);
+        }
+
+        public bool Equals(GUID other)
+        {
+            return Data1 == other.Data1
+                && Data2 == other.Data2
+                && Data3 == other.Data3
+                && Data4 == other.Data4;
+        }
+
+        public static bool operator==(GUID a, GUID b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator!=(GUID a, GUID b)
+        {
+            return !a.Equals(b);
+        }
+
+        public override int GetHashCode()
+        {
+            return Data1 ^ Data2 ^ Data3 ^ Data4;
+        }
+
+        public static implicit operator Guid(GUID guid)
+        {
+            return new Guid(guid.Data1,
+                    (short) ((guid.Data2 >>  0) & 0xFFFF),
+                    (short) ((guid.Data2 >> 16) & 0xFFFF),
+                    (byte)  ((guid.Data3 >>  0) & 0xFF),
+                    (byte)  ((guid.Data3 >>  8) & 0xFF),
+                    (byte)  ((guid.Data3 >> 16) & 0xFF),
+                    (byte)  ((guid.Data3 >> 24) & 0xFF),
+                    (byte)  ((guid.Data4 >>  0) & 0xFF),
+                    (byte)  ((guid.Data4 >>  8) & 0xFF),
+                    (byte)  ((guid.Data4 >> 16) & 0xFF),
+                    (byte)  ((guid.Data4 >> 24) & 0xFF)
+                );
+        }
+
+        public override string ToString()
+        {
+            return ((Guid)this).ToString("B");
+        }
+    }
+}
+
 namespace FMODUnity
 {
     public class EventNotFoundException : Exception
     {
-        public Guid Guid;
+        public FMOD.GUID Guid;
         public string Path;
         public EventNotFoundException(string path)
-            : base("[FMOD] Event not found '" + path + "'")
+            : base("[FMOD] Event not found: '" + path + "'")
         {
             Path = path;
         }
 
-        public EventNotFoundException(Guid guid)
-            : base("[FMOD] Event not found " + guid.ToString("b") + "")
+        public EventNotFoundException(FMOD.GUID guid)
+            : base("[FMOD] Event not found: " + guid)
         {
             Guid = guid;
+        }
+
+        public EventNotFoundException(EventReference eventReference)
+            : base("[FMOD] Event not found: " + eventReference.ToString())
+        {
+            Guid = eventReference.Guid;
+
+#if UNITY_EDITOR
+            Path = eventReference.Path;
+#endif
         }
     }
 
@@ -226,7 +318,7 @@ namespace FMODUnity
             return go.transform.To3DAttributes();
         }
 
-        #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
         public static FMOD.ATTRIBUTES_3D To3DAttributes(Transform transform, Rigidbody rigidbody = null)
         {
             FMOD.ATTRIBUTES_3D attributes = transform.To3DAttributes();
@@ -250,9 +342,9 @@ namespace FMODUnity
 
             return attributes;
         }
-        #endif
+#endif
 
-        #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS2D_EXIST
         public static FMOD.ATTRIBUTES_3D To3DAttributes(Transform transform, Rigidbody2D rigidbody)
         {
             FMOD.ATTRIBUTES_3D attributes = transform.To3DAttributes();
@@ -285,7 +377,7 @@ namespace FMODUnity
 
             return attributes;
         }
-        #endif
+#endif
 
         public static FMOD.THREAD_TYPE ToFMODThreadType(ThreadType threadType)
         {
@@ -374,8 +466,100 @@ namespace FMODUnity
             int temp1, temp2;
             FMOD.Memory.GetStats(out temp1, out temp2);
 
-            Guid temp3;
+            FMOD.GUID temp3;
             FMOD.Studio.Util.parseID("", out temp3);
+        }
+
+#if UNITY_EDITOR
+        private static string pluginBasePath;
+
+        public static string PluginBasePath
+        {
+            get
+            {
+                if (pluginBasePath == null)
+                {
+                    const string FMODFolderGUID = "06ae579381df01a4a87bb149dec89954";
+
+                    pluginBasePath = AssetDatabase.GUIDToAssetPath(FMODFolderGUID);
+
+                    if (!string.IsNullOrEmpty(pluginBasePath))
+                    {
+                        const string AssetsFolder = "Assets/";
+
+                        if (pluginBasePath.StartsWith(AssetsFolder))
+                        {
+                            pluginBasePath = pluginBasePath.Substring(AssetsFolder.Length);
+                        }
+                    }
+                    else
+                    {
+                        pluginBasePath = "Plugins/FMOD";
+
+                        DebugLogWarningFormat("FMOD: Couldn't find base folder with GUID {0}; defaulting to {1}",
+                            FMODFolderGUID, pluginBasePath);
+                    }
+                }
+
+                return pluginBasePath;
+            }
+        }
+#endif
+
+        public static void DebugLog(string message)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel == FMOD.DEBUG_FLAGS.LOG)
+            {
+                Debug.Log(message);
+            }
+        }
+
+        public static void DebugLogFormat(string format, params object[] args)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel == FMOD.DEBUG_FLAGS.LOG)
+            {
+                Debug.LogFormat(format, args);
+            }
+        }
+
+        public static void DebugLogWarning(string message)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.WARNING)
+            {
+                Debug.LogWarning(message);
+            }
+        }
+
+        public static void DebugLogWarningFormat(string format, params object[] args)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.WARNING)
+            {
+                Debug.LogWarningFormat(format, args);
+            }
+        }
+
+        public static void DebugLogError(string message)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.ERROR)
+            {
+                Debug.LogError(message);
+            }
+        }
+
+        public static void DebugLogErrorFormat(string format, params object[] args)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.ERROR)
+            {
+                Debug.LogErrorFormat(format, args);
+            }
+        }
+
+        public static void DebugLogException(Exception e)
+        {
+            if (Settings.Instance == null || Settings.Instance.LoggingLevel >= FMOD.DEBUG_FLAGS.ERROR)
+            {
+                Debug.LogException(e);
+            }
         }
     }
 }

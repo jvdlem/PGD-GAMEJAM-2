@@ -1,4 +1,4 @@
-﻿#if (UNITY_TIMELINE_EXIST || !UNITY_2019_1_OR_NEWER)
+﻿#if UNITY_TIMELINE_EXIST
 
 using System;
 using System.Collections.Generic;
@@ -18,8 +18,10 @@ namespace FMODUnity
 
         FMODEventPlayableBehavior behavior;
 
-        [EventRef]
+        [Obsolete("Use the eventReference field instead")]
         [SerializeField] public string eventName;
+
+        [SerializeField] public EventReference eventReference;
         [SerializeField] public STOP_MODE stopType;
 
         [SerializeField] public ParamRef[] parameters = new ParamRef[0];
@@ -30,7 +32,7 @@ namespace FMODUnity
         {
             get
             {
-                if (eventName == null)
+                if (eventReference.IsNull)
                 {
                     return base.duration;
                 }
@@ -51,13 +53,12 @@ namespace FMODUnity
         public override Playable CreatePlayable(PlayableGraph graph, GameObject owner)
         {
 #if UNITY_EDITOR
-            if (!string.IsNullOrEmpty(eventName))
+            if (!eventReference.IsNull)
 #else
-            if (!cachedParameters && !string.IsNullOrEmpty(eventName))
+            if (!cachedParameters && !eventReference.IsNull)
 #endif
             {
-                FMOD.Studio.EventDescription eventDescription;
-                RuntimeManager.StudioSystem.getEvent(eventName, out eventDescription);
+                FMOD.Studio.EventDescription eventDescription = RuntimeManager.GetEventDescription(eventReference);
 
                 for (int i = 0; i < parameters.Length; i++)
                 {
@@ -82,7 +83,7 @@ namespace FMODUnity
             behavior = playable.GetBehaviour();
 
             behavior.TrackTargetObject = TrackTargetObject;
-            behavior.eventName = eventName;
+            behavior.eventReference = eventReference;
             behavior.stopType = stopType;
             behavior.parameters = parameters;
             behavior.OwningClip = OwningClip;
@@ -98,14 +99,14 @@ namespace FMODUnity
 
         public void OnValidate()
         {
-            if (OwningClip != null && !string.IsNullOrEmpty(eventName))
+            if (OwningClip != null && !eventReference.IsNull)
             {
-                int index = eventName.LastIndexOf("/");
-                OwningClip.displayName = eventName.Substring(index + 1);
+                int index = eventReference.Path.LastIndexOf("/");
+                OwningClip.displayName = eventReference.Path.Substring(index + 1);
             }
-            if (behavior != null && !string.IsNullOrEmpty(behavior.eventName))
+            if (behavior != null && !behavior.eventReference.IsNull)
             {
-                behavior.eventName = eventName;
+                behavior.eventReference = eventReference;
             }
         }
 #endif //UNITY_EDITOR
@@ -129,7 +130,7 @@ namespace FMODUnity
     [Serializable]
     public class FMODEventPlayableBehavior : PlayableBehaviour
     {
-        public string eventName;
+        public EventReference eventReference;
         public STOP_MODE stopType = STOP_MODE.AllowFadeout;
         [NotKeyable]
         public ParamRef[] parameters = new ParamRef[0];
@@ -150,26 +151,27 @@ namespace FMODUnity
 
         protected void PlayEvent()
         {
-            if (!string.IsNullOrEmpty(eventName))
+            if (!eventReference.IsNull)
             {
-                eventInstance = RuntimeManager.CreateInstance(eventName);
+                eventInstance = RuntimeManager.CreateInstance(eventReference);
+
                 // Only attach to object if the game is actually playing, not auditioning.
                 if (Application.isPlaying && TrackTargetObject)
                 {
-                    #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
                     if (TrackTargetObject.GetComponent<Rigidbody>())
                     {
                         RuntimeManager.AttachInstanceToGameObject(eventInstance, TrackTargetObject.transform, TrackTargetObject.GetComponent<Rigidbody>());
                     }
                     else
-                    #endif
-                    #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#endif
+#if UNITY_PHYSICS2D_EXIST
                     if (TrackTargetObject.GetComponent<Rigidbody2D>())
                     {
                         RuntimeManager.AttachInstanceToGameObject(eventInstance, TrackTargetObject.transform, TrackTargetObject.GetComponent<Rigidbody2D>());
                     }
                     else
-                    #endif
+#endif
                     {
                         RuntimeManager.AttachInstanceToGameObject(eventInstance, TrackTargetObject.transform);
                     }

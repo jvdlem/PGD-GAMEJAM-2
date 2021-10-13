@@ -7,9 +7,7 @@ using System.Text.RegularExpressions;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Build;
-#if UNITY_2018_1_OR_NEWER
 using UnityEditor.Build.Reporting;
-#endif
 #endif
 
 namespace FMODUnity
@@ -37,6 +35,12 @@ namespace FMODUnity
         Positional
     }
 
+    public enum EventLinkage
+    {
+        Path,
+        GUID,
+    }
+
     public enum TriStateBool
     {
         Disabled,
@@ -47,9 +51,6 @@ namespace FMODUnity
     // This class stores all of the FMOD for Unity cross-platform settings, as well as a collection
     // of Platform objects that hold the platform-specific settings. The Platform objects are stored
     // in the same asset as the Settings object using AssetDatabase.AddObjectToAsset.
-#if UNITY_EDITOR
-    [InitializeOnLoad]
-#endif
     public class Settings : ScriptableObject
     {
 #if UNITY_EDITOR
@@ -77,16 +78,19 @@ namespace FMODUnity
                     instance = Resources.Load(SettingsAssetName) as Settings;
                     if (instance == null)
                     {
-                        UnityEngine.Debug.Log("[FMOD] Cannot find integration settings, creating default settings");
+                        RuntimeUtils.DebugLog("[FMOD] Cannot find integration settings, creating default settings");
                         instance = CreateInstance<Settings>();
                         instance.name = "FMOD Studio Integration Settings";
+                        instance.CurrentVersion = FMOD.VERSION.number;
 
 #if UNITY_EDITOR
-                        if (!Directory.Exists("Assets/Plugins/FMOD/Resources"))
+                        string resourcesPath = $"{FMODFolderFull}/Resources";
+
+                        if (!Directory.Exists(resourcesPath))
                         {
-                            AssetDatabase.CreateFolder("Assets/Plugins/FMOD", "Resources");
+                            AssetDatabase.CreateFolder(FMODFolderFull, "Resources");
                         }
-                        AssetDatabase.CreateAsset(instance, "Assets/Plugins/FMOD/Resources/" + SettingsAssetName + ".asset");
+                        AssetDatabase.CreateAsset(instance, $"{resourcesPath}/{SettingsAssetName}.asset");
 
                         instance.AddPlatformsToAsset();
 #endif
@@ -102,11 +106,7 @@ namespace FMODUnity
         public static void EditSettings()
         {
             Selection.activeObject = Instance;
-#if UNITY_2018_2_OR_NEWER
             EditorApplication.ExecuteMenuItem("Window/General/Inspector");
-#else
-            EditorApplication.ExecuteMenuItem("Window/Inspector");
-#endif
         }
 #endif
 
@@ -233,6 +233,9 @@ namespace FMODUnity
         public string TargetBankFolder = "";
 
         [SerializeField]
+        public EventLinkage EventLinkage = EventLinkage.Path;
+
+        [SerializeField]
         public FMOD.DEBUG_FLAGS LoggingLevel = FMOD.DEBUG_FLAGS.WARNING;
 
         [SerializeField]
@@ -294,19 +297,26 @@ namespace FMODUnity
 
         public enum SharedLibraryUpdateStages
         {
-            DisableExistingLibraries = 0,
+            Start = 0,
+            DisableExistingLibraries,
             RestartUnity,
             CopyNewLibraries,
         };
 
         [SerializeField]
-        public SharedLibraryUpdateStages SharedLibraryUpdateStage = SharedLibraryUpdateStages.DisableExistingLibraries;
+        public SharedLibraryUpdateStages SharedLibraryUpdateStage = SharedLibraryUpdateStages.Start;
 
         [SerializeField]
         public double SharedLibraryTimeSinceStart = 0.0;
 
         [SerializeField]
+        public int CurrentVersion;
+
+        [SerializeField]
         public bool HideSetupWizard;
+
+        [SerializeField]
+        public int LastEventReferenceScanVersion;
 
         // This holds all known platforms, but only those that have settings are shown in the UI.
         // It is populated at load time from the Platform objects in the settings asset.
@@ -400,15 +410,18 @@ namespace FMODUnity
         {
             LinkPlatformToParent(platform);
 
-            platform.DeclareUnityMappings(this);
-        }
+            platform.DeclareRuntimePlatforms(this);
 
 #if UNITY_EDITOR
-        public void DeclareBuildTarget(BuildTarget buildTarget, Platform platform)
-        {
-            PlatformForBuildTarget.Add(buildTarget, platform);
-        }
+            foreach (BuildTarget buildTarget in platform.GetBuildTargets())
+            {
+                if (buildTarget != BuildTarget.NoTarget)
+                {
+                    PlatformForBuildTarget.Add(buildTarget, platform);
+                }
+            }
 #endif
+        }
 
         public void DeclareRuntimePlatform(RuntimePlatform runtimePlatform, Platform platform)
         {
@@ -819,7 +832,7 @@ namespace FMODUnity
         {
             if (!platform.Active)
             {
-                Debug.LogFormat("[FMOD] Cannot find properties for platform {0}, creating default properties", platform.Identifier);
+                RuntimeUtils.DebugLogFormat("[FMOD] Cannot find properties for platform {0}, creating default properties", platform.Identifier);
                 AddPlatformProperties(platform);
             }
         }
@@ -951,7 +964,7 @@ namespace FMODUnity
                         platformToDestroy = newPlatform;
                     }
 
-                    Debug.LogWarningFormat("FMOD: Cleaning up duplicate platform: ID  = {0}, name = '{1}', type = {2}",
+                    RuntimeUtils.DebugLogWarningFormat("FMOD: Cleaning up duplicate platform: ID  = {0}, name = '{1}', type = {2}",
                         platformToDestroy.Identifier, platformToDestroy.DisplayName, platformToDestroy.GetType().Name);
 
                     DestroyImmediate(platformToDestroy, true);
@@ -993,10 +1006,14 @@ namespace FMODUnity
             }
         }
 
+        // This has to be defined here instead of in FileReorganizer because FileReorganizer is
+        // an editor class, so Settings can't access it.
+        public const string ReorganizerMenuItemPath = "FMOD/Reorganize Plugin Files";
+
+        public const string DownloadURL = "https://www.fmod.com/download";
+
         private bool CanBuildTarget(BuildTarget target, Platform.BinaryType binaryType, out string error)
         {
-            const string DownloadURL = "https://www.fmod.com/download";
-
             Platform platform;
 
             if (!PlatformForBuildTarget.TryGetValue(target, out platform))
@@ -1034,8 +1051,8 @@ namespace FMODUnity
                 error = string.Format(
                     "{0}:\n" +
                     "{1}\n" +
-                    "You may need to reinstall the relevant integration package from {2}.\n",
-                    summary, string.Join("\n", missingPaths), DownloadURL);
+                    "Please run the {2} menu command.\n",
+                    summary, string.Join("\n", missingPaths), ReorganizerMenuItemPath);
                 return false;
             }
 
@@ -1043,25 +1060,39 @@ namespace FMODUnity
             return true;
         }
 
-        const string FMODFolderRelative = "Plugins/FMOD";
-        const string FMODFolderFull = "Assets/" + FMODFolderRelative;
+        static string FMODFolderFull => $"Assets/{RuntimeUtils.PluginBasePath}";
 
         const string CacheFolderName = "Cache";
-        const string CacheFolderRelative = FMODFolderRelative + "/" + CacheFolderName;
-        const string CacheFolderFull = FMODFolderFull + "/" + CacheFolderName;
+        static string CacheFolderRelative => $"{RuntimeUtils.PluginBasePath}/{CacheFolderName}";
+        static string CacheFolderFull => $"{FMODFolderFull}/{CacheFolderName}";
 
         const string RegisterStaticPluginsFile = "RegisterStaticPlugins.cs";
-        const string RegisterStaticPluginsAssetPathRelative = CacheFolderRelative + "/" + RegisterStaticPluginsFile;
-        const string RegisterStaticPluginsAssetPathFull = CacheFolderFull + "/" + RegisterStaticPluginsFile;
+        static string RegisterStaticPluginsAssetPathRelative => $"{CacheFolderRelative}/{RegisterStaticPluginsFile}";
+        static string RegisterStaticPluginsAssetPathFull => $"{CacheFolderFull}/{RegisterStaticPluginsFile}";
+
+        [NonSerialized]
+        private Dictionary<string, bool> binaryCompatibilitiesBeforeBuild;
 
         private void PreprocessBuild(BuildTarget target, Platform.BinaryType binaryType)
         {
             Platform platform = PlatformForBuildTarget[target];
 
             PreprocessStaticPlugins(platform, target);
-#if UNITY_2018_1_OR_NEWER
+
             SelectBinaries(platform, target, binaryType);
-#endif
+        }
+
+        private void PostprocessBuild(BuildTarget target)
+        {
+            foreach(string path in binaryCompatibilitiesBeforeBuild.Keys)
+            {
+                PluginImporter importer = AssetImporter.GetAtPath(path) as PluginImporter;
+
+                if (importer != null)
+                {
+                    importer.SetCompatibleWithPlatform(target, binaryCompatibilitiesBeforeBuild[path]);
+                }
+            }
         }
 
         private static void PreprocessStaticPlugins(Platform platform, BuildTarget target)
@@ -1077,18 +1108,18 @@ namespace FMODUnity
                 if (scriptingBackend == ScriptingImplementation.IL2CPP)
                 {
                     Action<string> reportError = message => {
-                        Debug.LogWarningFormat("FMOD: Error processing static plugins for platform {0}: {1}",
+                        RuntimeUtils.DebugLogWarningFormat("FMOD: Error processing static plugins for platform {0}: {1}",
                             platform.DisplayName, message);
                     };
 
                     if (!AssetDatabase.IsValidFolder(CacheFolderFull))
                     {
-                        Debug.LogFormat("Creating {0}", CacheFolderFull);
+                        RuntimeUtils.DebugLogFormat("Creating {0}", CacheFolderFull);
                         AssetDatabase.CreateFolder(FMODFolderFull, CacheFolderName);
                     }
 
                     // Generate registration code and import it so it's included in the build.
-                    Debug.LogFormat("FMOD: Generating static plugin registration code in {0}", RegisterStaticPluginsAssetPathFull);
+                    RuntimeUtils.DebugLogFormat("FMOD: Generating static plugin registration code in {0}", RegisterStaticPluginsAssetPathFull);
 
                     string filePath = Application.dataPath + "/" + RegisterStaticPluginsAssetPathRelative;
                     CodeGeneration.GenerateStaticPluginRegistration(filePath, platform, reportError);
@@ -1096,7 +1127,7 @@ namespace FMODUnity
                 }
                 else
                 {
-                    Debug.LogWarningFormat(
+                    RuntimeUtils.DebugLogWarningFormat(
                         "FMOD: Platform {0} has {1} static plugins specified, " +
                         "but static plugins are only supported on the IL2CPP scripting backend",
                         platform.DisplayName, platform.StaticPlugins.Count);
@@ -1115,25 +1146,28 @@ namespace FMODUnity
 
             if (assetExists && AssetDatabase.DeleteAsset(assetPath))
             {
-                Debug.LogFormat("FMOD: Removed temporary file {0}", assetPath);
+                RuntimeUtils.DebugLogFormat("FMOD: Removed temporary file {0}", assetPath);
             }
         }
 
-#if UNITY_2018_1_OR_NEWER
         private static void SelectBinaries(Platform platform, BuildTarget target, Platform.BinaryType binaryType)
         {
             string message = string.Format("FMOD: Selected binaries for platform {0}{1}:", target,
                 (binaryType == Platform.BinaryType.Logging) ? " (development build)" : string.Empty);
 
+            Instance.binaryCompatibilitiesBeforeBuild = new Dictionary<string, bool>();
+
             HashSet<string> enabledPaths = new HashSet<string>();
 
             foreach (string path in platform.GetBinaryAssetPaths(target, binaryType | Platform.BinaryType.Optional))
             {
-                AssetImporter importer = AssetImporter.GetAtPath(path);
+                PluginImporter importer = AssetImporter.GetAtPath(path) as PluginImporter;
 
-                if (importer != null)
+                if (importer is PluginImporter)
                 {
-                    (importer as PluginImporter).SetCompatibleWithPlatform(target, true);
+                    Instance.binaryCompatibilitiesBeforeBuild.Add(path, importer.GetCompatibleWithPlatform(target));
+
+                    importer.SetCompatibleWithPlatform(target, true);
 
                     enabledPaths.Add(path);
 
@@ -1145,26 +1179,26 @@ namespace FMODUnity
             {
                 if (!enabledPaths.Contains(path))
                 {
-                    AssetImporter importer = AssetImporter.GetAtPath(path);
+                    PluginImporter importer = AssetImporter.GetAtPath(path) as PluginImporter;
 
-                    if (importer != null)
+                    if (importer is PluginImporter)
                     {
-                        (importer as PluginImporter).SetCompatibleWithPlatform(target, false);
+                        Instance.binaryCompatibilitiesBeforeBuild.Add(path, importer.GetCompatibleWithPlatform(target));
+
+                        importer.SetCompatibleWithPlatform(target, false);
 
                         message += string.Format("\n- Disabled {0}", path);
                     }
                 }
             }
 
-            Debug.Log(message);
+            RuntimeUtils.DebugLog(message);
         }
-#endif
 
         [NonSerialized]
         public bool ForceLoggingBinaries = false;
 
-#if UNITY_2018_1_OR_NEWER
-        public class BuildProcessor : IPreprocessBuildWithReport
+        public class BuildProcessor : IPreprocessBuildWithReport, IPostprocessBuildWithReport
         {
             public int callbackOrder { get { return 0; } }
 
@@ -1190,26 +1224,12 @@ namespace FMODUnity
 
                 Settings.Instance.PreprocessBuild(report.summary.platform, binaryType);
             }
-        }
-#else
-        public class BuildProcessor : IPreprocessBuild
-        {
-            public int callbackOrder { get { return 0; } }
 
-            public void OnPreprocessBuild(BuildTarget target, string path)
+            public void OnPostprocessBuild(BuildReport report)
             {
-                Platform.BinaryType binaryType = Platform.BinaryType.Release | Platform.BinaryType.Logging;
-
-                string error;
-                if (!Settings.Instance.CanBuildTarget(target, binaryType, out error))
-                {
-                    throw new BuildFailedException(error);
-                }
-
-                Settings.Instance.PreprocessBuild(target, binaryType);
+                Instance.PostprocessBuild(report.summary.platform);
             }
         }
-#endif
 
         public class BuildTargetChecker : IActiveBuildTargetChanged
         {
@@ -1226,16 +1246,14 @@ namespace FMODUnity
                 string error;
                 if (!Settings.Instance.CanBuildTarget(current, binaryType, out error))
                 {
-                    Debug.LogWarning(error);
+                    RuntimeUtils.DebugLogWarning(error);
 
-#if UNITY_2019_3_OR_NEWER
                     if (EditorWindow.HasOpenInstances<BuildPlayerWindow>())
                     {
                         GUIContent message =
                             new GUIContent("FMOD detected issues with this platform!\nSee the Console for details.");
                         EditorWindow.GetWindow<BuildPlayerWindow>().ShowNotification(message, 10);
                     }
-#endif
                 }
             }
         }
@@ -1246,8 +1264,7 @@ namespace FMODUnity
     public static class Legacy
     {
 #if UNITY_EDITOR
-        [InitializeOnLoadMethod]
-        private static void CleanTemporaryChanges()
+        public static void CleanTemporaryChanges()
         {
             CleanIl2CppArgs();
             CleanTemporaryFiles();
@@ -1285,7 +1302,7 @@ namespace FMODUnity
                         break;
                     }
 
-                    Debug.LogFormat("FMOD: Removing Il2CPP argument '{0}'", match.Value);
+                    RuntimeUtils.DebugLogFormat("FMOD: Removing Il2CPP argument '{0}'", match.Value);
 
                     int matchStart = match.Index;
                     int matchEnd = match.Index + match.Length;

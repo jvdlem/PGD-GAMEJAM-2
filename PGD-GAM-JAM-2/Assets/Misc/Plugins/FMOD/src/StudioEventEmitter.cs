@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +8,11 @@ namespace FMODUnity
     [AddComponentMenu("FMOD Studio/FMOD Studio Event Emitter")]
     public class StudioEventEmitter : EventHandler
     {
-        [EventRef]
+        public EventReference EventReference;
+
+        [Obsolete("Use the EventReference field instead")]
         public string Event = "";
+
         public EmitterGameEvent PlayEvent = EmitterGameEvent.None;
         public EmitterGameEvent StopEvent = EmitterGameEvent.None;
         public bool AllowFadeout = true;
@@ -48,32 +52,21 @@ namespace FMODUnity
                     Lookup();
                 }
 
-                float maxDistance;
-                eventDescription.getMaximumDistance(out maxDistance);
+                float minDistance, maxDistance;
+                eventDescription.getMinMaxDistance(out minDistance, out maxDistance);
                 return maxDistance;
             }
         }
 
-        void Start() 
+        protected override void Start() 
         {
             RuntimeUtils.EnforceLibraryOrder();
             if (Preload)
             {
                 Lookup();
                 eventDescription.loadSampleData();
-                RuntimeManager.StudioSystem.update();
-                FMOD.Studio.LOADING_STATE loadingState;
-                eventDescription.getSampleLoadingState(out loadingState);
-                while(loadingState == FMOD.Studio.LOADING_STATE.LOADING)
-                {
-                    #if WINDOWS_UWP
-                    System.Threading.Tasks.Task.Delay(1).Wait();
-                    #else
-                    System.Threading.Thread.Sleep(1);
-                    #endif
-                    eventDescription.getSampleLoadingState(out loadingState);
-                }
             }
+
             HandleGameEvent(EmitterGameEvent.ObjectStart);
         }
 
@@ -82,7 +75,7 @@ namespace FMODUnity
             isQuitting = true;
         }
 
-        void OnDestroy()
+        protected override void OnDestroy()
         {
             if (!isQuitting)
             {
@@ -121,7 +114,7 @@ namespace FMODUnity
 
         void Lookup()
         {
-            eventDescription = RuntimeManager.GetEventDescription(Event);
+            eventDescription = RuntimeManager.GetEventDescription(EventReference);
 
             if (eventDescription.isValid())
             {
@@ -141,7 +134,7 @@ namespace FMODUnity
                 return;
             }
 
-            if (string.IsNullOrEmpty(Event))
+            if (EventReference.IsNull)
             {
                 return;
             }
@@ -153,7 +146,10 @@ namespace FMODUnity
                 Lookup();
             }
 
-            if (!Event.StartsWith(SnapshotString, StringComparison.CurrentCultureIgnoreCase))
+            bool isSnapshot;
+            eventDescription.isSnapshot(out isSnapshot);
+
+            if (!isSnapshot)
             {
                 eventDescription.isOneshot(out isOneshot);
             }
@@ -199,7 +195,7 @@ namespace FMODUnity
                 if (is3D)
                 {
                     var transform = GetComponent<Transform>();
-                    #if UNITY_PHYSICS_EXIST || !UNITY_2019_1_OR_NEWER
+#if UNITY_PHYSICS_EXIST
                     if (GetComponent<Rigidbody>())
                     {
                         Rigidbody rigidBody = GetComponent<Rigidbody>();
@@ -207,8 +203,8 @@ namespace FMODUnity
                         RuntimeManager.AttachInstanceToGameObject(instance, transform, rigidBody);
                     }
                     else
-                    #endif
-                    #if UNITY_PHYSICS2D_EXIST || !UNITY_2019_1_OR_NEWER
+#endif
+#if UNITY_PHYSICS2D_EXIST
                     if (GetComponent<Rigidbody2D>())
                     {
                         var rigidBody2D = GetComponent<Rigidbody2D>();
@@ -216,7 +212,7 @@ namespace FMODUnity
                         RuntimeManager.AttachInstanceToGameObject(instance, transform, rigidBody2D);
                     }
                     else
-                    #endif
+#endif
                     {
                         instance.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
                         RuntimeManager.AttachInstanceToGameObject(instance, transform);

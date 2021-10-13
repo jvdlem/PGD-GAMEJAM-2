@@ -15,8 +15,13 @@ namespace FMODUnity
         private Legacy.Platform legacyIdentifier;
 
         public override string DisplayName { get { return displayName; } }
-        public override void DeclareUnityMappings(Settings settings) { }
+        public override void DeclareRuntimePlatforms(Settings settings) { }
 #if UNITY_EDITOR
+        public override IEnumerable<BuildTarget> GetBuildTargets()
+        {
+            yield break;
+        }
+
         public override Legacy.Platform LegacyIdentifier { get { return legacyIdentifier; } }
 
         public static PlatformGroup Create(string displayName, Legacy.Platform legacyIdentifier)
@@ -30,7 +35,12 @@ namespace FMODUnity
             return group;
         }
 
-        protected override IEnumerable<string> GetRelativeBinaryPaths(BuildTarget buildTarget, bool allVariants, string suffix)
+        protected override BinaryAssetFolderInfo GetBinaryAssetFolder(BuildTarget buildTarget)
+        {
+            return null;
+        }
+
+        protected override IEnumerable<FileRecord> GetBinaryFiles(BuildTarget buildTarget, bool allVariants, string suffix)
         {
             yield break;
         }
