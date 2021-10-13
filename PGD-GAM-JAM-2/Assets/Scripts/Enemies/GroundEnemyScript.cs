@@ -11,13 +11,17 @@ public class GroundEnemyScript : EnemyBaseScript
     private Vector3 targetPosition;
     private float checkForPlayerDistance = 15;
     
-    private float attackRange = 5;
+    public float WalkSpeed;
+    public float RotateSpeed;
+    public float AttackRange;
 
     public override void Start()
     {
         base.Start();
 
         navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = AttackRange;
+        navMeshAgent.angularSpeed = RotateSpeed;
     }
 
     public override void Update()
@@ -42,11 +46,11 @@ public class GroundEnemyScript : EnemyBaseScript
             Debug.DrawRay(transform.position, Player.transform.position - transform.position, color);
 
             float Distance = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z));
-            if (Distance >= attackRange && playerInVision == true) 
+            if (Distance >= AttackRange && playerInVision == true) 
             { 
                 navMeshAgent.destination = targetPosition; 
             }
-            else if(Distance < attackRange && playerInVision == true)
+            else if(Distance < AttackRange && playerInVision == true)
             { 
                 navMeshAgent.destination = transform.position; 
             }

@@ -735,6 +735,9 @@ MonoBehaviour:
   Damage: 0
   Tier: 0
   Player: {fileID: 0}
+  WalkSpeed: 1
+  RotateSpeed: 1
+  AttackRange: 5
 --- !u!54 &1074414913
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -951,6 +954,9 @@ MonoBehaviour:
   Damage: 0
   Tier: 0
   Player: {fileID: 1738435237}
+  WalkSpeed: 1
+  RotateSpeed: 1
+  AttackRange: 1
 --- !u!54 &1120078091
 Rigidbody:
   m_ObjectHideFlags: 0
