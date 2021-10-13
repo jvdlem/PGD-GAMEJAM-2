@@ -1,10 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
---- !u!1 &1792467402765862504
-=======
 --- !u!1 &3163934311038433896
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,78 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  - component: {fileID: 1792467402765862487}
-  - component: {fileID: 1792467402765862485}
-  - component: {fileID: 1792467402765862486}
-  m_Layer: 0
-  m_Name: head
-=======
   - component: {fileID: 6064318978060066014}
   - component: {fileID: 1441993696080812978}
   - component: {fileID: 8451754254137901869}
   m_Layer: 0
   m_Name: Floor (1)
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
---- !u!4 &1792467402765862487
-=======
 --- !u!4 &6064318978060066014
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  m_GameObject: {fileID: 1792467402765862504}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.565, z: 0.147}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
-=======
   m_GameObject: {fileID: 3163934311038433896}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_Children: []
-  m_Father: {fileID: 1792467403484527876}
-  m_RootOrder: 1
+  m_Father: {fileID: 7848657158636519095}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
---- !u!33 &1792467402765862485
-=======
 --- !u!33 &1441993696080812978
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  m_GameObject: {fileID: 1792467402765862504}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1792467402765862486
-=======
   m_GameObject: {fileID: 3163934311038433896}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &8451754254137901869
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  m_GameObject: {fileID: 1792467402765862504}
-=======
   m_GameObject: {fileID: 3163934311038433896}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -91,14 +54,12 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-=======
   - {fileID: 2100000, guid: d96b74cfea94fc049b8e45b967c1e8f0, type: 2}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +71,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -119,64 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
---- !u!1 &1792467403484527878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1792467403484527876}
-  - component: {fileID: 1792467403484527877}
-  m_Layer: 0
-  m_Name: CubeManModel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1792467403484527876
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792467403484527878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.15, y: 0.12, z: 31.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1792467404025634298}
-  - {fileID: 1792467402765862487}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1792467403484527877
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792467403484527878}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 11bce9c60e88cee4691a2ed7b56a4578, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &1792467404025634299
-=======
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8558334986137433360
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,34 +89,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1792467404025634298}
-  - component: {fileID: 1792467404025634296}
-  - component: {fileID: 1792467404025634297}
+  - component: {fileID: 7848657158636519095}
+  - component: {fileID: 5530617324755153882}
+  - component: {fileID: 758460492973981357}
+  - component: {fileID: 752510696120938186}
   m_Layer: 0
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  m_Name: Cube
-=======
   m_Name: SmallWall
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1792467404025634298
+--- !u!4 &7848657158636519095
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  m_GameObject: {fileID: 1792467404025634299}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.66, z: 0}
-  m_LocalScale: {x: 0.8, y: 1.5, z: 0.7}
-  m_Children: []
-  m_Father: {fileID: 1792467403484527876}
-=======
   m_GameObject: {fileID: 8558334986137433360}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.51}
@@ -219,28 +113,23 @@ Transform:
   m_Children:
   - {fileID: 6064318978060066014}
   m_Father: {fileID: 0}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1792467404025634296
+--- !u!33 &5530617324755153882
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792467404025634299}
+  m_GameObject: {fileID: 8558334986137433360}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &1792467404025634297
+--- !u!23 &758460492973981357
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  m_GameObject: {fileID: 1792467404025634299}
-=======
   m_GameObject: {fileID: 8558334986137433360}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -248,14 +137,12 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-=======
   - {fileID: 2100000, guid: d96b74cfea94fc049b8e45b967c1e8f0, type: 2}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -267,7 +154,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -276,8 +163,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-<<<<<<< HEAD:PGD-GAM-JAM-2/Assets/Imported Assets/AI/RVModules/RVHonorAI/Examples/Graphics/CubeMan/CubeManModel.prefab
-=======
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &752510696120938186
 BoxCollider:
@@ -292,4 +177,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.5, z: 1}
   m_Center: {x: 0, y: 0.75, z: 0}
->>>>>>> Jordi-branch:PGD-GAM-JAM-2/Assets/Prefab/Tarrain/SmallWall.prefab
