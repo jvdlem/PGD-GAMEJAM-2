@@ -95,6 +95,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Magazine
   Attatchment: {fileID: 0}
+  attached: 2
 --- !u!1 &2170286114117571390
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,17 +280,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b7806c005f0b44c88ef9653dd6306f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spread: 90
+  amountOfBullets: 1
+  damage: 1
+  fullAutoCount: 0
+  bulletTime: 1
   bullet: {fileID: 3938516309180736943, guid: a6000c3b426bb9d4ab7b4a7438c17cb9, type: 3}
-  CurrentBarrelAddon: {fileID: 0}
-  PrevBarrelAddon: {fileID: 0}
-  SightAddon: {fileID: 0}
-  StockAddon: {fileID: 0}
-  MagazineAddon: {fileID: 0}
-  allStats: []
-  barrelStats: []
-  sightStats: []
-  stockStats: []
-  magazineStats: []
+  aCurrentAddon: {fileID: 0}
+  lists: []
+  allStats:
+    list: []
+  barrelStats:
+    list: []
+  sightStats:
+    list: []
+  stockStats:
+    list: []
+  magazineStats:
+    list: []
+  fullAuto: 0
 --- !u!1 &3017919419909495043
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,6 +489,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Sight
   Attatchment: {fileID: 0}
+  attached: 2
 --- !u!1 &4338799606654226436
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +585,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Barrel
   Attatchment: {fileID: 0}
+  attached: 2
 --- !u!1 &5485255679150273231
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +778,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Stock
   Attatchment: {fileID: 0}
+  attached: 2
 --- !u!1 &7787251639773145369
 GameObject:
   m_ObjectHideFlags: 0
