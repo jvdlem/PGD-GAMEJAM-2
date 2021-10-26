@@ -8,52 +8,75 @@ public class FlyingEnemyScript : EnemyBaseScript
     protected Vector3 target; //Target to specify direction
 
     [SerializeField] protected float flyingSpeed = 0.05f; //Sets movement speed
-    
+
     //Timer for movement
      protected int moveTimer = 0;
     [SerializeField] protected int timerMax = 150;
+
+    //Object to set as target
+    [SerializeField] protected GameObject targetObject;
 
     //private float radius = 5;
     //Vector3 center = Vector3.zero;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        transform.position = new Vector3(0, 10); //Spawn above ground
-        SetTarget(); //Set starting target/direction
+        transform.position = new Vector3(0, 10); //Spawn above ground       
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
         transform.position += velocity; //Velocity tied to position
-        moveTimer++; //Timer keeps counting
-
-        if (moveTimer > timerMax) 
-        {
-            moveTimer = 0; //Reset timer
-            SetTarget(); //Set new target/direction
-        }
-
-        FlyTo(target); //Fly in direction of target
     }
 
     ///<summary>Give the velocity a specified target vector</summary>
-    virtual public Vector3 FlyTo(Vector3 targetVector) 
+    virtual protected Vector3 FlyTo(Vector3 targetVector, float speed) 
     {
-        velocity = targetVector;
-        transform.rotation = Quaternion.LookRotation(target);
+        velocity = targetVector * speed;
 
         return velocity;
     }
 
+    virtual protected Quaternion SetRotation(Vector3 newRotation) 
+    {
+        transform.rotation = Quaternion.LookRotation(newRotation);
+
+        return transform.rotation;
+    }
+
     ///<summary>Generates a random target vector</summary>
-    virtual public Vector3 SetTarget() 
+    virtual protected Vector3 SetTarget() 
     {
         target = new Vector3(
                 Random.Range(-flyingSpeed, flyingSpeed),
                 0,
                 Random.Range(-flyingSpeed, flyingSpeed));
+
+        return target;
+    }
+
+    /// <summary>Handles use of movement timer</summary>
+    virtual protected int TimeManager() 
+    {
+        moveTimer++; //Timer keeps counting
+
+        if (moveTimer > timerMax)
+        {
+            moveTimer = 0; //Reset timer
+            SetTarget(); //Set new target/direction
+        }
+
+        return moveTimer;
+    }
+
+    /// <summary>Track object based on its position</summary>
+    virtual protected Vector3 TrackObject(GameObject targetObject) 
+    {
+        target = new Vector3(targetObject.transform.position.x, 0 , targetObject.transform.position.z) - 
+            new Vector3(transform.position.x, 0, transform.position.z);
+        target.Normalize();
 
         return target;
     }
