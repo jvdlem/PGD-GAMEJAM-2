@@ -101,8 +101,10 @@ public class Pistol : MonoBehaviour
 
         for (int i = 0; i < allStats.list[1]; i++)
         {
+            
             bullet.GetComponent<Bullet>().SetStats(damage, bulletTime, bulletSpeed);
             Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1",this.transform.position);
         }
     }
 
