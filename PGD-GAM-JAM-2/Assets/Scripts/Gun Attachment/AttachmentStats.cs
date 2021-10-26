@@ -10,6 +10,8 @@ public class AttachmentStats : MonoBehaviour
     public float damage = 1;
     public float fullAutoCount = 0;
     public float bulletTime = 1;
+    public float bulletSpeed = 1;
+
 
     private void Start()
     {
@@ -18,5 +20,6 @@ public class AttachmentStats : MonoBehaviour
         statList.Add(damage);
         statList.Add(fullAutoCount);
         statList.Add(bulletTime);
+        statList.Add(bulletSpeed);
     }
 }

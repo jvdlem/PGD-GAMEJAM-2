@@ -23,7 +23,7 @@ public class ProjectileEnemyScript : MonoBehaviour
     {
         float rand = Random.Range(1.0f, 2.0f);
         InvokeRepeating("shoot", 2, rand);
-        player = GameObject.FindGameObjectWithTag("Playboy");
+        player = GameObject.FindGameObjectWithTag("Player");
 
 
     }
