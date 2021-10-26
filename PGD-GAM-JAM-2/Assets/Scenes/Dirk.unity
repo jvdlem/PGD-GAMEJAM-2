@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 98f19502b368c7047acd9fd147524084, type: 2}
 --- !u!1 &118876379
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!154 &118876380
 TerrainCollider:
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 1363813268}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Playboy
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,6 +318,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 519639030644031618, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1786974027955466126, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_Constraints
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036210418715356406, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2331105312901260564, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2619913761634191714, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376200816034485458, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443558585144199283, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133836531553471332, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5376299818381001933, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6183900994695832399, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -328,7 +364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6183900994695832399, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 6183900994695832399, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -362,6 +398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6457180579700005991, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7961148719507695612, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
       propertyPath: m_Name
       value: Melee Goblin
@@ -370,12 +410,47 @@ PrefabInstance:
       propertyPath: m_TagString
       value: GroundEnemy_Goblin
       objectReference: {fileID: 0}
+    - target: {fileID: 7961148719507695612, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8197959466469908880, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
       propertyPath: WalkSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8197959466469908880, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+      propertyPath: AttackRange
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+--- !u!1 &1662327150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7961148719507695612, guid: 01675d070abae364f8b6dffa118b4d1f, type: 3}
+  m_PrefabInstance: {fileID: 1644827454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1662327154
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662327150}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1814024227
 GameObject:
   m_ObjectHideFlags: 0
