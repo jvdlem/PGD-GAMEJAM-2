@@ -929,7 +929,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce38cf0055158a04ab21e0d79cfab256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 10
+  Damage: 1
+  Tier: 1
+  Player: {fileID: 0}
+  WalkSpeed: 4
+  RotateSpeed: 1
+  AttackRange: 1
   player: {fileID: 0}
+  trackDistance: 20
+  rushDistance: 8
+  health: 10
 --- !u!54 &1786974027955466126
 Rigidbody:
   m_ObjectHideFlags: 0
