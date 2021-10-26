@@ -5,162 +5,94 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Pistol : MonoBehaviour
 {
+    [SerializeField] private float spread = 1;
+    [SerializeField] private float amountOfBullets = 1;
+    [SerializeField] private float damage = 1;
+    [SerializeField] private float fullAutoCount = 0;
+    [SerializeField] private float bulletTime = 1;
+
     [SerializeField] private GameObject bullet;
-    [SerializeField] private XRBaseInteractable CurrentBarrelAddon;
-    [SerializeField] private XRBaseInteractable PrevBarrelAddon;
-    [SerializeField] private XRBaseInteractable SightAddon;
-    [SerializeField] private XRBaseInteractable StockAddon;
-    [SerializeField] private XRBaseInteractable MagazineAddon;
+    [SerializeField] private XRBaseInteractable aCurrentAddon;
 
-
-    public List<float> allStats;
-    public List<float> barrelStats;
-    public List<float> sightStats;
-    public List<float> stockStats;
-    public List<float> magazineStats;
-
-    private float spread = 1;
-    private float amountOfBullets = 1;
-    private float damage = 1;
-    private float fullAutoCount = 0;
-    private float bulletTime = 1;
+    public List<Attachment> lists;
+    public Attachment allStats;
+    public Attachment barrelStats;
+    public Attachment sightStats;
+    public Attachment stockStats;
+    public Attachment magazineStats;
 
     private bool fullAuto = false;
 
-    private bool BAS = true;
-    private bool SAS;
-    private bool STAS;
-    private bool MAS;
-    private bool BRS = false;
-    private bool SRS;
-    private bool STRS;
-    private bool MRS;
     // Start is called before the first frame update
     void Start()
     {
-        allStats.Add(spread);
-        allStats.Add(amountOfBullets);
-        allStats.Add(damage);
-        allStats.Add(fullAutoCount);
-        allStats.Add(bulletTime);
 
-        barrelStats.Add(spread);
-        barrelStats.Add(amountOfBullets);
-        barrelStats.Add(damage);
-        barrelStats.Add(fullAutoCount);
-        barrelStats.Add(bulletTime);
+        lists.Add(allStats);
+        lists.Add(barrelStats);
+        lists.Add(sightStats);
+        lists.Add(stockStats);
+        lists.Add(magazineStats);
+        foreach (Attachment aList in lists)
+        {
+            aList.list.Add(spread);
+            aList.list.Add(amountOfBullets);
+            aList.list.Add(damage);
+            aList.list.Add(fullAutoCount);
+            aList.list.Add(bulletTime);
+        }
+    }
+
+    [System.Serializable]
+    public class Attachment
+    {
+       public List<float> list;
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-    //    if (this.transform.GetChild(1).GetComponent<SocketCheck>().Attatchment != null)
-    //    { // on repeat
+    void Update()
+    {
 
-    //        CurrentBarrelAddon = this.transform.GetChild(1).GetComponent<SocketCheck>().Attatchment;
-    //        if (PrevBarrelAddon == CurrentBarrelAddon)
-    //        {
-    //            if (BAS)
-    //            {
-    //                BRS = true;
-
-    //                for (int i = 0; i < allStats.Count; i++)
-    //                {
-    //                    barrelStats[i] = PrevBarrelAddon.GetComponent<AttachmentStats>().statList[i];
-    //                    allStats[i] += barrelStats[i];
-    //                }
-    //                BAS = false;
-    //            }
-    //            PrevBarrelAddon = CurrentBarrelAddon;
-
-    //        }
-    //        else
-    //        {
-    //            PrevBarrelAddon = CurrentBarrelAddon;
-    //            if (BRS)
-    //            {
-    //                for (int i = 0; i < allStats.Count; i++)
-    //                {
-    //                    allStats[i] -= barrelStats[i];
-    //                }
-    //                BRS = false;
-    //                BAS = true;
-
-    //            }
-    //        }
-    //    }
-
-
-
-    //    if (this.transform.GetChild(2).GetComponent<SocketCheck>().Attatchment != null)
-    //    {
-
-    //        SightAddon = this.transform.GetChild(2).GetComponent<SocketCheck>().Attatchment;
-    //        for (int i = 0; i < allStats.Count; i++)
-    //        {
-    //            sightStats[i] = SightAddon.GetComponent<AttachmentStats>().statList[i];
-    //            allStats[i] += sightStats[i];
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (int i = 0; i < allStats.Count; i++)
-    //        {
-    //            allStats[i] -= sightStats[i];
-    //        }
-    //    }
-
-    //    if (this.transform.GetChild(3).GetComponent<SocketCheck>().Attatchment != null)
-    //    {
-    //        StockAddon = this.transform.GetChild(3).GetComponent<SocketCheck>().Attatchment;
-    //        for (int i = 0; i < allStats.Count; i++)
-    //        {
-    //            stockStats[i] = StockAddon.GetComponent<AttachmentStats>().statList[i];
-    //            allStats[i] += stockStats[i];
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (int i = 0; i < allStats.Count; i++)
-    //        {
-    //            allStats[i] -= stockStats[i];
-    //        }
-    //    }
-
-    //    if (this.transform.GetChild(4).GetComponent<SocketCheck>().Attatchment != null)
-    //    {
-    //        MagazineAddon = this.transform.GetChild(4).GetComponent<SocketCheck>().Attatchment;
-    //        for (int i = 0; i < allStats.Count; i++)
-    //        {
-    //            magazineStats[i] = MagazineAddon.GetComponent<AttachmentStats>().statList[i];
-    //            allStats[i] += magazineStats[i];
-    //        }
-    //    }
-    //    else
-    //    {
-    //        for (int i = 0; i < allStats.Count; i++)
-    //        {
-    //            allStats[i] -= magazineStats[i];
-    //        }
-    //    }
-    //    if (fullAuto)
-    //    {
-    //        bullet.GetComponent<Bullet>().Setdmg(damage);
-    //        Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-spread, spread) * (Mathf.PI / 180), Random.Range(-spread, spread) * (Mathf.PI / 180), 1));
-    //    }
-
-    //    this.transform.GetChild(1).GetComponent<SocketCheck>().Attatchment = null;
-    //}
+        for (int i = 1; i < lists.Count; i++)
+        {
+            if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 0)
+            { // on repeat
+                aCurrentAddon = this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment;
+                lists[i].list = aCurrentAddon.GetComponent<AttachmentStats>().statList;
+                for (int j = 0; j < allStats.list.Count; j++)
+                {
+                    allStats.list[j] += lists[i].list[j];
+                }
+                this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
+            }
+            else if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 1)
+            {
+                for (int j = 0; j < allStats.list.Count; j++)
+                {
+                    allStats.list[j] -= lists[i].list[j];
+                }
+                this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
+            }
+        }
+        if (allStats.list[3] <= 2) { fullAuto = false; }
+        if (fullAuto)
+        {
+            for (int i = 0; i < allStats.list[1]; i++)
+            {
+                //bullet.GetComponent<Bullet>().Setdmg(damage);
+                Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+            }
+        }
+    }
 
     public void shoot()
     {
-        
-        if (fullAutoCount >= 2) { fullAuto = !fullAuto; }
-        else { fullAuto = false; }
-        for (int i = 0; i < allStats[1]; i++)
+        if (allStats.list[3] >= 2) { fullAuto = !fullAuto; }
+        Debug.Log(fullAuto);
+
+        for (int i = 0; i < allStats.list[1]; i++)
         {
             //bullet.GetComponent<Bullet>().Setdmg(damage);
-            Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats[0], allStats[0]) * (Mathf.PI / 180), Random.Range(-allStats[0], allStats[0]) * (Mathf.PI / 180), 1));
+            Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
         }
     }
 }

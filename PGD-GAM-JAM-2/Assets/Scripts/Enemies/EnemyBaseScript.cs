@@ -8,9 +8,9 @@ public class EnemyBaseScript : MonoBehaviour
     public int Damage;
     public int Tier;
     private Rigidbody Rigidbody;
-    private GameObject Player;
+    public GameObject Player;
 
-    void Start()
+    public virtual void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -29,7 +29,7 @@ public class EnemyBaseScript : MonoBehaviour
         }
     }
 
-    void Update()
+    public virtual void Update()
     {
         
     }
