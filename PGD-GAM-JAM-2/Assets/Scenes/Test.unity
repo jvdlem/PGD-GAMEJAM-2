@@ -1349,6 +1349,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b7806c005f0b44c88ef9653dd6306f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &847639492 stripped
+BoxCollider:
+  m_CorrespondingSourceObject: {fileID: 2508678264922927592, guid: f7735f6e289a3514c9b624afae1b5d03, type: 3}
+  m_PrefabInstance: {fileID: 2508678266206063430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1262797782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,14 +2142,14 @@ PrefabInstance:
     - target: {fileID: 2508678264922927594, guid: f7735f6e289a3514c9b624afae1b5d03, type: 3}
       propertyPath: m_Colliders.Array.data[0]
       value: 
-      objectReference: {fileID: 463088587}
+      objectReference: {fileID: 847639492}
     - target: {fileID: 2508678264922927597, guid: f7735f6e289a3514c9b624afae1b5d03, type: 3}
       propertyPath: m_Name
       value: HealthInjector
       objectReference: {fileID: 0}
     - target: {fileID: 2508678264922927607, guid: f7735f6e289a3514c9b624afae1b5d03, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2508678264922927607, guid: f7735f6e289a3514c9b624afae1b5d03, type: 3}
       propertyPath: m_LocalPosition.x
