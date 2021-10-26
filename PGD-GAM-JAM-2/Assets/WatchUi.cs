@@ -7,19 +7,25 @@ public class WatchUi : MonoBehaviour
     public GameObject Canvas;
     public Animation WatchUiAnim;
     public Text healthText;
+    private bool WatchUiOpen;
     private void Update()
     {
         healthText.text = "" + FindObjectOfType<PlayerHealthScript>().currentHealth;
-        if (this.transform.eulerAngles.z >= 90f && this.transform.eulerAngles.z >= 200f)
+        if (this.transform.eulerAngles.z >= 150f && this.transform.eulerAngles.z <= 260f && !WatchUiOpen)
         {
+
             Canvas.SetActive(true);
             WatchUiAnim.Play("WatchAnimOpen");
-            
+            WatchUiOpen = true;
+
         }
-        else
-        { 
-            Canvas.SetActive(false);
+        else if (this.transform.eulerAngles.z <= 150f && WatchUiOpen || this.transform.eulerAngles.z >= 260f && WatchUiOpen)
+        {
             WatchUiAnim.Play("WatchAnimClose");
+            
+            
+            WatchUiOpen = false;
+            
         }
         
     }
