@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 4077352377282428270}
   - component: {fileID: 8588020724895221575}
   - component: {fileID: 198714175748971590}
-  - component: {fileID: 930606542354456607}
+  - component: {fileID: 2393257364913795940}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: HealthUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,17 +28,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239065316191374002}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.02, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 6730538950389089762}
   m_Father: {fileID: 1532407193987512044}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 5.3}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4835622669486344825
@@ -121,20 +121,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!114 &930606542354456607
-MonoBehaviour:
+--- !u!111 &2393257364913795940
+Animation:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239065316191374002}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da75c3f84b31474e8dbadb640e25c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  healthText: {fileID: 3268945228578623553}
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 231861a2a524b574490703e2d07b786d, type: 2}
+  - {fileID: 7400000, guid: 770d488b1bbfd3f4c99281744233daad, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &4520704544056306930
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +150,7 @@ GameObject:
   - component: {fileID: 622062174734151770}
   - component: {fileID: 4462355541404790399}
   - component: {fileID: 8270017802968043970}
+  - component: {fileID: 4576858267360983408}
   m_Layer: 0
   m_Name: Hand Left
   m_TagString: Untagged
@@ -231,6 +235,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4576858267360983408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520704544056306930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da75c3f84b31474e8dbadb640e25c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 1239065316191374002}
+  WatchUiAnim: {fileID: 2393257364913795940}
+  healthText: {fileID: 3268945228578623553}
 --- !u!1 &8815356728558928826
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,7 +262,7 @@ GameObject:
   - component: {fileID: 4413832046228936669}
   - component: {fileID: 3268945228578623553}
   m_Layer: 0
-  m_Name: Text
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -265,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.00000023841858, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &4413832046228936669
