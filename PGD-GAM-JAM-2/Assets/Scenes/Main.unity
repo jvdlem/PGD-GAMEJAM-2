@@ -967,7 +967,6 @@ GameObject:
   - component: {fileID: 463088587}
   - component: {fileID: 463088586}
   - component: {fileID: 463088588}
-  - component: {fileID: 463088589}
   m_Layer: 7
   m_Name: XR Rig
   m_TagString: Player
@@ -1069,20 +1068,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f14d7fa63d2d92409343e5345d053eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &463088589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463088582}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c46d904ea6229e4a9348776ae45bedb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 9
-  currentHealth: 9
 --- !u!1 &505314761
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,7 +1199,7 @@ MonoBehaviour:
   m_LeftHandSnapTurnAction:
     m_UseReference: 0
     m_Action:
-      m_Name: Left Hand Snap Turn
+      m_Name: 
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: e77ed6cc-b882-4fcf-b4cf-0bf567ce63a6
@@ -1225,7 +1210,7 @@ MonoBehaviour:
   m_RightHandSnapTurnAction:
     m_UseReference: 0
     m_Action:
-      m_Name: Right Hand Snap Turn
+      m_Name: 
       m_Type: 0
       m_ExpectedControlType: 
       m_Id: ff1ee073-1e7b-44dc-b8dc-e434db694c13
@@ -2014,7 +1999,7 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 1532407193987512044, guid: 96c044353a9c34c48b764dade10793d3, type: 3}
+  m_ModelPrefab: {fileID: 1532407193987512044, guid: 4aeaf0990ad4fa748bb073beb77fec84, type: 3}
   m_ModelParent: {fileID: 0}
   m_Model: {fileID: 0}
   m_AnimateModel: 0
