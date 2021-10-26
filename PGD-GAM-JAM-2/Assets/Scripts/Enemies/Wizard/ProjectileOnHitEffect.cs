@@ -9,7 +9,7 @@ public class ProjectileOnHitEffect : MonoBehaviour
 
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -17,7 +17,7 @@ public class ProjectileOnHitEffect : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
         {
             //add what happens if projectile hits the player here
-
+            player.GetComponent<PlayerHealthScript>().currentHealth -= 3;
             Destroy(gameObject);
         }
         else Destroy(gameObject);
