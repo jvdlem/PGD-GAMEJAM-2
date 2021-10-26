@@ -8,6 +8,7 @@ public class SocketCheck : XRSocketInteractor
     public string targetTag = string.Empty;
     public XRBaseInteractable Attatchment;
     public int attached = 2;
+    public float scaleSize = 1;
 
     private void Update()
     {
@@ -31,7 +32,9 @@ public class SocketCheck : XRSocketInteractor
     {
         attached = 1;
         Debug.Log(interactable);
+        interactable.transform.localScale /= scaleSize;
         base.OnSelectExited(interactable);
+     
         Attatchment = null;
     }
 
@@ -39,7 +42,9 @@ public class SocketCheck : XRSocketInteractor
     {
         attached = 0;
         Attatchment = interactable;
+        interactable.transform.localScale *= scaleSize;
         base.OnSelectEntering(interactable);
+
     }
 
 }

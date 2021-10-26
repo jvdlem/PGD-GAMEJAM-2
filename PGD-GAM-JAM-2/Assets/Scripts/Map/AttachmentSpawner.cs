@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class AttachmentSpawner : Spawner
 {
     bool checking_Player = true;
     [SerializeField] private GameObject spawn;
@@ -12,11 +12,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        radius = 10;
-        if (spawnList.Count > 0)
-        {
-            this.spawn = spawnList[Mathf.RoundToInt(Random.Range(0, spawnList.Count))];
-        }
+        this.spawn = spawnList[Random.Range(0, spawnList.Count)];
     }
 
     // Update is called once per frame
