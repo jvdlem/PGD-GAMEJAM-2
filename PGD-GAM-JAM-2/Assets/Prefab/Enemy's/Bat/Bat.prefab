@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 7892040518606746286}
   m_Layer: 0
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Bat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,3 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a41107f491101438ed80a4b155cfbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  Tier: 0
+  Player: {fileID: 0}
+  flyingSpeed: 0.05
+  timerMax: 150
+  targetObject: {fileID: 0}
