@@ -162,9 +162,10 @@ public class GolemController : GroundEnemyScript
         { Health--; }
 
         //Golem hurts player on collision
-        if (collision.gameObject.tag == "Projectile")
+        if (collision.gameObject.tag == "Player")
         {
             //Player loses health
+           //Player.GetComponent<>
         }
     }
 }
