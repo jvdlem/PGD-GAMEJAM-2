@@ -158,9 +158,13 @@ public class GolemController : GroundEnemyScript
     private void OnCollisionEnter(Collision collision)
     {
         //Projectile hurts goem on collision
-        //if(projectile.collideWith(this)) health--;
+        if (collision.gameObject.tag == "Projectile")
+        { Health--; }
 
         //Golem hurts player on collision
-        //if(Player.gameObject.) Player.health--;
+        if (collision.gameObject.tag == "Projectile")
+        {
+            //Player loses health
+        }
     }
 }
