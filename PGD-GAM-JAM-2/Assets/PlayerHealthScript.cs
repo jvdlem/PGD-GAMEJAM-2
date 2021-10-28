@@ -11,6 +11,7 @@ public class PlayerHealthScript : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MISC/ElevatorMusic", this.transform.gameObject);
     }
 
 

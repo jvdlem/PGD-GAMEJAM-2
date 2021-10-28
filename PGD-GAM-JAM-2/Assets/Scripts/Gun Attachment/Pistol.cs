@@ -62,8 +62,10 @@ public class Pistol : MonoBehaviour
         {
             if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 0)
             { // on repeat
+
                 aCurrentAddon = this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment;
                 lists[i].list = aCurrentAddon.GetComponent<AttachmentStats>().statList;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.transform.position);
                 for (int j = 0; j < allStats.list.Count; j++)
                 {
                     allStats.list[j] += lists[i].list[j];
@@ -77,6 +79,7 @@ public class Pistol : MonoBehaviour
                     allStats.list[j] -= lists[i].list[j];
                 }
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.transform.position);
             }
         }
         if (allStats.list[3] <= 2) { gatlingSet = false; }

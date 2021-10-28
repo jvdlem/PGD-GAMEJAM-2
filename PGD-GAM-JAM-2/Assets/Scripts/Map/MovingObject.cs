@@ -12,6 +12,7 @@ public class MovingObject : MonoBehaviour
     private float elapsedTime;
     private float move = 0;
     public float threshold = 1;
+    private bool playsound = true;
 
     private void Start()
     {
@@ -22,6 +23,11 @@ public class MovingObject : MonoBehaviour
     {
         if (move >= threshold)
         {
+            if (playsound)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ConfirmOpen", this.transform.position);
+                playsound = false;
+            }
             elapsedTime += Time.deltaTime;
             float percantageComplete = elapsedTime / desiredDuration;
             transform.position = Vector3.Lerp(realStart, realEndPos, percantageComplete);

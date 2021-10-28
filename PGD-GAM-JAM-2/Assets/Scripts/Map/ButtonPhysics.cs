@@ -48,7 +48,7 @@ public class ButtonPhysics : MonoBehaviour
     {
         isPressed = true;
         onPressed.Invoke();
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ButtonPress", this.transform.position);
     }
 
     private void Released()
