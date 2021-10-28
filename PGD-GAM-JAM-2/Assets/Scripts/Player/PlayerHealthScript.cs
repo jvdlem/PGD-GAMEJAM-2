@@ -62,7 +62,7 @@ public class PlayerHealthScript : MonoBehaviour
         if (currentHealth <= 0) 
         {
             currentHealth = 0;
-            OnDeath();
+            FadeOut();
             //die
         }
 
@@ -70,9 +70,13 @@ public class PlayerHealthScript : MonoBehaviour
     }
     public void ShowDamageIndicator() { damageIndicator.SetActive(true); }
     public void HideDamageIndicator() { damageIndicator.SetActive(false); }
-    public void OnDeath() 
+    public void FadeOut() 
     {
         HudDeath.SetActive(true);
+    }
+    public void FadeIn() 
+    {
+        StartCoroutine(FadeInEmum());
     }
     private IEnumerator BecomeInvincible()
     {
@@ -82,5 +86,14 @@ public class PlayerHealthScript : MonoBehaviour
 
 
         isInvincible = false;
+    }
+    private IEnumerator FadeInEmum() 
+    {
+        HudDeath.GetComponent<Animation>().Play("s");
+
+        yield return new WaitForSeconds(3f);
+
+
+        HudDeath.SetActive(false);
     }
 }
