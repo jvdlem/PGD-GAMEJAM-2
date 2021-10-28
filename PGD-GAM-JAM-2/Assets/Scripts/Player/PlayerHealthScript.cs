@@ -73,6 +73,7 @@ public class PlayerHealthScript : MonoBehaviour
     public void FadeOut() 
     {
         HudDeath.SetActive(true);
+        HudDeath.GetComponent<Animation>().Play("DeathFade");
     }
     public void FadeIn() 
     {
@@ -89,7 +90,7 @@ public class PlayerHealthScript : MonoBehaviour
     }
     private IEnumerator FadeInEmum() 
     {
-        HudDeath.GetComponent<Animation>().Play("s");
+        HudDeath.GetComponent<Animation>().Play("FadeInAnim");
 
         yield return new WaitForSeconds(3f);
 
