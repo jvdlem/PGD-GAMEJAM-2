@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 4462355541404790399}
   - component: {fileID: 8270017802968043970}
   - component: {fileID: 4576858267360983408}
+  - component: {fileID: -8029322969238062050}
   m_Layer: 0
   m_Name: Hand Left
   m_TagString: Untagged
@@ -250,6 +251,22 @@ MonoBehaviour:
   Canvas: {fileID: 1239065316191374002}
   WatchUiAnim: {fileID: 2393257364913795940}
   healthText: {fileID: 3268945228578623553}
+--- !u!54 &-8029322969238062050
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520704544056306930}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8815356728558928826
 GameObject:
   m_ObjectHideFlags: 0
