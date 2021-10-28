@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class GroundEnemyScript : EnemyBaseScript
 {
-    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
     private bool playerInVision;
 
     private Vector3 targetPosition;
-    private float checkForPlayerDistance = 15;
+    public float checkForPlayerDistance = 15;
     
     public float WalkSpeed;
     public float RotateSpeed;

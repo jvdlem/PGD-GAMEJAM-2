@@ -8,10 +8,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject spawn;
     [SerializeField] float radius = 10;
     [SerializeField] ParticleSystem spawnParticle;
+    [SerializeField] List<GameObject> spawnList;
     // Start is called before the first frame update
     void Start()
     {
         radius = 10;
+        if (spawnList.Count > 0)
+        {
+            this.spawn = spawnList[Mathf.RoundToInt(Random.Range(0, spawnList.Count))];
+        }
     }
 
     // Update is called once per frame
@@ -27,7 +32,7 @@ public class Spawner : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.tag == "Playboy")
+            if (hitCollider.tag == "Player")
             {
                 
                 spawnParticle.Play();
