@@ -17,7 +17,7 @@ public class ProjectileOnHitEffect : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
         {
             //add what happens if projectile hits the player here
-
+            player.GetComponent<PlayerHealthScript>().takeDamage(3);
             Destroy(gameObject);
         }
         else Destroy(gameObject);
