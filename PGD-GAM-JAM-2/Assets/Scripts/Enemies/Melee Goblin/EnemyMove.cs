@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyMove : GroundEnemyScript
 {
     [SerializeField] int rushDistance = 8;
+    private bool playOnce;
+  
 
     // Start is called before the first frame update
     public override void Start()
@@ -31,10 +33,19 @@ public class EnemyMove : GroundEnemyScript
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - new Vector3(transform.position.x, transform.position.y - 90, transform.position.z)), RotateSpeed * Time.deltaTime);
             if (dist < rushDistance)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
+
                 step = (WalkSpeed * 2) * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
+                if (playOnce)
+                {
+
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
+                    playOnce = false;
+                }
+
             }
+            else playOnce = true;
+
         }
         if (Health <= 0)
         {
@@ -47,9 +58,14 @@ public class EnemyMove : GroundEnemyScript
     {
         if (collision.gameObject.tag == "Projectile")
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", this.gameObject.transform.position);
             Health -= 1;
             Destroy(collision.gameObject);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", this.gameObject.transform.position);
+            
+            
+           
         }
     }
+  
+
 }

@@ -9,14 +9,14 @@ public class ProjectileOnHitEffect : MonoBehaviour
 
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player") 
         {
-            //add what happens if projectile hits the player here
+            
             player.GetComponent<PlayerHealthScript>().takeDamage(3);
             Destroy(gameObject);
         }
