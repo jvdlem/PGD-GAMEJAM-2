@@ -31,8 +31,7 @@ public class ProjectileEnemyScript : MonoBehaviour
     {
         if (inAttackRange) 
         {
-
-            
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Wizard/Wizard Attack", this.gameObject.transform.position);
             Rigidbody bullet = (Rigidbody)Instantiate(projectile, transform.position + transform.forward, transform.rotation);
             bullet.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
 
@@ -44,6 +43,7 @@ public class ProjectileEnemyScript : MonoBehaviour
     {
         if (health <= 0)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Wizard/WizardDeath", this.gameObject.transform.position);
             Destroy(gameObject);
             Instantiate(destroyedVersion, transform.position + new Vector3(0, -3, 0), transform.rotation);
         }
@@ -66,6 +66,7 @@ public class ProjectileEnemyScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Projectile")
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Wizard/WizardHurt", this.gameObject.transform.position);
             health -= 2;
             Destroy(collision.gameObject);
         }
