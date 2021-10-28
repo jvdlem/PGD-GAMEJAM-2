@@ -31,12 +31,14 @@ public class EnemyMove : GroundEnemyScript
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - new Vector3(transform.position.x, transform.position.y - 90, transform.position.z)), RotateSpeed * Time.deltaTime);
             if (dist < rushDistance)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
                 step = (WalkSpeed * 2) * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
             }
         }
         if (Health <= 0)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", this.gameObject.transform.position);
             Destroy(this.gameObject);
         }
     }
@@ -47,6 +49,7 @@ public class EnemyMove : GroundEnemyScript
         {
             Health -= 1;
             Destroy(collision.gameObject);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", this.gameObject.transform.position);
         }
     }
 }
