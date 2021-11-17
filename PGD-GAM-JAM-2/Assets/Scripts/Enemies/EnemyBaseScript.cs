@@ -7,8 +7,10 @@ public class EnemyBaseScript : MonoBehaviour
     public int Health;
     public int Damage;
     public int Tier;
-    private Rigidbody Rigidbody;
+    protected Rigidbody Rigidbody;
     public GameObject Player;
+
+    protected Vector3 velocity; //Velocity for movement
 
     public virtual void Start()
     {
@@ -31,7 +33,7 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Update()
     {
-        
+        transform.position += velocity; //Velocity tied to position
     }
 
     public void TakeDamage(int pDamage)

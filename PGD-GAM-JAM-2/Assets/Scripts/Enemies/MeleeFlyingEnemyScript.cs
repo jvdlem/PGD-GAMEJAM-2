@@ -23,4 +23,10 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
 
         return target;
     }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        transform.position = new Vector3(other.gameObject.transform.position.x, 
+            25, other.gameObject.transform.position.z); //Reset position above target
+    }
 }

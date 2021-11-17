@@ -201,6 +201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4117915834826301024}
   - component: {fileID: 7892040518606746286}
+  - component: {fileID: -3305729943184291203}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Bat
@@ -242,4 +243,17 @@ MonoBehaviour:
   Player: {fileID: 0}
   flyingSpeed: 0.05
   timerMax: 150
-  targetObject: {fileID: 0}
+  targetObject: {fileID: 2979579714109661186, guid: d2398d7338765764db33048973a45ab5, type: 3}
+--- !u!65 &-3305729943184291203
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2223988019586203756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
