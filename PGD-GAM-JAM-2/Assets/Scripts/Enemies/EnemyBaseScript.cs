@@ -10,6 +10,13 @@ public class EnemyBaseScript : MonoBehaviour
     private Rigidbody Rigidbody;
     public GameObject Player;
 
+    private enum States { 
+    Attacking,
+    Patrolling,
+    Chasing,
+    Death
+    }
+    private States currentState;
     public virtual void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -31,7 +38,22 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Update()
     {
+        switch (currentState)
+        {
+            case States.Attacking:
+                break;
+            case States.Patrolling:
+                break;
+            case States.Chasing:
+                break;
+            case States.Death:
+                break;
+            default:
+                break;
+        }
         
+
+
     }
 
     public void TakeDamage(int pDamage)
