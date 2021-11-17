@@ -12,6 +12,16 @@ public class EnemyBaseScript : MonoBehaviour
 
     protected Vector3 velocity; //Velocity for movement
 
+    private enum States
+    {
+        Attacking,
+        Patrolling,
+        Chasing,
+        Death
+    }
+
+    private States currentState;
+
     public virtual void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -33,7 +43,22 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Update()
     {
+
         transform.position += velocity; //Velocity tied to position
+
+        switch (currentState)
+        {
+            case States.Attacking:
+                break;
+            case States.Patrolling:
+                break;
+            case States.Chasing:
+                break;
+            case States.Death:
+                break;
+            default:
+                break;
+        }
     }
 
     public void TakeDamage(int pDamage)
