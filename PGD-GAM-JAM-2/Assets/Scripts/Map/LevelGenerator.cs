@@ -5,7 +5,7 @@ public class LevelGenerator : MonoBehaviour
     public Texture2D map;
     private Vector3 position;
     public ColorToPrefab[] colorMappings;
-    void Start()
+    void Awake()
     {
         GenerateLevel();
     }

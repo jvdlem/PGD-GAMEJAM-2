@@ -73,7 +73,7 @@ public class EnemyMove : GroundEnemyScript
         {
             if (AttackTimer > 2.5f)
             {
-                //player.GetComponent<PlayerHealthScript>().takeDamage(1);
+                Player.GetComponent<PlayerHealthScript>().takeDamage(1);
             }
         }
     }

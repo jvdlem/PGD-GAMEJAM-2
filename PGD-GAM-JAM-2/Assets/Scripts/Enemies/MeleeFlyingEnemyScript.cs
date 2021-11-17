@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class MeleeFlyingEnemyScript : FlyingEnemyScript
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public override void Update()
     {
-        
+        base.Update();
+
+        ChargeAt(targetObject); //Dive at target
+        SetRotation(target); //Aim at target
+
+        FlyTo(target, flyingSpeed); //Fly in direction of target
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>Charge at a specified target</summary>
+    private Vector3 ChargeAt(GameObject targetObject) 
     {
-        
+        target = targetObject.transform.position - transform.position; //Position vectors directly compared to each other
+        target.Normalize();
+
+        return target;
     }
 }

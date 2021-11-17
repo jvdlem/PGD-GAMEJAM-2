@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class GroundEnemyScript : EnemyBaseScript
 {
-    private NavMeshAgent navMeshAgent;
+    public NavMeshAgent navMeshAgent;
     private bool playerInVision;
 
     private Vector3 targetPosition;
