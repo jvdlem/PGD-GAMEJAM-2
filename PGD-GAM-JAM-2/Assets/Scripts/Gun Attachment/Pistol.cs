@@ -62,8 +62,10 @@ public class Pistol : MonoBehaviour
         {
             if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 0)
             { // on repeat
+
                 aCurrentAddon = this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment;
                 lists[i].list = aCurrentAddon.GetComponent<AttachmentStats>().statList;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.transform.position);
                 for (int j = 0; j < allStats.list.Count; j++)
                 {
                     allStats.list[j] += lists[i].list[j];
@@ -77,6 +79,7 @@ public class Pistol : MonoBehaviour
                     allStats.list[j] -= lists[i].list[j];
                 }
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.transform.position);
             }
         }
         if (allStats.list[3] <= 2) { gatlingSet = false; }
@@ -84,8 +87,8 @@ public class Pistol : MonoBehaviour
         {
             for (int i = 0; i < allStats.list[1]; i++)
             {
-                //Bullet Currentbullet = Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
-                //Currentbullet.GetComponent<Bullet>().SetStats(damage, bulletTime, bulletSpeed);
+                bullet.GetComponent<Bullet>().SetStats(allStats.list[2], allStats.list[4], allStats.list[5]);
+                Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             }
         }
         if (allStats.list[0] <= 0.5) { sniperSet = true; }
@@ -98,13 +101,15 @@ public class Pistol : MonoBehaviour
     {
         if (allStats.list[3] >= 2) { gatlingSet = !gatlingSet; }
         Debug.Log(gatlingSet);
-
-        for (int i = 0; i < allStats.list[1]; i++)
+        if (!gatlingSet)
         {
-            
-            bullet.GetComponent<Bullet>().SetStats(damage, bulletTime, bulletSpeed);
-            Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1",this.transform.position);
+            for (int i = 0; i < allStats.list[1]; i++)
+            {
+
+                bullet.GetComponent<Bullet>().SetStats(allStats.list[2], allStats.list[4], allStats.list[5]);
+                Instantiate(bullet, this.transform.position + (transform.forward * 0.5f), this.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.transform.position);
+            }
         }
     }
 
