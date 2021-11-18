@@ -57,6 +57,7 @@ public class Pistol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButtonDown("Fire1")) shoot();
 
         for (int i = 1; i < lists.Count; i++)
         {
