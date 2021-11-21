@@ -9,6 +9,8 @@ public class FPSPlayerMovement : MonoBehaviour
     public Transform groundCheck;
 
     public float speed = 12f;
+    public float walkSpeed = 12f;
+    private float crouchSpeed = 6f;
     public float gravity = -9.81f;
     public float groundDistance = 0.4f;
 
@@ -16,19 +18,19 @@ public class FPSPlayerMovement : MonoBehaviour
 
     Vector3 Velocity;
     public bool isGrounded = false;
-
-
-    //crouching stuff (pls send help)
-    private KeyCode crouchKey = KeyCode.LeftControl;
     private bool canCrouch = true;
-    private bool ShouldCrouch => canCrouch && Input.GetKey(crouchKey) && !duringCrouchAnimation && isGrounded;
-    float crouchHeight = 1;
-    float standHeight = 2;
-    bool isCrouching, duringCrouchAnimation;
-    float crouchTime = 0.5f;
-    Vector3 standCenterPoint = new Vector3(0, 1, 0);
-    Vector3 crouchCenterPoint = new Vector3(0, 0.5f, 0);
 
+    //Crouch parameters
+    private float crouchHeigt = 0.5f;
+    private float standHeight = 2f;
+    private float timeToCrouch = 0.25f;
+    private Vector3 crouchingCenter = new Vector3(0, 0.5f, 0);
+    private Vector3 standingCenter = new Vector3(0, 0, 0);
+    private bool isCrouching;
+    private bool duringCrouchAnimation;
+    //Crouch misc
+    private KeyCode crouchKey = KeyCode.LeftControl;
+    private bool shouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && controller.isGrounded;
 
     // Update is called once per frame
     void Update()
@@ -50,13 +52,15 @@ public class FPSPlayerMovement : MonoBehaviour
         Velocity.y += gravity * Time.deltaTime;
         controller.Move(Velocity * Time.deltaTime);
 
-        if (ShouldCrouch)
-        {
-            CrouchStand();
+        if (canCrouch) HandleCrouch();
+        if (isCrouching) speed = crouchSpeed;
+        else speed = walkSpeed;
+    }
 
-        }
-        Debug.Log(ShouldCrouch);
-        Debug.Log(isGrounded);
+    private void HandleCrouch()
+    {
+        if (shouldCrouch) StartCoroutine(CrouchStand());
+
     }
     private IEnumerator CrouchStand()
     {
@@ -66,19 +70,15 @@ public class FPSPlayerMovement : MonoBehaviour
         duringCrouchAnimation = true;
 
         float timeElapsed = 0;
-        float targetHeight = isCrouching ? standHeight : crouchHeight;
+        float targetHeight = isCrouching ? standHeight : crouchHeigt;
         float currentHeight = controller.height;
-        float cameraCurrentHeight = mainCamera.transform.position.y;
-        float cameraTargetHeight = !isCrouching ? 1 : -1;
-        Vector3 targetCenter = isCrouching ? standCenterPoint : crouchCenterPoint;
+        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
         Vector3 currentCenter = controller.center;
 
-        while (timeElapsed < crouchTime)
+        while (timeElapsed < timeToCrouch)
         {
-            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / crouchTime);
-            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / crouchTime);
-            mainCamera.transform.position = new Vector3(mainCamera.transform.position.x, Mathf.Lerp(cameraCurrentHeight, cameraCurrentHeight - cameraTargetHeight, timeElapsed / crouchTime), mainCamera.transform.position.z);
-
+            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
+            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
@@ -87,6 +87,7 @@ public class FPSPlayerMovement : MonoBehaviour
         controller.center = targetCenter;
 
         isCrouching = !isCrouching;
+
         duringCrouchAnimation = false;
     }
 }
