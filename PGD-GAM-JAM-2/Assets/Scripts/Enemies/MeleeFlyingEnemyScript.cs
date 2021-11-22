@@ -38,7 +38,7 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     }
 
     /// <summary>Charge at a specified target.</summary>
-    private Vector3 ChargeAt(GameObject targetObject) 
+    protected Vector3 ChargeAt(GameObject targetObject) 
     {
         target = targetObject.transform.position - transform.position; //Position vectors directly compared to each other
         target.Normalize();
@@ -47,7 +47,7 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     }
 
     //Checks if enemy is in range of target
-    private bool InRange() 
+    protected bool InRange() 
     {
         return Physics.CheckSphere(transform.position, radius, playerLayer);
     }
@@ -56,7 +56,6 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     {
         transform.position = new Vector3(other.gameObject.transform.position.x,
             25, other.gameObject.transform.position.z); //Reset position above target
-        Destroy(other.gameObject); //Destroy target
         currentState = States.Patrolling; //Start patrolling for new target
     }
 }

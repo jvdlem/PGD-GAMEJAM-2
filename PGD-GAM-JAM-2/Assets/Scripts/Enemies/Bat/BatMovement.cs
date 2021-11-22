@@ -6,7 +6,7 @@ public class BatMovement : MeleeFlyingEnemyScript
 {
 
     public override void Start()
-    {
+    { 
         base.Start();
 
         Tier = 1;
@@ -17,6 +17,7 @@ public class BatMovement : MeleeFlyingEnemyScript
 
     public override void Update()
     {
+        Debug.Log(InRange());
         base.Update();
     }
 }
