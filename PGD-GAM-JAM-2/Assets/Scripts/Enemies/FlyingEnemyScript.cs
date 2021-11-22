@@ -6,7 +6,7 @@ public class FlyingEnemyScript : EnemyBaseScript
 {
     protected Vector3 target; //Target to specify direction
 
-    [SerializeField] protected float flyingSpeed = 1000; //Sets movement speed
+    [SerializeField] protected float flyingSpeed = 5; //Sets movement speed
 
     //Timer for movement
      protected int moveTimer = 0;
@@ -20,7 +20,9 @@ public class FlyingEnemyScript : EnemyBaseScript
     {
         base.Start();
 
-        Rigidbody.useGravity = false;
+        Rigidbody.useGravity = false; //Turn off gravity for proper movement
+
+        currentState = States.Chasing; //Enemy starts attacking target
 
         transform.position = new Vector3(0, 10); //Spawn above ground       
     }

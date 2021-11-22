@@ -12,7 +12,8 @@ public class EnemyBaseScript : MonoBehaviour
 
     protected Vector3 velocity; //Velocity for movement
 
-    private enum States
+    //Various enemy states
+    protected enum States
     {
         Attacking,
         Patrolling,
@@ -20,7 +21,8 @@ public class EnemyBaseScript : MonoBehaviour
         Death
     }
 
-    private States currentState;
+    //Current state of enemy
+    protected States currentState;
 
     public virtual void Start()
     {
@@ -33,7 +35,7 @@ public class EnemyBaseScript : MonoBehaviour
             Rigidbody = gameObject.AddComponent<Rigidbody>();
         }
 
-        //Multiply healt and damage if the enemy is a higher tier
+        //Multiply health and damage if the enemy is a higher tier
         if (Tier > 1)
         {
             Health *= Tier;
@@ -43,22 +45,7 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Update()
     {
-
-        transform.position += velocity; //Velocity tied to position
-
-        switch (currentState)
-        {
-            case States.Attacking:
-                break;
-            case States.Patrolling:
-                break;
-            case States.Chasing:
-                break;
-            case States.Death:
-                break;
-            default:
-                break;
-        }
+        transform.position += velocity * Time.deltaTime; //Velocity tied to position
     }
 
     public void TakeDamage(int pDamage)

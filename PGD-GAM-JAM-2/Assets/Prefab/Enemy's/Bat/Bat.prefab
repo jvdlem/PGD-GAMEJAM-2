@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 958626079838859676}
   - component: {fileID: 3540838646724996671}
   - component: {fileID: 5864582031423639912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 880921113626485567}
   - component: {fileID: 1757375382061010715}
   - component: {fileID: 1869895544552172749}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 4117915834826301024}
   - component: {fileID: 7892040518606746286}
   - component: {fileID: -3305729943184291203}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bat
   m_TagString: Bat
   m_Icon: {fileID: 0}
@@ -244,6 +244,10 @@ MonoBehaviour:
   flyingSpeed: 0.05
   timerMax: 150
   targetObject: {fileID: 2979579714109661186, guid: d2398d7338765764db33048973a45ab5, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  radius: 0
 --- !u!65 &-3305729943184291203
 BoxCollider:
   m_ObjectHideFlags: 0
