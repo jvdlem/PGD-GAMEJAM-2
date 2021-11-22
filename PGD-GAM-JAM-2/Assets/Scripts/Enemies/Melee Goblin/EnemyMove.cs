@@ -57,9 +57,10 @@ public class EnemyMove : GroundEnemyScript
             FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", this.gameObject.transform.position);
             Destroy(this.gameObject);
         }
+        Debug.Log(WalkSpeed);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
@@ -74,6 +75,7 @@ public class EnemyMove : GroundEnemyScript
             if (AttackTimer > 2.5f)
             {
                 Player.GetComponent<PlayerHealthScript>().takeDamage(1);
+           
             }
         }
     }
