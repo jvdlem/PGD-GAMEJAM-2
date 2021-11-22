@@ -5,7 +5,7 @@ using UnityEngine;
 public class RangedFlyingEnemyScript : FlyingEnemyScript
 {
 
-    [SerializeField] GameObject projectile; //Projectile which can be filled in
+    [SerializeField] readonly GameObject projectile; //Projectile which can be filled in
 
     // Update is called once per frame
     public override void Update()
@@ -18,7 +18,7 @@ public class RangedFlyingEnemyScript : FlyingEnemyScript
         FlyTo(target, flyingSpeed); //Fly in direction of target
     }
 
-    /// <summary>Launches a projectile at a target</summary>
+    /// <summary>Launches projectile at a target.</summary>
     private void FireOn(GameObject targetObject) 
     {
         Instantiate(projectile, transform.position + target, transform.rotation);
