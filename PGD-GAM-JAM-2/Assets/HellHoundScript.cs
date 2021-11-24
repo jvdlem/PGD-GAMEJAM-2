@@ -29,7 +29,7 @@ public class HellHoundScript : GroundEnemyScript
     public Vector3 hopTarget = Vector3.zero;
 
     //States variables
-    public float detectionDistance = 20;
+    public float detectionDistance = 10;
     public bool playerDetected, playerInAttackRange, alreadyAttacking;
 
     enum States
@@ -161,7 +161,6 @@ public class HellHoundScript : GroundEnemyScript
 
         if (!hopTargetSet)
         {
-
             SearchHopTarget();
         }
         if (hopTargetSet)
