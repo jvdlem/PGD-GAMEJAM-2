@@ -895,7 +895,7 @@ GameObject:
   - component: {fileID: 6183900994695832399}
   - component: {fileID: 8197959466469908880}
   - component: {fileID: 1786974027955466126}
-  - component: {fileID: 3810342043815986931}
+  - component: {fileID: 7733233009335172610}
   m_Layer: 0
   m_Name: Melee Goblin
   m_TagString: Enemy
@@ -933,12 +933,12 @@ MonoBehaviour:
   Health: 10
   Damage: 1
   Tier: 1
-  Player: {fileID: 0}
+  Player: {fileID: 8109714427962658509, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  navMeshAgent: {fileID: 7733233009335172610}
   checkForPlayerDistance: 15
-  WalkSpeed: 4
+  WalkSpeed: 1
   RotateSpeed: 1
   AttackRange: 1
-  rushDistance: 8
 --- !u!54 &1786974027955466126
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -947,33 +947,36 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7961148719507695612}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!95 &3810342043815986931
-Animator:
-  serializedVersion: 3
+--- !u!195 &7733233009335172610
+NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7961148719507695612}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b1179c9250cb940479431482ccfdd11f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8381516573512445693
 GameObject:
   m_ObjectHideFlags: 0
