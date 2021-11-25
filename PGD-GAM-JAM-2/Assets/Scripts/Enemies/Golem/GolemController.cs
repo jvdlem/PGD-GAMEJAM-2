@@ -6,9 +6,10 @@ using UnityEngine.AI;
 public class GolemController : GroundEnemyScript
 {
     // Start is called before the first frame update
-    //[SerializeField]private GameObject golem;
+    //Add Pivot point when running the game
     public Animator anim;
     [SerializeField]public GameObject pivotPoint;
+
     //public NavMeshAgent agent;
     public LayerMask groundLayer, playerLayer;
 
@@ -42,8 +43,6 @@ public class GolemController : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
-        //base.Update();
-
         playerDetected = Physics.CheckSphere(this.gameObject.transform.position, detectionDistance, playerLayer);
         playerInAttackRange = Physics.CheckSphere(this.gameObject.transform.position, attackDistance, playerLayer);
 
@@ -51,9 +50,6 @@ public class GolemController : GroundEnemyScript
         if (!playerInAttackRange && playerDetected) { Chase(); attackTimer = 0; }
         if (playerInAttackRange && playerDetected) { Attacking(); }
         Die();
-
-        Debug.Log(attackTimer);
-        Debug.Log(timeBetweenAttacks * .75);
     }
     private void Patrolling()
     {
@@ -165,7 +161,7 @@ public class GolemController : GroundEnemyScript
         if (collision.gameObject.tag == "Player")
         {
             //Player loses health
-           //Player.GetComponent<>
+            Player.GetComponent<PlayerHealthScript>().takeDamage(3);
         }
     }
 }
