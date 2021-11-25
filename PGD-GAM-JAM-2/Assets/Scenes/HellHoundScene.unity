@@ -322,8 +322,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 564248605}
-  - component: {fileID: 564248604}
   - component: {fileID: 564248606}
+  - component: {fileID: 564248604}
   - component: {fileID: 564248607}
   m_Layer: 0
   m_Name: HellHound
@@ -401,10 +401,14 @@ MonoBehaviour:
   pounceTarget: {x: 0, y: 0, z: 0}
   attackDistance: 10
   walkPoint: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: 0, z: 0}
+  futurePosition: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   hopTargetSet: 0
+  backOffTargetSet: 0
   idleTimer: 0
   hopTarget: {x: 0, y: 0, z: 0}
+  backOffTarget: {x: 0, y: 0, z: 0}
   detectionDistance: 200
   playerDetected: 0
   playerInAttackRange: 0

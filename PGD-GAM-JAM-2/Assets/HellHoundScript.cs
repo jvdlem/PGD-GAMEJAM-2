@@ -23,10 +23,13 @@ public class HellHoundScript : GroundEnemyScript
     private float speed, hopHeight;
     private bool isGrounded = true;
     public Vector3 walkPoint;
-    public bool walkPointSet, hopTargetSet = false;
+    public Vector3 velocity = Vector3.zero;
+    public static float rotateSpeed = 3f;
+    public Vector3 futurePosition;
+    public bool walkPointSet = false, hopTargetSet = false, backOffTargetSet = false;
     public int idleTimer = 1;
     private float hopDistance = 1;
-    public Vector3 hopTarget = Vector3.zero;
+    public Vector3 hopTarget = Vector3.zero, backOffTarget = Vector3.zero;
 
     //States variables
     public float detectionDistance = 10;
@@ -38,6 +41,7 @@ public class HellHoundScript : GroundEnemyScript
         Chasing,
         Patrolling,
         Hopping,
+        BackingOff,
         Death
     }
     private States currentState;
@@ -71,12 +75,13 @@ public class HellHoundScript : GroundEnemyScript
             case States.Patrolling:
                 hopTargetSet = false;
                 pounceTargetSet = false;
-                
+                backOffTargetSet = false;
                 Patrolling();
                 break;
             case States.Chasing:
                 hopTargetSet = false;
                 pounceTargetSet = false;
+                backOffTargetSet = false;
 
                 Chasing();
 
@@ -85,16 +90,23 @@ public class HellHoundScript : GroundEnemyScript
             case States.Attacking:
                 //Forget previous hop target
                 hopTargetSet = false;
+                backOffTargetSet = false;
                 Pounce();
+                break;
+            case States.BackingOff:
+                pounceTargetSet = false;
+                hopTargetSet = false;
+                JumpBack();
                 break;
             case States.Hopping:
                 //Erase the previous target position
+                backOffTargetSet = false;
                 pounceTargetSet = false;
                 Hop();
                 break;
             case States.Death:
                 //Dying animation and sounds
-                //Destroy(this);
+                Destroy(this);
                 break;
             default:
                 break;
@@ -113,22 +125,25 @@ public class HellHoundScript : GroundEnemyScript
         //Make the hound look at the player
         hound.transform.LookAt(new Vector3(target.position.x, this.transform.position.y, target.position.z));
 
-        if (!pounceTargetSet) {
+        if (!pounceTargetSet)
+        {
             //Isn't attacking
             isAttacking = false;
 
             //Reset the hound speed
-            navMeshAgent.speed = 7;
+            //navMeshAgent.speed = 7;
 
-            SearchPounceTarget(); 
+            SearchPounceTarget();
         }
         if (pounceTargetSet)
         {
             //Hound attacks
             isAttacking = true;
 
-            //The hound pounces towards target fast
-            navMeshAgent.speed = 10;
+            //MoveToTargetDirection(pounceTarget,7);
+
+            ////The hound pounces towards target fast
+            //navMeshAgent.speed = 10;
             navMeshAgent.SetDestination(pounceTarget);
 
             //Play animation
@@ -140,19 +155,52 @@ public class HellHoundScript : GroundEnemyScript
         //Pounce target reached
         if (distanceToPouncePoint.magnitude < 1f)
         {
-            //Enter random state after attack
-            float randomState = Random.Range(0, 2);
-            if (randomState == 0)
-            {
-                //The hound enters the hopping state
-                currentState = States.Hopping;
-            }
-            else
-            {
-                //Erase the previous target position
-                pounceTargetSet = false;
-            }
+            //Back off after attack
+            currentState = States.BackingOff;
         }
+    }
+    void JumpBack()
+    {
+        //Make the hound look at the player
+        hound.transform.LookAt(new Vector3(target.position.x, this.transform.position.y, target.position.z));
+
+        if (!backOffTargetSet)
+        {
+            SearchBackOffTarget();
+        }
+        if (backOffTargetSet)
+        {
+            //Play animation
+            anim.Play("Hop");
+
+            //Move to code 
+            //MoveToTargetDirection(backOffTarget,2);
+            navMeshAgent.SetDestination(backOffTarget);
+        }
+        //Calculate distance to pounce target
+        Vector3 distanceToBackOffPoint = transform.position - backOffTarget;
+
+        //Pounce target reached
+        if (distanceToBackOffPoint.magnitude < 1f)
+        {
+            //Effect of reaching the backoff point 
+            currentState = States.Hopping;
+        }
+    }
+    void MoveToTargetDirection(Vector3 target, float speed)
+    {
+        Vector3 direction = target - transform.position;
+        transform.position += direction * Time.deltaTime; //* speed;
+    }
+    void SearchBackOffTarget()
+    {
+        float backOffDistance = -1;
+
+        //Set target coordinates from current position
+        backOffTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z + backOffDistance);
+
+        //Set target bool true if the hop target is on the ground
+        if (Physics.Raycast(backOffTarget, -transform.up, 2f, groundLayer)) backOffTargetSet = true;
     }
     void Hop()
     {
@@ -166,12 +214,16 @@ public class HellHoundScript : GroundEnemyScript
         if (hopTargetSet)
         {
             //Set hop speed
-            navMeshAgent.speed = 10;
+            //navMeshAgent.speed = 10;
 
             //Play animation
             anim.Play("Hop");
 
+
+            //Movement 
             navMeshAgent.SetDestination(hopTarget);
+
+            //MoveToTargetDirection(hopTarget,2);
         }
         //Calculate distance to pounce target
         Vector3 distanceToHopPoint = transform.position - hopTarget;
@@ -180,7 +232,7 @@ public class HellHoundScript : GroundEnemyScript
         if (distanceToHopPoint.magnitude < 1f)
         {
             //Reset hound speed
-            navMeshAgent.speed = 7;
+            //navMeshAgent.speed = 7;
 
             anim.Play("IdleHound");
 
@@ -246,13 +298,12 @@ public class HellHoundScript : GroundEnemyScript
         float randomX = Random.Range(0, 1);
         if (randomX == 0)
         {
-            hopdirection = 3;
+            hopdirection = 1;
         }
-        else hopdirection = -3;
-        float randomZ = Random.Range(-2, -1);
+        else hopdirection = -1;
 
         //Set target coordinates from current position
-        hopTarget = new Vector3(transform.position.x + hopdirection, transform.position.y, transform.position.z + randomZ);
+        hopTarget = new Vector3(transform.position.x + hopdirection, transform.position.y, transform.position.z);
 
         //Set target bool true if the hop target is on the ground
         if (Physics.Raycast(hopTarget, -transform.up, 2f, groundLayer)) hopTargetSet = true;
@@ -262,10 +313,10 @@ public class HellHoundScript : GroundEnemyScript
         //Hound damages player
         //if (isAttacking)
         //{
-            if (gameObject.tag == "Player")
-            {
-                playerHealth.takeDamage(attackDamage);
-            }
+        if (gameObject.tag == "Player")
+        {
+            playerHealth.takeDamage(attackDamage);
+        }
         //}
 
         //Hound takes damage
