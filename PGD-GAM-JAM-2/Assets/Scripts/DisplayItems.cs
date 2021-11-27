@@ -8,6 +8,7 @@ public class DisplayItems : MonoBehaviour
     
     public void DisplayItem()
     {
-        GameObject instantiatedEnemy = Instantiate(items[1], this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+        GameObject instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], this.gameObject.transform.position, this.gameObject.transform.rotation) as GameObject;
+        
     }
 }
