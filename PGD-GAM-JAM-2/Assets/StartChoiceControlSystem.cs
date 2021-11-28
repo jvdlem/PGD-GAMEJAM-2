@@ -9,7 +9,7 @@ public class StartChoiceControlSystem : MonoBehaviour
     [SerializeField]
     public FPSPlayerMovement FPSPlayer;
     [SerializeField]
-    public FPSUI VRPlayer;
+    public ChracterMovmentHelper VRPlayer;
     [SerializeField]
     public FPSUI VRUI;
 
@@ -36,7 +36,7 @@ public class StartChoiceControlSystem : MonoBehaviour
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        //VRPlayer.ToggleVRplayer();
+       
         //VRUI.ToggleVRUI();
         FPSPlayer.ToggleFPSPlayer();
     }
@@ -47,7 +47,7 @@ public class StartChoiceControlSystem : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         FPSUI.ToggleFPSUI();
-        
+        VRPlayer.ToggleVRPlayer();
 
     }
 }
