@@ -101,7 +101,6 @@ public class Pistol : MonoBehaviour
     public void shoot()
     {
         if (allStats.list[3] >= 2) { gatlingSet = !gatlingSet; }
-        Debug.Log(gatlingSet);
         if (!gatlingSet)
         {
             for (int i = 0; i < allStats.list[1]; i++)
