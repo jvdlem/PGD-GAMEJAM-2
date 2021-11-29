@@ -5,13 +5,14 @@ using UnityEngine;
 public class EnterShop : MonoBehaviour
 {
     [SerializeField] DisplayItems displayItems;
-    [SerializeField] List<DisplayItems> displayItemsList;
+    [SerializeField] List<GameObject> itemSpawners = new List<GameObject>();
     public void OnTriggerEnter(Collider other)
     {
-        foreach(DisplayItems display in displayItemsList)
+        foreach (GameObject item in itemSpawners)
         {
-            displayItems.DisplayItem();
+            displayItems.DisplayItem(item);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        
     }
 }
