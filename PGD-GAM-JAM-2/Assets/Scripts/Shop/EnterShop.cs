@@ -11,14 +11,17 @@ public class EnterShop : MonoBehaviour
     [SerializeField] List<ItemDesc> itemDescs = new List<ItemDesc>();
     public void OnTriggerEnter(Collider other)
     {
-        foreach (GameObject itemSpawners in itemSpawners)
+        if (other.gameObject.tag == "Player")
         {
-            displayItems.DisplayItem(itemSpawners);
             Destroy(this.gameObject);
-        }
-        foreach (ItemDesc itemDescription in itemDescs)
-        {
-            itemDescription.DisplayText(displayItems.price);
+            foreach (GameObject itemSpawners in itemSpawners)
+            {
+                displayItems.DisplayItem(itemSpawners);
+            }
+            foreach (ItemDesc itemDescription in itemDescs)
+            {
+                itemDescription.DisplayText(displayItems.price);
+            }
         }
     }
 }
