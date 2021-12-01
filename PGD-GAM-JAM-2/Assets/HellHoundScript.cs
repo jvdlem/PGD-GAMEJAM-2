@@ -7,7 +7,7 @@ public class HellHoundScript : GroundEnemyScript
 {
     [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
-    [SerializeField] public Transform target;
+    //[SerializeField] public Transform target;
     private Transform hound;
     private PlayerHealthScript playerHealth;
 
@@ -54,7 +54,6 @@ public class HellHoundScript : GroundEnemyScript
         navMeshAgent = GetComponent<NavMeshAgent>();
         currentState = States.Patrolling;
         hound = GetComponent<Transform>();
-        target = GetComponent<Transform>();
         Health = 5;
         Tier = 1;
     }
@@ -62,14 +61,16 @@ public class HellHoundScript : GroundEnemyScript
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(currentState);
+        Debug.Log(Health);
 
         playerDetected = Physics.CheckSphere(transform.position, detectionDistance, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
 
         if (!playerDetected && !playerInAttackRange) { currentState = States.Patrolling; }
         if (playerDetected && !playerInAttackRange) { currentState = States.Chasing; }
-        if (Health <= 0) { currentState = States.Death; }
+
+        //Death statement
+        if (Health <= 0) { Destroy(this.gameObject); }
 
         switch (currentState)
         {
@@ -105,10 +106,6 @@ public class HellHoundScript : GroundEnemyScript
                 pounceTargetSet = false;
                 Hop();
                 break;
-            case States.Death:
-                //Dying animation and sounds
-                Destroy(this);
-                break;
             default:
                 break;
         }
@@ -116,15 +113,15 @@ public class HellHoundScript : GroundEnemyScript
     void Chasing()
     {
         //chases while looking at the player
-        hound.transform.LookAt(new Vector3(target.position.x, this.transform.position.y, target.position.z));
+        hound.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         //go to the target
-        navMeshAgent.SetDestination(new Vector3(target.position.x, this.transform.position.y, target.position.z));
+        navMeshAgent.SetDestination(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
     }
     void Pounce()
     {
         //Make the hound look at the player
-        hound.transform.LookAt(new Vector3(target.position.x, this.transform.position.y, target.position.z));
+        hound.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         if (!pounceTargetSet)
         {
@@ -163,7 +160,7 @@ public class HellHoundScript : GroundEnemyScript
     void JumpBack()
     {
         //Make the hound look at the player
-        hound.transform.LookAt(new Vector3(target.position.x, this.transform.position.y, target.position.z));
+        hound.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         if (!backOffTargetSet)
         {
@@ -206,7 +203,7 @@ public class HellHoundScript : GroundEnemyScript
     void Hop()
     {
         //hops sideways while looking at the player
-        hound.transform.LookAt(new Vector3(target.position.x, this.transform.position.y, target.position.z));
+        hound.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         if (!hopTargetSet)
         {
@@ -246,7 +243,6 @@ public class HellHoundScript : GroundEnemyScript
             }
             else currentState = States.Attacking;
         }
-
     }
     private void Patrolling()
     {
@@ -287,7 +283,7 @@ public class HellHoundScript : GroundEnemyScript
         //hound.transform.LookAt(target.position);
 
         //Set new target from current position
-        pounceTarget = new Vector3(target.position.x, transform.position.y, target.position.z);
+        pounceTarget = new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z);
 
         //Set target bool true if the target is on the ground 
         if (Physics.Raycast(pounceTarget, -transform.up, 2f, groundLayer)) pounceTargetSet = true;
