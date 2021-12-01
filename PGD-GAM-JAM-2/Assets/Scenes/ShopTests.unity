@@ -219,6 +219,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &621358854 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4327052275258748131, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+  m_PrefabInstance: {fileID: 2204281525564581005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d2b736a8ca45e4c9d04a39210c5360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &684151598
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +562,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+--- !u!114 &1531172827 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 633356282918882473, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+  m_PrefabInstance: {fileID: 2204281525564581005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d2b736a8ca45e4c9d04a39210c5360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2089612466 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7628824293290706041, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+  m_PrefabInstance: {fileID: 2204281525564581005}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d2b736a8ca45e4c9d04a39210c5360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2204281525564581005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -634,6 +667,18 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 7670523847202670531, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+      propertyPath: itemDescs.Array.data[0]
+      value: 
+      objectReference: {fileID: 621358854}
+    - target: {fileID: 7670523847202670531, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+      propertyPath: itemDescs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1531172827}
+    - target: {fileID: 7670523847202670531, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+      propertyPath: itemDescs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2089612466}
     - target: {fileID: 7969765855047635455, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
       propertyPath: m_LocalPosition.y
       value: 3.6229157
