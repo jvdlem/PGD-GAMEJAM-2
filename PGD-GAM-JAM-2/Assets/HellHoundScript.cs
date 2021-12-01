@@ -311,19 +311,20 @@ public class HellHoundScript : GroundEnemyScript
     }
     private void OnTriggerEnter(Collider collision)
     {
-        //Hound damages player
-        //if (isAttacking)
-        //{
-        if (gameObject.tag == "Player")
-        {
-            playerHealth.takeDamage(attackDamage);
-        }
-        //}
-
-        //Hound takes damage
-        if (gameObject.tag == "Projectile")
+        //Projectile hurts Hound on collision
+        if (collision.gameObject.tag == "Projectile")
         {
             Health--;
+        }
+
+        //Hound hurts player on collision
+        if (isAttacking)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                //Player loses health
+                Player.GetComponent<PlayerHealthScript>().takeDamage(3);
+            }
         }
     }
 }

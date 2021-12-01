@@ -144,17 +144,22 @@ public class SkeletonArcherController : GroundEnemyScript
             Destroy(this.gameObject);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        //Projectile hurts goem on collision
+        //Projectile hurts skeleton on collision
         if (collision.gameObject.tag == "Projectile")
-        { Health--; }
-
-        //Golem hurts player on collision
-        if (collision.gameObject.tag == "Player")
         {
-            //Player loses health
-            Player.GetComponent<PlayerHealthScript>().takeDamage(3);
+            Health--;
+        }
+
+        //Skeleton hurts player on collision
+        if (attackTimer != 0)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                //Player loses health
+                Player.GetComponent<PlayerHealthScript>().takeDamage(3);
+            }
         }
     }
 }

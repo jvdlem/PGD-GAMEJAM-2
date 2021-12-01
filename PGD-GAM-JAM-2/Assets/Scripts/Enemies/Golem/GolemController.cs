@@ -29,13 +29,14 @@ public class GolemController : GroundEnemyScript
     override public void Start()
     {
         pivotPoint = GetComponent<Transform>();
-       //anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
         //agent = GetComponent<NavMeshAgent>();
         Health = 20;
         Damage = 3;
         Tier = 2;
         attackTimer = 0;
         attackState = Random.Range(0, attackVariations.Length);
+        currentState = States.Patrolling;
     }
     // Update is called once per frame
     override public void Update()
@@ -43,9 +44,27 @@ public class GolemController : GroundEnemyScript
         playerDetected = Physics.CheckSphere(this.gameObject.transform.position, detectionDistance, playerLayer);
         playerInAttackRange = Physics.CheckSphere(this.gameObject.transform.position, attackDistance, playerLayer);
 
-        if (!playerInAttackRange && !playerDetected) { Patrolling(); attackTimer = 0; }
-        if (!playerInAttackRange && playerDetected) { Chase(); attackTimer = 0; }
-        if (playerInAttackRange && playerDetected) { Attacking(); }
+        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+
+        Debug.Log(Health);
+
+        switch (currentState)
+        {
+            case States.Patrolling:
+                Patrolling(); attackTimer = 0;
+                if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
+                break;
+            case States.Chasing:
+                Chase(); attackTimer = 0;
+                if (playerInAttackRange && playerDetected) { currentState = States.Attacking; }
+                break;
+            case States.Attacking:
+                Attacking();
+                if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
+                break;
+            case States.Death:
+                break;
+        }
         Die();
     }
     private void Patrolling()
@@ -155,17 +174,23 @@ public class GolemController : GroundEnemyScript
             Destroy(this.gameObject);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider collision)
     {
         //Projectile hurts goem on collision
         if (collision.gameObject.tag == "Projectile")
-        { Health--; }
+        {
+            Health--;
+        }
 
         //Golem hurts player on collision
-        if (collision.gameObject.tag == "Player")
+        if (attackTimer != 0)
         {
-            //Player loses health
-            Player.GetComponent<PlayerHealthScript>().takeDamage(3);
+            if (collision.gameObject.tag == "Player")
+            {
+                //Player loses health
+                Player.GetComponent<PlayerHealthScript>().takeDamage(3);
+            }
         }
     }
 }
