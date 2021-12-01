@@ -19,7 +19,7 @@ public class EnemyMove : GroundEnemyScript
         checkForPlayerDistance = 20;
         WalkSpeed = 4;
         RotateSpeed = 8;
-        AttackRange = 2;
+        AttackRange = 2.2f;
         rushDistance = 5;
         rushSpeed = 8;
     }
@@ -27,12 +27,6 @@ public class EnemyMove : GroundEnemyScript
     // Update is called once per frame
     public override void Update()
     {
-
-
-        Debug.Log("AttackTimer" + AttackTimer);
-        Debug.Log("Health" + Health);
-        Debug.Log("canAttack" + canAttack);
-
         navMeshAgent.speed = WalkSpeed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
@@ -61,12 +55,6 @@ public class EnemyMove : GroundEnemyScript
             playOnce = true;
             WalkSpeed = 4;
         }
-
-
-        // Debug.Log("dist" + dist);
-        Debug.Log("walkspeed" + WalkSpeed);
-        //Debug.Log("rush speed" + rushSpeed);
-        //Debug.Log("rush dist" + rushDistance);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -83,9 +71,8 @@ public class EnemyMove : GroundEnemyScript
         {
             if (canAttack)
             {
-                canAttack = false;
                 Player.GetComponent<PlayerHealthScript>().takeDamage(1);
-
+                canAttack = false;
             }
         }
     }
