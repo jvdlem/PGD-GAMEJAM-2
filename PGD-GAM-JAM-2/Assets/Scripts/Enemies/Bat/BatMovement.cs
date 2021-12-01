@@ -2,16 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BatMovement : FlyingEnemyScript
+public class BatMovement : MeleeFlyingEnemyScript
 {
-   
+
+    public override void Start()
+    { 
+        base.Start();
+
+        Tier = 1;
+
+        Health = 100;
+        Damage = 10;
+    }
+
     public override void Update()
     {
+        Debug.Log(InRange());
         base.Update();
-
-        TrackObject(targetObject); //Follow target
-        SetRotation(new Vector3(target.x, 0, target.z)); //Rotation is set to target without y-axis 
-
-        FlyTo(target, flyingSpeed); //Fly in direction of target
     }
 }

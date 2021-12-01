@@ -12,6 +12,7 @@ public class ChracterMovmentHelper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.SetActive(true);
         XRRig = GetComponent<XRRig>();
         CharacterController = GetComponent<CharacterController>();
         driver = GetComponent<CharacterControllerDriver>();
@@ -39,5 +40,9 @@ public class ChracterMovmentHelper : MonoBehaviour
 
         CharacterController.height = height;
         CharacterController.center = center;
+    }
+    public void ToggleVRPlayer()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -29,11 +29,7 @@ public class PlayerHealthScript : MonoBehaviour
     void Update()
     {
         MaxHealth();
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            takeDamage(3);
-        }
-
+     
     }
 
     void MaxHealth() 

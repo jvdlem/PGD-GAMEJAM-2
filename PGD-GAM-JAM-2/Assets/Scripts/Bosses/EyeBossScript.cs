@@ -21,8 +21,10 @@ public class EyeBossScript : MonoBehaviour
 
     void Update()
     {
+        //Look towards player
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - new Vector3(transform.position.x, transform.position.y - 90, transform.position.z)), lookSpeed * Time.deltaTime);
 
+        //Change color depending on if Active
         if (EyeIsActive)
         {
             renderer.material.color = Color.white;
