@@ -54,6 +54,7 @@ public class HellHoundScript : GroundEnemyScript
         navMeshAgent = GetComponent<NavMeshAgent>();
         currentState = States.Patrolling;
         hound = GetComponent<Transform>();
+        target = GetComponent<Transform>();
         Health = 5;
         Tier = 1;
     }
