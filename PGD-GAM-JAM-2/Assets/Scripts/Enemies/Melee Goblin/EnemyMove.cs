@@ -4,63 +4,60 @@ using UnityEngine;
 
 public class EnemyMove : GroundEnemyScript
 {
-    [SerializeField] int rushDistance = 8;
     float AttackTimer;
+    int rushDistance;
+    int rushSpeed;
     private bool playOnce;
-
+    bool canAttack;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        rushDistance = 8;
         Health = 10;
         Tier = 1;
         checkForPlayerDistance = 20;
-        WalkSpeed = 1.5f;
+        WalkSpeed = 4;
         RotateSpeed = 8;
-        AttackRange = 2;
+        AttackRange = 2.2f;
+        rushDistance = 5;
+        rushSpeed = 8;
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        navMeshAgent.speed = WalkSpeed;
+        float dist = Vector3.Distance(Player.transform.position, this.transform.position);
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+
         base.Update();
-        float dist = Vector3.Distance(Player.transform.position, transform.position);
-        float step = WalkSpeed * Time.deltaTime; // calculate distance to move
-
-        if (dist <= checkForPlayerDistance && dist >= AttackRange)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - new Vector3(transform.position.x, transform.position.y - 90, transform.position.z)), RotateSpeed * Time.deltaTime);
-
-            if (dist < rushDistance)
-            {
-                step = (WalkSpeed * 2) * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
-                if (playOnce)
-                {
-
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
-                    playOnce = false;
-                }
-            }
-            else
-            {
-                step = WalkSpeed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, step);
-                playOnce = true;
-            }
-        }
-
         if (Health <= 0)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", this.gameObject.transform.position);
             Destroy(this.gameObject);
         }
-        Debug.Log(WalkSpeed);
+
+        AttackTimer += Time.deltaTime;
+        if (AttackTimer > 2.5f && !canAttack && dist < rushDistance)
+        {
+            canAttack = true;
+            AttackTimer = 0;
+            Rush();
+            if (playOnce)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
+                playOnce = false;
+            }
+        }
+        else
+        {
+            playOnce = true;
+            WalkSpeed = 4;
+        }
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Projectile")
         {
@@ -69,14 +66,19 @@ public class EnemyMove : GroundEnemyScript
             Destroy(collision.gameObject);
         }
 
-        AttackTimer += Time.deltaTime;
+
         if (collision.gameObject.tag == "Player")
         {
-            if (AttackTimer > 2.5f)
+            if (canAttack)
             {
                 Player.GetComponent<PlayerHealthScript>().takeDamage(1);
-           
+                canAttack = false;
             }
         }
+    }
+
+    private void Rush()
+    {
+        WalkSpeed = rushSpeed;
     }
 }

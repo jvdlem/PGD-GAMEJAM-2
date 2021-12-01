@@ -20,7 +20,7 @@ public class GroundEnemyScript : EnemyBaseScript
         base.Start();
 
         navMeshAgent = GetComponent<NavMeshAgent>();
-        navMeshAgent.speed = AttackRange;
+        navMeshAgent.speed = WalkSpeed;
         navMeshAgent.angularSpeed = RotateSpeed;
     }
 
