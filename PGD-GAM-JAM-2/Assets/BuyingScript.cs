@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuyingScript : MonoBehaviour
 {
     [SerializeField] DisplayItems displayItems;
+    [SerializeField] PlayerHealthScript playerHealthScript;
     private void Update()
     {
         LayerMask interactibles = LayerMask.GetMask("Interactible");
@@ -12,10 +13,10 @@ public class BuyingScript : MonoBehaviour
         bool objectHit = Physics.Raycast(ray, out RaycastHit hit, interactibles);
         if (objectHit)
         {
-            if (Input.GetKeyDown("e"))
+            if (Input.GetKeyDown("e") && playerHealthScript.coins >= displayItems.price)
             {
                 displayItems.BuyItems(hit);
-                //player.money -= displayItems.items.price
+                playerHealthScript.coins -= displayItems.price;
             }
         }
 
