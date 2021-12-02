@@ -13,7 +13,7 @@ public class Projectille : MonoBehaviour
     public enum Characteristics
     {
         None,
-        Choclate,
+        Chocolate,
         Candy,
         Gummy
     }
