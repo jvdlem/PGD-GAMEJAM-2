@@ -7,10 +7,19 @@ public class ItemDesc : MonoBehaviour
 {
     public Text nameAndPrice;
     public bool bought;
+
+    public void Update()
+    {
+        if (bought)
+        {
+            nameAndPrice.text = "BOUGHT!!";
+            nameAndPrice.color = Color.green;
+        }
+    }
+
     public void DisplayText(int price)
     {
         bought = false;
-        if (!bought) nameAndPrice.text = "$"+price;
-        else nameAndPrice.text = "Bought!!";
+        nameAndPrice.text = "$"+price;
     }
 }

@@ -91,7 +91,6 @@ public class Pistol : MonoBehaviour
     public void shoot()
     {
         if (allStats.list[3] >= 2) { fullAuto = !fullAuto; }
-        Debug.Log(fullAuto);
 
         for (int i = 0; i < allStats.list[1]; i++)
         {

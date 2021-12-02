@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &996736449986427224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5958908131308148952}
+  m_Layer: 2
+  m_Name: ItemBoughtPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5958908131308148952
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996736449986427224}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.94000006, y: 3.6719007, z: -1.64}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4803840126458079748}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1583431372011810714
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +42,7 @@ GameObject:
   - component: {fileID: 8476318386432477816}
   - component: {fileID: 1289780030077617877}
   - component: {fileID: 7567497353060112813}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +137,7 @@ GameObject:
   - component: {fileID: 2204281524379619003}
   - component: {fileID: 2204281524379619000}
   - component: {fileID: 2204281524379619001}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +233,7 @@ GameObject:
   - component: {fileID: 2204281524940841233}
   - component: {fileID: 2204281524940841238}
   - component: {fileID: 2204281524940841239}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wall Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +328,7 @@ GameObject:
   - component: {fileID: 2204281525726268842}
   - component: {fileID: 2204281525726268843}
   - component: {fileID: 2204281525726268840}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,7 +423,7 @@ GameObject:
   - component: {fileID: 2204281525793150443}
   - component: {fileID: 2204281525793150440}
   - component: {fileID: 2204281525793150441}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wall Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +518,7 @@ GameObject:
   - component: {fileID: 1853391275220011565}
   - component: {fileID: 2290032413878779054}
   - component: {fileID: 3762226181244876046}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -581,7 +611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4803840126458079748}
   - component: {fileID: 5933224146528650236}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -611,6 +641,7 @@ Transform:
   - {fileID: 4385438297619367920}
   - {fileID: 92278202275618219}
   - {fileID: 6342696807465527392}
+  - {fileID: 5958908131308148952}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -638,6 +669,7 @@ MonoBehaviour:
   - {fileID: 8357656364833336842, guid: 1867582bed297c84a8add69ebca01d19, type: 3}
   - {fileID: 8357656364833336842, guid: f690a0ae780188b40bbf60d8d4bdb5e1, type: 3}
   - {fileID: 234570700443935340, guid: 6ffc6432b6b63594db4560ef203060fc, type: 3}
+  shopCounterPos: {fileID: 996736449986427224}
   isBought: 0
   price: 0
   instantiatedItem: {fileID: 0}
@@ -650,7 +682,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2808419625056514439}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ItemSpawn1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -684,7 +716,7 @@ GameObject:
   - component: {fileID: 7676024148773239634}
   - component: {fileID: 3077400331140597843}
   - component: {fileID: 4480456962409009954}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShopItemDisplayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -699,7 +731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3463657283080600916}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.87000275, y: 4.3729157, z: 1.21595}
+  m_LocalPosition: {x: 0.87000275, y: 3.8729157, z: 1.21595}
   m_LocalScale: {x: 1, y: 0.08509999, z: 1}
   m_Children:
   - {fileID: 2901228887573128164}
@@ -799,7 +831,7 @@ GameObject:
   - component: {fileID: 7978717237352670006}
   - component: {fileID: 5193830816848941617}
   - component: {fileID: 2562006082793254177}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShopItemDisplayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -814,7 +846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3985157378146069961}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.1200027, y: 4.3729157, z: 1.21595}
+  m_LocalPosition: {x: 4.1200027, y: 3.8729157, z: 1.21595}
   m_LocalScale: {x: 1, y: 0.08509999, z: 1}
   m_Children:
   - {fileID: 8839728835361508827}
@@ -913,7 +945,7 @@ GameObject:
   - component: {fileID: 6953320899944799516}
   - component: {fileID: 6645322391030133198}
   - component: {fileID: 1076026796903499479}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1009,7 +1041,7 @@ GameObject:
   - component: {fileID: 2561873299667474743}
   - component: {fileID: 5390549058418223888}
   - component: {fileID: 7670523847202670531}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShopTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1111,9 +1143,9 @@ MonoBehaviour:
   - {fileID: 8647491255169590872}
   itemDesc: {fileID: 4327052275258748131}
   itemDescs:
-  - {fileID: 4988908364632674060}
-  - {fileID: 1440998861142138589}
-  - {fileID: 1034984802238354036}
+  - {fileID: 4327052275258748131}
+  - {fileID: 633356282918882473}
+  - {fileID: 7628824293290706041}
 --- !u!1 &4287623403238317183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,7 +1158,7 @@ GameObject:
   - component: {fileID: 7299778033263605120}
   - component: {fileID: 4988908364632674060}
   - component: {fileID: 4327052275258748131}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1221,7 +1253,7 @@ GameObject:
   - component: {fileID: 1903289693057186058}
   - component: {fileID: 1263175391874601984}
   - component: {fileID: 6715258630423726880}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShopItemDisplayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1236,7 +1268,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4609080777226475747}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -2.1299973, y: 4.3729157, z: 1.21595}
+  m_LocalPosition: {x: -2.1299973, y: 3.8729157, z: 1.21595}
   m_LocalScale: {x: 1, y: 0.08509999, z: 1}
   m_Children:
   - {fileID: 5818478287098553168}
@@ -1335,7 +1367,7 @@ GameObject:
   - component: {fileID: 863514127415019533}
   - component: {fileID: 7302930991260829685}
   - component: {fileID: 1470875785373950427}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1430,7 +1462,7 @@ GameObject:
   - component: {fileID: 4778163598948757552}
   - component: {fileID: 799954533328890412}
   - component: {fileID: 6515943975022209160}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1522,7 +1554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9095929426828198712}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ItemSpawn2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1555,7 +1587,7 @@ GameObject:
   - component: {fileID: 2187433415208186205}
   - component: {fileID: 1034984802238354036}
   - component: {fileID: 7628824293290706041}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1649,7 +1681,7 @@ GameObject:
   - component: {fileID: 1047580145556796874}
   - component: {fileID: 3379470931337707930}
   - component: {fileID: 7487639626357480899}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1748,7 +1780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7672672988688202026}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ItemSpawn3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1781,7 +1813,7 @@ GameObject:
   - component: {fileID: 2674754733213069829}
   - component: {fileID: 1440998861142138589}
   - component: {fileID: 633356282918882473}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1875,7 +1907,7 @@ GameObject:
   - component: {fileID: 8788317042358871140}
   - component: {fileID: 5077943998257175651}
   - component: {fileID: 5093872529068110437}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ShopClerk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
