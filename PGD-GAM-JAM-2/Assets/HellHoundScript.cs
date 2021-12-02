@@ -34,7 +34,6 @@ public class HellHoundScript : GroundEnemyScript
     //States variables
     public float detectionDistance = 10;
     public bool playerDetected, playerInAttackRange, alreadyAttacking;
-
     enum States
     {
         Attacking,
@@ -57,12 +56,9 @@ public class HellHoundScript : GroundEnemyScript
         Health = 5;
         Tier = 1;
     }
-
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Health);
-
         playerDetected = Physics.CheckSphere(transform.position, detectionDistance, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
 

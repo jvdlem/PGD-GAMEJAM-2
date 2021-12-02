@@ -17,6 +17,7 @@ public class SkeletonArcherController : GroundEnemyScript
     [Header("Attack variables")]
     public float timeBetweenAttacks;
     bool isAttacking;
+    public GameObject arrow;
     private float attackState, attackTimer;
     private string[] attackVariations = { "Swing", "Slam" };
 
@@ -29,7 +30,6 @@ public class SkeletonArcherController : GroundEnemyScript
     {
         pivotPoint = GetComponent<Transform>();
         //anim = GetComponent<Animator>();
-        //agent = GetComponent<NavMeshAgent>();
         Health = 20;
         Damage = 3;
         Tier = 2;
@@ -121,12 +121,13 @@ public class SkeletonArcherController : GroundEnemyScript
         //Shoot attack
         if (attackTimer < timeBetweenAttacks)
         {
-            //anim.Play("SwingAttack");
+            //anim.Play("ShootAttack");
 
             if (attackTimer < 2)
             {
-                //Play animation once
-                //anim.Play("SwingAttack");
+                Shoot();
+
+
                 // else if(attackTimer<(timeBetweenAttacks*.75))  //Golem doen't walk when attacking
                 //   anim.Play("Idle");
             }
@@ -136,6 +137,19 @@ public class SkeletonArcherController : GroundEnemyScript
             //Reset Attack
             attackTimer = 0;
         }
+    }
+
+    void RunBack()
+    {
+
+    }
+
+    void Shoot()
+    {
+        Rigidbody currentArrow = Instantiate(arrow, new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z), Quaternion.identity).GetComponent<Rigidbody>();
+        currentArrow.AddForce(transform.forward * 5f, ForceMode.Impulse);
+        currentArrow.AddForce(transform.up * 2f, ForceMode.Impulse);
+
     }
     void Die()
     {
