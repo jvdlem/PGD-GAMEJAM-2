@@ -15,9 +15,11 @@ public class SkeletonArcherController : GroundEnemyScript
     public int idleTimer;
 
     [Header("Attack variables")]
+    [SerializeField] Transform shootPoint;
     public float timeBetweenAttacks;
     bool isAttacking;
     public GameObject arrow;
+    bool readyToShoot = true;
     private float attackState, attackTimer;
     private string[] attackVariations = { "Swing", "Slam" };
 
@@ -35,6 +37,9 @@ public class SkeletonArcherController : GroundEnemyScript
         Tier = 2;
         attackTimer = 0;
         attackState = Random.Range(0, attackVariations.Length);
+
+        InvokeRepeating(nameof(Shoot), timeBetweenAttacks, timeBetweenAttacks);
+
     }
     // Update is called once per frame
     override public void Update()
@@ -115,41 +120,16 @@ public class SkeletonArcherController : GroundEnemyScript
         //The golem aims at the player
         pivotPoint.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
-        //Time between attack timer counts up;
-        attackTimer++;
-
-        //Shoot attack
-        if (attackTimer < timeBetweenAttacks)
-        {
-            //anim.Play("ShootAttack");
-
-            if (attackTimer < 2)
-            {
-                Shoot();
-
-
-                // else if(attackTimer<(timeBetweenAttacks*.75))  //Golem doen't walk when attacking
-                //   anim.Play("Idle");
-            }
-        }
-        else //Timer runs out
-        {
-            //Reset Attack
-            attackTimer = 0;
-        }
+        //Timed attack
     }
-
-    void RunBack()
-    {
-
-    }
-
     void Shoot()
     {
-        Rigidbody currentArrow = Instantiate(arrow, new Vector3(transform.position.x, transform.position.y+.5f, transform.position.z), Quaternion.identity).GetComponent<Rigidbody>();
-        currentArrow.AddForce(transform.forward * 5f, ForceMode.Impulse);
-        currentArrow.AddForce(transform.up * 2f, ForceMode.Impulse);
-
+        if (currentState == States.Attacking)
+        {
+            Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            currentArrow.AddForce(transform.forward * 1.5f, ForceMode.Impulse);
+            currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
+        }
     }
     void Die()
     {
