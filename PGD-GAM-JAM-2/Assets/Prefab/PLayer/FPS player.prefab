@@ -233,6 +233,7 @@ MonoBehaviour:
   controller: {fileID: 8803190289961001391}
   groundCheck: {fileID: 2659135250990850454}
   speed: 12
+  walkSpeed: 12
   gravity: -9.81
   groundDistance: 0.4
   groundMask:
@@ -250,6 +251,7 @@ GameObject:
   - component: {fileID: 5892697826461589623}
   - component: {fileID: 6843548765066250255}
   - component: {fileID: 9022804772560714046}
+  - component: {fileID: -1217379870320846495}
   m_Layer: 0
   m_Name: FPS player
   m_TagString: Untagged
@@ -307,6 +309,18 @@ MonoBehaviour:
   anim: {fileID: 6843548765066250255}
   aiming: 0
   crosshair: {fileID: 0}
+--- !u!114 &-1217379870320846495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109714427962658509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d2d5c5c8e25af4c95003668166d406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8818797543051265473
 GameObject:
   m_ObjectHideFlags: 0
