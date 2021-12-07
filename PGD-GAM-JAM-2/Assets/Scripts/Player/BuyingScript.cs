@@ -10,7 +10,7 @@ public class BuyingScript : MonoBehaviour
     LayerMask interactibles;
     private void Start()
     {
-        interactibles = LayerMask.GetMask("Interactible");
+        interactibles = LayerMask.GetMask("ShopButtons");
     }
     private void Update()
     {
@@ -19,16 +19,16 @@ public class BuyingScript : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E) && playerHealthScript.coins >= displayItems.price)
             {
-                displayItems.BuyItems(hit);
-                playerHealthScript.coins -= displayItems.price;
+                hit.rigidbody.velocity += Vector3.down * 100;
+              
             }
         }
     }
 
     public void BuyItemsVR()
     {
-        RaycastHit hit;
-        if(this.GetComponent<XRRayInteractor>().TryGetCurrent3DRaycastHit(out hit)) displayItems.BuyItems(hit);
+       
+        
         playerHealthScript.coins -= displayItems.price;
     }
 }
