@@ -152,6 +152,7 @@ public class GolemController : GroundEnemyScript
     {
         if (Health <= 0)
         {
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Destroy(this.gameObject);
         }
     }
