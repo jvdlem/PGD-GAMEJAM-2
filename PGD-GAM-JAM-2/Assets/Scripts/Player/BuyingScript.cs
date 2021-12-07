@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class BuyingScript : MonoBehaviour
 {
@@ -22,5 +23,12 @@ public class BuyingScript : MonoBehaviour
                 playerHealthScript.coins -= displayItems.price;
             }
         }
+    }
+
+    public void BuyItemsVR()
+    {
+        RaycastHit hit;
+        if(this.GetComponent<XRRayInteractor>().TryGetCurrent3DRaycastHit(out hit)) displayItems.BuyItems(hit);
+        playerHealthScript.coins -= displayItems.price;
     }
 }
