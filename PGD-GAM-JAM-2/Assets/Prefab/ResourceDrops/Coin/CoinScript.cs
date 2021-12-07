@@ -10,9 +10,12 @@ public class CoinScript : MonoBehaviour
     public float lerpSpeed = 3;
     private float t;
 
+    public GameObject Player;
+
     private void Start()
     {
         RotationSpeed = Random.Range(60, 120);
+        Player = GameObject.FindGameObjectWithTag("Player");
     }
     void Update()
     {
@@ -23,7 +26,7 @@ public class CoinScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Player")
+        if (other.gameObject == Player)
         {
             other.GetComponent<PlayerHealthScript>().coins++;
             Destroy(gameObject);

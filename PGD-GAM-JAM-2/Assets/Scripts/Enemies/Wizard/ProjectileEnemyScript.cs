@@ -6,6 +6,7 @@ public class ProjectileEnemyScript : MonoBehaviour
 {
     // Start is called before the first frame update
     private GameObject player;
+    public GameObject Coin;
     private float health = 10;
     public float lookAtRange = 50.0f;
     public float AttackRange = 20.0f;
@@ -45,6 +46,7 @@ public class ProjectileEnemyScript : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Wizard/WizardDeath", this.gameObject.transform.position);
             Destroy(gameObject);
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Instantiate(destroyedVersion, transform.position + new Vector3(0, -3, 0), transform.rotation);
         }
 
