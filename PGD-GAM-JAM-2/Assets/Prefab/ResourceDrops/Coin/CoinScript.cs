@@ -21,6 +21,10 @@ public class CoinScript : MonoBehaviour
     {
         t += Time.deltaTime;
         transform.position += -transform.up * Time.deltaTime * Mathf.Sin(t * Mathf.PI ) * lerpSpeed / Mathf.PI * 2f;
+        if (Vector3.Distance(Player.transform.position, this.transform.position) < 10)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, Player.transform.position, 3 * Time.deltaTime);
+        }
         transform.Rotate(0, RotationSpeed * Time.deltaTime, 0);
     }
 
