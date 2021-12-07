@@ -9,7 +9,8 @@ public class DisplayItems : MonoBehaviour
     public bool isBought;
     public int price = 5;
     public GameObject instantiatedItem;
-    Transform boughtItemPos;
+    private Transform boughtItemPos;
+
     public void DisplayItem(GameObject itemSpawn)
     {
         instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], itemSpawn.transform.position, itemSpawn.transform.rotation);
