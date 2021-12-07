@@ -221,6 +221,7 @@ MonoBehaviour:
   currentHealth: 9
   damageDuration: 0.5
   invincibilityDurationSeconds: 0
+  coins: 15
 --- !u!114 &152527566747821963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6947519b8a0334e9116b9cf6f5fc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayItems: {fileID: 5933224146528650236, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+  displayItems: {fileID: 0}
+  playerHealthScript: {fileID: 3754700817438122498}
 --- !u!1 &8818797543051265473
 GameObject:
   m_ObjectHideFlags: 0

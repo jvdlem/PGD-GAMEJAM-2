@@ -9,7 +9,12 @@ public class DisplayItems : MonoBehaviour
     public bool isBought;
     public int price = 5;
     public GameObject instantiatedItem;
-    private Transform boughtItemPos;
+    private Vector3 boughtItemPos;
+
+    public void Start()
+    {
+        boughtItemPos = shopCounterPos.transform.position;
+    }
 
     public void DisplayItem(GameObject itemSpawn)
     {
@@ -18,7 +23,6 @@ public class DisplayItems : MonoBehaviour
 
     public void BuyItems(RaycastHit hit)
     {
-        boughtItemPos = shopCounterPos.transform;
-        hit.transform.position = boughtItemPos.transform.position;
+        hit.transform.position = boughtItemPos;
     }
 }
