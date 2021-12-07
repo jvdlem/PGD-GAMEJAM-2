@@ -73,7 +73,7 @@ public class MeleeEnemyMinotaur : GroundEnemyScript
         if (distanceToBackOffPoint.magnitude < 1f)
         {
             //Effect of reaching the backoff point 
-            currentState = States.Hopping;
+            //currentState = States.Hopping;
         }
     }
 
@@ -86,6 +86,6 @@ public class MeleeEnemyMinotaur : GroundEnemyScript
         backOffTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z + backOffDistance);
 
         //Set target bool true if the hop target is on the ground
-        if (Physics.Raycast(backOffTarget, -transform.up, 2f, groundLayer)) backOffTargetSet = true;
+        //if (Physics.Raycast(backOffTarget, -transform.up, 2f, groundLayer)) backOffTargetSet = true;
     }
 }

@@ -18,8 +18,5 @@ public class Transport : MonoBehaviour
 
         this.transform.position = goal.transform.position;
         player.GetComponent<PlayerHealthScript>().FadeIn();
-        
     }
-    
-
 }
