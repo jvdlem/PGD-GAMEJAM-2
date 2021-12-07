@@ -28,11 +28,17 @@ public class GroundEnemyScript : EnemyBaseScript
     {
         base.Update();
 
+        DetectPlayer();
+        EnemyMovement();
+    }
+
+    public void DetectPlayer()
+    {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, (Player.transform.position - transform.position), out hit, checkForPlayerDistance))
+        if (Physics.Raycast(transform.position, (Player.transform.position - transform.position), out hit, checkForPlayerDistance))
         {
             Color color = Color.white;
-            if(hit.transform == Player.transform)
+            if (hit.transform == Player.transform)
             {
                 color = Color.green;
                 playerInVision = true;
@@ -44,20 +50,26 @@ public class GroundEnemyScript : EnemyBaseScript
                 color = Color.red;
             }
             Debug.DrawRay(transform.position, Player.transform.position - transform.position, color);
+        }
+    }
 
-            float Distance = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z));
-            if (Distance >= AttackRange && playerInVision == true) 
-            { 
-                navMeshAgent.destination = targetPosition; 
-            }
-            else if(Distance < AttackRange && playerInVision == true)
-            { 
-                navMeshAgent.destination = transform.position; 
-            }
-            else if (playerInVision == false)
-            {
-                navMeshAgent.destination = targetPosition;
-            }
+    public void EnemyMovement()
+    {
+        float Distance = Vector3.Distance(new Vector3(transform.position.x, 0, transform.position.z), new Vector3(targetPosition.x, 0, targetPosition.z));
+        if (Distance >= AttackRange && playerInVision == true)
+        {
+            //Enemy moves to player
+            navMeshAgent.destination = targetPosition;
+        }
+        else if (Distance < AttackRange && playerInVision == true)
+        {
+            //Enemy stops when in attack range
+            navMeshAgent.destination = transform.position;
+        }
+        else if (playerInVision == false)
+        {
+            //Enemy moves towards players last known position
+            navMeshAgent.destination = targetPosition;
         }
     }
 
