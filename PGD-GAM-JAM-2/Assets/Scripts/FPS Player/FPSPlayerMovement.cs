@@ -32,6 +32,11 @@ public class FPSPlayerMovement : MonoBehaviour
     private KeyCode crouchKey = KeyCode.LeftControl;
     private bool shouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && controller.isGrounded;
 
+    private void Start()
+    {
+        gameObject.SetActive(true);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -89,5 +94,10 @@ public class FPSPlayerMovement : MonoBehaviour
         isCrouching = !isCrouching;
 
         duringCrouchAnimation = false;
+    }
+
+    public void ToggleFPSPlayer()
+    {
+        gameObject.SetActive(false);
     }
 }

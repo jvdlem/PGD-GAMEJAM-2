@@ -12,6 +12,10 @@ public class ButtonPhysics : MonoBehaviour
     private bool isPressed;
     private Vector3 startPos;
     private ConfigurableJoint myJoint;
+    public Renderer rend;
+    public AudioSource myAudio;
+
+
 
     public UnityEvent onPressed, onReleased;
     void Start()
@@ -46,15 +50,18 @@ public class ButtonPhysics : MonoBehaviour
 
     private void Pressed()
     {
+        myAudio.Play();
         isPressed = true;
         onPressed.Invoke();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ButtonPress", this.transform.position);
+        rend.material.color = Color.green;
+        
     }
 
     private void Released()
     {
         isPressed = false;
         onReleased.Invoke();
+        rend.material.color = Color.red;
     }
 
 

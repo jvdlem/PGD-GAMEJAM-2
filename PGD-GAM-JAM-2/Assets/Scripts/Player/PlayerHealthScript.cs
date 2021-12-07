@@ -16,7 +16,10 @@ public class PlayerHealthScript : MonoBehaviour
     public float damageDuration = 0.5f;
     [SerializeField] private float invincibilityDurationSeconds;
     private bool isInvincible = false;
-    
+
+    [Header("Resources")]
+    public int coins = 0;
+
 
 
     void Start()
@@ -29,11 +32,7 @@ public class PlayerHealthScript : MonoBehaviour
     void Update()
     {
         MaxHealth();
-        if (Input.GetKeyDown(KeyCode.Space)) 
-        {
-            takeDamage(3);
-        }
-
+     
     }
 
     void MaxHealth() 
