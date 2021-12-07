@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 468937938501319653}
   - component: {fileID: 8605901894585276087}
   - component: {fileID: 7634828884818820731}
+  - component: {fileID: 641651092354498303}
   m_Layer: 6
   m_Name: Magazine
   m_TagString: Magazine
@@ -167,10 +168,34 @@ MonoBehaviour:
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 641651092354498303}
+        m_TargetAssemblyTypeName: Colorpicker, Assembly-CSharp
+        m_MethodName: switchColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_LastHoverExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 641651092354498303}
+        m_TargetAssemblyTypeName: Colorpicker, Assembly-CSharp
+        m_MethodName: switchColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -182,7 +207,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 641651092354498303}
+        m_TargetAssemblyTypeName: Colorpicker, Assembly-CSharp
+        m_MethodName: switchColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Activated:
     m_PersistentCalls:
       m_Calls: []
@@ -272,6 +309,19 @@ MonoBehaviour:
   fullAutoCount: 0
   bulletTime: 0.2
   bulletSpeed: 100
+--- !u!114 &641651092354498303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2690621632279539356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4a85a13bf4521b47aec148489daee38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttachmentColor: {r: 0, g: 0.046190023, b: 1, a: 0}
 --- !u!1 &2692423698397505152
 GameObject:
   m_ObjectHideFlags: 0

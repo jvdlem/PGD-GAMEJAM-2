@@ -1,29 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    InventorySlot[] inventorySlots = new InventorySlot[10]; //Number of inventory slots
 
-    int activeSlot; //Slot selected by player
+    [SerializeField] GameObject[] listOfAttachements;
+    [SerializeField] Text[] slotText = new Text[4];
+    GameObject[] attachements = new GameObject[4];
 
-    //Sets a new active slot
-    public void SetSlot(int slot) 
+    public void Update()
     {
-        activeSlot = slot;
+        //Pick up/drop item based on key input
+        if (Input.GetKey("e")) PickUp();
+        else if (Input.GetKey("q")) Drop();
     }
-    
-    //Handles input for inventory
-    public void HandleInventory(GameObject item) 
+
+    public void PickUp()
     {
-        if (Input.GetKey("e"))
+        //Raycast hit and object hit by raycast
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        bool objectHit = Physics.Raycast(ray, out RaycastHit hit);
+        GameObject foundObject;
+
+        //Determine found object
+        if (hit.rigidbody != null)
         {
-            inventorySlots[activeSlot].PickUpItem(item);
+            foundObject = hit.rigidbody.gameObject;
+
+            //If hit object equal to attachement from list, "pick up" hit object
+            for (int i = 0; i < listOfAttachements.Length; i++)
+            {
+                for (int j = 0; j < attachements.Length; j++) 
+                {
+                    if (attachements[j] == null)
+                    {
+                        if (objectHit && foundObject == listOfAttachements[i])
+                        {
+                            attachements[j] = foundObject;
+                            slotText[j].text = foundObject.name;
+                            break;
+                        }
+                    }
+                }
+            }
         }
-        else if (Input.GetKey("q")) 
+    }
+
+    public void Drop() 
+    {
+        for (int j = 0; j < attachements.Length; j++) 
         {
-            inventorySlots[activeSlot].DropItem(item);
+            if (attachements[j] != null)
+            {
+                Instantiate(attachements[j], transform.position, transform.rotation); //Attachement is "dropped"
+                attachements[j] = null; //Clear attachement
+                slotText[j].text = "";
+                break;
+            }
         }
     }
 }
