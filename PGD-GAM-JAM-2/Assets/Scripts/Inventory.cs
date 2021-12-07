@@ -6,7 +6,9 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] GameObject[] listOfAttachements;
     [SerializeField] Text[] slotText = new Text[4];
-    GameObject[] attachements = new GameObject[4];
+    public static GameObject[] attachements = new GameObject[4];
+
+    int slot = 0;
 
     public void Update()
     {
@@ -28,19 +30,13 @@ public class Inventory : MonoBehaviour
             foundObject = hit.rigidbody.gameObject;
 
             //If hit object equal to attachement from list, "pick up" hit object
-            for (int i = 0; i < listOfAttachements.Length; i++)
+            if (attachements[slot] == null)
             {
-                for (int j = 0; j < attachements.Length; j++) 
+                if (objectHit && foundObject == listOfAttachements[slot])
                 {
-                    if (attachements[j] == null)
-                    {
-                        if (objectHit && foundObject == listOfAttachements[i])
-                        {
-                            attachements[j] = foundObject;
-                            slotText[j].text = foundObject.name;
-                            break;
-                        }
-                    }
+                    attachements[slot] = foundObject;
+                    slotText[slot].text = foundObject.name;
+                    slot++;
                 }
             }
         }
@@ -48,15 +44,15 @@ public class Inventory : MonoBehaviour
 
     public void Drop() 
     {
-        for (int j = 0; j < attachements.Length; j++) 
+
+        int prevSlot = slot - 1;
+
+        if (attachements[prevSlot] != null)
         {
-            if (attachements[j] != null)
-            {
-                Instantiate(attachements[j], transform.position, transform.rotation); //Attachement is "dropped"
-                attachements[j] = null; //Clear attachement
-                slotText[j].text = "";
-                break;
-            }
+            Instantiate(attachements[prevSlot], transform.position, transform.rotation); //Attachement is "dropped"
+            attachements[prevSlot] = null; //Clear attachement
+            slotText[prevSlot].text = "";
+            slot--;
         }
     }
 }
