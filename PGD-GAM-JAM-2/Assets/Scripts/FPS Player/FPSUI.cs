@@ -7,7 +7,8 @@ using UnityEngine.UI;
 public class FPSUI : MonoBehaviour
 {
     [SerializeField] public Text healthText;
-   
+    [SerializeField] public Text coinText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class FPSUI : MonoBehaviour
     void Update()
     {
         healthText.text = "" + FindObjectOfType<PlayerHealthScript>().currentHealth;
+        coinText.text = "" + FindObjectOfType<PlayerHealthScript>().coins;
     }
 
     public void ToggleFPSUI()
