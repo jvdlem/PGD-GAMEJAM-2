@@ -20,7 +20,6 @@ public class BuyingScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E) && playerHealthScript.coins >= displayItems.price)
             {
                 hit.rigidbody.velocity += Vector3.down * 100;
-              
             }
         }
     }
