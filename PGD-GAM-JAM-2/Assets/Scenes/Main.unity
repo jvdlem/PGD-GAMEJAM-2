@@ -10761,6 +10761,7 @@ GameObject:
   - component: {fileID: 505314766}
   - component: {fileID: 505314763}
   - component: {fileID: 505314764}
+  - component: {fileID: 505314765}
   m_Layer: 7
   m_Name: Locomotion System
   m_TagString: Untagged
@@ -10789,13 +10790,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505314761}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bf296fc962d7184ab14ad1841598d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_System: {fileID: 0}
-  m_MoveSpeed: 1
+  m_MoveSpeed: 2
   m_EnableStrafe: 1
   m_UseGravity: 1
   m_GravityApplicationMode: 0
@@ -10835,6 +10836,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locomotionMovment: {fileID: 505314761}
+--- !u!114 &505314765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505314761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2213c36610e3b1c4bbf886810ed9db12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 0}
+  m_TurnAmount: 45
+  m_DebounceTime: 0.2
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_LeftHandSnapTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 31290b48-af22-40bd-838e-b7b62a96c569
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 0}
+  m_RightHandSnapTurnAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: e5b6acc9-d4ca-40d0-bc1b-6c57c7a4a411
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!114 &505314766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11041,6 +11081,11 @@ MeshRenderer:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3916104093214912044, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
   m_PrefabInstance: {fileID: 1547064202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &562493721 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3916104093067650546, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+  m_PrefabInstance: {fileID: 1915256629}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &576023076
 PrefabInstance:
@@ -14430,6 +14475,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 939541958}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &956901514 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3916104093067650546, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+  m_PrefabInstance: {fileID: 1158362306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &961669706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16663,6 +16713,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8488837417486068577}
     m_Modifications:
+    - target: {fileID: 3421801034155657046, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+      propertyPath: Mute
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3421801034155657046, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b4485db036e811c488bb4c312cb45c5a, type: 3}
     - target: {fileID: 3916104093214912044, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -16733,7 +16791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.00001210683
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.y
@@ -16741,7 +16799,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.0000008782855
+      value: -0.000000013512085
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_LinearLimit.limit
@@ -16931,8 +16989,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   threshold: 0.1
   deadZone: 0.025
-  rend: {fileID: 0}
-  myAudio: {fileID: 0}
+  rend: {fileID: 956901514}
+  myAudio: {fileID: 1158362313}
   onPressed:
     m_PersistentCalls:
       m_Calls:
@@ -16978,6 +17036,11 @@ MonoBehaviour:
   endPosition: {x: 0, y: -1.75, z: 0}
   desiredDuration: 3
   threshold: 1
+--- !u!82 &1158362313 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3421801034155657046, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+  m_PrefabInstance: {fileID: 1158362306}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1162765922
 GameObject:
   m_ObjectHideFlags: 0
@@ -24573,6 +24636,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8488837417486068577}
     m_Modifications:
+    - target: {fileID: 3421801034155657046, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b4485db036e811c488bb4c312cb45c5a, type: 3}
     - target: {fileID: 3916104093214912044, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -24841,8 +24908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   threshold: 0.1
   deadZone: 0.025
-  rend: {fileID: 0}
-  myAudio: {fileID: 0}
+  rend: {fileID: 562493721}
+  myAudio: {fileID: 1915256636}
   onPressed:
     m_PersistentCalls:
       m_Calls:
@@ -24888,6 +24955,11 @@ MonoBehaviour:
   endPosition: {x: 0, y: -1.75, z: 0}
   desiredDuration: 3
   threshold: 1
+--- !u!82 &1915256636 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3421801034155657046, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
+  m_PrefabInstance: {fileID: 1915256629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1918211958
 GameObject:
   m_ObjectHideFlags: 0

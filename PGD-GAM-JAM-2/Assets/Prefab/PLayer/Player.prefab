@@ -1885,6 +1885,7 @@ MonoBehaviour:
   goal: {fileID: 0}
   player: {fileID: 5569443502091552050}
   worldPos: {x: 0, y: 0, z: 0}
+  doitpls: 0
 --- !u!1 &5569443502106815224
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,6 +2080,7 @@ GameObject:
   - component: {fileID: 5569443502166774586}
   - component: {fileID: 5569443502166774591}
   - component: {fileID: 5569443502166774584}
+  - component: {fileID: 4732224267072164253}
   m_Layer: 7
   m_Name: Locomotion System
   m_TagString: Untagged
@@ -2180,6 +2182,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locomotionMovment: {fileID: 5569443502166774589}
+--- !u!114 &4732224267072164253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5569443502166774589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2213c36610e3b1c4bbf886810ed9db12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 0}
+  m_TurnAmount: 45
+  m_DebounceTime: 0.2
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_LeftHandSnapTurnAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Left Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: c96b60aa-d215-4f2e-9144-2d6702c6190b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 0}
+  m_RightHandSnapTurnAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: b1bb5334-fa3d-4343-9f9a-b2369a916672
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &5569443502265987945
 GameObject:
   m_ObjectHideFlags: 0
