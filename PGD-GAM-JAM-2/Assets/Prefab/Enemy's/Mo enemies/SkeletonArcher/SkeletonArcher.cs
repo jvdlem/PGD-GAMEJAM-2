@@ -1,45 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class GolemController : GroundEnemyScript
+public class SkeletonArcher : GroundEnemyScript
 {
     // Start is called before the first frame update
     //public Animator anim;
     public LayerMask groundLayer, playerLayer;
-    //public Transform headRotation;
+    //public Transform pivotPoint;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
-    public bool walkPointSet;
-    public int idleTimer = 1;
+    bool walkPointSet;
+    public int idleTimer;
 
     [Header("Attack variables")]
+    [SerializeField] Transform shootPoint;
     public float timeBetweenAttacks;
     bool isAttacking;
+    public GameObject arrow;
+    bool readyToShoot = true;
     private float attackState, attackTimer;
     private string[] attackVariations = { "Swing", "Slam" };
 
     [Header("States")]
-    public float detectionDistance;
-    public float attackDistance;
+    public float detectionDistance = 25;
+    public float attackDistance = 15;
     public bool playerDetected, playerInAttackRange, alreadyAttacking;
 
     override public void Start()
     {
-        //base.Start();
-        //pivotPoint = GetComponent<Transform>();
-        //anim = GetComponent<Animator>();
-        //agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player");
 
+        //pivotPoint = GetComponent<Transform>();
+        //anim = GetComponent<Animator>();
         Health = 20;
         Damage = 3;
         Tier = 2;
         attackTimer = 0;
         attackState = Random.Range(0, attackVariations.Length);
-        currentState = States.Patrolling;
+
+        InvokeRepeating(nameof(Shoot), timeBetweenAttacks, timeBetweenAttacks);
+
     }
     // Update is called once per frame
     override public void Update()
@@ -48,6 +50,8 @@ public class GolemController : GroundEnemyScript
         playerInAttackRange = Physics.CheckSphere(this.gameObject.transform.position, attackDistance, playerLayer);
 
         if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+
+        Die();
 
         switch (currentState)
         {
@@ -66,14 +70,13 @@ public class GolemController : GroundEnemyScript
             case States.Death:
                 break;
         }
-        Die();
     }
     private void Patrolling()
     {
         //Search a walkpoint if there is none set yet
         if (!walkPointSet)
         {
-            SearchRandomWalkPoint();
+           SearchRandomWalkPoint();
             //anim.Play("Idle");
         }
 
@@ -82,7 +85,7 @@ public class GolemController : GroundEnemyScript
         {
             navMeshAgent.SetDestination(walkPoint);
             //Golem Looks at the target
-            transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
+            transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
             //anim.Play("Walking");
         }
 
@@ -119,53 +122,15 @@ public class GolemController : GroundEnemyScript
         //The golem aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
-        //Time between attack timer counts up;
-        attackTimer++;
-
-        //Different attacks
-        switch (attackState)
+        //Timed attack
+    }
+    void Shoot()
+    {
+        if (currentState == States.Attacking)
         {
-            case 0: //Swing attack
-                if (attackTimer < timeBetweenAttacks)
-                {
-                    //anim.Play("SwingAttack");
-
-                    if (attackTimer < 2)
-                    {
-                        //Play animation once
-                        //anim.Play("SwingAttack");
-                        // else if(attackTimer<(timeBetweenAttacks*.75))  //Golem doen't walk when attacking
-                        //   anim.Play("Idle");
-                    }
-                }
-                else //Timer runs out
-                {
-
-                    //Switch to a random state
-                    attackState = Random.Range(0, attackVariations.Length);
-                    attackTimer = 0;
-                }
-                break;
-            case 1: //Slam Attack
-                if (attackTimer < timeBetweenAttacks)
-                {
-                    //anim.Play("SlamAttack");
-                    if (attackTimer < 2)
-                    {
-                        //Play animation once
-                        // anim.Play("SlamAttack");
-                        // else if (attackTimer < (timeBetweenAttacks * .75))  //Golem doen't wlka when attacking
-                        //   anim.Play("Idle");
-                    }
-                }
-                else
-                {
-                    attackState = Random.Range(0, attackVariations.Length);
-                    attackTimer = 0;
-                }
-                break;
-            default:
-                break;
+            Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+            currentArrow.AddForce(transform.forward * 1.5f, ForceMode.Impulse);
+            currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
         }
     }
     void Die()
@@ -173,19 +138,19 @@ public class GolemController : GroundEnemyScript
         if (Health <= 0)
         {
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+
             Destroy(this.gameObject);
         }
     }
-
     private void OnTriggerEnter(Collider collision)
     {
-        //Projectile hurts goem on collision
+        //Projectile hurts skeleton on collision
         if (collision.gameObject.tag == "Projectile")
         {
             Health--;
         }
 
-        //Golem hurts player on collision
+        //Skeleton hurts player on collision
         if (attackTimer != 0)
         {
             if (collision.gameObject.tag == "Player")
@@ -196,3 +161,5 @@ public class GolemController : GroundEnemyScript
         }
     }
 }
+
+
