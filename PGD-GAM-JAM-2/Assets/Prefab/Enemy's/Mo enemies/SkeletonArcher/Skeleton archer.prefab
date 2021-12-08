@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2332166729083237692}
   - component: {fileID: 2332166729083237695}
-  - component: {fileID: 2332166729083237693}
   - component: {fileID: 7110736881415946851}
+  - component: {fileID: -2181960372149201159}
   m_Layer: 0
   m_Name: Skeleton archer
   m_TagString: Untagged
@@ -57,19 +57,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!65 &2332166729083237693
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2332166729083237681}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 2.4482234, z: 0.903543}
-  m_Center: {x: 0, y: 1.2515048, z: 0.14319587}
 --- !u!114 &7110736881415946851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,12 +89,26 @@ MonoBehaviour:
   idleTimer: 0
   shootPoint: {fileID: 2332166729184052553}
   timeBetweenAttacks: 2
-  arrow: {fileID: 4150077041025866044, guid: cd25ccc9bdaa49b4e82a063b6a19415f, type: 3}
+  arrow: {fileID: 835197095977224089, guid: 44c0e8e931fcca648bff852a709dd56c, type: 3}
   detectionDistance: 25
   attackDistance: 15
   playerDetected: 0
   playerInAttackRange: 0
   alreadyAttacking: 0
+--- !u!136 &-2181960372149201159
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2332166729083237681}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2332166729184052552
 GameObject:
   m_ObjectHideFlags: 0
