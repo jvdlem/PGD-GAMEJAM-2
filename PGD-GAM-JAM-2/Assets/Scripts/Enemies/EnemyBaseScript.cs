@@ -9,6 +9,7 @@ public class EnemyBaseScript : MonoBehaviour
     public int Tier;
     protected Rigidbody Rigidbody;
     public GameObject Player;
+    public GameObject Coin;
 
     protected Vector3 velocity; //Velocity for movement
 
@@ -53,6 +54,7 @@ public class EnemyBaseScript : MonoBehaviour
         Health -= pDamage;
         if (Health <= 0)
         {
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             //death
         }
     }

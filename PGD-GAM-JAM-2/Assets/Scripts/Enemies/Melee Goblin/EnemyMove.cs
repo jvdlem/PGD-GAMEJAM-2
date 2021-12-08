@@ -34,7 +34,9 @@ public class EnemyMove : GroundEnemyScript
         base.Update();
         if (Health <= 0)
         {
+            
             FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", this.gameObject.transform.position);
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Destroy(this.gameObject);
         }
 
