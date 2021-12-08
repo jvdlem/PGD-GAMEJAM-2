@@ -27,8 +27,6 @@ public class BuyingScript : MonoBehaviour
 
     public void BuyItemsVR()
     {
-       
-        
         playerHealthScript.coins -= displayItems.price;
     }
 }
