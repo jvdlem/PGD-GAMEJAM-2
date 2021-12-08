@@ -7,6 +7,7 @@ public class Transport : MonoBehaviour
     public GameObject goal;
     public GameObject player;
     public Vector3 worldPos;
+    public bool doitpls;
 
     public void StartTransport()
     {
@@ -16,10 +17,9 @@ public class Transport : MonoBehaviour
     {
         if (goal == null)
         {
-            yield return new WaitForSeconds(5f);
-
             this.transform.position = worldPos;
-            player.GetComponent<PlayerHealthScript>().FadeIn();
+            //player.GetComponent<PlayerHealthScript>().FadeIn();
+            doitpls = true;
         }
         else
         {
