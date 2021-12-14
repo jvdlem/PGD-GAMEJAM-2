@@ -5,12 +5,12 @@ using UnityEngine.AI;
 
 public class HellHoundScript : GroundEnemyScript
 {
-    //[SerializeField] public Animator anim;
+    [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
     //[SerializeField] public Transform target;
     private Transform hound;
     private PlayerHealthScript playerHealth;
-
+    [SerializeField] public Transform spiderTransform;
     //Attack variables
     public bool isAttacking = false, pounceTargetSet = false;
     public int attackDamage = 2;
@@ -50,7 +50,7 @@ public class HellHoundScript : GroundEnemyScript
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         playerHealth = GetComponent<PlayerHealthScript>();
-       // anim = GetComponent<Animator>();
+        // anim = GetComponent<Animator>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         currentState = States.Patrolling;
         hound = GetComponent<Transform>();
@@ -58,7 +58,7 @@ public class HellHoundScript : GroundEnemyScript
         Tier = 1;
     }
     // Update is called once per frame
-    void Update()
+    override public void Update()
     {
         playerDetected = Physics.CheckSphere(transform.position, detectionDistance, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackDistance, playerLayer);
@@ -79,12 +79,14 @@ public class HellHoundScript : GroundEnemyScript
                 hopTargetSet = false;
                 pounceTargetSet = false;
                 backOffTargetSet = false;
+                isAttacking = false;
                 Patrolling();
                 break;
             case States.Chasing:
                 hopTargetSet = false;
                 pounceTargetSet = false;
                 backOffTargetSet = false;
+                isAttacking = false;
 
                 Chasing();
 
@@ -94,23 +96,32 @@ public class HellHoundScript : GroundEnemyScript
                 //Forget previous hop target
                 hopTargetSet = false;
                 backOffTargetSet = false;
+                walkPointSet = false;
                 Pounce();
                 break;
             case States.BackingOff:
                 pounceTargetSet = false;
                 hopTargetSet = false;
+                walkPointSet = false;
+                isAttacking = false;
                 JumpBack();
                 break;
             case States.Hopping:
                 //Erase the previous target position
                 backOffTargetSet = false;
                 pounceTargetSet = false;
+                walkPointSet = false;
+                isAttacking = false;
                 Hop();
                 break;
             default:
                 break;
         }
+
         Debug.Log(currentState);
+
+        //This works
+        //this.transform.Translate(new Vector3(1, 0, 0)*Time.deltaTime);
     }
     void Chasing()
     {
@@ -140,20 +151,20 @@ public class HellHoundScript : GroundEnemyScript
             //Hound attacks
             isAttacking = true;
 
-            //MoveToTargetDirection(pounceTarget,7);
-
             ////The hound pounces towards target fast
             //navMeshAgent.speed = 10;
             navMeshAgent.SetDestination(pounceTarget);
 
+            //this.transform.Translate(distanceToPouncePoint.normalized *Time.deltaTime);
+
             //Play animation
-            //anim.Play("Pounce");
+            anim.Play("Attack_02_1");
         }
-        //Calculate distance to pounce target
+        //Distance to pounce target
         Vector3 distanceToPouncePoint = transform.position - pounceTarget;
 
         //Pounce target reached
-        if (distanceToPouncePoint.magnitude < 2f)
+        if (distanceToPouncePoint.magnitude < 1f)
         {
             //Back off after attack
             currentState = States.BackingOff;
@@ -171,13 +182,13 @@ public class HellHoundScript : GroundEnemyScript
         if (backOffTargetSet)
         {
             //Play animation
-            //anim.Play("Hop");
+            anim.Play("Move_1");
 
             //Move to code 
-            //MoveToTargetDirection(backOffTarget,2);
             navMeshAgent.SetDestination(backOffTarget);
+            //this.transform.Translate(distanceToBackOffPoint.normalized * Time.deltaTime);
         }
-        //Calculate distance to pounce target
+        //Calculate direction to back off target
         Vector3 distanceToBackOffPoint = transform.position - backOffTarget;
 
         //Pounce target reached
@@ -186,11 +197,6 @@ public class HellHoundScript : GroundEnemyScript
             //Effect of reaching the backoff point 
             currentState = States.Hopping;
         }
-    }
-    void MoveToTargetDirection(Vector3 target, float speed)
-    {
-        Vector3 direction = target - transform.position;
-        transform.position += direction * Time.deltaTime; //* speed;
     }
     void SearchBackOffTarget()
     {
@@ -217,24 +223,22 @@ public class HellHoundScript : GroundEnemyScript
             //navMeshAgent.speed = 10;
 
             //Play animation
-            //anim.Play("Hop");
-
+            anim.Play("Move_1");
 
             //Movement 
-            navMeshAgent.SetDestination(hopTarget);
+            //navMeshAgent.SetDestination(hopTarget);
 
-            //MoveToTargetDirection(hopTarget,2);
+            //Move to code 
+            navMeshAgent.SetDestination(hopTarget);
+            //this.transform.Translate( distanceToHopPoint.normalized * Time.deltaTime);
         }
-        //Calculate distance to pounce target
+        //Calculate direction to hop target
         Vector3 distanceToHopPoint = transform.position - hopTarget;
 
         //Hop target reached
         if (distanceToHopPoint.magnitude < 1f)
         {
-            //Reset hound speed
-            //navMeshAgent.speed = 7;
-
-           // anim.Play("IdleHound");
+            // anim.Play("IdleHound");
 
             //go to a random State after the hop
             float randomState = Random.Range(0, 2);
@@ -252,14 +256,14 @@ public class HellHoundScript : GroundEnemyScript
         if (!walkPointSet)
         {
             SearchRandomWalkPoint();
-            //anim.Play("IdleHound");
+            anim.Play("Idle");
         }
 
         //Let the golem walk towards the walkpoint only when the walkpoint is set
         if (walkPointSet)
         {
             navMeshAgent.SetDestination(walkPoint);
-            //anim.Play("Walking");
+            anim.Play("Move_1");
         }
 
         //Calculate distance to walkpoint
@@ -282,7 +286,7 @@ public class HellHoundScript : GroundEnemyScript
     void SearchPounceTarget()
     {
         //the hound aims for the player
-        //hound.transform.LookAt(target.position);
+        hound.transform.LookAt(new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z));
 
         //Set new target from current position
         pounceTarget = new Vector3(Player.transform.position.x, transform.position.y, Player.transform.position.z);

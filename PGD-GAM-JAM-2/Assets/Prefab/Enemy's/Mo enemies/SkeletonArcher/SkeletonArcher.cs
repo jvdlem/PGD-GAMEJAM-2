@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkeletonArcher : GroundEnemyScript
 {
     // Start is called before the first frame update
-    //public Animator anim;
+    [SerializeField]public Animator anim;
     public LayerMask groundLayer, playerLayer;
     //public Transform pivotPoint;
 
@@ -33,7 +33,6 @@ public class SkeletonArcher : GroundEnemyScript
         Player = GameObject.FindGameObjectWithTag("Player");
 
         //pivotPoint = GetComponent<Transform>();
-        //anim = GetComponent<Animator>();
         Health = 20;
         Damage = 3;
         Tier = 2;
@@ -77,7 +76,7 @@ public class SkeletonArcher : GroundEnemyScript
         if (!walkPointSet)
         {
            SearchRandomWalkPoint();
-            //anim.Play("Idle");
+            anim.Play("Idle");
         }
 
         //Let the golem walk towards the walkpoint only when the walkpoint is set
@@ -86,7 +85,7 @@ public class SkeletonArcher : GroundEnemyScript
             navMeshAgent.SetDestination(walkPoint);
             //Golem Looks at the target
             transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-            //anim.Play("Walking");
+            anim.Play("Move_01");
         }
 
         //Calculate distance to walkpoint
@@ -108,7 +107,7 @@ public class SkeletonArcher : GroundEnemyScript
     }
     private void Chase()
     {
-        //anim.Play("Walking");
+        anim.Play("Move_01");
 
         //Golem looks at player and goes to their position
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
@@ -126,6 +125,7 @@ public class SkeletonArcher : GroundEnemyScript
     }
     void Shoot()
     {
+        anim.Play("Attack_01_1");
         if (currentState == States.Attacking)
         {
             Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
@@ -135,8 +135,10 @@ public class SkeletonArcher : GroundEnemyScript
     }
     void Die()
     {
+
         if (Health <= 0)
         {
+            anim.Play("Die");
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
 
             Destroy(this.gameObject);

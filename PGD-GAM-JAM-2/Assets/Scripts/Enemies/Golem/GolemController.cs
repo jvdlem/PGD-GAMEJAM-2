@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class GolemController : GroundEnemyScript
 {
     // Start is called before the first frame update
-    //public Animator anim;
+    [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
     //public Transform headRotation;
 
@@ -30,7 +30,6 @@ public class GolemController : GroundEnemyScript
     {
         //base.Start();
         //pivotPoint = GetComponent<Transform>();
-        //anim = GetComponent<Animator>();
         //agent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player");
 
@@ -67,6 +66,8 @@ public class GolemController : GroundEnemyScript
                 break;
         }
         Die();
+
+        Debug.Log(currentState);
     }
     private void Patrolling()
     {
@@ -74,7 +75,7 @@ public class GolemController : GroundEnemyScript
         if (!walkPointSet)
         {
             SearchRandomWalkPoint();
-            //anim.Play("Idle");
+            anim.Play("Idle");
         }
 
         //Let the golem walk towards the walkpoint only when the walkpoint is set
@@ -83,7 +84,7 @@ public class GolemController : GroundEnemyScript
             navMeshAgent.SetDestination(walkPoint);
             //Golem Looks at the target
             transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
-            //anim.Play("Walking");
+            anim.Play("Run");
         }
 
         //Calculate distance to walkpoint
@@ -105,7 +106,7 @@ public class GolemController : GroundEnemyScript
     }
     private void Chase()
     {
-        //anim.Play("Walking");
+        anim.Play("Run");
 
         //Golem looks at player and goes to their position
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
@@ -119,46 +120,35 @@ public class GolemController : GroundEnemyScript
         //The golem aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
-        //Time between attack timer counts up;
+        Debug.Log(attackTimer);
+        Debug.Log(attackState);
+
         attackTimer++;
 
         //Different attacks
         switch (attackState)
         {
             case 0: //Swing attack
-                if (attackTimer < timeBetweenAttacks)
-                {
-                    //anim.Play("SwingAttack");
 
-                    if (attackTimer < 2)
-                    {
-                        //Play animation once
-                        //anim.Play("SwingAttack");
-                        // else if(attackTimer<(timeBetweenAttacks*.75))  //Golem doen't walk when attacking
-                        //   anim.Play("Idle");
-                    }
+                if (attackTimer < 2)
+                {
+                    //Play animation once
+                    anim.Play("Attack_01");
                 }
-                else //Timer runs out
+                if (attackTimer > 35)
                 {
-
                     //Switch to a random state
                     attackState = Random.Range(0, attackVariations.Length);
                     attackTimer = 0;
                 }
                 break;
             case 1: //Slam Attack
-                if (attackTimer < timeBetweenAttacks)
+                if (attackTimer < 2)
                 {
-                    //anim.Play("SlamAttack");
-                    if (attackTimer < 2)
-                    {
-                        //Play animation once
-                        // anim.Play("SlamAttack");
-                        // else if (attackTimer < (timeBetweenAttacks * .75))  //Golem doen't wlka when attacking
-                        //   anim.Play("Idle");
-                    }
+                    //Play animation once
+                    anim.Play("Attack_02");
                 }
-                else
+                if (attackTimer > 35)
                 {
                     attackState = Random.Range(0, attackVariations.Length);
                     attackTimer = 0;
@@ -172,6 +162,7 @@ public class GolemController : GroundEnemyScript
     {
         if (Health <= 0)
         {
+            anim.Play("Die");
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Destroy(this.gameObject);
         }
