@@ -66,8 +66,6 @@ public class GolemController : GroundEnemyScript
                 break;
         }
         Die();
-
-        Debug.Log(currentState);
     }
     private void Patrolling()
     {
