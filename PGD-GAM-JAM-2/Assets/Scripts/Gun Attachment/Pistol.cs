@@ -13,7 +13,7 @@ public class Pistol : MonoBehaviour
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private XRBaseInteractable aCurrentAddon;
-    [SerializeField] private AudioSource myAudio;
+    //[SerializeField] private AudioSource myAudio;
     [SerializeField] private Transform shootPoint;
 
     public List<Attachment> lists;
@@ -95,7 +95,7 @@ public class Pistol : MonoBehaviour
         for (int i = 0; i < allStats.list[1]; i++)
         {
             //bullet.GetComponent<Bullet>().Setdmg(damage);
-            myAudio.Play();
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.gameObject.transform.position);
             Instantiate(bullet, shootPoint.position + (transform.forward * 0.5f), shootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
         }
     }
