@@ -34,8 +34,7 @@ public class EnemyMove : GroundEnemyScript
         base.Update();
         if (Health <= 0)
         {
-            
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", this.gameObject.transform.position);
+            //Sound
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Destroy(this.gameObject);
         }
@@ -48,7 +47,7 @@ public class EnemyMove : GroundEnemyScript
             Rush();
             if (playOnce)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
+                //Sound
                 playOnce = false;
             }
         }
@@ -63,7 +62,7 @@ public class EnemyMove : GroundEnemyScript
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", this.gameObject.transform.position);
+            //Sound
             Health -= 1;
             Destroy(collision.gameObject);
         }
