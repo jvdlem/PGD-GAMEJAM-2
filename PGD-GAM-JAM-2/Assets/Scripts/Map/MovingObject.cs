@@ -25,7 +25,7 @@ public class MovingObject : MonoBehaviour
         {
             if (playsound)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ConfirmOpen", this.transform.position);
+                //Sound
                 playsound = false;
             }
             elapsedTime += Time.deltaTime;

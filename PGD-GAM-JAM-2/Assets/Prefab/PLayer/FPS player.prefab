@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2016919740116785048}
   - component: {fileID: 626873579753777495}
-  - component: {fileID: 7460663093942525040}
   - component: {fileID: 3440041105713002521}
   - component: {fileID: 9055980903775527295}
   - component: {fileID: 6412220440384694549}
@@ -80,14 +79,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &7460663093942525040
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29369570615878822}
-  m_Enabled: 1
 --- !u!114 &3440041105713002521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +154,8 @@ GameObject:
   - component: {fileID: 1093974408540518902}
   - component: {fileID: 374079619459936399}
   - component: {fileID: 2244731634176322393}
+  - component: {fileID: 6617958425198376390}
+  - component: {fileID: 275690682563956845}
   m_Layer: 9
   m_Name: FPS player
   m_TagString: Player
@@ -221,6 +214,7 @@ MonoBehaviour:
   currentHealth: 9
   damageDuration: 0.5
   invincibilityDurationSeconds: 0
+  coins: 0
 --- !u!114 &152527566747821963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,6 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 626873579753777495}
+  transport: {fileID: 0}
   controller: {fileID: 275633394527646465}
   groundCheck: {fileID: 2659135250990850454}
   speed: 12
@@ -291,6 +286,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayItems: {fileID: 5933224146528650236, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
+  playerHealthScript: {fileID: 0}
+--- !u!114 &6617958425198376390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109714427962658509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38dc8a8474e7514e8ce66daf105b96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goal: {fileID: 0}
+  player: {fileID: 8109714427962658509}
+  worldPos: {x: 0, y: 0, z: 0}
+  doitpls: 0
+--- !u!114 &275690682563956845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109714427962658509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d2d5c5c8e25af4c95003668166d406, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listOfAttachements: []
+  slotText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8818797543051265473
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +401,10 @@ PrefabInstance:
       propertyPath: bullet
       value: 
       objectReference: {fileID: 3938516309180736943, guid: d54f595ce026bc04c890e85d0eec284f, type: 3}
+    - target: {fileID: -6403319051828943354, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
+      propertyPath: myAudio
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: -6403319051828943354, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
       propertyPath: bulletSpeed
       value: 1500
@@ -455,7 +489,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3502160473656195324, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
 --- !u!4 &2377200298091618156 stripped
 Transform:

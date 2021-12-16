@@ -50,7 +50,7 @@ public class ButtonPhysics : MonoBehaviour
 
     private void Pressed()
     {
-        myAudio.Play();
+        //myAudio.Play();
         isPressed = true;
         onPressed.Invoke();
         rend.material.color = Color.green;

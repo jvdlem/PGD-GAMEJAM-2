@@ -13,7 +13,7 @@ public class ProjectileOnHitEffect : MonoBehaviour
         if (collision.gameObject.tag == "Player") 
         {
             //add what happens if projectile hits the player here
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Wizard/FireBallExplosion", this.gameObject.transform.position);
+            //Sound
             
             Destroy(gameObject);
             collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(3);
