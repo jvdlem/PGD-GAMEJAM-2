@@ -33,12 +33,10 @@ public class DisplayItems : MonoBehaviour
 
     public void BuyItems(int i)
     {
-        
-        
         if (PlayerScript.coins >= price) 
-        { shopItems[i].transform.position = boughtItemPos;
+        { 
+            shopItems[i].transform.position = boughtItemPos;
             PlayerScript.coins -= price;
         }
-       
     }
 }

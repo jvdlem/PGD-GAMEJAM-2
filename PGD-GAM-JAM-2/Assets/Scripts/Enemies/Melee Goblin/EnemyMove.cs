@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class EnemyMove : GroundEnemyScript
 {
-    float AttackTimer, deathTimer;
+    float AttackTimer;
     int rushDistance;
     int rushSpeed;
     private bool playOnce;
     bool canAttack;
-    Animator gobboAnimation;
 
     // Start is called before the first frame update
     public override void Start()
@@ -28,54 +27,34 @@ public class EnemyMove : GroundEnemyScript
     // Update is called once per frame
     public override void Update()
     {
+        navMeshAgent.speed = WalkSpeed;
+        float dist = Vector3.Distance(Player.transform.position, this.transform.position);
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+
         base.Update();
         if (Health <= 0)
         {
+            //Sound
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+            Destroy(this.gameObject);
+        }
+
+        AttackTimer += Time.deltaTime;
+        if (AttackTimer > 2.5f && !canAttack && dist < rushDistance)
+        {
+            canAttack = true;
+            AttackTimer = 0;
+            Rush();
             if (playOnce)
             {
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", this.gameObject.transform.position);
+                //Sound
                 playOnce = false;
-            }
-            gobboAnimation.Play("ms05_04_Die");   
-            WalkSpeed = 0; //stop the gobbo from walking.
-
-            deathTimer += Time.deltaTime; //timer for removing gobbo after animation.
-            if (deathTimer >= 2f) {
-                Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation); //spawns coins.
-                Destroy(this.gameObject); //remove gobbo.
             }
         }
         else
         {
-            navMeshAgent.speed = WalkSpeed;
-            float dist = Vector3.Distance(Player.transform.position, this.transform.position);
-            this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
             playOnce = true;
-            
-            if (dist >= checkForPlayerDistance)
-            {
-                gobboAnimation.Play("ms05_04_Walk");
-            } else if(dist < rushDistance)
-            {
-                Rush();
-            }
-
-            AttackTimer += Time.deltaTime;
-            if (AttackTimer > 2.5f && dist < rushDistance)
-            {
-                gobboAnimation.Play("ms05_04_Attack_01");
-                AttackTimer = 0;
-                if (playOnce)
-                {
-                    //FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", this.gameObject.transform.position);
-                    playOnce = false;
-                }
-            }
-            else
-            {
-                playOnce = true;
-                WalkSpeed = 4;
-            }
+            WalkSpeed = 4;
         }
     }
 
@@ -83,7 +62,7 @@ public class EnemyMove : GroundEnemyScript
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", this.gameObject.transform.position);
+            //Sound
             Health -= 1;
             Destroy(collision.gameObject);
         }
@@ -91,12 +70,16 @@ public class EnemyMove : GroundEnemyScript
 
         if (collision.gameObject.tag == "Player")
         {
-            Player.GetComponent<PlayerHealthScript>().takeDamage(1);
+            if (canAttack)
+            {
+                Player.GetComponent<PlayerHealthScript>().takeDamage(1);
+                canAttack = false;
+            }
         }
     }
+
     private void Rush()
     {
         WalkSpeed = rushSpeed;
-        gobboAnimation.Play("ms05_04_Run");
     }
 }
