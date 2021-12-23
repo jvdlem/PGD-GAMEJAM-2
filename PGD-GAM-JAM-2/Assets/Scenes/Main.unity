@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17338704, g: 0.216739, b: 0.2988083, a: 1}
+  m_IndirectSpecularColor: {r: 0.17338665, g: 0.21673845, b: 0.29880765, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8404,6 +8404,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Path
+      value: event:/Player/Walking/Footstep
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data1
+      value: 1176451444
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data2
+      value: 1109906823
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data3
+      value: 827644847
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data4
+      value: 6046911
+      objectReference: {fileID: 0}
     - target: {fileID: 152527566747821963, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: transport
       value: 
