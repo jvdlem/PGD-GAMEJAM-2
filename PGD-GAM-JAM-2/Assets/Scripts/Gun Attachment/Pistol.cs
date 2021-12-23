@@ -15,6 +15,7 @@ public class Pistol : MonoBehaviour
     [SerializeField] private XRBaseInteractable aCurrentAddon;
     //[SerializeField] private AudioSource myAudio;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] StartChoiceControlSystem startControlSystem;
 
     public List<Attachment> lists;
     public Attachment allStats;
@@ -29,7 +30,7 @@ public class Pistol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameObject.SetActive(true);
         lists.Add(allStats);
         lists.Add(barrelStats);
         lists.Add(sightStats);
@@ -54,7 +55,7 @@ public class Pistol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) shoot();
+        if (Input.GetButtonDown("Fire1") && startControlSystem.Keyboard) shoot();
 
         for (int i = 1; i < lists.Count; i++)
         {
@@ -106,5 +107,10 @@ public class Pistol : MonoBehaviour
         {
             this.transform.position = holster.transform.position;  
         }
+    }
+
+    public void ToggleVRPistol()
+    {
+        gameObject.SetActive(false);
     }
 }
