@@ -49,6 +49,5 @@ public class StartChoiceControlSystem : MonoBehaviour
         VRGun.ToggleVRPistol();
         FPSUI.ToggleFPSUI();
         VRPlayer.ToggleVRPlayer();
-
     }
 }
