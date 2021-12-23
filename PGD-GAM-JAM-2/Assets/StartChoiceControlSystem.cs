@@ -11,7 +11,7 @@ public class StartChoiceControlSystem : MonoBehaviour
     [SerializeField]
     public ChracterMovmentHelper VRPlayer;
     [SerializeField]
-    public FPSUI VRUI;
+    public Pistol VRGun;
 
 
 
@@ -33,19 +33,20 @@ public class StartChoiceControlSystem : MonoBehaviour
 
     public void VRControls()
     {
+        VR = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-       
-        //VRUI.ToggleVRUI();
         FPSPlayer.ToggleFPSPlayer();
     }
    
     public void KeyboardControls()
     {
+        Keyboard = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        VRGun.ToggleVRPistol();
         FPSUI.ToggleFPSUI();
         VRPlayer.ToggleVRPlayer();
 
