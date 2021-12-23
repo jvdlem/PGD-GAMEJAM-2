@@ -4444,6 +4444,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1634115576}
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
+      propertyPath: VRGun
+      value: 
+      objectReference: {fileID: 1807700379}
+    - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: VRPlayer
       value: 
       objectReference: {fileID: 463088588}
@@ -4740,7 +4744,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-19326
+  m_Name: pb_Mesh-3042
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -6178,6 +6182,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6103543387186064580, guid: 1ccd2e1899633ae49a43aaa87d9cabac, type: 3}
   m_PrefabInstance: {fileID: 1256132617}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &779830542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
+  m_PrefabInstance: {fileID: 479632302}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2639cb6c81cb3c24db2b3170da8eb1d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &800059006
 GameObject:
   m_ObjectHideFlags: 0
@@ -8556,6 +8571,10 @@ PrefabInstance:
       propertyPath: mouseSensitivity
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 9061128693596283963, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: startControlSystem
+      value: 
+      objectReference: {fileID: 779830542}
     m_RemovedComponents:
     - {fileID: 0}
     - {fileID: 0}
@@ -12322,6 +12341,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8925047358702294837, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
+      propertyPath: startControlSystem
+      value: 
+      objectReference: {fileID: 779830542}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
@@ -15068,6 +15091,17 @@ Transform:
   m_Father: {fileID: 935977771}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1807700379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8925047358702294837, guid: 125bc0e85db548540b09edfbdcb4f1eb, type: 3}
+  m_PrefabInstance: {fileID: 1377947479}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b7806c005f0b44c88ef9653dd6306f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1813334418 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 3916104093067650546, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
