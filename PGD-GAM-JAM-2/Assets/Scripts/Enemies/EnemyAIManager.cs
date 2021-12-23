@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAIManager : MonoBehaviour
 {
-    public NavMeshSurface Ground;
+    private NavMeshSurface Ground;
 
     void Start()
     {
@@ -17,10 +17,7 @@ public class EnemyAIManager : MonoBehaviour
 
     private void Update()
     {
-/*        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GenerateNavMesh();
-        }*/
+        //GenerateNavMesh();
     }
 
     public void GenerateNavMesh()
