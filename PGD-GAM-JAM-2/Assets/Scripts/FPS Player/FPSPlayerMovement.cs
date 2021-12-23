@@ -69,11 +69,6 @@ public class FPSPlayerMovement : MonoBehaviour
             if (canCrouch) HandleCrouch();
             if (isCrouching) speed = crouchSpeed;
             else speed = walkSpeed;
-
-            if(Velocity != new Vector3(0,0,0))
-            {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Walking/Walking_Test", this.gameObject.transform.position);
-            }
         }
     }
 
