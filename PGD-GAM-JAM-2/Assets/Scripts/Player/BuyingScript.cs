@@ -7,15 +7,15 @@ public class BuyingScript : MonoBehaviour
 {
     [SerializeField] DisplayItems displayItems;
     [SerializeField] PlayerHealthScript playerHealthScript;
-    LayerMask interactibles;
+    LayerMask shopButtons;
     private void Start()
     {
-        interactibles = LayerMask.GetMask("ShopButtons");
+        shopButtons = LayerMask.GetMask("ShopButtons");
     }
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 30f, interactibles))
+        if (Physics.Raycast(ray, out RaycastHit hit, 30f, shopButtons))
         {
             if (Input.GetKeyDown(KeyCode.E) && playerHealthScript.coins >= displayItems.price)
             {
