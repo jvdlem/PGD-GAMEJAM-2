@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 2244731634176322393}
   - component: {fileID: 6617958425198376390}
   - component: {fileID: 275690682563956845}
+  - component: {fileID: 9169041847045431351}
   m_Layer: 9
   m_Name: FPS player
   m_TagString: Player
@@ -285,7 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6947519b8a0334e9116b9cf6f5fc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayItems: {fileID: 5933224146528650236, guid: a2e8ad6b172db2f4b943c8c7b691d054, type: 3}
   playerHealthScript: {fileID: 0}
 --- !u!114 &6617958425198376390
 MonoBehaviour:
@@ -321,6 +321,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &9169041847045431351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8109714427962658509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c60f2278876bc54abc2c409cb262e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8818797543051265473
 GameObject:
   m_ObjectHideFlags: 0
