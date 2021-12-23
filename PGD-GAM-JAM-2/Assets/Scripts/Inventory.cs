@@ -3,29 +3,24 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+
     [SerializeField] GameObject[] listOfAttachements;
     [SerializeField] Text[] slotText = new Text[4];
-    [SerializeField] public inventoryHud InventoryHud;
     public static GameObject[] attachements = new GameObject[4];
-    public bool openedInventory;
-    Ray ray;
-    public int slot = 0;
-    public LayerMask InteractableMask;
 
-    public virtual void Update()
+    int slot = 0;
+
+    public void Update()
     {
-        //Raycast hit and object hit by raycast
-        ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-
-
         //Pick up/drop item based on key input
-        if (Input.GetKeyDown("e")) PickUp();
-        else if (Input.GetKeyDown("q")) Drop();
-        if (Input.GetKeyDown("i")) OpenInventory();
+        if (Input.GetKey("e")) PickUp();
+        else if (Input.GetKey("q")) Drop();
     }
 
     public void PickUp()
     {
+        //Raycast hit and object hit by raycast
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         bool objectHit = Physics.Raycast(ray, out RaycastHit hit);
         GameObject foundObject;
 
@@ -45,10 +40,9 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
-        Debug.DrawRay(transform.position, hit.transform.position - transform.position);
     }
 
-    public void Drop()
+    public void Drop() 
     {
 
         int prevSlot = slot - 1;
@@ -60,20 +54,5 @@ public class Inventory : MonoBehaviour
             slotText[prevSlot].text = "";
             slot--;
         }
-    }
-
-    public void OpenInventory()
-    {
-        if (openedInventory)
-        {
-            InventoryHud.toggleHudOff();
-            openedInventory = false;
-        }
-        else
-        {
-            InventoryHud.toggleHudOn();
-            openedInventory = true;
-        }
-
     }
 }
