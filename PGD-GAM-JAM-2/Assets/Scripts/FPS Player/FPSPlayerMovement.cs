@@ -48,7 +48,6 @@ public class FPSPlayerMovement : MonoBehaviour
         }
         else
         {
-
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
             if (isGrounded && Velocity.y < 0)

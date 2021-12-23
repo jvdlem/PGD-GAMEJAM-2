@@ -15,6 +15,7 @@ public class Transport : MonoBehaviour
     }
     public IEnumerator TransportPlayer()
     {
+        doitpls = true;
         if (goal == null)
         {
             this.transform.position = worldPos;
