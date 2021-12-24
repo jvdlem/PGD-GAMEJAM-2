@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class BuyingScript : MonoBehaviour
+public class PushButtons : MonoBehaviour
 {
     [SerializeField] PlayerHealthScript playerHealthScript;
     LayerMask shopButtons;
