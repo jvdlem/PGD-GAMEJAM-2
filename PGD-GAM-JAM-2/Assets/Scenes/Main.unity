@@ -4725,7 +4725,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh145966
+  m_Name: pb_Mesh26436
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8074,6 +8074,7 @@ GameObject:
   - component: {fileID: 1032798504}
   - component: {fileID: 1032798503}
   - component: {fileID: 1032798506}
+  - component: {fileID: 1032798507}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Ground
@@ -8229,6 +8230,19 @@ MonoBehaviour:
   m_TeleportationProvider: {fileID: 0}
   m_MatchOrientation: 0
   m_TeleportTrigger: 0
+--- !u!114 &1032798507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032798501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea15d6bd5261248bf95eedc8aeb967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialValue: 0
 --- !u!1 &1038695074
 GameObject:
   m_ObjectHideFlags: 0
@@ -8405,8 +8419,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: RayDistance
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: StepDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: JumpInputName
+      value: Jump
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: StartRunningTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: SpeedParameterName
+      value: Speed Switch
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: MaterialParameterName
+      value: Material
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: FootstepsEventPath.Path
       value: event:/Player/Walking/Footstep
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: JumpOrLandParameterName
+      value: Jump or Land
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: MaterialTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: MaterialTypes.Array.data[0]
+      value: Stone
       objectReference: {fileID: 0}
     - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: FootstepsEventPath.Guid.Data1
@@ -8514,7 +8564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 1.25
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.z
