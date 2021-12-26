@@ -4,22 +4,34 @@ using UnityEngine;
 
 public class EnemyMove : GroundEnemyScript
 {
-    float AttackTimer;
-    int rushDistance;
-    int rushSpeed;
+    float AttackTimer, IdleTimer, DeathTimer, retreatDistance = 2f, attackDistance = 2.5f;
+    int rushDistance = 10, rushSpeed = 14, idleSpeed = 0, walkSpeed = 8, Speed;
     private bool playOnce;
-    bool canAttack;
-
+    bool gotRetreatTarget, attemptAttack;
+    Vector3 retreatTarget = Vector3.zero;
+    public LayerMask groundLayer;
+    [SerializeField] Animator anim;
+    enum States
+    {
+        Idle,
+        Following,
+        Rushing,
+        Attacking,
+        Retreating,
+        Death
+    }
+    private States currentState;
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+        currentState = States.Idle;
         Health = 10;
         Tier = 1;
         checkForPlayerDistance = 20;
-        WalkSpeed = 4;
+        //WalkSpeed = 4;
         RotateSpeed = 8;
-        AttackRange = 2.2f;
+        AttackRange = 0.5f;
         rushDistance = 5;
         rushSpeed = 8;
     }
@@ -27,37 +39,55 @@ public class EnemyMove : GroundEnemyScript
     // Update is called once per frame
     public override void Update()
     {
-        navMeshAgent.speed = WalkSpeed;
+        navMeshAgent.speed = Speed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
-        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-
         base.Update();
-        if (Health <= 0)
+        if (Health <= 0) currentState = States.Death;
+        else if (dist > checkForPlayerDistance) currentState = States.Idle;
+        else if (dist <= checkForPlayerDistance && dist > rushDistance) currentState = States.Following;
+        else if (dist <= rushDistance && dist > attackDistance) currentState = States.Rushing;
+        else if (dist <= attackDistance) currentState = States.Attacking;
+        //else if (dist < retreatDistance) currentState = States.Retreating;
+
+        switch (currentState)
         {
-            //Sound
-            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-            Destroy(this.gameObject);
+            case States.Idle:
+                Idle();
+                break;
+            case States.Following:
+                Following();
+                break;
+            case States.Rushing:
+                Rush();
+                break;
+            case States.Attacking:
+                Attacking();
+                break;
+            case States.Retreating:
+                Retreat();
+                break;
+            case States.Death:
+                Death();
+                break;
+            default:
+                break;
         }
 
-        AttackTimer += Time.deltaTime;
-        if (AttackTimer > 2.5f && !canAttack && dist < rushDistance)
-        {
-            canAttack = true;
-            AttackTimer = 0;
-            Rush();
-            if (playOnce)
-            {
-                //Sound
-                playOnce = false;
-            }
-        }
-        else
-        {
-            playOnce = true;
-            WalkSpeed = 4;
-        }
+        Debug.Log("state" + currentState);
+        Debug.Log(dist);
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (attemptAttack)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                Player.GetComponent<PlayerHealthScript>().takeDamage(1);
+                attemptAttack = false;
+            }
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Projectile")
@@ -66,20 +96,92 @@ public class EnemyMove : GroundEnemyScript
             Health -= 1;
             Destroy(collision.gameObject);
         }
+    }
 
+        void Retreat()
+    {
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        Speed = walkSpeed;
+        anim.Play("Walk");
 
-        if (collision.gameObject.tag == "Player")
+        if (!gotRetreatTarget)
         {
-            if (canAttack)
-            {
-                Player.GetComponent<PlayerHealthScript>().takeDamage(1);
-                canAttack = false;
-            }
+            SearchRetreatTarget();
         }
+        if (gotRetreatTarget)
+        {
+            navMeshAgent.SetDestination(retreatTarget);
+        }
+
+        Vector3 distanceToBackOffPoint = transform.position - retreatTarget;
+
+        if (distanceToBackOffPoint.magnitude < 1f)
+        {
+            currentState = States.Following;
+        }
+    }
+    void SearchRetreatTarget()
+    {
+        float backOffDistance = -1;
+
+        retreatTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z + backOffDistance);
+
+        if (Physics.Raycast(retreatTarget, -transform.up, 2f, groundLayer)) gotRetreatTarget = true;
+    }
+
+    void Death()
+    {
+        anim.Play("Die");
+        Speed = idleSpeed;
+        navMeshAgent.SetDestination(this.transform.position); 
+        //Sound
+        DeathTimer += Time.deltaTime;
+        if (DeathTimer > 1.65f)
+        {
+            DeathTimer = 0;
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+            Destroy(this.gameObject);
+        }
+    }
+
+    void Idle()
+    {
+        Speed = idleSpeed;
+        anim.Play("Idle");
+        IdleTimer += Time.deltaTime;
+        if (IdleTimer > 8)
+        {
+            IdleTimer = 0;
+            //play the idleing sound.
+        }
+    }
+
+    void Attacking()
+    {
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        Speed = idleSpeed;
+
+        AttackTimer += Time.deltaTime;
+        if (AttackTimer > 1.5f)
+        {
+            anim.Play("Attack_01");
+            //play the attacking sound.
+            attemptAttack = true;
+            AttackTimer = 0;
+        }
+    }
+
+    void Following()
+    {
+        Speed = walkSpeed;
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        anim.Play("Walk");
     }
 
     private void Rush()
     {
-        WalkSpeed = rushSpeed;
+        Speed = rushSpeed;
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        anim.Play("Run");
     }
 }

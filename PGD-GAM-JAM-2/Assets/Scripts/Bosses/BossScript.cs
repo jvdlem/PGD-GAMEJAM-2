@@ -50,13 +50,14 @@ public class BossScript : MonoBehaviour
         {
             Eyes[i] = gameObject.transform.GetChild(i).GetComponent<EyeBossScript>();
         }
-        healthSlider = GameObject.Find("Canvas").GetComponent<UIManager>().Bossslider;
         Player = GameObject.FindGameObjectWithTag("Player");
+        healthSlider.maxValue = bossMaxHealth;
     }
 
     void Update()
     {
         healthSlider.value = BossHealth;
+        healthSlider.transform.LookAt(Player.transform);
 
         switch (bossState)
         {
@@ -67,7 +68,6 @@ public class BossScript : MonoBehaviour
                     eye.gameObject.SetActive(true);
                     eye.renderer.material.color = Color.white;
                 }
-                healthSlider.gameObject.SetActive(true);
                 BossHealth = bossMaxHealth;
                 CycleToNextEye = false;
                 bossState = 1;
@@ -209,7 +209,6 @@ public class BossScript : MonoBehaviour
 
             //boss goes inactive state
             case 6:
-                healthSlider.gameObject.SetActive(false);
                 foreach (EyeBossScript eye in Eyes)
                 {
                     eye.gameObject.SetActive(false);

@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyAIManager : MonoBehaviour
 {
-    private NavMeshSurface Ground;
+    public NavMeshSurface Ground;
 
     void Start()
     {
