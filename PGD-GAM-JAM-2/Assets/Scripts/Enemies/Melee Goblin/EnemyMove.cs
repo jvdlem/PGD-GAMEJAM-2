@@ -10,6 +10,7 @@ public class EnemyMove : GroundEnemyScript
     bool gotRetreatTarget, attemptAttack;
     Vector3 retreatTarget = Vector3.zero;
     public LayerMask groundLayer;
+    Vector3 pos;
     [SerializeField] Animator anim;
     enum States
     {
@@ -39,6 +40,7 @@ public class EnemyMove : GroundEnemyScript
     // Update is called once per frame
     public override void Update()
     {
+        pos = this.gameObject.transform.position;
         navMeshAgent.speed = Speed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
         base.Update();
@@ -72,9 +74,6 @@ public class EnemyMove : GroundEnemyScript
             default:
                 break;
         }
-
-        Debug.Log("state" + currentState);
-        Debug.Log(dist);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -92,7 +91,7 @@ public class EnemyMove : GroundEnemyScript
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            //Sound
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", pos);
             Health -= 1;
             Destroy(collision.gameObject);
         }
@@ -133,8 +132,8 @@ public class EnemyMove : GroundEnemyScript
     {
         anim.Play("Die");
         Speed = idleSpeed;
-        navMeshAgent.SetDestination(this.transform.position); 
-        //Sound
+        navMeshAgent.SetDestination(this.transform.position);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", pos);
         DeathTimer += Time.deltaTime;
         if (DeathTimer > 1.65f)
         {
@@ -152,7 +151,7 @@ public class EnemyMove : GroundEnemyScript
         if (IdleTimer > 8)
         {
             IdleTimer = 0;
-            //play the idleing sound.
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinIdle", pos);
         }
     }
 
@@ -165,7 +164,7 @@ public class EnemyMove : GroundEnemyScript
         if (AttackTimer > 1.5f)
         {
             anim.Play("Attack_01");
-            //play the attacking sound.
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinAttack", pos);
             attemptAttack = true;
             AttackTimer = 0;
         }
@@ -182,6 +181,7 @@ public class EnemyMove : GroundEnemyScript
     {
         Speed = rushSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", pos);
         anim.Play("Run");
     }
 }

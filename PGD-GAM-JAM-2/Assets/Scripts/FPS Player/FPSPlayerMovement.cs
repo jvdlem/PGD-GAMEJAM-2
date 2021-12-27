@@ -57,11 +57,7 @@ public class FPSPlayerMovement : MonoBehaviour
 
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
-            //Debug.Log(Input.GetAxis("Vertical"));
-            if (Input.GetAxis("Horizontal") >= 0.5f || Input.GetAxis("Vertical") <= 0.5f)
-            {
-                Debug.Log("dis when sound should play");
-            }
+            
 
                 Vector3 move = transform.right * x + transform.forward * z;
 

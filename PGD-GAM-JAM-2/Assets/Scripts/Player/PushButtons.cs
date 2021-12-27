@@ -5,8 +5,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PushButtons : MonoBehaviour
 {
-    [SerializeField] PlayerHealthScript playerHealthScript;
     LayerMask buttons;
+    Vector3 pushforce;
     private void Start()
     {
         buttons = LayerMask.GetMask("Buttons");
@@ -18,6 +18,7 @@ public class PushButtons : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Debug.Log("button pressed");
                 hit.rigidbody.velocity += Vector3.down * 100;
             }
         }
