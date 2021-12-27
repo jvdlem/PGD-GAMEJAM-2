@@ -13,8 +13,9 @@ public class Pistol : MonoBehaviour
 
     [SerializeField] private GameObject bullet;
     [SerializeField] private XRBaseInteractable aCurrentAddon;
-    [SerializeField] private AudioSource myAudio;
+    //[SerializeField] private AudioSource myAudio;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] StartChoiceControlSystem startControlSystem;
 
     public List<Attachment> lists;
     public Attachment allStats;
@@ -29,7 +30,7 @@ public class Pistol : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        gameObject.SetActive(true);
         lists.Add(allStats);
         lists.Add(barrelStats);
         lists.Add(sightStats);
@@ -54,7 +55,7 @@ public class Pistol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) shoot();
+        if (Input.GetButtonDown("Fire1") && startControlSystem.Keyboard) shoot();
 
         for (int i = 1; i < lists.Count; i++)
         {
@@ -95,7 +96,7 @@ public class Pistol : MonoBehaviour
         for (int i = 0; i < allStats.list[1]; i++)
         {
             //bullet.GetComponent<Bullet>().Setdmg(damage);
-            myAudio.Play();
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.gameObject.transform.position);
             Instantiate(bullet, shootPoint.position + (transform.forward * 0.5f), shootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
         }
     }
@@ -106,5 +107,10 @@ public class Pistol : MonoBehaviour
         {
             this.transform.position = holster.transform.position;  
         }
+    }
+
+    public void ToggleVRPistol()
+    {
+        gameObject.SetActive(false);
     }
 }

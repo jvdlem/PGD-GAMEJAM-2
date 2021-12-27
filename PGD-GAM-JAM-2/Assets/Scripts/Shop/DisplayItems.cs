@@ -6,19 +6,35 @@ public class DisplayItems : MonoBehaviour
 {
     [SerializeField] public List<GameObject> items = new List<GameObject>();
     public GameObject shopCounterPos;
+    public GameObject Player;
+    private PlayerHealthScript PlayerScript;
     public bool isBought;
     public int price = 5;
-    public GameObject instantiatedItem;
-    private Transform boughtItemPos;
+
+    public List<GameObject> shopItems;
+
+    private Vector3 boughtItemPos;
+
+    public void Start()
+    {
+        boughtItemPos = shopCounterPos.transform.position;
+        Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerScript = Player.GetComponent<PlayerHealthScript>();
+    }
 
     public void DisplayItem(GameObject itemSpawn)
     {
+        GameObject instantiatedItem;
         instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], itemSpawn.transform.position, itemSpawn.transform.rotation);
+        shopItems.Add(instantiatedItem);
     }
 
-    public void BuyItems(RaycastHit hit)
+    public void BuyItems(int i)
     {
-        boughtItemPos = shopCounterPos.transform;
-        hit.transform.position = boughtItemPos.transform.position;
+        if (PlayerScript.coins >= price)
+        {
+            shopItems[i].transform.position = boughtItemPos;
+            PlayerScript.coins -= price;
+        }
     }
 }
