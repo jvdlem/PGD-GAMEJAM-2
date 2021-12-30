@@ -11,8 +11,7 @@ public class SocketCheck : XRSocketInteractor
     public float scaleSize = 1;
 
     private void Update()
-    {
-        //Debug.Log(hasObject);
+    { 
     }
     public override bool CanHover(XRBaseInteractable interactable)
     {
