@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class PushButtons : MonoBehaviour
 {
     LayerMask buttons;
-    Vector3 pushforce;
+    public bool buttonCanBePressed;
     private void Start()
     {
         buttons = LayerMask.GetMask("Buttons");
@@ -16,11 +16,13 @@ public class PushButtons : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 30f, buttons))
         {
+            buttonCanBePressed = true;
             if (Input.GetKeyDown(KeyCode.E))
             {
-                Debug.Log("button pressed");
-                hit.rigidbody.velocity += Vector3.down * 100;
+                hit.rigidbody.velocity += Vector3.left * 100;
             }
         }
+        else buttonCanBePressed = false;
+        Debug.Log(buttonCanBePressed);
     }
 }
