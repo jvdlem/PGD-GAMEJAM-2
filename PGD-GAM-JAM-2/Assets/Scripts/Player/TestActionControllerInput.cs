@@ -21,11 +21,9 @@ public class TestActionControllerInput : MonoBehaviour
     }
     private void Squees(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        Debug.Log("Squees");
     }
     private void TuchPad(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        //Debug.Log(movment);
     }
     private void Trigger(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {

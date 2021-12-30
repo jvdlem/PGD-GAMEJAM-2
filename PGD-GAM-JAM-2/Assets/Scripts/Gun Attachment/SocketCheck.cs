@@ -31,7 +31,6 @@ public class SocketCheck : XRSocketInteractor
     protected override void OnSelectExited(XRBaseInteractable interactable)
     {
         attached = 1;
-        Debug.Log(interactable);
         interactable.transform.localScale /= scaleSize;
         base.OnSelectExited(interactable);
      
