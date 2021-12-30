@@ -14592,6 +14592,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 543584550}
+  - component: {fileID: 543584551}
   m_Layer: 0
   m_Name: Floors
   m_TagString: Untagged
@@ -14615,6 +14616,19 @@ Transform:
   m_Father: {fileID: 269791616}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &543584551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543584549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebea15d6bd5261248bf95eedc8aeb967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaterialValue: 0
 --- !u!1001 &544330111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23934,6 +23948,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000011629542702, guid: 5f15f2e8d6c9d2c4da4b0ffe77768b57, type: 3}
   m_PrefabInstance: {fileID: 880225899}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &882726065
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -78.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5327986501843491421, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8908055864566651942, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
+      propertyPath: m_Name
+      value: Sound Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 902ffbce866425544bac4652e22f3d96, type: 3}
 --- !u!1001 &883847348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40675,6 +40746,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Path
+      value: event:/Player/Walking/Footstep
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: MaterialTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: MaterialTypes.Array.data[0]
+      value: Stone
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data1
+      value: 1176451444
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data2
+      value: 1109906823
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data3
+      value: 827644847
+      objectReference: {fileID: 0}
+    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: FootstepsEventPath.Guid.Data4
+      value: 6046911
+      objectReference: {fileID: 0}
     - target: {fileID: 152527566747821963, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: transport
       value: 
