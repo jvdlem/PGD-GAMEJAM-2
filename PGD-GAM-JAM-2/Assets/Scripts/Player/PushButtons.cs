@@ -23,6 +23,5 @@ public class PushButtons : MonoBehaviour
             }
         }
         else buttonCanBePressed = false;
-        Debug.Log(buttonCanBePressed);
     }
 }
