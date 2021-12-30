@@ -41,8 +41,14 @@ public class EyeBossScript : MonoBehaviour
         {
             if (collision.gameObject.tag == "Projectile")
             {
-                parentBoss.BossHealth -= 5;
-                parentBoss.EyeHits++;
+                parentBoss.BossHealth -= (int)collision.gameObject.GetComponent<Projectille>().dmg;
+
+                if (parentBoss.BossHealth <= parentBoss.NextHealthTrigger)
+                {
+                    parentBoss.BossHealth = parentBoss.NextHealthTrigger;
+                    parentBoss.CycleToNextEye = true;
+                }
+
                 if (parentBoss.BossHealth <= 0)
                 {
                     parentBoss.bossState = 5;

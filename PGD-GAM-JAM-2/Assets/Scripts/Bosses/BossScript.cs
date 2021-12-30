@@ -9,7 +9,7 @@ public class BossScript : MonoBehaviour
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
     public GameObject Player;
 
-    private int bossMaxHealth = 100;
+    private int bossMaxHealth = 1000;
     public int BossHealth;
     public Slider healthSlider;
     public Transform MinionSpawnLocation;
@@ -29,8 +29,10 @@ public class BossScript : MonoBehaviour
     private float eyeShootTimer;
     public GameObject Bullets;
 
-    public int EyeHits;
-    private int MaxEyeHits = 4;
+    public int NextHealthTrigger;
+    private int AmountOfCycles = 10;
+
+    public bool CycleToNextEye = false;
 
     private float BossDiesFadeTime = 3;
     private float BossDiesFadeTimer;
@@ -48,13 +50,14 @@ public class BossScript : MonoBehaviour
         {
             Eyes[i] = gameObject.transform.GetChild(i).GetComponent<EyeBossScript>();
         }
-        healthSlider = GameObject.Find("Canvas").GetComponent<UIManager>().Bossslider;
         Player = GameObject.FindGameObjectWithTag("Player");
+        healthSlider.maxValue = bossMaxHealth;
     }
 
     void Update()
     {
         healthSlider.value = BossHealth;
+        healthSlider.transform.LookAt(Player.transform);
 
         switch (bossState)
         {
@@ -65,8 +68,8 @@ public class BossScript : MonoBehaviour
                     eye.gameObject.SetActive(true);
                     eye.renderer.material.color = Color.white;
                 }
-                healthSlider.gameObject.SetActive(true);
                 BossHealth = bossMaxHealth;
+                CycleToNextEye = false;
                 bossState = 1;
                 break;
 
@@ -76,6 +79,9 @@ public class BossScript : MonoBehaviour
                 {
                     eye.EyeIsActive = false;
                 }
+
+                //the next health trigger is calculated (1000 - (1000 / 10))
+                NextHealthTrigger = BossHealth - (bossMaxHealth / AmountOfCycles);
 
                 if (bossIsWaitingTimer < bossIsWaitingTime)
                 {
@@ -108,10 +114,10 @@ public class BossScript : MonoBehaviour
                     eyeShootTimer = 0;
                 }
 
-                if (EyeHits >= MaxEyeHits)
+                if (CycleToNextEye)
                 {
+                    CycleToNextEye = false;
                     Eyes[0].lookSpeed = EyeLookSpeedDefault;
-                    EyeHits = 0;
                     bossState = 1;
                 }
                 break;
@@ -130,9 +136,10 @@ public class BossScript : MonoBehaviour
                     minionsSpawned = true;
                 }
 
-                if (EyeHits >= MaxEyeHits)
+                if (CycleToNextEye)
                 {
-                    EyeHits = 0;
+                    CycleToNextEye = false;
+                    minionsSpawned = false;
                     bossState = 1;
                 }
                 break;
@@ -157,15 +164,15 @@ public class BossScript : MonoBehaviour
                     Eyes[2].renderer.material.color = Color.red;
                 }
 
-                if (EyeHits >= MaxEyeHits)
+                if (CycleToNextEye)
                 {
+                    CycleToNextEye = false;
                     if(Eyes[2].transform.childCount != 0)
                     {
                         Destroy(Eyes[2].transform.GetChild(0).gameObject);
                     }
                     Eyes[2].lookSpeed = EyeLookSpeedDefault;
                     laserChargeTimer = 0;
-                    EyeHits = 0;
                     bossState = 1;
                 }
                 break;
@@ -202,7 +209,6 @@ public class BossScript : MonoBehaviour
 
             //boss goes inactive state
             case 6:
-                healthSlider.gameObject.SetActive(false);
                 foreach (EyeBossScript eye in Eyes)
                 {
                     eye.gameObject.SetActive(false);

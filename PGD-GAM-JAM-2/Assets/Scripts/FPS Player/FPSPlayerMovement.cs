@@ -48,7 +48,6 @@ public class FPSPlayerMovement : MonoBehaviour
         }
         else
         {
-
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
             if (isGrounded && Velocity.y < 0)
@@ -58,8 +57,9 @@ public class FPSPlayerMovement : MonoBehaviour
 
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
+            
 
-            Vector3 move = transform.right * x + transform.forward * z;
+                Vector3 move = transform.right * x + transform.forward * z;
 
             controller.Move(move * speed * Time.deltaTime);
 

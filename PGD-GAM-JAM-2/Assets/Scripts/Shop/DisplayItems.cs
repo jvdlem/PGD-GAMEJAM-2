@@ -10,9 +10,9 @@ public class DisplayItems : MonoBehaviour
     private PlayerHealthScript PlayerScript;
     public bool isBought;
     public int price = 5;
-    
+
     public List<GameObject> shopItems;
-    
+
     private Vector3 boughtItemPos;
 
     public void Start()
@@ -25,20 +25,16 @@ public class DisplayItems : MonoBehaviour
     public void DisplayItem(GameObject itemSpawn)
     {
         GameObject instantiatedItem;
-     instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], itemSpawn.transform.position, itemSpawn.transform.rotation);
-     shopItems.Add(instantiatedItem);
-
-
+        instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], itemSpawn.transform.position, itemSpawn.transform.rotation);
+        shopItems.Add(instantiatedItem);
     }
 
     public void BuyItems(int i)
     {
-        
-        
-        if (PlayerScript.coins >= price) 
-        { shopItems[i].transform.position = boughtItemPos;
+        if (PlayerScript.coins >= price)
+        {
+            shopItems[i].transform.position = boughtItemPos;
             PlayerScript.coins -= price;
         }
-       
     }
 }
