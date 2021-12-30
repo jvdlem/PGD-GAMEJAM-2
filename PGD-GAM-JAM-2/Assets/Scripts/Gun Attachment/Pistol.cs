@@ -16,6 +16,7 @@ public class Pistol : MonoBehaviour
     //[SerializeField] private AudioSource myAudio;
     [SerializeField] private Transform shootPoint;
     [SerializeField] StartChoiceControlSystem startControlSystem;
+    [SerializeField] ControlManager ControlManager;
 
     public List<Attachment> lists;
     public Attachment allStats;
@@ -55,7 +56,7 @@ public class Pistol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && startControlSystem.Keyboard) shoot();
+        if (Input.GetButtonDown("Fire1") && (startControlSystem.Keyboard || ControlManager.Keyboard)) shoot();
 
         for (int i = 1; i < lists.Count; i++)
         {

@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartChoiceControlSystem : MonoBehaviour
+public class ControlManager : MonoBehaviour
 {
+    [SerializeField]
+    public StartChoiceControlSystem Startchoicecontrolsystem;
+
     [SerializeField]
     public FPSUI FPSUI;
     [SerializeField]
@@ -19,8 +22,19 @@ public class StartChoiceControlSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        int controlSystem = PlayerPrefs.GetInt("ControlSystem");
+        if (controlSystem == 0)
+        {
+            VRControls();
+        }   
+        else if (controlSystem == 1)
+        {
+            KeyboardControls();
+        }
+        else if (controlSystem == 3)
+        {
+            Startchoicecontrolsystem.ToggleChoiceScreen();
+        }
     }
 
     public void VRControls()
@@ -30,9 +44,9 @@ public class StartChoiceControlSystem : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         FPSPlayer.ToggleFPSPlayer();
-        PlayerPrefs.SetInt("ControlSystem", 0);
+        PlayerPrefs.SetInt("ControlSystem", 3);
     }
-   
+
     public void KeyboardControls()
     {
         Keyboard = true;
@@ -42,11 +56,6 @@ public class StartChoiceControlSystem : MonoBehaviour
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
         FPSUI.ToggleFPSUI();
-        PlayerPrefs.SetInt("ControlSystem", 1);
-    }
-
-    public void ToggleChoiceScreen()
-    {
-        gameObject.SetActive(true);
+        PlayerPrefs.SetInt("ControlSystem", 3);
     }
 }
