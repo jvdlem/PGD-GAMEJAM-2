@@ -50,13 +50,21 @@ public class Pistol : MonoBehaviour
     [System.Serializable]
     public class Attachment
     {
-       public List<float> list;
+        public List<float> list;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && (startControlSystem.Keyboard || ControlManager.Keyboard)) shoot();
+        if (startControlSystem == null)
+        {
+            if (Input.GetButtonDown("Fire1") && (ControlManager.Keyboard)) shoot();
+        }
+        else
+        {
+            if (Input.GetButtonDown("Fire1") && (startControlSystem.Keyboard)) shoot();
+        }
+
 
         for (int i = 1; i < lists.Count; i++)
         {
@@ -106,7 +114,7 @@ public class Pistol : MonoBehaviour
     {
         if (collision.transform.tag == "Ground")
         {
-            this.transform.position = holster.transform.position;  
+            this.transform.position = holster.transform.position;
         }
     }
 

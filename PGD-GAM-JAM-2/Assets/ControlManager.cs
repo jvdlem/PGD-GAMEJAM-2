@@ -5,9 +5,6 @@ using UnityEngine;
 public class ControlManager : MonoBehaviour
 {
     [SerializeField]
-    public StartChoiceControlSystem Startchoicecontrolsystem;
-
-    [SerializeField]
     public FPSUI FPSUI;
     [SerializeField]
     public FPSPlayerMovement FPSPlayer;
@@ -26,29 +23,26 @@ public class ControlManager : MonoBehaviour
         if (controlSystem == 0)
         {
             VRControls();
-        }   
+        }
         else if (controlSystem == 1)
         {
             KeyboardControls();
-        }
-        else if (controlSystem == 3)
-        {
-            Startchoicecontrolsystem.ToggleChoiceScreen();
         }
     }
 
     public void VRControls()
     {
+        Debug.Log("ControlManager VR");
         VR = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         FPSPlayer.ToggleFPSPlayer();
-        PlayerPrefs.SetInt("ControlSystem", 3);
     }
 
     public void KeyboardControls()
     {
+        Debug.Log("ControlManager Keyboard");
         Keyboard = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
@@ -56,6 +50,5 @@ public class ControlManager : MonoBehaviour
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
         FPSUI.ToggleFPSUI();
-        PlayerPrefs.SetInt("ControlSystem", 3);
     }
 }

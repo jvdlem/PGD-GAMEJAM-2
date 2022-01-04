@@ -25,18 +25,20 @@ public class StartChoiceControlSystem : MonoBehaviour
 
     public void VRControls()
     {
+        Debug.Log("StartChoice VR");
         VR = true;
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         FPSPlayer.ToggleFPSPlayer();
         PlayerPrefs.SetInt("ControlSystem", 0);
     }
-   
+
     public void KeyboardControls()
     {
+        Debug.Log("StartChoice Keyboard");
         Keyboard = true;
-        gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
@@ -47,6 +49,9 @@ public class StartChoiceControlSystem : MonoBehaviour
 
     public void ToggleChoiceScreen()
     {
-        gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Debug.Log("Both Toggle");
     }
 }
