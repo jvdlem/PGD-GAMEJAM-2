@@ -11,17 +11,13 @@ public class InventoryManager : MonoBehaviour
     {
 
         // Makes inventory visible to player.
-        if (Input.GetKey("e"))
+        if (Input.GetKey("u"))
         {
             inventory.SetActive(true);
-            MouseLook.inventoryActive = true;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
         }
         else 
         {
             inventory.SetActive(false);
-            MouseLook.inventoryActive = false;
         }
     }
 }
