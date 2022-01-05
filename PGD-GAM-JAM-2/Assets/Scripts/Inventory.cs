@@ -4,8 +4,6 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
 
-    [SerializeField] Camera rayOrigin;
-
     [SerializeField] GameObject[] listOfAttachements;
     [SerializeField] Text[] slots = new Text[4];
 
@@ -13,7 +11,6 @@ public class Inventory : MonoBehaviour
 
     public LayerMask layer;
 
-    int prevSlot = -1;
     int currentSlot = 0;
 
     public GameObject[] Attachements 
@@ -24,48 +21,77 @@ public class Inventory : MonoBehaviour
     public void Update()
     {
         //Pick up/drop item based on key input
-        PickUp();
-        Drop();
+        if (Input.GetKey(KeyCode.E)) PickUp();
+        else if (Input.GetKey(KeyCode.Q)) Drop();
+
+        SetNewSlot();
     }
 
     public void PickUp()
     {
         //Raycast hit and object hit by raycast
-        Ray ray = rayOrigin.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         //Determine found object
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, layer))
         {
             if (hit.rigidbody != null) 
             {
                 GameObject foundObject = hit.rigidbody.gameObject; //Set object found
 
-                for (int i = 0; i < listOfAttachements.Length; i++) 
+                for (int i = 0; i < listOfAttachements.Length; i++)
                 {
-                    if (Input.GetKey("e") && foundObject == listOfAttachements[i])
+                    if (foundObject.tag == listOfAttachements[i].tag) 
                     {
-                        attachements[currentSlot] = foundObject; //Fill attachement
-                        slots[currentSlot].text = foundObject.name; //Fill slot
-                        currentSlot++;
-
-                        prevSlot = currentSlot - 1;
-
-                        Debug.Log("Picked up!");
+                        PutInInventory(foundObject, currentSlot); // If attachement, put in inventory   
                     }
                 }
             }
         }
     }
 
+    private void SetNewSlot() 
+    {
+        if (attachements[currentSlot] != null)
+        {
+            currentSlot++;
+        }
+        else if (attachements[currentSlot] == null)
+        {
+            currentSlot--;
+        }
+
+        if (currentSlot > attachements.Length - 1)
+        {
+            currentSlot = attachements.Length - 1;
+        }
+        else if (currentSlot < 0) 
+        {
+            currentSlot = 0;
+        }
+    }
+
+    public void PutInInventory(GameObject attachement, int slot) 
+    {
+        if (attachements[slot] == null)
+        {
+            attachements[slot] = attachement; //Fill attachement
+            slots[slot].text = attachement.tag; //Fill slot
+        }
+    }
+
     public void Drop() 
     {
-        if (Input.GetKey("q") && attachements[currentSlot] != null)
-        {
-            Instantiate(attachements[currentSlot], transform.position, transform.rotation); //Attachement is "dropped"
-            attachements[currentSlot] = null; //Clear attachement
-            slots[currentSlot].text = ""; //Clear slot
+        ClearInventory(currentSlot); // Remove attachement from inventory
+    }
 
-            currentSlot = prevSlot;        
+    public void ClearInventory(int slot) 
+    {
+        if (attachements[slot] != null) 
+        {
+            Instantiate(attachements[slot], transform.position, transform.rotation); //Attachement is "dropped"
+            attachements[slot] = null; //Clear attachement
+            slots[slot].text = "Empty"; //Clear slot
         }
     }
 }
