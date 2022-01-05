@@ -4,39 +4,54 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] listOfAttachements;
-    [SerializeField] Text[] slotText = new Text[4];
-    public static GameObject[] attachements = new GameObject[4];
+    [SerializeField] Camera rayOrigin;
 
-    int slot = 0;
+    [SerializeField] GameObject[] listOfAttachements;
+    [SerializeField] Text[] slots = new Text[4];
+
+    GameObject[] attachements = new GameObject[4];
+
+    public LayerMask layer;
+
+    int prevSlot = -1;
+    int currentSlot = 0;
+
+    public GameObject[] Attachements 
+    {
+        get { return attachements; }
+    }
 
     public void Update()
     {
         //Pick up/drop item based on key input
-        if (Input.GetKey("e")) PickUp();
-        else if (Input.GetKey("q")) Drop();
+        PickUp();
+        Drop();
     }
 
     public void PickUp()
     {
         //Raycast hit and object hit by raycast
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool objectHit = Physics.Raycast(ray, out RaycastHit hit);
-        GameObject foundObject;
+        Ray ray = rayOrigin.ScreenPointToRay(Input.mousePosition);
 
         //Determine found object
-        if (hit.rigidbody != null)
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            foundObject = hit.rigidbody.gameObject;
-
-            //If hit object equal to attachement from list, "pick up" hit object
-            if (attachements[slot] == null)
+            if (hit.rigidbody != null) 
             {
-                if (objectHit && foundObject == listOfAttachements[slot])
+                GameObject foundObject = hit.rigidbody.gameObject; //Set object found
+
+                for (int i = 0; i < listOfAttachements.Length; i++) 
                 {
-                    attachements[slot] = foundObject;
-                    slotText[slot].text = foundObject.name;
-                    slot++;
+                    if (Input.GetKey("e") && foundObject == listOfAttachements[i])
+                    {
+                        attachements[currentSlot] = foundObject; //Fill attachement
+                        slots[currentSlot].text = foundObject.name; //Fill slot
+                        currentSlot++;
+
+                        prevSlot = currentSlot - 1;
+
+                        Debug.Log("Picked up!");
+                    }
                 }
             }
         }
@@ -44,15 +59,13 @@ public class Inventory : MonoBehaviour
 
     public void Drop() 
     {
-
-        int prevSlot = slot - 1;
-
-        if (attachements[prevSlot] != null)
+        if (Input.GetKey("q") && attachements[currentSlot] != null)
         {
-            Instantiate(attachements[prevSlot], transform.position, transform.rotation); //Attachement is "dropped"
-            attachements[prevSlot] = null; //Clear attachement
-            slotText[prevSlot].text = "";
-            slot--;
+            Instantiate(attachements[currentSlot], transform.position, transform.rotation); //Attachement is "dropped"
+            attachements[currentSlot] = null; //Clear attachement
+            slots[currentSlot].text = ""; //Clear slot
+
+            currentSlot = prevSlot;        
         }
     }
 }
