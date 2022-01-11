@@ -17,7 +17,6 @@ public class BatMovement : MeleeFlyingEnemyScript
 
     public override void Update()
     {
-        Debug.Log(InRange());
         base.Update();
     }
 }

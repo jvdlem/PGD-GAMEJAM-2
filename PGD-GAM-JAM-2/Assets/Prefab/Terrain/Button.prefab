@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3916104093067650547}
   - component: {fileID: 3916104093067650549}
   - component: {fileID: 3916104093067650546}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Clicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3916104093214912044}
-  m_Layer: 0
+  - component: {fileID: 1588979635795920663}
+  m_Layer: 10
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +114,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1588979635795920663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3916104093214912045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb740afd563ed446ab1141d4fea1266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonBase: {fileID: 3916104093214912045}
 --- !u!1 &3916104094149845620
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +140,7 @@ GameObject:
   - component: {fileID: 3916104094149845513}
   - component: {fileID: 3916104094149845622}
   - component: {fileID: 3916104094149845623}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +253,7 @@ GameObject:
   - component: {fileID: 3916104094692562286}
   - component: {fileID: 3916104094692562287}
   - component: {fileID: 7201627931916378745}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: push
   m_TagString: Untagged
   m_Icon: {fileID: 0}

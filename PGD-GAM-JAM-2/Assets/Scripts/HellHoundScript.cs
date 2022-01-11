@@ -110,7 +110,6 @@ public class HellHoundScript : GroundEnemyScript
             default:
                 break;
         }
-        Debug.Log(currentState);
     }
     void Chasing()
     {

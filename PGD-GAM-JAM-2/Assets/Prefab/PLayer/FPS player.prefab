@@ -285,7 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6947519b8a0334e9116b9cf6f5fc6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealthScript: {fileID: 3754700817438122498}
+  buttonCanBePressed: 0
+  getsPressed: {fileID: 1588979635795920663, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
 --- !u!114 &6617958425198376390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,16 +333,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceed41807a7268e4580879e7638e97ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FootstepsEventPath: 
-  JumpingEventPath: 
+  FootstepsEventPath:
+    Guid:
+      Data1: 1176451444
+      Data2: 1109906823
+      Data3: 827644847
+      Data4: 6046911
+    Path: event:/Player/Walking/Footstep
   MaterialParameterName: 
   SpeedParameterName: 
-  JumpOrLandParameterName: 
   StepDistance: 2
   RayDistance: 1.2
   StartRunningTime: 0.3
-  JumpInputName: 
-  MaterialTypes: []
+  MaterialTypes:
+  - Stone
   DefulatMaterialValue: 0
 --- !u!1 &8818797543051265473
 GameObject:
