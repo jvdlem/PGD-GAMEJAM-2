@@ -1,35 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3323774992976916750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2065497985175608661}
-  m_Layer: 0
-  m_Name: pushOriginalSpot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2065497985175608661
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3323774992976916750}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.26, z: 0}
-  m_LocalScale: {x: 1, y: 1.9438992, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3916104093214912044}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3916104093067650544
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,7 +11,7 @@ GameObject:
   - component: {fileID: 3916104093067650547}
   - component: {fileID: 3916104093067650549}
   - component: {fileID: 3916104093067650546}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Clicker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,8 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3916104093214912044}
-  - component: {fileID: 1588979635795920663}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,24 +110,9 @@ Transform:
   m_Children:
   - {fileID: 3916104094149845515}
   - {fileID: 3916104094692562284}
-  - {fileID: 2065497985175608661}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1588979635795920663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3916104093214912045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eb740afd563ed446ab1141d4fea1266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buttonBase: {fileID: 3916104093214912045}
-  originalPushPosition: {fileID: 3323774992976916750}
 --- !u!1 &3916104094149845620
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +126,7 @@ GameObject:
   - component: {fileID: 3916104094149845513}
   - component: {fileID: 3916104094149845622}
   - component: {fileID: 3916104094149845623}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +239,7 @@ GameObject:
   - component: {fileID: 3916104094692562286}
   - component: {fileID: 3916104094692562287}
   - component: {fileID: 7201627931916378745}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: push
   m_TagString: Untagged
   m_Icon: {fileID: 0}

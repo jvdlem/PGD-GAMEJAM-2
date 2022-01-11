@@ -5,24 +5,21 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PushButtons : MonoBehaviour
 {
-    LayerMask buttons;
-    public bool buttonCanBePressed;
-    [SerializeField] GetsPressed getsPressed;
+    [SerializeField] PlayerHealthScript playerHealthScript;
+    LayerMask shopButtons;
     private void Start()
     {
-        buttons = LayerMask.GetMask("Buttons");
+        shopButtons = LayerMask.GetMask("ShopButtons");
     }
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 10f, buttons))
+        if (Physics.Raycast(ray, out RaycastHit hit, 30f, shopButtons))
         {
-            buttonCanBePressed = true;
             if (Input.GetKeyDown(KeyCode.E))
             {
-                getsPressed.ButtonGetsPressed(hit);
+                hit.rigidbody.velocity += Vector3.down * 100;
             }
         }
-        else buttonCanBePressed = false;
     }
 }
