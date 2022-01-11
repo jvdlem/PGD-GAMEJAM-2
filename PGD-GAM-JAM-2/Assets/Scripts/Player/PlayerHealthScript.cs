@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealthScript : MonoBehaviour
 {
+    [SerializeField] deathScreenScript deathscreenscript;
+
     [Header("Hud")]
     public GameObject damageIndicator;
     public GameObject HudDeath;
@@ -32,19 +34,25 @@ public class PlayerHealthScript : MonoBehaviour
     void Update()
     {
         MaxHealth();
-     
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            FadeOut();
+            deathscreenscript.ToggleDeathScreen();
+        }
     }
 
-    void MaxHealth() 
+    void MaxHealth()
     {
-        if (currentHealth > maxHealth) {
+        if (currentHealth > maxHealth)
+        {
             currentHealth = maxHealth;
-
         }
-        
-        
-        
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            currentHealth -= 3;
+        }
     }
 
     public void takeDamage(int damage)
@@ -56,25 +64,16 @@ public class PlayerHealthScript : MonoBehaviour
         ShowDamageIndicator();
         CancelInvoke("HideDamageIndicator");
         Invoke("HideDamageIndicator", damageDuration);
-
-
-        if (currentHealth <= 0) 
-        {
-            currentHealth = 0;
-            FadeOut();
-            //die
-        }
-
         StartCoroutine(BecomeInvincible());
     }
     public void ShowDamageIndicator() { damageIndicator.SetActive(true); }
     public void HideDamageIndicator() { damageIndicator.SetActive(false); }
-    public void FadeOut() 
+    public void FadeOut()
     {
         HudDeath.SetActive(true);
         HudDeath.GetComponent<Animation>().Play("DeathFade");
     }
-    public void FadeIn() 
+    public void FadeIn()
     {
         StartCoroutine(FadeInEmum());
     }
@@ -87,7 +86,7 @@ public class PlayerHealthScript : MonoBehaviour
 
         isInvincible = false;
     }
-    private IEnumerator FadeInEmum() 
+    private IEnumerator FadeInEmum()
     {
         HudDeath.GetComponent<Animation>().Play("FadeInAnim");
 

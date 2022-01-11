@@ -20,12 +20,12 @@ public class EnemyMove : GroundEnemyScript
         Retreating,
         Death
     }
-    private States currentState;
+    private States currentGoblinState;
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        currentState = States.Idle;
+        currentGoblinState = States.Idle;
         Health = 10;
         Tier = 1;
         checkForPlayerDistance = 20;
@@ -42,14 +42,14 @@ public class EnemyMove : GroundEnemyScript
         navMeshAgent.speed = Speed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
         base.Update();
-        if (Health <= 0) currentState = States.Death;
-        else if (dist > checkForPlayerDistance) currentState = States.Idle;
-        else if (dist <= checkForPlayerDistance && dist > rushDistance) currentState = States.Following;
-        else if (dist <= rushDistance && dist > attackDistance) currentState = States.Rushing;
-        else if (dist <= attackDistance) currentState = States.Attacking;
+        if (Health <= 0) currentGoblinState = States.Death;
+        else if (dist > checkForPlayerDistance) currentGoblinState = States.Idle;
+        else if (dist <= checkForPlayerDistance && dist > rushDistance) currentGoblinState = States.Following;
+        else if (dist <= rushDistance && dist > attackDistance) currentGoblinState = States.Rushing;
+        else if (dist <= attackDistance) currentGoblinState = States.Attacking;
         //else if (dist < retreatDistance) currentState = States.Retreating;
 
-        switch (currentState)
+        switch (currentGoblinState)
         {
             case States.Idle:
                 Idle();
@@ -117,7 +117,7 @@ public class EnemyMove : GroundEnemyScript
 
         if (distanceToBackOffPoint.magnitude < 1f)
         {
-            currentState = States.Following;
+            currentGoblinState = States.Following;
         }
     }
     void SearchRetreatTarget()
