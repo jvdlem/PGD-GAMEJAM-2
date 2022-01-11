@@ -60,7 +60,7 @@ public class FPSPlayerMovement : MonoBehaviour
             //Debug.Log(Input.GetAxis("Vertical"));
             if (Input.GetAxis("Horizontal") >= 0.5f || Input.GetAxis("Vertical") <= 0.5f)
             {
-                Debug.Log("dis when sound should play");
+                //Debug.Log("dis when sound should play");
             }
 
                 Vector3 move = transform.right * x + transform.forward * z;
