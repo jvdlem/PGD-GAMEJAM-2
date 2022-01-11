@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartChoiceControlSystem : MonoBehaviour
+public class ControlManager : MonoBehaviour
 {
     [SerializeField]
     public FPSUI FPSUI;
@@ -19,39 +19,36 @@ public class StartChoiceControlSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        int controlSystem = PlayerPrefs.GetInt("ControlSystem");
+        if (controlSystem == 0)
+        {
+            VRControls();
+        }
+        else if (controlSystem == 1)
+        {
+            KeyboardControls();
+        }
     }
 
     public void VRControls()
     {
-        Debug.Log("StartChoice VR");
+        Debug.Log("ControlManager VR");
         VR = true;
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         FPSPlayer.ToggleFPSPlayer();
-        PlayerPrefs.SetInt("ControlSystem", 0);
     }
 
     public void KeyboardControls()
     {
-        Debug.Log("StartChoice Keyboard");
+        Debug.Log("ControlManager Keyboard");
         Keyboard = true;
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
         FPSUI.ToggleFPSUI();
-        PlayerPrefs.SetInt("ControlSystem", 1);
-    }
-
-    public void ToggleChoiceScreen()
-    {
-        this.gameObject.SetActive(true);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-        Debug.Log("Both Toggle");
     }
 }
