@@ -8,7 +8,6 @@ public class FPSUI : MonoBehaviour
 {
     [SerializeField] public Text healthText;
     [SerializeField] public Text coinText;
-    [SerializeField] public Text pressButtonText;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +20,6 @@ public class FPSUI : MonoBehaviour
     {
         healthText.text = "" + FindObjectOfType<PlayerHealthScript>().currentHealth;
         coinText.text = "" + FindObjectOfType<PlayerHealthScript>().coins;
-        if (FindObjectOfType<PushButtons>().buttonCanBePressed == true) pressButtonText.text = "Press E";
-        else pressButtonText.text = "";
     }
 
     public void ToggleFPSUI()

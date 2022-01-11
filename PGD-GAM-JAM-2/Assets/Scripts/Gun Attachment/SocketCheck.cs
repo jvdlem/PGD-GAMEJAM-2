@@ -12,6 +12,7 @@ public class SocketCheck : XRSocketInteractor
 
     private void Update()
     {
+        //Debug.Log(hasObject);
     }
     public override bool CanHover(XRBaseInteractable interactable)
     {
@@ -33,7 +34,7 @@ public class SocketCheck : XRSocketInteractor
         //Debug.Log(interactable);
         interactable.transform.localScale /= scaleSize;
         base.OnSelectExited(interactable);
-
+     
         Attatchment = null;
     }
 
