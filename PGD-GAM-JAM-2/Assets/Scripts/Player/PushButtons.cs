@@ -7,6 +7,7 @@ public class PushButtons : MonoBehaviour
 {
     LayerMask buttons;
     public bool buttonCanBePressed;
+    [SerializeField] GetsPressed getsPressed;
     private void Start()
     {
         buttons = LayerMask.GetMask("Buttons");
@@ -19,7 +20,7 @@ public class PushButtons : MonoBehaviour
             buttonCanBePressed = true;
             if (Input.GetKeyDown(KeyCode.E))
             {
-                hit.rigidbody.velocity += Vector3.left * 100;
+                getsPressed.ButtonGetsPressed(hit);
             }
         }
         else buttonCanBePressed = false;
