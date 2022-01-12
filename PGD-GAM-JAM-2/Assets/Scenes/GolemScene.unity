@@ -231,7 +231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2332166729083237681, guid: c9e2bdb2c3cbf5c4c94bc2a790bdb164, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2332166729083237692, guid: c9e2bdb2c3cbf5c4c94bc2a790bdb164, type: 3}
       propertyPath: m_RootOrder
@@ -559,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7992090717293393075, guid: 893d63ef586b67145ac0ff26cbe30972, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7992090717293393077, guid: 893d63ef586b67145ac0ff26cbe30972, type: 3}
       propertyPath: m_RootOrder
@@ -671,6 +671,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2094502742487578488, guid: 885fc081f8990b344990d69d07e17713, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6348841007698698055, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_Name
       value: Golem

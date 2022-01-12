@@ -17,12 +17,16 @@ public class GolemController : GroundEnemyScript
     public float timeBetweenAttacks;
     private float timeofLastAttack = 0;
     bool isAttacking = false;
-    private float attackTimer = 3f;
+    public bool alreadyAttacking;
+    private float attackTimer = 2f;
 
     [Header("States")]
     public float detectionDistance;
     private float attackDistance;
-    public bool playerDetected, playerInAttackRange, alreadyAttacking;
+    private bool Radius(float distance) => Physics.CheckSphere(this.gameObject.transform.position, distance, playerLayer);
+    public bool playerDetected => Radius(detectionDistance);
+    public bool playerInAttackRange => Radius(attackDistance);
+
     override public void Start()
     {
         anim = GetComponent<Animator>();
@@ -30,15 +34,11 @@ public class GolemController : GroundEnemyScript
         attackDistance = navMeshAgent.stoppingDistance;
         currentState = States.Patrolling;
     }
+
     // Update is called once per frame
     override public void Update()
     {
-        //Detection radius spheres
-        playerDetected = Physics.CheckSphere(this.gameObject.transform.position, detectionDistance, playerLayer);
-        playerInAttackRange = Physics.CheckSphere(this.gameObject.transform.position, attackDistance, playerLayer);
-
-        //Golem patrolls if no player is detected
-        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+        Debug.Log(Damage);
 
         switch (currentState)
         {
@@ -54,8 +54,12 @@ public class GolemController : GroundEnemyScript
                 Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
+            default:
+                //Golem patrolls if no player is detected
+                if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+                Die();
+                break;
         }
-        Die();
     }
     private void Patrolling()
     {
@@ -63,7 +67,7 @@ public class GolemController : GroundEnemyScript
         if (!walkPointSet)
         {
             SearchRandomWalkPoint();
-            Idle();
+            MovementAnimation(false);
         }
 
         //Let the golem walk towards the walkpoint only when the walkpoint is set
@@ -72,7 +76,7 @@ public class GolemController : GroundEnemyScript
             navMeshAgent.SetDestination(walkPoint);
             //Golem Looks at the target
             transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
-            Walk();
+            MovementAnimation(true);
         }
 
         //Calculate distance to walkpoint
@@ -95,7 +99,7 @@ public class GolemController : GroundEnemyScript
     private void Chase()
     {
         //Animation trigger
-        Walk();
+        MovementAnimation(true);
 
         //Golem looks at player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
@@ -103,24 +107,24 @@ public class GolemController : GroundEnemyScript
         //Golem goes towards the player
         navMeshAgent.SetDestination(Player.transform.position);
     }
-    private void Walk()
+    private void AnimationTrigger(string animation)
     {
-        anim.SetFloat("Speed", 1);
+        anim.SetTrigger(animation);
     }
-    private void Idle()
+    private void MovementAnimation(bool isMoving)
     {
-        anim.SetFloat("Speed", 0);
+        int speedVariable = isMoving ? 1 : 0;
+        anim.SetFloat("Speed", speedVariable);
     }
     private void Attacking()
     {
-  
         //The golem aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         float distanceToTarget = Vector3.Distance(Player.transform.position, transform.position);
-        if (distanceToTarget<=navMeshAgent.stoppingDistance)
+        if (distanceToTarget <= attackDistance)
         {
-            Idle();
+            MovementAnimation(false);
 
             //Start the attack timer
             if (!isAttacking)
@@ -130,9 +134,9 @@ public class GolemController : GroundEnemyScript
             }
             if (Time.time >= timeofLastAttack + attackTimer)
             {
-      
+
                 timeofLastAttack = Time.time;
-                anim.SetTrigger("Punch");
+                AnimationTrigger("Punch");
             }
         }
         else
@@ -144,9 +148,9 @@ public class GolemController : GroundEnemyScript
     {
         if (Health <= 0)
         {
-            anim.SetTrigger("Die");
+            AnimationTrigger("Die");
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-            Invoke(nameof(DeSpawn),3f);
+            Invoke(nameof(DeSpawn), 3f);
         }
     }
     private void DeSpawn()
@@ -158,16 +162,15 @@ public class GolemController : GroundEnemyScript
         //Projectile hurts goem on collision
         if (collision.gameObject.tag == "Projectile")
         {
-            anim.SetTrigger("TakeDamage");
+            AnimationTrigger("TakeDamage");
             Health--;
         }
 
         //Golem hurts player on collision
-
         if (collision.gameObject.tag == "Player")
         {
             //Player loses health
-            Player.GetComponent<PlayerHealthScript>().takeDamage(3);
+            Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
         }
     }
 }
