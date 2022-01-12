@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Transport : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class Transport : MonoBehaviour
     }
     public IEnumerator TransportPlayer()
     {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("cave system");
+       
+        /**
+        doitpls = true;
         if (goal == null)
         {
             this.transform.position = worldPos;
@@ -28,5 +34,6 @@ public class Transport : MonoBehaviour
             this.transform.position = goal.transform.position;
             player.GetComponent<PlayerHealthScript>().FadeIn();
         }
+        **/
     }
 }

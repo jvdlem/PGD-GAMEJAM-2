@@ -11,9 +11,7 @@ public class StartChoiceControlSystem : MonoBehaviour
     [SerializeField]
     public ChracterMovmentHelper VRPlayer;
     [SerializeField]
-    public FPSUI VRUI;
-
-
+    public Pistol VRGun;
 
     public bool VR = false;
     public bool Keyboard = false;
@@ -25,29 +23,35 @@ public class StartChoiceControlSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void VRControls()
     {
-        gameObject.SetActive(false);
+        Debug.Log("StartChoice VR");
+        VR = true;
+        this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-       
-        //VRUI.ToggleVRUI();
         FPSPlayer.ToggleFPSPlayer();
+        PlayerPrefs.SetInt("ControlSystem", 0);
     }
-   
+
     public void KeyboardControls()
     {
-        gameObject.SetActive(false);
+        Debug.Log("StartChoice Keyboard");
+        Keyboard = true;
+        this.gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        FPSUI.ToggleFPSUI();
+        VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
+        FPSUI.ToggleFPSUI();
+        PlayerPrefs.SetInt("ControlSystem", 1);
+    }
 
+    public void ToggleChoiceScreen()
+    {
+        this.gameObject.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        Debug.Log("Both Toggle");
     }
 }

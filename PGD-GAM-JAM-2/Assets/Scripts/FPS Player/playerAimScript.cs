@@ -6,7 +6,6 @@ public class playerAimScript : MonoBehaviour
 {
     public Animator anim;
     public bool aiming;
-    public crosshairScript crosshair;
 
     // Update is called once per frame
     void Update()
@@ -20,7 +19,6 @@ public class playerAimScript : MonoBehaviour
         {
             anim.SetBool("aiming", false);
             aiming = false;
-            crosshair.turnBackOn();
         }
     }
 }
