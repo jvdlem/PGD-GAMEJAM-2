@@ -9,7 +9,7 @@ public class DisplayItems : MonoBehaviour
     public GameObject Player;
     private PlayerHealthScript PlayerScript;
     public bool isBought;
-    public int price = 5;
+    public int price;
 
     public List<GameObject> shopItems;
 
