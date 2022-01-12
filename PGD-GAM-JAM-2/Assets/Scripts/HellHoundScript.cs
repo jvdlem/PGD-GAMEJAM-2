@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class HellHoundScript : GroundEnemyScript
 {
-    //[SerializeField] public Animator anim;
+    [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
     //[SerializeField] public Transform target;
     private Transform hound;
@@ -171,7 +171,7 @@ public class HellHoundScript : GroundEnemyScript
         if (backOffTargetSet)
         {
             //Play animation
-            //anim.Play("Hop");
+            anim.Play("Hop");
 
             //Move to code 
             //MoveToTargetDirection(backOffTarget,2);
@@ -217,7 +217,7 @@ public class HellHoundScript : GroundEnemyScript
             //navMeshAgent.speed = 10;
 
             //Play animation
-            //anim.Play("Hop");
+            anim.Play("Hop");
 
 
             //Movement 
@@ -234,7 +234,7 @@ public class HellHoundScript : GroundEnemyScript
             //Reset hound speed
             //navMeshAgent.speed = 7;
 
-           // anim.Play("IdleHound");
+            anim.Play("IdleHound");
 
             //go to a random State after the hop
             float randomState = Random.Range(0, 2);
@@ -259,7 +259,7 @@ public class HellHoundScript : GroundEnemyScript
         if (walkPointSet)
         {
             navMeshAgent.SetDestination(walkPoint);
-            //anim.Play("Walking");
+            anim.Play("Walking");
         }
 
         //Calculate distance to walkpoint
