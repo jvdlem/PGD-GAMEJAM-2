@@ -12,7 +12,6 @@ public class GolemController : GroundEnemyScript
     [Header("Movement variables")]
     public Vector3 walkPoint;
     public bool walkPointSet;
-    public int idleTimer = 1;
 
     [Header("Attack variables")]
     public float timeBetweenAttacks;
