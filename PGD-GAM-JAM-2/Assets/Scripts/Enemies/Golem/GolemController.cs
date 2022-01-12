@@ -55,8 +55,6 @@ public class GolemController : GroundEnemyScript
                 Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
-            case States.Death:
-                break;
         }
         Die();
     }
@@ -142,8 +140,6 @@ public class GolemController : GroundEnemyScript
         {
             isAttacking = false;
         }
-
-
     }
     void Die()
     {
