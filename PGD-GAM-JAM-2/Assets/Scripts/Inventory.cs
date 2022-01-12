@@ -4,30 +4,28 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] listOfAttachements;
-    [SerializeField] Text[] slots = new Text[4];
+    [SerializeField] 
+    GameObject[] listOfAttachements;
+    
+    [SerializeField] 
+    Text[] slots = new Text[4];
 
-    GameObject[] attachements = new GameObject[4];
+    public static GameObject[] attachements = new GameObject[4];
 
     public LayerMask layer;
 
     int currentSlot = 0;
 
-    public GameObject[] Attachements 
-    {
-        get { return attachements; }
-    }
-
     public void Update()
     {
         //Pick up/drop item based on key input
-        if (Input.GetKey(KeyCode.E)) PickUp();
-        else if (Input.GetKey(KeyCode.Q)) Drop();
+        if (Input.GetKeyDown(KeyCode.E)) PickUp();
+        else if (Input.GetKeyDown(KeyCode.Q)) Drop();
 
         SetNewSlot();
     }
 
-    public void PickUp()
+    private void PickUp()
     {
         //Raycast hit and object hit by raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -71,27 +69,32 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void PutInInventory(GameObject attachement, int slot) 
+    private void PutInInventory(GameObject attachement, int slot) 
     {
         if (attachements[slot] == null)
         {
             attachements[slot] = attachement; //Fill attachement
-            slots[slot].text = attachement.tag; //Fill slot
+            ChangeText(slot, attachement.tag); //Fill slot
         }
     }
 
-    public void Drop() 
+    private void Drop() 
     {
         ClearInventory(currentSlot); // Remove attachement from inventory
     }
 
-    public void ClearInventory(int slot) 
+    private void ClearInventory(int slot) 
     {
         if (attachements[slot] != null) 
         {
             Instantiate(attachements[slot], transform.position, transform.rotation); //Attachement is "dropped"
             attachements[slot] = null; //Clear attachement
-            slots[slot].text = "Empty"; //Clear slot
+            ChangeText(slot, "Empty"); //Clear slot
         }
+    }
+
+    private void ChangeText(int slot, string value) 
+    {
+        slots[slot].text = value;
     }
 }
