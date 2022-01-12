@@ -50,7 +50,7 @@ public class ButtonPhysics : MonoBehaviour
 
     private void Pressed()
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ButtonPress", this.gameObject.transform.position);
+        //myAudio.Play();
         isPressed = true;
         onPressed.Invoke();
         rend.material.color = Color.green;

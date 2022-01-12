@@ -10,7 +10,6 @@ public class EnemyMove : GroundEnemyScript
     bool gotRetreatTarget, attemptAttack;
     Vector3 retreatTarget = Vector3.zero;
     public LayerMask groundLayer;
-    Vector3 pos;
     [SerializeField] Animator anim;
     enum States
     {
@@ -21,12 +20,12 @@ public class EnemyMove : GroundEnemyScript
         Retreating,
         Death
     }
-    private States currentState;
+    private States currentGoblinState;
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        currentState = States.Idle;
+        currentGoblinState = States.Idle;
         Health = 10;
         Tier = 1;
         checkForPlayerDistance = 20;
@@ -40,18 +39,17 @@ public class EnemyMove : GroundEnemyScript
     // Update is called once per frame
     public override void Update()
     {
-        pos = this.gameObject.transform.position;
         navMeshAgent.speed = Speed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
         base.Update();
-        if (Health <= 0) currentState = States.Death;
-        else if (dist > checkForPlayerDistance) currentState = States.Idle;
-        else if (dist <= checkForPlayerDistance && dist > rushDistance) currentState = States.Following;
-        else if (dist <= rushDistance && dist > attackDistance) currentState = States.Rushing;
-        else if (dist <= attackDistance) currentState = States.Attacking;
+        if (Health <= 0) currentGoblinState = States.Death;
+        else if (dist > checkForPlayerDistance) currentGoblinState = States.Idle;
+        else if (dist <= checkForPlayerDistance && dist > rushDistance) currentGoblinState = States.Following;
+        else if (dist <= rushDistance && dist > attackDistance) currentGoblinState = States.Rushing;
+        else if (dist <= attackDistance) currentGoblinState = States.Attacking;
         //else if (dist < retreatDistance) currentState = States.Retreating;
 
-        switch (currentState)
+        switch (currentGoblinState)
         {
             case States.Idle:
                 Idle();
@@ -74,6 +72,9 @@ public class EnemyMove : GroundEnemyScript
             default:
                 break;
         }
+
+        Debug.Log("state" + currentState);
+        Debug.Log(dist);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -91,7 +92,7 @@ public class EnemyMove : GroundEnemyScript
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinHurt", pos);
+            //Sound
             Health -= 1;
             Destroy(collision.gameObject);
         }
@@ -116,7 +117,7 @@ public class EnemyMove : GroundEnemyScript
 
         if (distanceToBackOffPoint.magnitude < 1f)
         {
-            currentState = States.Following;
+            currentGoblinState = States.Following;
         }
     }
     void SearchRetreatTarget()
@@ -132,8 +133,8 @@ public class EnemyMove : GroundEnemyScript
     {
         anim.Play("Die");
         Speed = idleSpeed;
-        navMeshAgent.SetDestination(this.transform.position);
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinDeath", pos);
+        navMeshAgent.SetDestination(this.transform.position); 
+        //Sound
         DeathTimer += Time.deltaTime;
         if (DeathTimer > 1.65f)
         {
@@ -151,7 +152,7 @@ public class EnemyMove : GroundEnemyScript
         if (IdleTimer > 8)
         {
             IdleTimer = 0;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinIdle", pos);
+            //play the idleing sound.
         }
     }
 
@@ -164,7 +165,7 @@ public class EnemyMove : GroundEnemyScript
         if (AttackTimer > 1.5f)
         {
             anim.Play("Attack_01");
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinAttack", pos);
+            //play the attacking sound.
             attemptAttack = true;
             AttackTimer = 0;
         }
@@ -181,7 +182,6 @@ public class EnemyMove : GroundEnemyScript
     {
         Speed = rushSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Enemy/Goblin/GoblinWindup", pos);
         anim.Play("Run");
     }
 }

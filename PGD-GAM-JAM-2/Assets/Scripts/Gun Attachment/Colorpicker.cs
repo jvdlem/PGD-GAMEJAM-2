@@ -12,7 +12,8 @@ public class Colorpicker : MonoBehaviour
     {
         if (transform.childCount > 0)
         {
-            GameObject child = transform.GetChild(0).gameObject;
+            
+            GameObject child = transform.GetChild(0).GetChild(0).gameObject;
             startColor = child.GetComponent<Renderer>().material.color;
         }
     }
@@ -21,7 +22,7 @@ public class Colorpicker : MonoBehaviour
     {
         if (transform.childCount > 0)
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (int i = 0; i < 1; i++)
             {
                 GameObject child = transform.GetChild(i).gameObject;
                 

@@ -8,9 +8,9 @@ public class AttachmentStats : MonoBehaviour
     public float spread = 1;
     public float amountOfBullets = 1;
     public float damage = 1;
-    public float fullAutoCount = 0;
     public float bulletTime = 1;
     public float bulletSpeed = 1;
+    public float fullAutoCount = 0;
 
 
     private void Start()
@@ -18,8 +18,8 @@ public class AttachmentStats : MonoBehaviour
         statList.Add(spread);
         statList.Add(amountOfBullets);
         statList.Add(damage);
-        statList.Add(fullAutoCount);
         statList.Add(bulletTime);
         statList.Add(bulletSpeed);
+        statList.Add(fullAutoCount);
     }
 }
