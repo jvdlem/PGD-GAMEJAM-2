@@ -33,8 +33,10 @@ public class DisplayItems : MonoBehaviour
     {
         if (PlayerScript.coins >= price)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/BoughtItem");
             shopItems[i].transform.position = boughtItemPos;
             PlayerScript.coins -= price;
         }
+        else FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/InsufficientMoney");
     }
 }

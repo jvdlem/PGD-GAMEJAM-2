@@ -21,6 +21,7 @@ public class PushButtons : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 getsPressed.ButtonGetsPressed(hit);
+                FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ButtonPress", hit.transform.position);
             }
         }
         else buttonCanBePressed = false;
