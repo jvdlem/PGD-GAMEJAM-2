@@ -5,79 +5,79 @@ using UnityEngine;
 public class SkeletonArcher : GroundEnemyScript
 {
     // Start is called before the first frame update
-    //public Animator anim;
+    [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
-    //public Transform pivotPoint;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
     bool walkPointSet;
-    public int idleTimer;
 
     [Header("Attack variables")]
     [SerializeField] Transform shootPoint;
     public float timeBetweenAttacks;
     bool isAttacking;
     public GameObject arrow;
-    bool readyToShoot = true;
-    private float attackState, attackTimer;
-    private string[] attackVariations = { "Swing", "Slam" };
 
     [Header("States")]
-    public float detectionDistance = 25;
-    public float attackDistance = 15;
-    public bool playerDetected, playerInAttackRange, alreadyAttacking;
+    [SerializeField]public float detectionDistance;
+    [SerializeField]public float attackDistance;
+    private bool Radius(float distance) => Physics.CheckSphere(this.gameObject.transform.position, distance, playerLayer);
+    public bool playerDetected => Radius(detectionDistance);
+    public bool playerInAttackRange => Radius(attackDistance);
 
     override public void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-
-        //pivotPoint = GetComponent<Transform>();
-        //anim = GetComponent<Animator>();
-        Health = 20;
-        Damage = 3;
-        Tier = 2;
-        attackTimer = 0;
-        attackState = Random.Range(0, attackVariations.Length);
-
+        currentState = States.Patrolling;
         InvokeRepeating(nameof(Shoot), timeBetweenAttacks, timeBetweenAttacks);
-
     }
     // Update is called once per frame
     override public void Update()
     {
-        playerDetected = Physics.CheckSphere(this.gameObject.transform.position, detectionDistance, playerLayer);
-        playerInAttackRange = Physics.CheckSphere(this.gameObject.transform.position, attackDistance, playerLayer);
-
-        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
-
-        Die();
+        Debug.Log(currentState);
+        Debug.Log("In attack range"+playerInAttackRange);
+        Debug.Log("Detected"+playerDetected);
 
         switch (currentState)
         {
             case States.Patrolling:
-                Patrolling(); attackTimer = 0;
+                Patrolling();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
             case States.Chasing:
-                Chase(); attackTimer = 0;
+                Chase();
                 if (playerInAttackRange && playerDetected) { currentState = States.Attacking; }
                 break;
             case States.Attacking:
-                Attacking();
+                Aiming();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
             case States.Death:
                 break;
+            default:
+                if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+                Die();
+                break;
         }
+    }
+    private void AnimationTrigger(string animation)
+    {
+        //Triggers different animations
+        anim.SetTrigger(animation);
+    }
+    private void MovementAnimation(bool isMoving)
+    {
+        //Changes the vaulue of the speed variable based on a bool
+        int speedVariable = isMoving ? 1 : 0;
+        anim.SetFloat("Speed", speedVariable);
     }
     private void Patrolling()
     {
         //Search a walkpoint if there is none set yet
         if (!walkPointSet)
         {
-           SearchRandomWalkPoint();
-            //anim.Play("Idle");
+            SearchRandomWalkPoint();
+            MovementAnimation(false);
         }
 
         //Let the golem walk towards the walkpoint only when the walkpoint is set
@@ -85,8 +85,8 @@ public class SkeletonArcher : GroundEnemyScript
         {
             navMeshAgent.SetDestination(walkPoint);
             //Golem Looks at the target
-            transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-            //anim.Play("Walking");
+            transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
+            MovementAnimation(true);
         }
 
         //Calculate distance to walkpoint
@@ -108,28 +108,29 @@ public class SkeletonArcher : GroundEnemyScript
     }
     private void Chase()
     {
-        //anim.Play("Walking");
+        MovementAnimation(true);
 
         //Golem looks at player and goes to their position
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         navMeshAgent.SetDestination(Player.transform.position);
     }
-    private void Attacking()
+    private void Aiming()
     {
         //The golem stands stil during attack
+        MovementAnimation(false);
         navMeshAgent.SetDestination(transform.position);
 
         //The golem aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-
-        //Timed attack
     }
     void Shoot()
     {
         if (currentState == States.Attacking)
         {
+            AnimationTrigger("Shoot");
+
             Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            currentArrow.AddForce(transform.forward * 1.5f, ForceMode.Impulse);
+            currentArrow.AddForce(transform.forward * 10f, ForceMode.Impulse);
             currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
         }
     }
@@ -137,10 +138,14 @@ public class SkeletonArcher : GroundEnemyScript
     {
         if (Health <= 0)
         {
+            AnimationTrigger("Die");
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-
-            Destroy(this.gameObject);
+            Invoke(nameof(DeSpawn), 3f);
         }
+    }
+    private void DeSpawn()
+    {
+        Destroy(this.gameObject);
     }
     private void OnTriggerEnter(Collider collision)
     {
@@ -151,13 +156,10 @@ public class SkeletonArcher : GroundEnemyScript
         }
 
         //Skeleton hurts player on collision
-        if (attackTimer != 0)
+        if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.tag == "Player")
-            {
-                //Player loses health
-                Player.GetComponent<PlayerHealthScript>().takeDamage(3);
-            }
+            //Player loses health
+            Player.GetComponent<PlayerHealthScript>().takeDamage(3);
         }
     }
 }

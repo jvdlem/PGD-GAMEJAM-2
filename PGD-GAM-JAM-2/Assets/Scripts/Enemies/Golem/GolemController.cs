@@ -69,10 +69,9 @@ public class GolemController : GroundEnemyScript
             SearchRandomWalkPoint();
             MovementAnimation(false);
         }
-
-        //Let the golem walk towards the walkpoint only when the walkpoint is set
-        if (walkPointSet)
+        else
         {
+            //Let the golem walk towards the walkpoint only when the walkpoint is set
             navMeshAgent.SetDestination(walkPoint);
             //Golem Looks at the target
             transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));

@@ -16,7 +16,7 @@ public class CaveSpiderController : GroundEnemyScript
     [Header("Attack variables")]
     public float timeBetweenAttacks;
     private float timeofLastAttack = 0;
-    bool isAttacking = false;
+    bool startAttackTimer = false;
     public bool alreadyAttacking;
     public float attackTimer;
 
@@ -38,6 +38,7 @@ public class CaveSpiderController : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
+        transform.Translate(Vector3.forward * Time.deltaTime * 1);
         switch (currentState)
         {
             case States.Patrolling:
@@ -67,10 +68,9 @@ public class CaveSpiderController : GroundEnemyScript
             SearchRandomWalkPoint();
             MovementAnimation(false);
         }
-
-        //Let the spider walk towards the walkpoint only when the walkpoint is set
-        if (walkPointSet)
+        else
         {
+            //Let the spider walk towards the walkpoint only when the walkpoint is set
             navMeshAgent.SetDestination(walkPoint);
             //spider Looks at the target
             transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
@@ -127,9 +127,9 @@ public class CaveSpiderController : GroundEnemyScript
             MovementAnimation(false);
 
             //Start the attack timer
-            if (!isAttacking)
+            if (!startAttackTimer)
             {
-                isAttacking = true;
+                startAttackTimer = true;
                 timeofLastAttack = Time.time;
             }
             if (Time.time >= timeofLastAttack + attackTimer)
@@ -141,7 +141,7 @@ public class CaveSpiderController : GroundEnemyScript
         }
         else
         {
-            isAttacking = false;
+            startAttackTimer = false;
         }
     }
     void Die()
@@ -159,14 +159,14 @@ public class CaveSpiderController : GroundEnemyScript
     }
     private void OnTriggerEnter(Collider collision)
     {
-        //Projectile hurts goem on collision
+        //Projectile hurts spider on collision
         if (collision.gameObject.tag == "Projectile")
         {
             AnimationTrigger("TakeDamage");
             Health--;
         }
 
-        //Golem hurts player on collision
+        //Spider hurts player on collision
         if (collision.gameObject.tag == "Player")
         {
             //Player loses health
