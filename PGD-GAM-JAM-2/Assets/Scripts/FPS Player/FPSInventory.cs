@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class FPSInventory : MonoBehaviour
 {
     public GameObject barrelGunSlot;
     public GameObject sightGunSlot;
