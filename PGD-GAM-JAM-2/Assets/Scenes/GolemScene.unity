@@ -233,6 +233,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonArcher
       objectReference: {fileID: 0}
+    - target: {fileID: 617497683401223665, guid: 371972436a427ff49a165d6046b41d2a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 617497683401519489, guid: 371972436a427ff49a165d6046b41d2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -40.190952
@@ -731,7 +735,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335978074}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f36d77f5c37e91438a0bddb9ad501ee, type: 3}
   m_Name: 
@@ -791,6 +795,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1335978080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335978074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad7fb7676bf5f2d4a8b51495bceabb6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1654024122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,6 +1177,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2094502742487578489, guid: 885fc081f8990b344990d69d07e17713, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2094502742487578489, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: attackTimer
       value: 2
       objectReference: {fileID: 0}
@@ -1170,7 +1190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6348841007698698055, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6348841007699182375, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_RootOrder
