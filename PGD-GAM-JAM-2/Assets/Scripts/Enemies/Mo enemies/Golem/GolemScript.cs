@@ -11,10 +11,4 @@ public class GolemScript : Moenemies
         die = "Die";
         attack = "Punch";
     }
-
-    public override void Update()
-    {
-        base.Update();
-        Debug.Log(currentState);
-    }
 }

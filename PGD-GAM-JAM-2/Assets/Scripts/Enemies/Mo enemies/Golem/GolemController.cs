@@ -38,8 +38,6 @@ public class GolemController : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
-        Debug.Log(Damage);
-
         switch (currentState)
         {
             case States.Patrolling:

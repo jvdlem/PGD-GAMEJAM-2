@@ -235,7 +235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 617497683401223665, guid: 371972436a427ff49a165d6046b41d2a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 617497683401519489, guid: 371972436a427ff49a165d6046b41d2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -795,7 +795,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1335978080
+--- !u!114 &1335978079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -804,9 +804,94 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335978074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7fb7676bf5f2d4a8b51495bceabb6c, type: 3}
+  m_Script: {fileID: 11500000, guid: e87d7a999dd247740b639f60fa974fe3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 25
+  Damage: 3
+  Tier: 1
+  Player: {fileID: 0}
+  Coin: {fileID: 9218256390154230802, guid: c17f471f3e3578d49814f10080aaa831, type: 3}
+  navMeshAgent: {fileID: 1335978078}
+  checkForPlayerDistance: 15
+  WalkSpeed: 0
+  RotateSpeed: 0
+  AttackRange: 0
+  anim: {fileID: 1335978076}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
+  timeBetweenAttacks: 0
+  timeofLastAttack: 0
+  isAttacking: 0
+  alreadyAttacking: 0
+  attackTimer: 0
+  attack: Shoot
+  die: Die
+  detectionDistance: 20
+  attackDistance: 15
+  shootPoint: {fileID: 1867259653}
+  arrow: {fileID: 4150077041025866044, guid: cd25ccc9bdaa49b4e82a063b6a19415f, type: 3}
+--- !u!1 &1399693083 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6348841007698698055, guid: 885fc081f8990b344990d69d07e17713, type: 3}
+  m_PrefabInstance: {fileID: 2094502743808425843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &1399693084 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 2094502742487578488, guid: 885fc081f8990b344990d69d07e17713, type: 3}
+  m_PrefabInstance: {fileID: 2094502743808425843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1399693087 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6348841007706090733, guid: 885fc081f8990b344990d69d07e17713, type: 3}
+  m_PrefabInstance: {fileID: 2094502743808425843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1399693089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399693083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: decf7106f12ae0240ba2eee7536679bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 50
+  Damage: 10
+  Tier: 1
+  Player: {fileID: 0}
+  Coin: {fileID: 9218256390154230802, guid: c17f471f3e3578d49814f10080aaa831, type: 3}
+  navMeshAgent: {fileID: 1399693084}
+  checkForPlayerDistance: 15
+  WalkSpeed: 0
+  RotateSpeed: 0
+  AttackRange: 0
+  anim: {fileID: 1399693087}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
+  timeBetweenAttacks: 0
+  timeofLastAttack: 0
+  isAttacking: 0
+  alreadyAttacking: 0
+  attackTimer: 0
+  attack: Punch
+  die: Die
+  detectionDistance: 10
+  attackDistance: 2.5
 --- !u!1 &1654024122
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1189,61 @@ Transform:
   m_Father: {fileID: 1335978077}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2027225164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8033790232007055556, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
+  m_PrefabInstance: {fileID: 8073186382267539986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!195 &2027225165 stripped
+NavMeshAgent:
+  m_CorrespondingSourceObject: {fileID: 8073186383166612805, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
+  m_PrefabInstance: {fileID: 8073186382267539986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2027225166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027225164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4956ac3d714309f41b7f309f52704042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 15
+  Damage: 2
+  Tier: 1
+  Player: {fileID: 0}
+  Coin: {fileID: 9218256390154230802, guid: c17f471f3e3578d49814f10080aaa831, type: 3}
+  navMeshAgent: {fileID: 2027225165}
+  checkForPlayerDistance: 15
+  WalkSpeed: 0
+  RotateSpeed: 0
+  AttackRange: 0
+  anim: {fileID: 2027225168}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
+  timeBetweenAttacks: 0
+  timeofLastAttack: 0
+  isAttacking: 0
+  alreadyAttacking: 0
+  attackTimer: 0
+  attack: Lunge
+  die: Die
+  detectionDistance: 20
+  attackDistance: 2.5
+--- !u!95 &2027225168 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8033790231999802222, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
+  m_PrefabInstance: {fileID: 8073186382267539986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2052186235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1178,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2094502742487578489, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2094502742487578489, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: attackTimer
@@ -1190,7 +1330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6348841007698698055, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6348841007699182375, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_RootOrder
@@ -1236,7 +1376,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2094502742487578489, guid: 885fc081f8990b344990d69d07e17713, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 885fc081f8990b344990d69d07e17713, type: 3}
 --- !u!1001 &8073186382267539986
 PrefabInstance:
@@ -1247,7 +1388,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8033790231999802222, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8033790232007055556, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
       propertyPath: m_Name
@@ -1550,8 +1691,12 @@ PrefabInstance:
       value: 101.6605
       objectReference: {fileID: 0}
     - target: {fileID: 8073186383166612805, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073186383166612805, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
       propertyPath: m_StoppingDistance
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8073186383166612810, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
       propertyPath: attackTimer
@@ -1561,5 +1706,6 @@ PrefabInstance:
       propertyPath: detectionDistance
       value: 15
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8073186383166612810, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}

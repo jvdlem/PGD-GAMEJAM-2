@@ -13,7 +13,7 @@ public class Moenemies : GroundEnemyScript
 
     [Header("Attack variables")]
     public float timeBetweenAttacks;
-    private float timeofLastAttack = 0;
+    public float timeofLastAttack = 0;
     public bool isAttacking = false;
     public bool alreadyAttacking;
     public float attackTimer;
@@ -61,7 +61,7 @@ public class Moenemies : GroundEnemyScript
                 break;
         }
     }
-    public void Patrolling()
+    virtual public void Patrolling()
     {
         //Search a walkpoint if there is none set yet
         if (!walkPointSet)
@@ -84,7 +84,7 @@ public class Moenemies : GroundEnemyScript
         //WalkPoint reached so set walkpoint set to false
         if (distanceToWalkPoint.magnitude <= navMeshAgent.stoppingDistance) walkPointSet = false;
     }
-    public void SearchRandomWalkPoint()
+    virtual public void SearchRandomWalkPoint()
     {
         //Determine a random point in the Golems detection range 
         float randomZ = Random.Range(-detectionDistance / 2, detectionDistance / 2);
@@ -95,7 +95,7 @@ public class Moenemies : GroundEnemyScript
         //Check if walkpoint is on the ground
         if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) { walkPointSet = true; }
     }
-    public void Chase()
+    virtual public void Chase()
     {
         //Animation trigger
         MovementAnimation(true);
@@ -106,16 +106,16 @@ public class Moenemies : GroundEnemyScript
         //Golem goes towards the player
         navMeshAgent.SetDestination(Player.transform.position);
     }
-    public void AnimationTrigger(string animation)
+    virtual public void AnimationTrigger(string animation)
     {
         anim.SetTrigger(animation);
     }
-    public void MovementAnimation(bool isMoving)
+    virtual public void MovementAnimation(bool isMoving)
     {
         int speedVariable = isMoving ? 1 : 0;
         anim.SetFloat("Speed", speedVariable);
     }
-    public void Attacking(string animation)
+    virtual public void Attacking(string animation)
     {
         //The golem aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
@@ -143,7 +143,7 @@ public class Moenemies : GroundEnemyScript
             isAttacking = false;
         }
     }
-    void Die(string animation)
+    virtual public void Die(string animation)
     {
         if (Health <= 0)
         {
