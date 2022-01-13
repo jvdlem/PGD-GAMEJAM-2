@@ -16,15 +16,15 @@ public class Moenemies : GroundEnemyScript
     public float timeofLastAttack = 0;
     public bool isAttacking = false;
     public bool alreadyAttacking;
-    public float attackTimer;
+    [SerializeField]public float attackTimer;
 
     [Header("Animation Variables")]
     public string attack;
-    public string die;
+    public string die = "Die";
 
     [Header("States")]
-    public float detectionDistance;
-    public  float attackDistance;
+    [SerializeField]public float detectionDistance;
+    [SerializeField]public  float attackDistance;
     public bool Radius(float distance) => Physics.CheckSphere(this.gameObject.transform.position, distance, playerLayer);
     public bool playerDetected => Radius(detectionDistance);
     public bool playerInAttackRange => Radius(attackDistance);
@@ -51,11 +51,11 @@ public class Moenemies : GroundEnemyScript
                 if (playerInAttackRange && playerDetected) { currentState = States.Attacking; }
                 break;
             case States.Attacking:
-                Attacking(attack);
+                Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
             default:
-                //Golem patrolls if no player is detected
+                //Enemy patrols if no player is detected
                 if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
                 Die(die);
                 break;
@@ -71,9 +71,9 @@ public class Moenemies : GroundEnemyScript
         }
         else
         {
-            //Let the golem walk towards the walkpoint only when the walkpoint is set
+            //Let the enemy walk towards the walkpoint only when the walkpoint is set
             navMeshAgent.SetDestination(walkPoint);
-            //Golem Looks at the target
+            //Enemy Looks at the target
             transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
             MovementAnimation(true);
         }
@@ -86,7 +86,7 @@ public class Moenemies : GroundEnemyScript
     }
     virtual public void SearchRandomWalkPoint()
     {
-        //Determine a random point in the Golems detection range 
+        //Determine a random point in the Enemy's detection range 
         float randomZ = Random.Range(-detectionDistance / 2, detectionDistance / 2);
         float randomX = Random.Range(-detectionDistance / 2, detectionDistance / 2);
 
@@ -100,24 +100,26 @@ public class Moenemies : GroundEnemyScript
         //Animation trigger
         MovementAnimation(true);
 
-        //Golem looks at player
+        //Enemy looks at player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
-        //Golem goes towards the player
+        //Enemy goes towards the player
         navMeshAgent.SetDestination(Player.transform.position);
     }
     virtual public void AnimationTrigger(string animation)
     {
+        //Plays enemy animation
         anim.SetTrigger(animation);
     }
     virtual public void MovementAnimation(bool isMoving)
     {
+        //changes movement variable based on bool
         int speedVariable = isMoving ? 1 : 0;
         anim.SetFloat("Speed", speedVariable);
     }
-    virtual public void Attacking(string animation)
+    virtual public void Attacking()
     {
-        //The golem aims at the player
+        //The enemy aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         float distanceToTarget = Vector3.Distance(Player.transform.position, transform.position);
@@ -133,15 +135,19 @@ public class Moenemies : GroundEnemyScript
             }
             if (Time.time >= timeofLastAttack + attackTimer)
             {
-
                 timeofLastAttack = Time.time;
-                AnimationTrigger(animation);
+                AnimationTrigger(attack);
             }
         }
         else
         {
             isAttacking = false;
         }
+    }
+    virtual public string RandomAttackVariations(string attack1, string attack2)
+    {
+        int random = Random.Range(0, 2);
+        if (random == 0) return attack1; else return attack2;
     }
     virtual public void Die(string animation)
     {
@@ -158,14 +164,14 @@ public class Moenemies : GroundEnemyScript
     }
     public void OnTriggerEnter(Collider collision)
     {
-        //Projectile hurts goem on collision
+        //Projectile hurts enemy on collision
         if (collision.gameObject.tag == "Projectile")
         {
             AnimationTrigger("TakeDamage");
             Health--;
         }
 
-        //Golem hurts player on collision
+        //Enemy hurts player on collision
         if (collision.gameObject.tag == "Player")
         {
             //Player loses health

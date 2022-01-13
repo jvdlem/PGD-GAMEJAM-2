@@ -7,12 +7,15 @@ public class SkeletonArcherController : Moenemies
     // Start is called before the first frame update
     [SerializeField] Transform shootPoint;
     [SerializeField] GameObject arrow;
+
     override public void Start()
     {
-        die = "Die";
+        base.Start();
         attack = "Shoot";
+        detectionDistance = 25f;
+        attackDistance = 20f;
     }
-    override public void Attacking(string animation)
+    override public void Attacking()
     {
         //The skeleton aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
@@ -32,7 +35,8 @@ public class SkeletonArcherController : Moenemies
             {
 
                 timeofLastAttack = Time.time;
-                AnimationTrigger(animation);
+                //attack = RandomAttackVariations();
+                AnimationTrigger(attack);
                 Shoot();
             }
         }
@@ -41,13 +45,24 @@ public class SkeletonArcherController : Moenemies
             isAttacking = false;
         }
     }
+    public override void SearchRandomWalkPoint()
+    {       
+        //Determine a random point in the Golems detection range 
+        float randomZ = Random.Range(-detectionDistance*1.5f, detectionDistance*1.5f);
+        float randomX = Random.Range(-detectionDistance*1.5f, detectionDistance*1.5f);
+
+        walkPoint = new Vector3(this.gameObject.transform.position.x + randomX, this.gameObject.transform.position.y, this.gameObject.transform.position.y + randomZ);
+
+        //Check if walkpoint is on the ground
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) { walkPointSet = true; }
+    }
     void Shoot()
     {
-            AnimationTrigger("Shoot");
+        AnimationTrigger("Shoot");
 
-            Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
-            currentArrow.AddForce(transform.forward * 10f, ForceMode.Impulse);
-            currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
+        Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+        currentArrow.AddForce(transform.forward * 10f, ForceMode.Impulse);
+        currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
     }
 
 }
