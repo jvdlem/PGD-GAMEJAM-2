@@ -618,6 +618,10 @@ PrefabInstance:
       propertyPath: Health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2094502742487578489, guid: 885fc081f8990b344990d69d07e17713, type: 3}
+      propertyPath: attackTimer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6348841007698698055, guid: 885fc081f8990b344990d69d07e17713, type: 3}
       propertyPath: m_Name
       value: Golem
@@ -978,6 +982,14 @@ PrefabInstance:
     - target: {fileID: 8033790232007476398, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 101.6605
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073186383166612805, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8073186383166612810, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}
+      propertyPath: attackTimer
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6621d6c4ffa7ab74b828143400abd443, type: 3}

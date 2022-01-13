@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GolemController : GroundEnemyScript
+public class CaveSpiderController : GroundEnemyScript
 {
     // Start is called before the first frame update
     [SerializeField] public Animator anim;
@@ -38,8 +38,6 @@ public class GolemController : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
-        Debug.Log(Damage);
-
         switch (currentState)
         {
             case States.Patrolling:
@@ -55,7 +53,7 @@ public class GolemController : GroundEnemyScript
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
             default:
-                //Golem patrolls if no player is detected
+                //Spider patrolls if no player is detected
                 if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
                 Die();
                 break;
@@ -70,11 +68,11 @@ public class GolemController : GroundEnemyScript
             MovementAnimation(false);
         }
 
-        //Let the golem walk towards the walkpoint only when the walkpoint is set
+        //Let the spider walk towards the walkpoint only when the walkpoint is set
         if (walkPointSet)
         {
             navMeshAgent.SetDestination(walkPoint);
-            //Golem Looks at the target
+            //spider Looks at the target
             transform.LookAt(new Vector3(walkPoint.x, this.transform.position.y, walkPoint.z));
             MovementAnimation(true);
         }
@@ -87,7 +85,7 @@ public class GolemController : GroundEnemyScript
     }
     private void SearchRandomWalkPoint()
     {
-        //Determine a random point in the Golems detection range 
+        //Determine a random point in the spider''s detection range 
         float randomZ = Random.Range(-detectionDistance / 2, detectionDistance / 2);
         float randomX = Random.Range(-detectionDistance / 2, detectionDistance / 2);
 
@@ -101,24 +99,26 @@ public class GolemController : GroundEnemyScript
         //Animation trigger
         MovementAnimation(true);
 
-        //Golem looks at player
+        //Spider looks at player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
-        //Golem goes towards the player
+        //Spider goes towards the player
         navMeshAgent.SetDestination(Player.transform.position);
     }
     private void AnimationTrigger(string animation)
     {
+        //Triggers different animations
         anim.SetTrigger(animation);
     }
     private void MovementAnimation(bool isMoving)
     {
+        //Changes the vaulue of the speed variable based on a bool
         int speedVariable = isMoving ? 1 : 0;
         anim.SetFloat("Speed", speedVariable);
     }
     private void Attacking()
     {
-        //The golem aims at the player
+        //The spider aims at the player
         transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
 
         float distanceToTarget = Vector3.Distance(Player.transform.position, transform.position);
@@ -136,7 +136,7 @@ public class GolemController : GroundEnemyScript
             {
 
                 timeofLastAttack = Time.time;
-                AnimationTrigger("Punch");
+                AnimationTrigger("Lunge");
             }
         }
         else
