@@ -5,10 +5,10 @@ using UnityEngine;
 public class GetsPressed : MonoBehaviour
 {
     [SerializeField] GameObject buttonBase;
-    [SerializeField] GameObject originalPushPosition;
+    [SerializeField] GameObject push;
     float durationOfLerp = 10, lerpTime = 0;
     public void ButtonGetsPressed(RaycastHit hit)
     {
-        hit.transform.position = Vector3.Lerp(originalPushPosition.transform.position, buttonBase.transform.position, lerpTime / durationOfLerp);
+        hit.rigidbody.AddRelativeForce(Vector3.down * 10);
     }
 }
