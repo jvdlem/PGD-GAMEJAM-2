@@ -44,7 +44,7 @@ public class AttachmentPowerUP : MonoBehaviour
         if (superPowered && canPowerDown)
         {
             Debug.Log("playing this");
-            this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(startEmmision, powerEmmision, myCurve.Evaluate(percantageComplete)));
+            this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(startEmmision, powerEmmision, myCurve.Evaluate(elapsedTime)));
 
 
         }

@@ -35,8 +35,11 @@ public class Pistol : MonoBehaviour
 
     private bool fullAuto = false;
     public bool isInMenu = false;
+    private string pistolShotSount = "event:/Gun/Pistol/Shot/PistolShot";
+    private string currentShotSount = "";
     void Start()
     {
+        currentShotSount = pistolShotSount;
         gameObject.SetActive(true);
         lists.Add(allStats);
         lists.Add(barrelStats);
@@ -115,6 +118,7 @@ public class Pistol : MonoBehaviour
                     currentAmmo = aCurrentAddon.GetComponent<AmmoType>().GetAmmoType();
 
                 }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
                 CheckSet(1);
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
@@ -126,6 +130,7 @@ public class Pistol : MonoBehaviour
                 {
                     allStats.list[j] -= lists[i].list[j];
                 }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
                 CheckSet(-1);
                 if (i == 1)
                 {
@@ -149,7 +154,7 @@ public class Pistol : MonoBehaviour
         {
             for (int i = 0; i < allStats.list[1]; i++)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.gameObject.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(currentShotSount, this.gameObject.transform.position);
                 Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
                 MuzzleFlash.GetComponent<VisualEffect>().Play();
             }
@@ -163,7 +168,7 @@ public class Pistol : MonoBehaviour
         for (int i = 0; i < allStats.list[1]; i++)
         {
             //bullet.GetComponent<Bullet>().Setdmg(damage);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.gameObject.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(currentShotSount, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
         }
