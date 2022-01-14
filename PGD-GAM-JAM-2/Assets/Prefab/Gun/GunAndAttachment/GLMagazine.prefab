@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2749268319680487401}
   - component: {fileID: 7006116896273757789}
   - component: {fileID: 906989303432011939}
+  - component: {fileID: -3150206104498331567}
   m_Layer: 6
   m_Name: GLMagazine
   m_TagString: Magazine
@@ -226,7 +227,10 @@ MonoBehaviour:
   damage: 1
   bulletTime: 1
   bulletSpeed: -300
-  fullAutoCount: 0
+  miniGunSet: 0
+  grenadeSet: 0
+  shotGunSet: 0
+  sniperSet: 0
 --- !u!114 &7006116896273757789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +257,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myImage: {fileID: 21300000, guid: 8d147be57c6a20344b147f8421fc455c, type: 3}
+--- !u!114 &-3150206104498331567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
+  StartEmmision:
+    serializedVersion: 2
+    rgba: 154
 --- !u!65 &2963901629781794190
 BoxCollider:
   m_ObjectHideFlags: 0

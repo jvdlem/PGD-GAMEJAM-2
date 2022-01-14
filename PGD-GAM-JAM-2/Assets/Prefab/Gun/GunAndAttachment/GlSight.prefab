@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 5330112941232588285}
   - component: {fileID: 1584818694164469297}
   - component: {fileID: 5647773115390965534}
+  - component: {fileID: 5986742085722700937}
   m_Layer: 6
   m_Name: GlSight
   m_TagString: Sight
@@ -427,7 +428,10 @@ MonoBehaviour:
   damage: 5
   bulletTime: 1
   bulletSpeed: 100
-  fullAutoCount: 0
+  miniGunSet: 0
+  grenadeSet: 0
+  shotGunSet: 0
+  sniperSet: 0
 --- !u!114 &1584818694164469297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,6 +458,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myImage: {fileID: 21300000, guid: f6b8d9e0cabb9454286ff003b1bd34da, type: 3}
+--- !u!114 &5986742085722700937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
+  StartEmmision:
+    serializedVersion: 2
+    rgba: 154
 --- !u!64 &6839202781532021819
 MeshCollider:
   m_ObjectHideFlags: 0

@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 4931404567538725504}
   - component: {fileID: 5199940724920135720}
   - component: {fileID: 662007905384925324}
+  - component: {fileID: 3617966980746239411}
   m_Layer: 6
   m_Name: MinigunBarrel
   m_TagString: Barrel
@@ -271,7 +272,10 @@ MonoBehaviour:
   damage: 1
   bulletTime: 1
   bulletSpeed: 100
-  fullAutoCount: 0.75
+  miniGunSet: 0
+  grenadeSet: 0
+  shotGunSet: 0
+  sniperSet: 0
 --- !u!114 &5199940724920135720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,6 +303,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootpoint: {fileID: 5076013652873829555}
   scale: 0.5
+--- !u!114 &3617966980746239411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
+  StartEmmision:
+    serializedVersion: 2
+    rgba: 154
 --- !u!64 &3047411480985417421
 MeshCollider:
   m_ObjectHideFlags: 0
