@@ -6,37 +6,40 @@ using UnityEngine.VFX;
 
 public class Pistol : MonoBehaviour
 {
-    [SerializeField] private float spread = 1;
-    [SerializeField] private float amountOfBullets = 1;
-    [SerializeField] private float damage = 1;
-    [SerializeField] private float bulletTime = 1;
-    [SerializeField] private float bulletSpeed = 1;
-    [SerializeField] private float fullAutoCount = 0;
+    private float spread = 1;
+    private float amountOfBullets = 1;
+    private float damage = 1;
+    private float bulletTime = 1;
+    private float bulletSpeed = 500;
+    private float miniGunSet = 0;
+    private float granadeSet = 0;
+    private float shotGunSet = 0;
+    private float sniperSet = 0;
 
     [SerializeField] private GameObject currentAmmo;
     [SerializeField] private GameObject bullet;
     [SerializeField] public XRBaseInteractable aCurrentAddon;
-    //[SerializeField] private AudioSource myAudio;
     [SerializeField] private GameObject currentShootPoint;
     [SerializeField] private GameObject myshootPoint;
     [SerializeField] StartChoiceControlSystem startControlSystem;
     [SerializeField] ControlManager controlManager;
     [SerializeField] private GameObject MuzzleFlash;
 
-    public List<Attachment> lists;
-    public Attachment allStats;
-    public Attachment barrelStats;
-    public Attachment sightStats;
-    public Attachment stockStats;
-    public Attachment magazineStats;
-
-    private bool fullAuto = false;
+    public List<Attachment> lists = new List<Attachment>();
+    public Attachment allStats = new Attachment();
+    private Attachment barrelStats = new Attachment();
+    private Attachment sightStats = new Attachment();
+    private Attachment stockStats = new Attachment();
+    private Attachment magazineStats = new Attachment();
     public GameObject holster;
 
+    private bool fullAuto = false;
     public bool isInMenu = false;
-    // Start is called before the first frame update
+    private string pistolShotSount = "event:/Gun/Pistol/Shot/PistolShot";
+    private string currentShotSount = "";
     void Start()
     {
+        currentShotSount = pistolShotSount;
         gameObject.SetActive(true);
         lists.Add(allStats);
         lists.Add(barrelStats);
@@ -46,19 +49,27 @@ public class Pistol : MonoBehaviour
 
         foreach (Attachment aList in lists)
         {
-            aList.list.Add(spread);
-            aList.list.Add(amountOfBullets);
-            aList.list.Add(damage);
-            aList.list.Add(bulletTime);
-            aList.list.Add(bulletSpeed);
-            aList.list.Add(fullAutoCount);
+            if (aList != null)
+            {
+                aList.list.Add(spread);
+                aList.list.Add(amountOfBullets);
+                aList.list.Add(damage);
+                aList.list.Add(bulletTime);
+                aList.list.Add(bulletSpeed);
+                aList.list.Add(miniGunSet);
+                aList.list.Add(granadeSet);
+                aList.list.Add(shotGunSet);
+                aList.list.Add(sniperSet);
+            }
         }
+
+
     }
 
     [System.Serializable]
     public class Attachment
     {
-        public List<float> list;
+        public List<float> list = new List<float>();
     }
 
     // Update is called once per frame
@@ -89,7 +100,6 @@ public class Pistol : MonoBehaviour
 
             if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 0)
             {
-
                 aCurrentAddon = this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment;
 
                 lists[i].list = aCurrentAddon.GetComponent<AttachmentStats>().statList;
@@ -108,6 +118,8 @@ public class Pistol : MonoBehaviour
                     currentAmmo = aCurrentAddon.GetComponent<AmmoType>().GetAmmoType();
 
                 }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
+                CheckSet(1);
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             }
@@ -118,6 +130,8 @@ public class Pistol : MonoBehaviour
                 {
                     allStats.list[j] -= lists[i].list[j];
                 }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
+                CheckSet(-1);
                 if (i == 1)
                 {
                     currentShootPoint = myshootPoint;
@@ -134,12 +148,13 @@ public class Pistol : MonoBehaviour
             }
 
         }
-        if (allStats.list[5] <= 2) { fullAuto = false; }
+
+        if (allStats.list[5] < 3) { fullAuto = false; }
         if (fullAuto)
         {
             for (int i = 0; i < allStats.list[1]; i++)
             {
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.gameObject.transform.position);
+                FMODUnity.RuntimeManager.PlayOneShot(currentShotSount, this.gameObject.transform.position);
                 Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
                 MuzzleFlash.GetComponent<VisualEffect>().Play();
             }
@@ -148,17 +163,77 @@ public class Pistol : MonoBehaviour
 
     public void shoot()
     {
-        if (allStats.list[5] >= 2) { fullAuto = !fullAuto; }
+        if (allStats.list[5] >= 3) { fullAuto = !fullAuto; }
 
         for (int i = 0; i < allStats.list[1]; i++)
         {
             //bullet.GetComponent<Bullet>().Setdmg(damage);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/PistolShot", this.gameObject.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(currentShotSount, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
         }
     }
 
+    private void CheckSet(int scale)
+    {
+        for (int i = 5; i < allStats.list.Count; i++)
+        {
+            if (allStats.list[i] >= 2)
+            {
+                switch (i - 5)
+                {
+                    case 1:
+                        {
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
+                            {
+                                currentAmmo.GetComponent<Granade>().UpdateScale(1.5f*scale,true,scale);
+
+                            }
+                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            {
+                                currentAmmo.GetComponent<Granade>().UpdateScale(1, scale >= 1,scale);
+                            }
+                        }
+                        break;
+                    case 2:
+                        {
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
+                            {
+                                allStats.list[1] += 10 * scale;
+                            }
+                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            {
+                                allStats.list[1] += 5 * scale;
+                            }
+                        }
+                        break;
+                    case 3:
+                        {
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
+                            {
+                                currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
+                                SuperPower(scale);
+                            }
+                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            {
+                                allStats.list[4] += 10000 * scale;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    private void SuperPower(int scale)
+    {
+        for (int i = 1; i < lists.Count; i++)
+        {
+            this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment.GetComponent<AttachmentPowerUP>().SetPowerLevel(scale);
+        }
+    }
     public void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == "Ground")

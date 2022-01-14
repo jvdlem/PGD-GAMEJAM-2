@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 8894442626502749134}
   - component: {fileID: 1002141986452926704}
   - component: {fileID: 6837837277737680145}
+  - component: {fileID: 6999508476249590023}
   m_Layer: 6
   m_Name: SniperStock
   m_TagString: Stock
@@ -239,7 +240,10 @@ MonoBehaviour:
   damage: 10
   bulletTime: 1
   bulletSpeed: 5000
-  fullAutoCount: 0
+  miniGunSet: 0
+  grenadeSet: 0
+  shotGunSet: 0
+  sniperSet: 1
 --- !u!114 &6837837277737680145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +257,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myImage: {fileID: 21300000, guid: c00d2e5d346747e47b6fa9e25b75dcae, type: 3}
+--- !u!114 &6999508476249590023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startEmmision: {r: 0, g: 0, b: 0, a: 0}
+  powerEmmision: {r: 0, g: 1, b: 0, a: 1}
+  desiredDuration: 1
+  myCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &2198050574631819591
 PrefabInstance:
   m_ObjectHideFlags: 0

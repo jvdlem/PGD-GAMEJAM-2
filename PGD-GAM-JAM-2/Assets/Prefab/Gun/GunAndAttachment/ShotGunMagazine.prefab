@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8654672529391885180}
   - component: {fileID: -4433439058072342588}
   - component: {fileID: 8232234923037075416}
+  - component: {fileID: 104528315893317684}
   m_Layer: 6
   m_Name: ShotGunMagazine
   m_TagString: Magazine
@@ -226,7 +227,10 @@ MonoBehaviour:
   damage: 1
   bulletTime: 1
   bulletSpeed: 1
-  fullAutoCount: 0
+  miniGunSet: 0
+  grenadeSet: 0
+  shotGunSet: 0
+  sniperSet: 0
 --- !u!114 &-4433439058072342588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +257,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAmmo: {fileID: 4036158279038460054, guid: 45d8bc51f62f591458ff0c823d35371a, type: 3}
+--- !u!114 &104528315893317684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
+  StartEmmision:
+    serializedVersion: 2
+    rgba: 154
 --- !u!64 &1279327563207827297
 MeshCollider:
   m_ObjectHideFlags: 0
