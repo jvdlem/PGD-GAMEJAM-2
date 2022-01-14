@@ -5,7 +5,7 @@ using UnityEngine;
 public class MeleeFlyingEnemyScript : FlyingEnemyScript
 {
 
-    public LayerMask playerLayer;
+    public LayerMask layer;
     [SerializeField] private int radius;
 
     public override void Update()
@@ -49,7 +49,7 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     //Checks if enemy is in range of target
     protected bool InRange() 
     {
-        return Physics.CheckSphere(transform.position, radius, playerLayer);
+        return Physics.CheckSphere(transform.position, radius, layer);
     }
 
     protected void OnTriggerEnter(Collider other)

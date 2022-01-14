@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BatMovement : MeleeFlyingEnemyScript
+public class DragonMovement : MeleeFlyingEnemyScript
 {
 
     public override void Start()

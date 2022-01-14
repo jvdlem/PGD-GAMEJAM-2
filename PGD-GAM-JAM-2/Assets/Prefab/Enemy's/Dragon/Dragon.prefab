@@ -1187,9 +1187,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7592419149283643981}
   - component: {fileID: 7592419149276134905}
+  - component: {fileID: -7446035393999857564}
   - component: {fileID: 7592419149211803940}
   m_Layer: 0
-  m_Name: ms04_04_Dragon_2
+  m_Name: Dragon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1230,6 +1231,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7446035393999857564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592419149283544687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a41107f491101438ed80a4b155cfbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  Tier: 0
+  Player: {fileID: 0}
+  Coin: {fileID: 0}
+  flyingSpeed: 5
+  timerMax: 150
+  targetObject: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  radius: 0
 --- !u!136 &7592419149211803940
 CapsuleCollider:
   m_ObjectHideFlags: 0
