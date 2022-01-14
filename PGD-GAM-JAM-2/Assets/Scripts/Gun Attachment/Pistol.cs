@@ -20,6 +20,7 @@ public class Pistol : MonoBehaviour
     [SerializeField] private GameObject currentShootPoint;
     [SerializeField] private GameObject myshootPoint;
     [SerializeField] StartChoiceControlSystem startControlSystem;
+    [SerializeField] ControlManager controlManager;
     [SerializeField] private GameObject MuzzleFlash;
 
     public List<Attachment> lists;
@@ -57,7 +58,7 @@ public class Pistol : MonoBehaviour
     [System.Serializable]
     public class Attachment
     {
-       public List<float> list;
+        public List<float> list;
     }
 
     // Update is called once per frame
@@ -69,16 +70,26 @@ public class Pistol : MonoBehaviour
         MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
         if (isInMenu == false)
         {
-            //if (Input.GetButtonDown("Fire1") && startControlSystem.Keyboard) { shoot(); }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (startControlSystem != null)
+                {
+                    shoot();
+                }
+                else if (controlManager.Keyboard)
+                {
+                    shoot();
+                }
+            }
         }
-        
+
 
         for (int i = 1; i < lists.Count; i++)
         {
-            
+
             if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 0)
             {
-                
+
                 aCurrentAddon = this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment;
 
                 lists[i].list = aCurrentAddon.GetComponent<AttachmentStats>().statList;
@@ -89,13 +100,13 @@ public class Pistol : MonoBehaviour
                 if (i == 1 && aCurrentAddon.GetComponent<ShootPointScanner>().GetShootPoint() != null)
                 {
                     currentShootPoint = aCurrentAddon.GetComponent<ShootPointScanner>().GetShootPoint();
-                    
+
                     MuzzleFlash.transform.localScale = new Vector3(aCurrentAddon.GetComponent<ShootPointScanner>().GetShootScale(), aCurrentAddon.GetComponent<ShootPointScanner>().GetShootScale(), aCurrentAddon.GetComponent<ShootPointScanner>().GetShootScale());
                 }
                 if (i == 2 && aCurrentAddon.GetComponent<AmmoType>().GetAmmoType() != null)
                 {
                     currentAmmo = aCurrentAddon.GetComponent<AmmoType>().GetAmmoType();
-                    
+
                 }
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
@@ -111,7 +122,7 @@ public class Pistol : MonoBehaviour
                 {
                     currentShootPoint = myshootPoint;
                     MuzzleFlash.transform.position = currentShootPoint.transform.position;
-                    MuzzleFlash.transform.localScale = new Vector3(0.1f,0.1f,0.1f);
+                    MuzzleFlash.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
                 }
                 if (i == 2)
                 {
@@ -121,7 +132,7 @@ public class Pistol : MonoBehaviour
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             }
-            
+
         }
         if (allStats.list[5] <= 2) { fullAuto = false; }
         if (fullAuto)
@@ -142,7 +153,7 @@ public class Pistol : MonoBehaviour
         for (int i = 0; i < allStats.list[1]; i++)
         {
             //bullet.GetComponent<Bullet>().Setdmg(damage);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/Gun 8_1", this.gameObject.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Pistol/Shot/PistolShot", this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
         }
