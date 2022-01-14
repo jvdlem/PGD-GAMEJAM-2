@@ -9,7 +9,7 @@ public class DisplayItems : MonoBehaviour
     public GameObject Player;
     private PlayerHealthScript PlayerScript;
     public bool isBought;
-    public int price = 5;
+    public int price;
 
     public List<GameObject> shopItems;
 
@@ -33,8 +33,10 @@ public class DisplayItems : MonoBehaviour
     {
         if (PlayerScript.coins >= price)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/BoughtItem");
             shopItems[i].transform.position = boughtItemPos;
             PlayerScript.coins -= price;
         }
+        else FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/InsufficientMoney");
     }
 }
