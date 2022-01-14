@@ -1,37 +1,53 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SocketCheckFPS : MonoBehaviour
 {
 
-    string[] inventorySlots = { "1", "2", "3", "4" };
-    int slot;
+    [SerializeField]
+    GameObject[] sockets = new GameObject[4];
 
-    void Update()
+    [SerializeField] 
+    Text[] slots = new Text[4];
+
+    string[] playerInput = { "1", "2", "3", "4" }; // List of key inputs
+
+    public void Update()
     {
-        foreach (string i in inventorySlots) 
+        foreach (string i in playerInput)
         {
-            HandleInput(i);
-            break;
+            if (Input.GetKeyDown(i)) 
+            {
+                GetFromInventory(i);
+            }
+        }       
+    }
+
+    void GetFromInventory(string key) 
+    {
+        GameObject[] attachements = Inventory.attachements;
+
+        int slot = Convert.ToInt32(key); // Convert string to int
+        int currentSlot = slot - 1; // Change value to match array index
+
+        // If equal and not empty, attach to socket
+        if (attachements[currentSlot] != null)
+        {
+            Attach(currentSlot);
         }
     }
 
-    void HandleInput(string input) 
+    void Attach(int slot) 
     {
-        if (Input.GetKey(input))
-        {
-            slot = Convert.ToInt32(input);
+        GameObject attachement = Inventory.attachements[slot];
 
-            //if (Inventory.attachements[slot] != null) 
-            //{
-            //    Attach(Inventory.attachements[slot]);
-            //}
-        }
-    }
+        Rigidbody rb = attachement.GetComponent<Rigidbody>();
+        rb.useGravity = false;
 
-    void Attach(GameObject _object) 
-    {
-        Instantiate(_object, transform.position, transform.rotation);
-        //Inventory.attachements[slot] = null;
+        Instantiate(attachement, sockets[slot].transform.position, sockets[slot].transform.rotation);
+
+        Inventory.attachements[slot] = null;
+        slots[slot].text = "Empty";
     }
 }
