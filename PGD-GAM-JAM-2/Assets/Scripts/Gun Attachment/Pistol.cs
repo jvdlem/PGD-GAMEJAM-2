@@ -21,7 +21,8 @@ public class Pistol : MonoBehaviour
     [SerializeField] public XRBaseInteractable aCurrentAddon;
     [SerializeField] private GameObject currentShootPoint;
     [SerializeField] private GameObject myshootPoint;
-    [SerializeField] public StartChoiceControlSystem startControlSystem;
+    [SerializeField] StartChoiceControlSystem startControlSystem;
+    [SerializeField] ControlManager controlManager;
     [SerializeField] private GameObject MuzzleFlash;
 
     public List<Attachment> lists = new List<Attachment>();
@@ -77,7 +78,17 @@ public class Pistol : MonoBehaviour
         MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
         if (isInMenu == false)
         {
-            //if (Input.GetButtonDown("Fire1") && startControlSystem.Keyboard) { shoot(); }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if (startControlSystem != null)
+                {
+                    shoot();
+                }
+                else if (controlManager.Keyboard)
+                {
+                    shoot();
+                }
+            }
         }
 
 
@@ -170,8 +181,8 @@ public class Pistol : MonoBehaviour
                         {
                             if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
                             {
-                                currentAmmo.GetComponent<Granade>().UpdateScale(1.5f*scale,true,scale);       
-                                
+                                currentAmmo.GetComponent<Granade>().UpdateScale(1.5f*scale,true,scale);
+
                             }
                             if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
                             {
