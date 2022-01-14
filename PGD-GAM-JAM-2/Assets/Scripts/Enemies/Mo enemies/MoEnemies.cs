@@ -12,7 +12,6 @@ public class Moenemies : GroundEnemyScript
     public bool walkPointSet;
 
     [Header("Attack variables")]
-    public float timeBetweenAttacks;
     public float timeofLastAttack = 0;
     public bool isAttacking = false;
     public bool alreadyAttacking;
@@ -131,12 +130,7 @@ public class Moenemies : GroundEnemyScript
             if (!isAttacking)
             {
                 isAttacking = true;
-                timeofLastAttack = Time.time;
-            }
-            if (Time.time >= timeofLastAttack + attackTimer)
-            {
-                timeofLastAttack = Time.time;
-                AnimationTrigger(attack);
+                StartCoroutine(TimedAttack());
             }
         }
         else
@@ -144,10 +138,17 @@ public class Moenemies : GroundEnemyScript
             isAttacking = false;
         }
     }
-    virtual public string RandomAttackVariations(string attack1, string attack2)
+
+    virtual public IEnumerator TimedAttack()
+    {
+        yield return new WaitForSeconds(attackTimer);
+        AnimationTrigger(attack);
+        isAttacking = false;
+    }
+    virtual public void RandomAttackVariations(string attack1, string attack2)
     {
         int random = Random.Range(0, 2);
-        if (random == 0) return attack1; else return attack2;
+        if (random == 0) attack= attack1; else attack= attack2;
     }
     virtual public void Die(string animation)
     {
@@ -168,7 +169,7 @@ public class Moenemies : GroundEnemyScript
         if (collision.gameObject.tag == "Projectile")
         {
             AnimationTrigger("TakeDamage");
-            Health--;
+            TakeDamage(1);
         }
 
         //Enemy hurts player on collision

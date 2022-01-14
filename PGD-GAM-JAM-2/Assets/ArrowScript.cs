@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
+    //[SerializeField] GameObject Skeleton;
+   // [SerializeField] Transform shootPoint;
+  //  GameObject player;
     PlayerHealthScript playerHealth;
     //Arrow damage multiplier from Archer script
     private void Start()
     {
+        //this.transform.rotation = Quaternion.
+        //transform.LookAt(Player);
         playerHealth = GetComponent<PlayerHealthScript>();
         //Getcomponent Archer script
     }

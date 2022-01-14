@@ -9,7 +9,6 @@ public class CaveSpiderController : Moenemies
     override public void Start()
     {
         base.Start();
-        die = "Die";
         attack = "Lunge";
     }
 }

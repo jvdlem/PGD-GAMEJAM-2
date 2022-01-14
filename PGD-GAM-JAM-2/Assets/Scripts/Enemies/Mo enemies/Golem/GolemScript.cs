@@ -5,14 +5,16 @@ using UnityEngine;
 public class GolemScript : Moenemies
 {
     // Start is called before the first frame update
+    private bool attackBool = false;
     public override void Start()
     {
         attackTimer = 2f;
         base.Start();
     }
-    public override void Attacking()
+
+    public override void Update()
     {
-        attack = RandomAttackVariations("Punch", "Slam");
-        base.Attacking();
+        RandomAttackVariations("Punch", "Slam");
+        base.Update();
     }
 }

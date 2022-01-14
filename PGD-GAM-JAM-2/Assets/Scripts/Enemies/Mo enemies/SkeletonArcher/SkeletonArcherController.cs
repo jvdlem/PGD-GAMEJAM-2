@@ -15,51 +15,31 @@ public class SkeletonArcherController : Moenemies
         detectionDistance = 25f;
         attackDistance = 20f;
     }
-    override public void Attacking()
-    {
-        //The skeleton aims at the player
-        transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-
-        float distanceToTarget = Vector3.Distance(Player.transform.position, transform.position);
-        if (distanceToTarget <= attackDistance)
-        {
-            MovementAnimation(false);
-
-            //Start the attack timer
-            if (!isAttacking)
-            {
-                isAttacking = true;
-                timeofLastAttack = Time.time;
-            }
-            if (Time.time >= timeofLastAttack + attackTimer)
-            {
-
-                timeofLastAttack = Time.time;
-                //attack = RandomAttackVariations();
-                AnimationTrigger(attack);
-                Shoot();
-            }
-        }
-        else
-        {
-            isAttacking = false;
-        }
-    }
     public override void SearchRandomWalkPoint()
-    {       
+    {
         //Determine a random point in the Golems detection range 
-        float randomZ = Random.Range(-detectionDistance*1.5f, detectionDistance*1.5f);
-        float randomX = Random.Range(-detectionDistance*1.5f, detectionDistance*1.5f);
+        float randomZ = Random.Range(-detectionDistance * 1.5f, detectionDistance * 1.5f);
+        float randomX = Random.Range(-detectionDistance * 1.5f, detectionDistance * 1.5f);
 
         walkPoint = new Vector3(this.gameObject.transform.position.x + randomX, this.gameObject.transform.position.y, this.gameObject.transform.position.y + randomZ);
 
         //Check if walkpoint is on the ground
         if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) { walkPointSet = true; }
     }
-    void Shoot()
+    public override IEnumerator TimedAttack()
+    {
+        yield return new WaitForSeconds(attackTimer);
+        AnimationTrigger(attack);
+        Shoot();
+        isAttacking = false;
+
+    }
+   
+    public void Shoot()
     {
         AnimationTrigger("Shoot");
 
+        //Create a new instantiation of an arrow
         Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
         currentArrow.AddForce(transform.forward * 10f, ForceMode.Impulse);
         currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
