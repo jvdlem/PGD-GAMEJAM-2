@@ -11,9 +11,18 @@ public class SkeletonArcherController : Moenemies
     override public void Start()
     {
         base.Start();
+        attackSound = "event:/Enemy/Skeleton/Skeleton Attacks";
+        deathSound = "event:/Enemy/Skeleton/Skeleton Death";
+        hurtSound = "event:/Enemy/Skeleton/Skeleton Hurt";
         attack = "Shoot";
         detectionDistance = 25f;
         attackDistance = 20f;
+        Damage = 1;
+    }
+    public override void Update()
+    {
+        soundPosition = this.gameObject.transform.position;
+        base.Update();
     }
     public override void SearchRandomWalkPoint()
     {
@@ -28,16 +37,14 @@ public class SkeletonArcherController : Moenemies
     }
     public override IEnumerator TimedAttack()
     {
+        PlaySound(attackSound, soundPosition);
         yield return new WaitForSeconds(attackTimer);
-        AnimationTrigger(attack);
         Shoot();
         isAttacking = false;
-
-    }
-   
+    }  
     public void Shoot()
     {
-        AnimationTrigger("Shoot");
+        AnimationTrigger(attack);
 
         //Create a new instantiation of an arrow
         Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
