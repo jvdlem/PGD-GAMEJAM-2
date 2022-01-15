@@ -157,7 +157,6 @@ public class Pistol : MonoBehaviour
 
     IEnumerator CanFullAuto()
     {
-
         FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
         Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
         MuzzleFlash.GetComponent<VisualEffect>().Play();
@@ -168,11 +167,7 @@ public class Pistol : MonoBehaviour
 
     public void stopFullAuto()
     {
-        if (fullAuto)
-        {
-            allStats.list[0] = startSpread;
-            StopCoroutine(CanFullAuto());
-        }
+
     }
     public void shoot()
     {
@@ -180,6 +175,11 @@ public class Pistol : MonoBehaviour
         {
             startSpread = allStats.list[0];
             StartCoroutine(CanFullAuto());
+        }
+        else
+            if (fullAuto == false)
+        {
+            StopCoroutine(CanFullAuto());
         }
 
         for (int i = 0; i < allStats.list[1]; i++)
