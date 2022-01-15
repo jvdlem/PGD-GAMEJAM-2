@@ -442,7 +442,19 @@ MonoBehaviour:
         m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4534814921810314738}
+        m_TargetAssemblyTypeName: Pistol, Assembly-CSharp
+        m_MethodName: stopFullAuto
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -519,29 +531,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b7806c005f0b44c88ef9653dd6306f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spread: 60
-  amountOfBullets: 1
-  damage: 1
-  bulletTime: 1
-  bulletSpeed: 500
-  fullAutoCount: 0
   currentAmmo: {fileID: 4036158279038460054, guid: 34f8abf80cc42474c99aeac849bceefe, type: 3}
   bullet: {fileID: 4036158279038460054, guid: 34f8abf80cc42474c99aeac849bceefe, type: 3}
   aCurrentAddon: {fileID: 0}
   currentShootPoint: {fileID: 4296941831808004113}
   myshootPoint: {fileID: 4296941831808004113}
   startControlSystem: {fileID: 0}
+  controlManager: {fileID: 0}
   MuzzleFlash: {fileID: 0}
   lists: []
   allStats:
-    list: []
-  barrelStats:
-    list: []
-  sightStats:
-    list: []
-  stockStats:
-    list: []
-  magazineStats:
     list: []
   holster: {fileID: 0}
   isInMenu: 0

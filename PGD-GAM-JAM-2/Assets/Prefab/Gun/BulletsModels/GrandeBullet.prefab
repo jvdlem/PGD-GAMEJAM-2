@@ -4845,7 +4845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6777202100062435691}
   - component: {fileID: 7458745881642210414}
-  - component: {fileID: 4701022797910633642}
+  - component: {fileID: 7391870290469981620}
   m_Layer: 0
   m_Name: GrandeBullet
   m_TagString: Untagged
@@ -4889,7 +4889,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &4701022797910633642
+--- !u!114 &7391870290469981620
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4898,16 +4898,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4036158279038460054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2193937aa4b8f3e4eb085851a6d23d1a, type: 3}
+  m_Script: {fileID: 11500000, guid: b1d0f23355a6c9542b37b177d8700646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 7458745881642210414}
   timer: 10
   Speed: 500
-  dmg: 16
-  mytimer: 4
+  dmg: 1
+  mytimer: 10
   mySpeed: 500
-  mydmg: 16
+  mydmg: 1
+  Sparks: {fileID: 2902947935863812567}
+  Smoke: {fileID: 7724763439467015959}
+  exploson: {fileID: 6398040281165451369}
 --- !u!64 &5333742690179101648
 MeshCollider:
   m_ObjectHideFlags: 0

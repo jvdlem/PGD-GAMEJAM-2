@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Granade : MonoBehaviour
+public class Granade : Projectille
 {
     List<ParticleSystem> myparticles = new List<ParticleSystem>();
     [SerializeField] private ParticleSystem Sparks;
@@ -13,7 +13,12 @@ public class Granade : MonoBehaviour
     private float Timer;
     private bool onCollision;
     private float radius = 30;
+    private bool canExplode = true;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
 
     void Start()
     {
@@ -55,15 +60,18 @@ public class Granade : MonoBehaviour
     void FixedUpdate()
     {
         Timer -= Time.deltaTime;
-        if (Timer <= 0)
+        if (Timer <= 0 && canExplode == true)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Grenade Launcher/Explosion/Grenade Explosion", this.gameObject.transform.position);
             Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius);
+            canExplode = false;
             foreach (var hitCollider in hitColliders)
             {
-                hitCollider.GetComponent<EnemyBaseScript>().TakeDamage((int)(radius/Vector3.Distance(this.transform.position,hitCollider.transform.position)));
+                if (hitCollider.GetComponent<EnemyBaseScript>() != null)
+                {
+                    hitCollider.GetComponent<EnemyBaseScript>().TakeDamage((int)(radius / Vector3.Distance(this.transform.position, hitCollider.transform.position)));
+                }
             }
-            
         }
     }
 
@@ -72,6 +80,7 @@ public class Granade : MonoBehaviour
         if (onCollision)
         {
             delay = 0;
+            Timer = 0;
         }
     }
 

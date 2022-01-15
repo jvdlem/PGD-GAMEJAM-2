@@ -146,6 +146,7 @@ public class InventoryPlayer : MonoBehaviour
 
                 inventoryList[selectedAttachemnt] = pistolList[selectedAttachemnt];
 
+
                 pistolList[selectedAttachemnt].SetActive(false);
                 pistolList[selectedAttachemnt] = null;
             }

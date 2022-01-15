@@ -33,8 +33,13 @@ public class SocketCheck : XRSocketInteractor
         attached = 1;
         //Debug.Log(interactable);
         interactable.transform.localScale /= scaleSize;
+        interactable.gameObject.GetComponent<AttachmentPowerUP>().ChangeColorstate();
+        if (interactable.gameObject.GetComponent<AttachmentPowerUP>() != null)
+        {
+            interactable.gameObject.GetComponent<AttachmentPowerUP>().ChangeColorstate();
+        }
         base.OnSelectExited(interactable);
-     
+
         Attatchment = null;
     }
 

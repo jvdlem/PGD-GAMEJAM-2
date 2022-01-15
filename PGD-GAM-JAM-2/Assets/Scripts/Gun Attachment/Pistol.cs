@@ -33,13 +33,15 @@ public class Pistol : MonoBehaviour
     private Attachment magazineStats = new Attachment();
     public GameObject holster;
 
-    private bool fullAuto = false;
+    private float startSpread;
+    private bool canResize = false;
+    static public bool fullAuto = false;
     public bool isInMenu = false;
-    private string pistolShotSount = "event:/Gun/Pistol/Shot/PistolShot";
-    private string currentShotSount = "";
+    private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
+    private string currentShotSound = "";
     void Start()
     {
-        currentShotSount = pistolShotSount;
+        currentShotSound = pistolShotSound;
         gameObject.SetActive(true);
         lists.Add(allStats);
         lists.Add(barrelStats);
@@ -107,10 +109,11 @@ public class Pistol : MonoBehaviour
                 {
                     allStats.list[j] += lists[i].list[j];
                 }
+                CheckSet(1);
                 if (i == 1 && aCurrentAddon.GetComponent<ShootPointScanner>().GetShootPoint() != null)
                 {
                     currentShootPoint = aCurrentAddon.GetComponent<ShootPointScanner>().GetShootPoint();
-
+                    currentShotSound = aCurrentAddon.GetComponent<ShootPointScanner>().GetShootSound();
                     MuzzleFlash.transform.localScale = new Vector3(aCurrentAddon.GetComponent<ShootPointScanner>().GetShootScale(), aCurrentAddon.GetComponent<ShootPointScanner>().GetShootScale(), aCurrentAddon.GetComponent<ShootPointScanner>().GetShootScale());
                 }
                 if (i == 2 && aCurrentAddon.GetComponent<AmmoType>().GetAmmoType() != null)
@@ -119,21 +122,21 @@ public class Pistol : MonoBehaviour
 
                 }
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
-                CheckSet(1);
+                
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             }
             else if (this.transform.GetChild(i).GetComponent<SocketCheck>().attached == 1)
             {
-
                 for (int j = 0; j < allStats.list.Count; j++)
                 {
                     allStats.list[j] -= lists[i].list[j];
                 }
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
                 CheckSet(-1);
+
                 if (i == 1)
                 {
+                    currentShotSound = pistolShotSound;
                     currentShootPoint = myshootPoint;
                     MuzzleFlash.transform.position = currentShootPoint.transform.position;
                     MuzzleFlash.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
@@ -143,32 +146,45 @@ public class Pistol : MonoBehaviour
                     currentAmmo.GetComponent<Projectille>().Reset();
                     currentAmmo = bullet;
                 }
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Dettach", this.gameObject.transform.position);
+
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             }
 
         }
-
-        if (allStats.list[5] < 3) { fullAuto = false; }
-        if (fullAuto)
-        {
-            for (int i = 0; i < allStats.list[1]; i++)
-            {
-                FMODUnity.RuntimeManager.PlayOneShot(currentShotSount, this.gameObject.transform.position);
-                Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
-                MuzzleFlash.GetComponent<VisualEffect>().Play();
-            }
-        }
     }
 
+    IEnumerator CanFullAuto()
+    {
+
+        FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
+        Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+        MuzzleFlash.GetComponent<VisualEffect>().Play();
+        if (canResize) { allStats.list[0] *= 0.9f; }
+        yield return new WaitForSeconds(0.1f);
+
+    }
+
+    public void stopFullAuto()
+    {
+        if (fullAuto)
+        {
+            allStats.list[0] = startSpread;
+            StopCoroutine(CanFullAuto());
+        }
+    }
     public void shoot()
     {
-        if (allStats.list[5] >= 3) { fullAuto = !fullAuto; }
+        if (fullAuto)
+        {
+            startSpread = allStats.list[0];
+            StartCoroutine(CanFullAuto());
+        }
 
         for (int i = 0; i < allStats.list[1]; i++)
         {
-            //bullet.GetComponent<Bullet>().Setdmg(damage);
-            FMODUnity.RuntimeManager.PlayOneShot(currentShotSount, this.gameObject.transform.position);
+            FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
         }
@@ -182,41 +198,74 @@ public class Pistol : MonoBehaviour
             {
                 switch (i - 5)
                 {
+                    case 0:
+                        {
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
+                            {
+                                canResize = scale >= 1;
+                                SuperPowerAttachment(scale);
+                            }
+                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            {
+                                fullAuto = scale >= 1;
+                                NormalPowerAttachment(scale);
+                            }
+                        }
+                        break;
                     case 1:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
                             {
-                                currentAmmo.GetComponent<Granade>().UpdateScale(1.5f*scale,true,scale);
+                                if (currentAmmo.GetComponent<Granade>() != null)
+                                {
+                                    currentAmmo.GetComponent<Granade>().UpdateScale(1.5f * scale, true, scale);
+                                    SuperPowerAttachment(scale);
+                                }
 
                             }
                             if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
                             {
-                                currentAmmo.GetComponent<Granade>().UpdateScale(1, scale >= 1,scale);
+                                if (currentAmmo.GetComponent<Granade>() != null)
+                                {
+                                    currentAmmo.GetComponent<Granade>().UpdateScale(1, scale >= 1, scale);
+                                }
+                                NormalPowerAttachment(scale);
                             }
                         }
                         break;
                     case 2:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
                             {
                                 allStats.list[1] += 10 * scale;
+                                SuperPowerAttachment(scale);
                             }
                             if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
                             {
                                 allStats.list[1] += 5 * scale;
+                                NormalPowerAttachment(scale);
                             }
                         }
                         break;
                     case 3:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 + scale && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
                             {
                                 currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
-                                SuperPower(scale);
+                                SuperPowerAttachment(scale);
+                                if (scale >= 1)
+                                {
+                                    currentShotSound = "event:/Gun/Sniper/Shot/Sniper_Set";
+                                }
+                                if (scale <= -1)
+                                {
+                                    currentShotSound = "event:/Gun/Sniper/Shot/Sniper_Barrel";
+                                }
                             }
                             if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
                             {
                                 allStats.list[4] += 10000 * scale;
+                                NormalPowerAttachment(scale);
                             }
                         }
                         break;
@@ -227,11 +276,25 @@ public class Pistol : MonoBehaviour
         }
     }
 
-    private void SuperPower(int scale)
+    private void SuperPowerAttachment(int scale)
     {
         for (int i = 1; i < lists.Count; i++)
         {
-            this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment.GetComponent<AttachmentPowerUP>().SetPowerLevel(scale);
+            if (this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment != null)
+            {
+                this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment.GetComponent<AttachmentPowerUP>().SuperPowered(scale);
+            }
+        }
+
+    }
+    private void NormalPowerAttachment(int scale)
+    {
+        for (int i = 1; i < lists.Count; i++)
+        {
+            if (this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment != null)
+            {
+                this.transform.GetChild(i).GetComponent<SocketCheck>().Attatchment.GetComponent<AttachmentPowerUP>().NormalPowered(scale);
+            }
         }
     }
     public void OnCollisionEnter(Collision collision)
