@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeFlyingEnemyScript : FlyingEnemyScript
 {
 
-    public LayerMask layer;
-    [SerializeField] private int radius;
+    public LayerMask playerLayer;
+    [SerializeField] private float radius;
 
     public override void Update()
     {
@@ -21,20 +19,17 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
                 break;
             case States.Attacking:
                 SetRotation(target); 
-                ChargeAt(targetObject); //Dive at target
+                navMeshAgent.SetDestination(Player.transform.position); //Dive at target
                 break;
             case States.Chasing:
                 TrackObject(targetObject); //Follow target from above
                 break;
         }
 
-        FlyTo(target, flyingSpeed); //Always fly in direction of target
+        navMeshAgent.SetDestination(target); //Always fly in direction of target
 
         //Attack target when in range and chasing
-        if (InRange() && currentState == States.Chasing) 
-        {
-            currentState = States.Attacking; 
-        }
+        if (InRange() && currentState == States.Chasing) { currentState = States.Attacking; }
     }
 
     /// <summary>Charge at a specified target.</summary>
@@ -47,15 +42,16 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     }
 
     //Checks if enemy is in range of target
-    protected bool InRange() 
-    {
-        return Physics.CheckSphere(transform.position, radius, layer);
-    }
+    protected bool InRange() { return Physics.CheckSphere(transform.position, radius, playerLayer); }
 
     protected void OnTriggerEnter(Collider other)
     {
         transform.position = new Vector3(other.gameObject.transform.position.x,
             25, other.gameObject.transform.position.z); //Reset position above target
+
         currentState = States.Patrolling; //Start patrolling for new target
+
+        //If collision with player, damage player health
+        if (other.gameObject.tag == "Player") { Player.GetComponent<PlayerHealthScript>().takeDamage(3); }
     }
 }
