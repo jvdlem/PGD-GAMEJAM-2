@@ -97,6 +97,7 @@ public class Pistol : MonoBehaviour
                     shoot();
                 }
             }
+            if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
 
 
