@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 5199940724920135720}
   - component: {fileID: 662007905384925324}
   - component: {fileID: 3617966980746239411}
+  - component: {fileID: 1513823750319478524}
   m_Layer: 6
   m_Name: MinigunBarrel
   m_TagString: Barrel
@@ -315,10 +316,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
-  StartEmmision:
+  startEmmision: {r: 0, g: 0, b: 0, a: 0}
+  powerEmmision: {r: 0, g: 0, b: 0, a: 0}
+  desiredDuration: 1
+  myCurve:
     serializedVersion: 2
-    rgba: 154
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1513823750319478524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 3
+  itemName: Minigun barrel
+  itemDescription: Slightly increases accuracy
 --- !u!64 &3047411480985417421
 MeshCollider:
   m_ObjectHideFlags: 0

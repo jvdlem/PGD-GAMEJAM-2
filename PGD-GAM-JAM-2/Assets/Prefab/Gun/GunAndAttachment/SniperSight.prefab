@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 1618782830289719198}
   - component: {fileID: -6094705825205929990}
   - component: {fileID: 7268870650478462732}
+  - component: {fileID: 1815148594874361464}
   m_Layer: 6
   m_Name: SniperSight
   m_TagString: Sight
@@ -496,6 +497,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1815148594874361464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 12
+  itemName: Sniper Sight
+  itemDescription: 
 --- !u!64 &7793313876143882545
 MeshCollider:
   m_ObjectHideFlags: 0

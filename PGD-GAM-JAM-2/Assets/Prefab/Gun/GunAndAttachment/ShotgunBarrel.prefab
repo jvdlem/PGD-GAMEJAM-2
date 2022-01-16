@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: -8114587742157479464}
   - component: {fileID: 7202185338716769676}
   - component: {fileID: 7936430319034843650}
+  - component: {fileID: 5674627138270047108}
   m_Layer: 6
   m_Name: ShotgunBarrel
   m_TagString: Barrel
@@ -315,10 +316,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
-  StartEmmision:
+  startEmmision: {r: 0, g: 0, b: 0, a: 0}
+  powerEmmision: {r: 0, g: 0, b: 0, a: 0}
+  desiredDuration: 1
+  myCurve:
     serializedVersion: 2
-    rgba: 154
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &5674627138270047108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 10
+  itemName: Shotgun Barrel
+  itemDescription: Decreased Accuracy, shoots extra bullets
 --- !u!1001 &4321356017881396421
 PrefabInstance:
   m_ObjectHideFlags: 0

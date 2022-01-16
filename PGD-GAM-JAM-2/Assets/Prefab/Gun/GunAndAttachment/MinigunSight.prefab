@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 8702611542347317939}
   - component: {fileID: -8399417640972463994}
   - component: {fileID: -6763165857180678952}
+  - component: {fileID: -239882729876529540}
   m_Layer: 6
   m_Name: MinigunSight
   m_TagString: Sight
@@ -269,10 +270,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
-  StartEmmision:
+  startEmmision: {r: 0, g: 0, b: 0, a: 0}
+  powerEmmision: {r: 0, g: 0, b: 0, a: 0}
+  desiredDuration: 1
+  myCurve:
     serializedVersion: 2
-    rgba: 154
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &-239882729876529540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 5
+  itemName: Minigun sight
+  itemDescription: Increased bullet speed
 --- !u!1001 &6899287275092952991
 PrefabInstance:
   m_ObjectHideFlags: 0

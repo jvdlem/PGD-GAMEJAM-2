@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: -6269967852262247697}
   - component: {fileID: -7976137964528253129}
   - component: {fileID: 2303833695662666559}
+  - component: {fileID: 5954636767514379815}
   m_Layer: 6
   m_Name: SniperBarrel
   m_TagString: Barrel
@@ -342,6 +343,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5954636767514379815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 8
+  itemName: Sniper Barrel
+  itemDescription: Increases accuracy a lot
 --- !u!1001 &4426456907127200985
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 1002141986452926704}
   - component: {fileID: 6837837277737680145}
   - component: {fileID: 6999508476249590023}
+  - component: {fileID: 7296629096943864788}
   m_Layer: 6
   m_Name: SniperStock
   m_TagString: Stock
@@ -296,6 +297,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7296629096943864788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 6
+  itemName: Sniper Stock
+  itemDescription: Increased Damage
 --- !u!1001 &2198050574631819591
 PrefabInstance:
   m_ObjectHideFlags: 0

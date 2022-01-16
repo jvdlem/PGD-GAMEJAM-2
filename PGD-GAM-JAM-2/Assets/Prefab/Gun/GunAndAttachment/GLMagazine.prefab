@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7006116896273757789}
   - component: {fileID: 906989303432011939}
   - component: {fileID: -3150206104498331567}
+  - component: {fileID: 7371977535604593913}
   m_Layer: 6
   m_Name: GLMagazine
   m_TagString: Magazine
@@ -269,10 +270,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42a3a5489da17ac47afb5b016291b6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetEmmision: {r: 0, g: 0, b: 0, a: 0}
-  StartEmmision:
+  startEmmision: {r: 0, g: 0, b: 0, a: 0}
+  powerEmmision: {r: 0, g: 0, b: 0, a: 0}
+  desiredDuration: 1
+  myCurve:
     serializedVersion: 2
-    rgba: 154
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7371977535604593913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 15
+  itemName: Grenade Launcher Magazine
+  itemDescription: 'Fires Grenades instead of regular Bullets, adds Ammo count: 6'
 --- !u!65 &2963901629781794190
 BoxCollider:
   m_ObjectHideFlags: 0

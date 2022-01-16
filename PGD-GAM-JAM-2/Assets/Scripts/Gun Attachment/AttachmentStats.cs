@@ -16,6 +16,7 @@ public class AttachmentStats : MonoBehaviour
     public float sniperSet = 0;
 
 
+
     private void Start()
     {
         statList.Add(spread);
