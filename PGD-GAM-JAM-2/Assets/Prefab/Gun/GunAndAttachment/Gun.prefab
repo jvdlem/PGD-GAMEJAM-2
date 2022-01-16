@@ -82,6 +82,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 0
   targetTag: Barrel
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 1
 --- !u!135 &4405739033507023008
@@ -192,6 +193,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Stock
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 1
 --- !u!135 &5001141057108442168
@@ -231,7 +233,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4296941831808004113}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.1957}
+  m_LocalPosition: {x: 0, y: 0, z: 0.2689}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5495624573907032693}
@@ -319,6 +321,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Sight
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 1
 --- !u!135 &5437505311707004460
@@ -543,6 +546,8 @@ MonoBehaviour:
   allStats:
     list: []
   holster: {fileID: 0}
+  canfullAuto: 0
+  fullAuto: 0
   isInMenu: 0
 --- !u!1 &7954687981312434267
 GameObject:
@@ -626,6 +631,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Magazine
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 1
 --- !u!135 &1260687449056684458

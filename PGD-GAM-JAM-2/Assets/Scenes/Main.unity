@@ -13434,6 +13434,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Gun
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 1
 --- !u!135 &1106482273
@@ -13870,7 +13871,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1140345698
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14656,6 +14657,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Magazine
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 0.3
 --- !u!135 &1193091002
@@ -19172,6 +19174,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Sight
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 0.3
 --- !u!135 &1527164589
@@ -23967,6 +23970,7 @@ MonoBehaviour:
   m_RecycleDelayTime: 1
   targetTag: Barrel
   Attatchment: {fileID: 0}
+  exitAttachment: {fileID: 0}
   attached: 2
   scaleSize: 0.3
 --- !u!135 &2032426578

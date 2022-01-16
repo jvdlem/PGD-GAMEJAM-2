@@ -4902,15 +4902,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 7458745881642210414}
-  timer: 10
-  Speed: 500
-  dmg: 1
+  timer: 14
+  Speed: 900
+  dmg: 8
   mytimer: 10
   mySpeed: 500
-  mydmg: 1
+  mydmg: 8192
   Sparks: {fileID: 2902947935863812567}
   Smoke: {fileID: 7724763439467015959}
-  exploson: {fileID: 6398040281165451369}
+  explosion: {fileID: 6398040281165451369}
+  onCollision: 1
 --- !u!64 &5333742690179101648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5093,7 +5094,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2.5
+      scalar: -2.5
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -5218,7 +5219,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.75
+      scalar: 0
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -9973,7 +9974,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 10
+      scalar: -5
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -10098,7 +10099,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 1.5
+      scalar: 0
       minScalar: 0.5
       maxCurve:
         serializedVersion: 2
@@ -12120,7 +12121,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: -10
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -14853,7 +14854,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: -10
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14978,7 +14979,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.05
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -15300,7 +15301,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3
+      scalar: -3
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -17027,7 +17028,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: -10
       minScalar: 0
       maxCurve:
         serializedVersion: 2

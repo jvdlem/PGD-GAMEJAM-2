@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statList: []
   spread: 40
-  amountOfBullets: 1
+  amountOfBullets: 0
   damage: 1
   bulletTime: 1
   bulletSpeed: 100
@@ -366,6 +366,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   myParticle: {fileID: 8496362614838682982}
+  test: 100
 --- !u!1001 &614356099662873089
 PrefabInstance:
   m_ObjectHideFlags: 0

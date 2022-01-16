@@ -33,9 +33,12 @@ public class Pistol : MonoBehaviour
     private Attachment magazineStats = new Attachment();
     public GameObject holster;
 
+    private int incommingAttachment = 1;
+    private int outGoingAttachment = -1;
     private float startSpread;
     private bool canResize = false;
-    static public bool fullAuto = false;
+    public bool canfullAuto = false;
+    public bool fullAuto = false;
     public bool isInMenu = false;
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
@@ -109,7 +112,7 @@ public class Pistol : MonoBehaviour
                 {
                     allStats.list[j] += lists[i].list[j];
                 }
-                CheckSet(1);
+
                 if (i == 1 && aCurrentAddon.GetComponent<ShootPointScanner>().GetShootPoint() != null)
                 {
                     currentShootPoint = aCurrentAddon.GetComponent<ShootPointScanner>().GetShootPoint();
@@ -121,6 +124,7 @@ public class Pistol : MonoBehaviour
                     currentAmmo = aCurrentAddon.GetComponent<AmmoType>().GetAmmoType();
 
                 }
+                CheckSet(1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
                 
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
@@ -132,7 +136,7 @@ public class Pistol : MonoBehaviour
                 {
                     allStats.list[j] -= lists[i].list[j];
                 }
-                CheckSet(-1);
+
 
                 if (i == 1)
                 {
@@ -146,6 +150,7 @@ public class Pistol : MonoBehaviour
                     currentAmmo.GetComponent<Projectille>().Reset();
                     currentAmmo = bullet;
                 }
+                CheckSet(-1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Dettach", this.gameObject.transform.position);
 
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
@@ -153,8 +158,22 @@ public class Pistol : MonoBehaviour
             }
 
         }
+        if (fullAuto)
+        {
+            StartCoroutine(CanFullAuto());
+        }
+        if (fullAuto == false)
+        {
+            StopCoroutine(CanFullAuto());
+        }
+       
     }
 
+    public void stopFullAuto()
+    {
+        fullAuto = false;
+        allStats.list[0] = startSpread;
+    }
     IEnumerator CanFullAuto()
     {
         FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
@@ -164,22 +183,13 @@ public class Pistol : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
 
     }
-
-    public void stopFullAuto()
-    {
-
-    }
     public void shoot()
     {
-        if (fullAuto)
+        if (canfullAuto)
         {
+            fullAuto = true;
             startSpread = allStats.list[0];
-            StartCoroutine(CanFullAuto());
-        }
-        else
-            if (fullAuto == false)
-        {
-            StopCoroutine(CanFullAuto());
+
         }
 
         for (int i = 0; i < allStats.list[1]; i++)
@@ -190,40 +200,41 @@ public class Pistol : MonoBehaviour
         }
     }
 
-    private void CheckSet(int scale)
+    private void CheckSet(int scale, SocketCheck aSocket)
     {
         for (int i = 5; i < allStats.list.Count; i++)
         {
+
             if (allStats.list[i] >= 2)
             {
                 switch (i - 5)
                 {
                     case 0:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 canResize = scale >= 1;
                                 SuperPowerAttachment(scale);
                             }
-                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            if (allStats.list[i] == 2 && scale <= -1 && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale >= 1 && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
-                                fullAuto = scale >= 1;
+                                canfullAuto = scale >= 1;
                                 NormalPowerAttachment(scale);
                             }
                         }
                         break;
                     case 1:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 if (currentAmmo.GetComponent<Granade>() != null)
                                 {
-                                    currentAmmo.GetComponent<Granade>().UpdateScale(1.5f * scale, true, scale);
+                                    currentAmmo.GetComponent<Granade>().UpdateScale(2f * scale, true, scale);
                                     SuperPowerAttachment(scale);
                                 }
 
                             }
-                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            if (allStats.list[i] == 2 && scale <= -1 && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale >= 1 && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 if (currentAmmo.GetComponent<Granade>() != null)
                                 {
@@ -235,12 +246,12 @@ public class Pistol : MonoBehaviour
                         break;
                     case 2:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[1] += 10 * scale;
                                 SuperPowerAttachment(scale);
                             }
-                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            if (allStats.list[i] == 2 && scale <= -1 && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale >= 1 && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[1] += 5 * scale;
                                 NormalPowerAttachment(scale);
@@ -249,20 +260,22 @@ public class Pistol : MonoBehaviour
                         break;
                     case 3:
                         {
-                            if (allStats.list[i] >= 4 && scale >= 1 || allStats.list[i] == 3 && scale <= -1)
+                            if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
-                                currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
+                                
                                 SuperPowerAttachment(scale);
                                 if (scale >= 1)
                                 {
+                                    currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
                                     currentShotSound = "event:/Gun/Sniper/Shot/Sniper_Set";
                                 }
                                 if (scale <= -1)
                                 {
+                                    currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
                                     currentShotSound = "event:/Gun/Sniper/Shot/Sniper_Barrel";
                                 }
                             }
-                            if (allStats.list[i] == 2 && scale <= -1 || allStats.list[i] == 3 && scale >= 1)
+                            if (allStats.list[i] == 2 && scale <= -1 && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale >= 1 && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[4] += 10000 * scale;
                                 NormalPowerAttachment(scale);

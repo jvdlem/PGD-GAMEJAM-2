@@ -4851,12 +4851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 3175338978026733510}
-  timer: 6
-  Speed: 100
-  dmg: 5
+  timer: 2
+  Speed: 600
+  dmg: 1
   mytimer: 1
   mySpeed: 100
-  mydmg: 10
+  mydmg: 9.90352e+28
 --- !u!54 &3175338978026733510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4873,8 +4873,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!65 &7630920811742064336
-BoxCollider:
+--- !u!64 &3011631571753828583
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4883,9 +4883,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7413567, y: 1.862957, z: 1.6561288}
-  m_Center: {x: -0.00000047683713, y: 0.0685215, z: -0.00000005960464}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 6400436115788973566, guid: e9e024f1cfe523b48af02ec61d368231, type: 3}
 --- !u!1001 &4343147085449200509
 PrefabInstance:
   m_ObjectHideFlags: 0

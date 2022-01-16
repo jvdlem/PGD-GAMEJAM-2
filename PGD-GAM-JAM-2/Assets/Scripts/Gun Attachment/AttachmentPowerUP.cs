@@ -49,6 +49,7 @@ public class AttachmentPowerUP : MonoBehaviour
     {
         superPowered = false;
         this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", startEmmision);
+        ResetAttachment();
     }
 
     public void SuperPowered(int aOperator)
@@ -82,6 +83,7 @@ public class AttachmentPowerUP : MonoBehaviour
         }
         else if(aOperator <= -1 && canPowerUp == false)
         {
+            canPowerUp = true;
             FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/LoseBonus3", this.gameObject.transform.position);
         }
     }
@@ -93,6 +95,7 @@ public class AttachmentPowerUP : MonoBehaviour
     }
     void ResetAttachment()
     {
+        canPowerUp = true;
         superPowered = false;
         canPowerDown = false;
         this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", startEmmision);
