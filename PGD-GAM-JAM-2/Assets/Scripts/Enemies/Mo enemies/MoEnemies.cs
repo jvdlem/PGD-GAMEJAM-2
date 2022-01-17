@@ -65,18 +65,16 @@ public class Moenemies : GroundEnemyScript
                 Hurting();
                 break;
             case States.Death:
-                Die(die);
+                Dying();
                 break;
         }
-       
+
     }
     virtual public void NonStatesRelatedFunctions()
     {
         if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
         if (currentState != States.Hurt) triggerHurtAnimation = true;
         EnableParticles();
-        if (Health <= 0) currentState = States.Death;
-
     }
     virtual public void Patrolling()
     {
@@ -168,26 +166,27 @@ public class Moenemies : GroundEnemyScript
         int random = Random.Range(0, 2);
         if (random == 0) attack = attack1; else attack = attack2;
     }
-    virtual public void Die(string animation)
+    virtual public IEnumerator Die(string animation)
     {
         //Stops the enemy movement
         navMeshAgent.SetDestination(this.transform.position);
-        if (triggerDeathAnimation)
-        {
-            AnimationTrigger(animation);
-            PlaySound(deathSound, soundPosition);
-            triggerDeathAnimation = false;
-            Invoke(nameof(Despawn), 3f);
-        }
+        AnimationTrigger(animation);
+        PlaySound(deathSound, soundPosition);
+        yield return new WaitForSeconds(2);
+        Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+        Destroy(this.gameObject);
     }
     virtual public void ReturnFromHurtState()
     {
         currentState = States.Chasing;
     }
-    public void Despawn()
+    virtual public void Dying()
     {
-        //Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-        Destroy(this.gameObject);
+        if (triggerDeathAnimation)
+        {
+            StartCoroutine(Die(die));
+            triggerDeathAnimation = false;
+        }
     }
     virtual public void Hurting()
     {
@@ -219,7 +218,9 @@ public class Moenemies : GroundEnemyScript
                 AnimationTrigger("TakeDamage");
                 //INSERT Damage modifier from GUNS
                 TakeDamage(gunDmg);
-                currentState = States.Hurt;
+
+                if (Health <= 0) { currentState = States.Death; }
+                else { currentState = States.Hurt; }
             }
         }
 

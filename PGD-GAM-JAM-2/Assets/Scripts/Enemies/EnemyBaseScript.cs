@@ -53,10 +53,5 @@ public class EnemyBaseScript : MonoBehaviour
     public void TakeDamage(int pDamage)
     {
         Health -= pDamage;
-        if (Health <= 0)
-        {
-            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-            //death
-        }
     }
 }
