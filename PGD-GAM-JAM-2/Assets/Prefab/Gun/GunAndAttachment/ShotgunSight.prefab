@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: -8092872513829555611}
   - component: {fileID: -6691349616926141848}
   - component: {fileID: 2112020654577341953}
+  - component: {fileID: -6831369459126231533}
   m_Layer: 6
   m_Name: ShotgunSight
   m_TagString: Sight
@@ -375,6 +376,22 @@ MonoBehaviour:
   amountOfBullets: 0
   damage: 0
   range: 0
+--- !u!114 &-6831369459126231533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 5
+  itemName: Shotgun Sigth
+  itemDescription: Increased bullet speed.
+  isBought: 0
 --- !u!1001 &5241166892442806199
 PrefabInstance:
   m_ObjectHideFlags: 0
