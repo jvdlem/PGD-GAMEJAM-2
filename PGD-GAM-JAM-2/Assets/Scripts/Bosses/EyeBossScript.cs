@@ -21,8 +21,9 @@ public class EyeBossScript : MonoBehaviour
 
     void Update()
     {
+        float Distance = Vector3.Distance(transform.position, player.transform.position);
         //Look towards player
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - new Vector3(transform.position.x, transform.position.y - 90, transform.position.z)), lookSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - new Vector3(transform.position.x, transform.position.y, transform.position.z)), lookSpeed * Time.deltaTime);
 
         //Change color depending on if Active
         if (EyeIsActive)

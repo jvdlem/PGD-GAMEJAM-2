@@ -111,6 +111,7 @@ public class BossScript : MonoBehaviour
                 else
                 {
                     Instantiate(Bullets, Eyes[0].transform.position, Eyes[0].transform.rotation, transform);
+                    eyeShootDelay = Random.Range(0.1f, 0.8f); //change shoot delay so that the shots are eratic instead of linear intervals
                     eyeShootTimer = 0;
                 }
 
@@ -159,7 +160,7 @@ public class BossScript : MonoBehaviour
                 {
                     if (Eyes[2].transform.childCount == 0)
                     {
-                        Instantiate(Laser, Eyes[2].transform.position, Eyes[2].transform.rotation, Eyes[2].transform);
+                        Instantiate(Laser, Eyes[2].transform.position, Quaternion.Euler(Eyes[2].transform.rotation.eulerAngles.x - 90, Eyes[2].transform.rotation.eulerAngles.y, Eyes[2].transform.rotation.eulerAngles.z), Eyes[2].transform);
                     }
                     Eyes[2].renderer.material.color = Color.red;
                 }

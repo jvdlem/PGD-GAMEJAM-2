@@ -7,7 +7,7 @@ public class EyeBossBulletScript : MonoBehaviour
     private GameObject Target;
     private float LifeTime = 5;
     private float AliveTimer;
-    private float Velocity = 10;
+    private float Velocity = 30;
 
     private Vector3 moveDirection;
 
