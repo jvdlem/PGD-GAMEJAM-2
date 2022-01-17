@@ -6,7 +6,7 @@ public class ShopStatDisplay : MonoBehaviour
 {
     [SerializeField] public int itemPrice;
     [SerializeField] private string itemName, itemDescription;
-
+    public bool isBought;
 
     public string GetShopStats()
     {
