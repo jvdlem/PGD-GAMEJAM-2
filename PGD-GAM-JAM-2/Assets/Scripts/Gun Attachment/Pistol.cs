@@ -147,7 +147,6 @@ public class Pistol : MonoBehaviour
                 }
                 CheckSet(1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
-                
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             }
