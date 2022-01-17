@@ -42,8 +42,6 @@ public class BossScript : MonoBehaviour
     private float bossIsWaitingTime = 5;
     private float bossIsWaitingTimer;
 
-    float rotSpeed = 360f;
-
     void Start()
     {
         bossState = 0;
