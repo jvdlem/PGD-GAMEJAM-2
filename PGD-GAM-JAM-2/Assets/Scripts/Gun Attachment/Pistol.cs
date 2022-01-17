@@ -99,7 +99,7 @@ public class Pistol : MonoBehaviour
                 {
                     shoot();
                 }
-                else if (startControlSystem != null && controlManager.Keyboard)
+                else if (controlManager != null && controlManager.Keyboard)
                 {
                     shoot();
                 }
