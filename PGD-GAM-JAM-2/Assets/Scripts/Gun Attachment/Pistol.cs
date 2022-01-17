@@ -112,6 +112,7 @@ public class Pistol : MonoBehaviour
                 StartCoroutine(Reload());
                 
             }
+            if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
         for (int i = 1; i < lists.Count; i++)
         {
