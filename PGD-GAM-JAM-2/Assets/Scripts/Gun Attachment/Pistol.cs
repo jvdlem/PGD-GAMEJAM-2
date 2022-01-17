@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.VFX;
+using UnityEngine.UI;
 
 public class Pistol : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class Pistol : MonoBehaviour
     private float granadeSet = 0;
     private float shotGunSet = 0;
     private float sniperSet = 0;
+    public GameObject myMagazine;
+    private bool hasAmmo = false;
 
     [SerializeField] private GameObject currentAmmo;
     [SerializeField] private GameObject bullet;
@@ -32,6 +35,8 @@ public class Pistol : MonoBehaviour
     private Attachment stockStats = new Attachment();
     private Attachment magazineStats = new Attachment();
     public GameObject holster;
+    public GameObject ammoholster;
+    public Text myAmmoText;
 
     private int incommingAttachment = 1;
     private int outGoingAttachment = -1;
@@ -96,11 +101,19 @@ public class Pistol : MonoBehaviour
                 {
                     shoot();
                 }
+
+            }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                fullAuto = false;
+            }
+            if (Input.GetKeyDown("r"))
+            {
+                StartCoroutine(Reload());
+                
             }
             if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
-
-
         for (int i = 1; i < lists.Count; i++)
         {
 
@@ -123,11 +136,17 @@ public class Pistol : MonoBehaviour
                 if (i == 2 && aCurrentAddon.GetComponent<AmmoType>().GetAmmoType() != null)
                 {
                     currentAmmo = aCurrentAddon.GetComponent<AmmoType>().GetAmmoType();
+                    myMagazine = aCurrentAddon.GetComponent<AmmoType>().GetMyObject();
+                    if (ammoholster != null)
+                    {
+                        ammoholster.GetComponent<AmmoSocket>().SetAmmo(myMagazine);
+                    }
+                    myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+                    hasAmmo = true;
 
                 }
                 CheckSet(1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
-                
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
                 currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             }
@@ -150,6 +169,7 @@ public class Pistol : MonoBehaviour
                 {
                     currentAmmo.GetComponent<Projectille>().Reset();
                     currentAmmo = bullet;
+                    myAmmoText.text = "Infinite";
                 }
                 CheckSet(-1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Dettach", this.gameObject.transform.position);
@@ -169,19 +189,33 @@ public class Pistol : MonoBehaviour
         }
        
     }
-
-    public void stopFullAuto()
+    IEnumerator Reload()
+    {
+        if (myMagazine.GetComponent<AmmoType>() != null)
+        {
+            yield return new WaitForSeconds(1);
+            myMagazine.GetComponent<AmmoType>().AmmoAmount = myMagazine.GetComponent<AmmoType>().maxAmmo;
+            myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+            StopCoroutine(Reload());
+        }
+    }
+        public void stopFullAuto()
     {
         fullAuto = false;
         allStats.list[0] = startSpread;
     }
     IEnumerator CanFullAuto()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
-        Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
-        MuzzleFlash.GetComponent<VisualEffect>().Play();
-        if (canResize) { allStats.list[0] *= 0.9f; }
-        yield return new WaitForSeconds(0.1f);
+        if (myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
+            Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+            MuzzleFlash.GetComponent<VisualEffect>().Play();
+            if (canResize) { allStats.list[0] *= 0.9f; }
+            myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
+            myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+            yield return new WaitForSeconds(0.1f);
+        }
 
     }
     public void shoot()
@@ -192,13 +226,28 @@ public class Pistol : MonoBehaviour
             startSpread = allStats.list[0];
 
         }
-
-        for (int i = 0; i < allStats.list[1]; i++)
+        if (hasAmmo == false)
         {
             FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
         }
+        if (hasAmmo && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
+        {
+            for (int i = 0; i < allStats.list[1]; i++)
+            {
+                FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
+                Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+                MuzzleFlash.GetComponent<VisualEffect>().Play();
+            }
+            myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
+            myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+        }
+        else
+        {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Out of Ammo", this.gameObject.transform.position);
+        }
+                
     }
 
     private void CheckSet(int scale, SocketCheck aSocket)
@@ -230,7 +279,7 @@ public class Pistol : MonoBehaviour
                             {
                                 if (currentAmmo.GetComponent<Granade>() != null)
                                 {
-                                    currentAmmo.GetComponent<Granade>().UpdateScale(2f * scale, true, scale);
+                                    currentAmmo.GetComponent<Granade>().UpdateScale(10f * scale, true, scale);
                                     SuperPowerAttachment(scale);
                                 }
 

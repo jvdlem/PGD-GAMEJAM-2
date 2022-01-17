@@ -318,6 +318,7 @@ GameObject:
   m_Component:
   - component: {fileID: 109434732395451517}
   - component: {fileID: 109434732388006827}
+  - component: {fileID: 1707927142893106876}
   m_Layer: 0
   m_Name: Left Hand Model
   m_TagString: Untagged
@@ -340,7 +341,6 @@ Transform:
   - {fileID: 109434732395451513}
   - {fileID: 8538466930460986294}
   - {fileID: 8786903082489661783}
-  - {fileID: 4190159209438117647}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -363,6 +363,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1707927142893106876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109434732395284509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da75c3f84b31474e8dbadb640e25c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zAngleMin: 0
+  zAngleMax: 0
+  WatchUiAnim: {fileID: 2248460581022960371}
+  healthText: {fileID: 5802951962580590478}
+  coinCount: {fileID: 4001959163260745087}
 --- !u!1 &109434732395284511
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +998,7 @@ GameObject:
   - component: {fileID: 8309494791598502177}
   - component: {fileID: 3525746512072664839}
   m_Layer: 0
-  m_Name: Placeholder2
+  m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1088,7 +1105,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8309494791598502177}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1707927142893106876}
+        m_TargetAssemblyTypeName: WatchUi, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1583457999197394925
 GameObject:
   m_ObjectHideFlags: 0
@@ -1281,19 +1310,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3400401680259986213}
-  m_LocalRotation: {x: 0.29325834, y: 0.5257307, z: 0.39550787, w: -0.69367164}
-  m_LocalPosition: {x: 0, y: 0, z: -0.0794}
-  m_LocalScale: {x: 0.001553548, y: 0.001402195, z: 0.0244}
+  m_LocalRotation: {x: -0.35355356, y: -0.35355374, z: 0.6123722, w: 0.61237246}
+  m_LocalPosition: {x: 0, y: 0, z: -11.005108}
+  m_LocalScale: {x: 4.4317603, y: 0.30012083, z: 13.434009}
   m_Children:
   - {fileID: 9080332208118361429}
   - {fileID: 6343337966046767056}
   - {fileID: 25538223122361862}
-  m_Father: {fileID: 109434732395451517}
+  m_Father: {fileID: 8786903082489661783}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -124.643005, y: -241.044, z: 514.987}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0897, y: 0.0906}
+  m_AnchoredPosition: {x: -97.6399, y: 13.426085}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9014298983423472622
@@ -1522,7 +1551,7 @@ GameObject:
   - component: {fileID: 6149726658635000939}
   - component: {fileID: 514118380394014642}
   m_Layer: 0
-  m_Name: Placeholder1
+  m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1629,7 +1658,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6149726658635000939}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1707927142893106876}
+        m_TargetAssemblyTypeName: WatchUi, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4398332792251304998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1749,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Restart
 --- !u!1 &6730013840262998017
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,7 +1763,7 @@ GameObject:
   - component: {fileID: 4958189355774252914}
   - component: {fileID: 8818015936838376957}
   m_Layer: 0
-  m_Name: Placeholder3
+  m_Name: Exit Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1829,7 +1870,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4958189355774252914}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1707927142893106876}
+        m_TargetAssemblyTypeName: WatchUi, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6753656029748053995
 GameObject:
   m_ObjectHideFlags: 0
@@ -1989,7 +2042,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Exit Game
 --- !u!1 &8822333861638942055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2184,7 +2237,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Main Menu
 --- !u!1001 &6214699200614450206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2299,8 +2352,30 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 782534895466969269, guid: 2085bb297221c744da8e3fd290359520, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2085bb297221c744da8e3fd290359520, type: 3}
+--- !u!114 &5802951962580590478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 483910385196522384, guid: 2085bb297221c744da8e3fd290359520, type: 3}
+  m_PrefabInstance: {fileID: 6214699200614450206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8786903082489661783 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3444781142187937097, guid: 2085bb297221c744da8e3fd290359520, type: 3}
   m_PrefabInstance: {fileID: 6214699200614450206}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4001959163260745087 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7041056243364000097, guid: 2085bb297221c744da8e3fd290359520, type: 3}
+  m_PrefabInstance: {fileID: 6214699200614450206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

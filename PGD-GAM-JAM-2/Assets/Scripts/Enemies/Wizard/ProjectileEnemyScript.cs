@@ -2,75 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileEnemyScript : MonoBehaviour
+public class ProjectileEnemyScript : Moenemies
 {
     // Start is called before the first frame update
-    private GameObject player;
-    public GameObject Coin;
-    private float health = 10;
-    public float lookAtRange = 50.0f;
-    public float AttackRange = 20.0f;
-    public float bulletSpeed = 20.0f;
-    public float speed = 2.0f;
-
-    public bool  projectileEnemyDeath = false;
-    private bool inLookAtRange = false;
-    private bool inAttackRange = false;
-
-
-    public GameObject destroyedVersion;
+    [SerializeField] Transform shootPoint;
+    public bool projectileEnemyDeath = false;
+    public float bulletSpeed, bulletLife;
     public Rigidbody projectile;
-    void Start()
+    public float spellDelay;
+    override public void Start()
     {
-        float rand = Random.Range(1.0f, 2.0f);
-        InvokeRepeating("shoot", 2, rand);
-        player = GameObject.FindGameObjectWithTag("Player");
-
-
+        attackSound = "event:/Enemy/Wizard/Wizard Attack";
+        deathSound = "event:/Enemy/Wizard/WizardDeath";
+        hurtSound = "event:/Enemy/Wizard/WizardHurt";
+        attack = "Cast";
+        base.Start();
     }
-    void shoot() 
+    override public void Update()
     {
-        if (inAttackRange) 
-        {
-            //Sound
-            Rigidbody bullet = (Rigidbody)Instantiate(projectile, transform.position + transform.forward, transform.rotation);
-            bullet.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
+        Debug.Log(currentState);
 
-            Destroy(bullet.gameObject, 2);
-        }
+        soundPosition = this.gameObject.transform.position;
+        base.Update();
     }
-    // Update is called once per frame
-    void Update()
+    public override void SearchRandomWalkPoint()
     {
-        if (health <= 0)
-        {
-            //Sound
-            Destroy(gameObject);
-            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-            Instantiate(destroyedVersion, transform.position + new Vector3(0, -3, 0), transform.rotation);
-        }
+        //Determine a random point in the Golems detection range 
+        float randomZ = Random.Range(-detectionDistance * 1.5f, detectionDistance * 1.5f);
+        float randomX = Random.Range(-detectionDistance * 1.5f, detectionDistance * 1.5f);
 
-        inAttackRange = Vector3.Distance(transform.position, player.transform.position) < AttackRange;
-        inLookAtRange = Vector3.Distance(transform.position, player.transform.position) < lookAtRange;
+        walkPoint = new Vector3(this.gameObject.transform.position.x + randomX, this.gameObject.transform.position.y, this.gameObject.transform.position.y + randomZ);
 
-        if (inAttackRange) { transform.LookAt(player.transform); gameObject.GetComponent<Renderer>().material.color = Color.red; }
-        else if (inLookAtRange) 
-        { 
-            transform.LookAt(player.transform); gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-            Debug.DrawLine(player.transform.position, gameObject.transform.position, Color.yellow);
-            gameObject.transform.position += gameObject.transform.forward * speed * Time.deltaTime;
-        }
-        else gameObject.GetComponent<Renderer>().material.color = Color.green; ;
-
-        
+        //Check if walkpoint is on the ground
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) { walkPointSet = true; }
     }
-    private void OnCollisionEnter(Collision collision)
+    void Cast()
     {
-        if (collision.gameObject.tag == "Projectile")
-        {
-           //Sound
-            health -= 2;
-            Destroy(collision.gameObject);
-        }
+        //Sound
+        Rigidbody bullet = (Rigidbody)Instantiate(projectile, shootPoint.position, transform.rotation);
+        bullet.AddForce(transform.forward * bulletSpeed, ForceMode.Impulse);
+
+        Destroy(bullet.gameObject, bulletLife);
+    }
+    public override IEnumerator TimedAttack()
+    {
+        PlaySound(attackSound, soundPosition);
+        AnimationTrigger(attack);
+        yield return new WaitForSeconds(spellDelay);
+        Cast();
+        yield return new WaitForSeconds(attackTimer);
+        isAttacking = false;
     }
 }

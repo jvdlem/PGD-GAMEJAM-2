@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1215034889254654823}
   m_Layer: 0
   m_Name: SniperBullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -63,9 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 1672247644449899743}
-  timer: 4
-  Speed: 100
-  dmg: Infinity
+  timer: 6
+  Speed: 1600
+  dmg: 2
   mytimer: 4
   mySpeed: 100
   mydmg: Infinity
