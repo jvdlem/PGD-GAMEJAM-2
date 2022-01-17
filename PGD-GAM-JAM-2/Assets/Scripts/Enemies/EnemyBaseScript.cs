@@ -19,6 +19,7 @@ public class EnemyBaseScript : MonoBehaviour
         Attacking,
         Patrolling,
         Chasing,
+        Hurt,
         Death
     }
 

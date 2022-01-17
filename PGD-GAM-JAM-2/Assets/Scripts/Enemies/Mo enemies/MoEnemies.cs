@@ -16,16 +16,16 @@ public class Moenemies : GroundEnemyScript
     public float timeofLastAttack = 0;
     public bool isAttacking = false;
     public bool alreadyAttacking;
-    [SerializeField]public float attackTimer;
+    [SerializeField] public float attackTimer;
 
     [Header("Animation Variables")]
     public string attack;
     public string die = "Die";
-    public bool triggerAnimation = true;
+    public bool triggerDeathAnimation = true, triggerHurtAnimation = true;
 
     [Header("States")]
-    [SerializeField]public float detectionDistance;
-    [SerializeField]public  float attackDistance;
+    [SerializeField] public float detectionDistance;
+    [SerializeField] public float attackDistance;
 
     [Header("Sounds")]
     public string attackSound, deathSound, hurtSound, windUpSound;
@@ -45,10 +45,7 @@ public class Moenemies : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
-        //Enemy patrols if no player is detected
-        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
-        EnableParticles();
-        Die(die);
+        NonStatesRelatedFunctions();
 
         switch (currentState)
         {
@@ -64,7 +61,22 @@ public class Moenemies : GroundEnemyScript
                 Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
+            case States.Hurt:
+                Hurting();
+                break;
+            case States.Death:
+                Die(die);
+                break;
         }
+       
+    }
+    virtual public void NonStatesRelatedFunctions()
+    {
+        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+        if (currentState != States.Hurt) triggerHurtAnimation = true;
+        EnableParticles();
+        if (Health <= 0) currentState = States.Death;
+
     }
     virtual public void Patrolling()
     {
@@ -154,40 +166,61 @@ public class Moenemies : GroundEnemyScript
     virtual public void RandomAttackVariations(string attack1, string attack2)
     {
         int random = Random.Range(0, 2);
-        if (random == 0) attack= attack1; else attack= attack2;
+        if (random == 0) attack = attack1; else attack = attack2;
     }
     virtual public void Die(string animation)
     {
-        if (Health <= 0)
+        //Stops the enemy movement
+        navMeshAgent.SetDestination(this.transform.position);
+        if (triggerDeathAnimation)
         {
-            //Stops the enemy movement
-           // navMeshAgent.SetDestination(this.transform.position);
-            if (triggerAnimation)
-            {
-                triggerAnimation = false;
-                AnimationTrigger(animation);
-                PlaySound(deathSound, soundPosition);
-                Invoke(nameof(Despawn), 3f);
-            }
+            AnimationTrigger(animation);
+            PlaySound(deathSound, soundPosition);
+            triggerDeathAnimation = false;
+            Invoke(nameof(Despawn), 3f);
         }
+    }
+    virtual public void ReturnFromHurtState()
+    {
+        currentState = States.Chasing;
     }
     public void Despawn()
     {
         //Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
         Destroy(this.gameObject);
     }
+    virtual public void Hurting()
+    {
+        if (triggerHurtAnimation)
+        {
+            triggerHurtAnimation = false;
+            StartCoroutine(Hurt());
+        }
+    }
+    virtual public IEnumerator Hurt()
+    {
+        navMeshAgent.SetDestination(this.transform.position);
+        PlaySound(hurtSound, soundPosition);
+        AnimationTrigger("TakeDamage");
+        yield return new WaitForSeconds(1f);
+        currentState = States.Chasing;
+    }
     public void OnCollisionEnter(Collision collision)
     {
         //Gets the damage modifier from the current gun
         int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
-        //Projectile hurts enemy on collision
-        if (collision.gameObject.tag == "Projectile")
+        //Projectile hurts enemy on collision when not in hurting nor Death state
+        if (currentState != States.Hurt && currentState != States.Death)
         {
-            PlaySound(hurtSound, soundPosition);
-            AnimationTrigger("TakeDamage");
-            //INSERT Damage modifier from GUNS
-            TakeDamage(gunDmg);
+            if (collision.gameObject.tag == "Projectile")
+            {
+                PlaySound(hurtSound, soundPosition);
+                AnimationTrigger("TakeDamage");
+                //INSERT Damage modifier from GUNS
+                TakeDamage(gunDmg);
+                currentState = States.Hurt;
+            }
         }
 
         //Enemy hurts player on collision
@@ -202,18 +235,22 @@ public class Moenemies : GroundEnemyScript
         //Gets the damage modifier from the current gun
         int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
 
-        //Projectile hurts enemy on collision
-        if (other.gameObject.tag == "Projectile")
+        //Projectile hurts enemy on collision when not in hurting nor Death state
+        if (currentState != States.Hurt && currentState != States.Death)
         {
-            PlaySound(hurtSound, soundPosition);
-            AnimationTrigger("TakeDamage");
-            //INSERT Damage modifier from GUNS
-            TakeDamage(gunDmg);
+            if (other.gameObject.tag == "Projectile")
+            {
+                PlaySound(hurtSound, soundPosition);
+                AnimationTrigger("TakeDamage");
+                //INSERT Damage modifier from GUNS
+                TakeDamage(gunDmg);
+                currentState = States.Hurt;
+            }
         }
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
     {
-        FMODUnity.RuntimeManager.PlayOneShot(soundPath,position);
+        FMODUnity.RuntimeManager.PlayOneShot(soundPath, position);
     }
     public virtual void EnableParticles()
     {
