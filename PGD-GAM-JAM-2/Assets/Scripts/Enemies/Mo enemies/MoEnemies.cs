@@ -45,10 +45,8 @@ public class Moenemies : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
-        //Enemy patrols if no player is detected
-        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
-        if (currentState != States.Hurt) triggerHurtAnimation = true;
-        EnableParticles();
+        NonStatesRelatedFunctions();
+
         switch (currentState)
         {
             case States.Patrolling:
@@ -66,8 +64,19 @@ public class Moenemies : GroundEnemyScript
             case States.Hurt:
                 Hurting();
                 break;
+            case States.Death:
+                Die(die);
+                break;
         }
-        Die(die);
+       
+    }
+    virtual public void NonStatesRelatedFunctions()
+    {
+        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+        if (currentState != States.Hurt) triggerHurtAnimation = true;
+        EnableParticles();
+        if (Health <= 0) currentState = States.Death;
+
     }
     virtual public void Patrolling()
     {
@@ -161,30 +170,25 @@ public class Moenemies : GroundEnemyScript
     }
     virtual public void Die(string animation)
     {
-        if (Health <= 0)
+        //Stops the enemy movement
+        navMeshAgent.SetDestination(this.transform.position);
+        if (triggerDeathAnimation)
         {
-            //Stops the enemy movement
-            navMeshAgent.SetDestination(this.transform.position);
-            if (triggerDeathAnimation)
-            {
-                triggerDeathAnimation = false;
-                AnimationTrigger(animation);
-                PlaySound(deathSound, soundPosition);
-                Invoke(nameof(Despawn), 3f);
-            }
+            AnimationTrigger(animation);
+            PlaySound(deathSound, soundPosition);
+            triggerDeathAnimation = false;
+            Invoke(nameof(Despawn), 3f);
         }
     }
     virtual public void ReturnFromHurtState()
     {
         currentState = States.Chasing;
     }
-
     public void Despawn()
     {
         //Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
         Destroy(this.gameObject);
     }
-
     virtual public void Hurting()
     {
         if (triggerHurtAnimation)
@@ -199,7 +203,6 @@ public class Moenemies : GroundEnemyScript
         PlaySound(hurtSound, soundPosition);
         AnimationTrigger("TakeDamage");
         yield return new WaitForSeconds(1f);
-        Debug.Log("CHASE");
         currentState = States.Chasing;
     }
     public void OnCollisionEnter(Collision collision)
@@ -208,7 +211,7 @@ public class Moenemies : GroundEnemyScript
         int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
         //Projectile hurts enemy on collision when not in hurting nor Death state
-        if (currentState != States.Hurt && currentState!=States.Death)
+        if (currentState != States.Hurt && currentState != States.Death)
         {
             if (collision.gameObject.tag == "Projectile")
             {
