@@ -15,7 +15,7 @@ public class RangedFlyingEnemyScript : FlyingEnemyScript
         TrackObject(targetObject); //Follow target
         FireOn(targetObject); //Fire projectile at target
 
-        FlyTo(target, flyingSpeed); //Fly in direction of target
+        navMeshAgent.SetDestination(target); //Fly in direction of target
     }
 
     /// <summary>Launches projectile at a target.</summary>

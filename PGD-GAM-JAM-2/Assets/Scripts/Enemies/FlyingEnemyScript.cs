@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class FlyingEnemyScript : EnemyBaseScript
 {
+    protected NavMeshAgent navMeshAgent;
+
     protected Vector3 target; //Target to specify direction
 
     [SerializeField] protected float flyingSpeed = 5; //Sets movement speed
@@ -22,17 +23,7 @@ public class FlyingEnemyScript : EnemyBaseScript
 
         Rigidbody.useGravity = false; //Turn off gravity for proper movement
 
-        currentState = States.Chasing; //Enemy starts attacking target
-
         transform.position = new Vector3(0, 10); //Spawn above ground       
-    }
-
-    ///<summary>Give the velocity a specified target vector.</summary>
-    virtual protected Vector3 FlyTo(Vector3 targetVector, float speed) 
-    {
-        velocity = targetVector * speed;
-
-        return velocity;
     }
 
     /// <summary>Sets object rotation.</summary>
