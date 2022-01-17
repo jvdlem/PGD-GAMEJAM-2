@@ -1,10 +1,7 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class FlyingEnemyScript : EnemyBaseScript
 {
-    protected NavMeshAgent navMeshAgent;
-
     protected Vector3 target; //Target to specify direction
 
     [SerializeField] protected float flyingSpeed = 5; //Sets movement speed
@@ -13,23 +10,26 @@ public class FlyingEnemyScript : EnemyBaseScript
      protected int moveTimer = 0;
     [SerializeField] protected int timerMax = 150;
 
-    //Object to set as target
-    [SerializeField] protected GameObject targetObject;
-
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
 
-        Rigidbody.useGravity = false; //Turn off gravity for proper movement
+        Rigidbody.useGravity = false; //Turn off gravity for proper movement      
+    }
 
-        transform.position = new Vector3(0, 10); //Spawn above ground       
+    /// <summary>Fly in specified direction.</summary>
+    virtual protected Vector3 FlyTo(Vector3 targetVector, float speed) 
+    {
+        velocity = targetVector * speed;
+
+        return target;
     }
 
     /// <summary>Sets object rotation.</summary>
-    virtual protected Quaternion SetRotation(Vector3 newRotation) 
+    virtual protected Quaternion SetRotation(Vector3 targetRotation) 
     {
-        transform.rotation = Quaternion.LookRotation(newRotation);
+        transform.rotation = Quaternion.LookRotation(targetRotation);
 
         return transform.rotation;
     }
@@ -60,9 +60,9 @@ public class FlyingEnemyScript : EnemyBaseScript
     }
 
     /// <summary>Track object based on its position.</summary>
-    virtual protected Vector3 TrackObject(GameObject targetObject) 
+    virtual protected Vector3 Track(Vector3 targetVector) 
     {
-        target = new Vector3(targetObject.transform.position.x, 0 , targetObject.transform.position.z) - 
+        target = new Vector3(targetVector.x, 0 , targetVector.z) - 
             new Vector3(transform.position.x, 0, transform.position.z);
         target.Normalize();
 

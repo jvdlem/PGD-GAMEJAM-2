@@ -272,6 +272,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAmmo: {fileID: 4036158279038460054, guid: a30d48416e9380941b559a68e63d4809, type: 3}
+  AmmoAmount: 12
+  maxAmmo: 12
+  myPrefab: {fileID: 5500370889774544324}
 --- !u!114 &-8503999376217608532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +369,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   myParticle: {fileID: 4541414960765006873}
+  test: 100
 --- !u!1001 &4785599681555370878
 PrefabInstance:
   m_ObjectHideFlags: 0
