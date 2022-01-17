@@ -39,8 +39,8 @@ public class EnemyMove : GroundEnemyScript
         attackSound = "event:/Enemy/Goblin/GoblinAttack";
         deathSound = "event:/Enemy/Goblin/GoblinDeath";
         hurtSound = "event:/Enemy/Goblin/GoblinHurt";
-        windupSound = "event:/Enemy/Goblin/GoblinIdle";
-        idleSound = "event:/Enemy/Goblin/GoblinWindup";
+        windupSound = "event:/Enemy/Goblin/GoblinWindup";
+        idleSound = "event:/Enemy/Goblin/GoblinIdle";
     }
 
     // Update is called once per frame

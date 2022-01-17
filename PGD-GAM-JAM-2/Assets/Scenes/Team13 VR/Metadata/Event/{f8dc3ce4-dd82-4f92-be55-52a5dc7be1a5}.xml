@@ -57,8 +57,8 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{06b67bb8-4606-42c1-8a1e-2471ff2f7b62}">
-		<property name="maxVoices">
-			<value>1</value>
+		<property name="maximumDistance">
+			<value>100</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{ce239375-06ce-4fd7-b453-7579c6415eaa}" />
@@ -132,6 +132,9 @@
 	<object class="SpatialiserEffect" id="{3b6f2fb3-05ef-41b1-8629-8250b4ea48c8}">
 		<property name="distanceRolloffType">
 			<value>1</value>
+		</property>
+		<property name="maximumDistance">
+			<value>100</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{3ff6f7c1-c1ea-4f9f-8829-3dcf8d2ba4d8}" />
