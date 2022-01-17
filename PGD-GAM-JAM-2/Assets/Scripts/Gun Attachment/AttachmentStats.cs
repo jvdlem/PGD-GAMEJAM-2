@@ -10,7 +10,11 @@ public class AttachmentStats : MonoBehaviour
     public float damage = 1;
     public float bulletTime = 1;
     public float bulletSpeed = 1;
-    public float fullAutoCount = 0;
+    public float miniGunSet = 0;
+    public float grenadeSet = 0;
+    public float shotGunSet = 0;
+    public float sniperSet = 0;
+
 
 
     private void Start()
@@ -20,6 +24,9 @@ public class AttachmentStats : MonoBehaviour
         statList.Add(damage);
         statList.Add(bulletTime);
         statList.Add(bulletSpeed);
-        statList.Add(fullAutoCount);
+        statList.Add(miniGunSet);
+        statList.Add(grenadeSet);
+        statList.Add(shotGunSet);
+        statList.Add(sniperSet);
     }
 }

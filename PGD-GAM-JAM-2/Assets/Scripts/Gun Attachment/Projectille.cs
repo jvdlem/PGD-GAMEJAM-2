@@ -16,7 +16,7 @@ public class Projectille : MonoBehaviour
     public Projectille()
     {
     }
-    private void Awake()
+    protected virtual void Awake()
     {
         myRigitbody.AddRelativeForce(new Vector3(0, 0, Speed));
     }

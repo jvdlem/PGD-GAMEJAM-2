@@ -18,6 +18,8 @@ public class InventoryPlayer : MonoBehaviour
     private bool isActive = false;
     private bool swaped = false;
 
+    [SerializeField] public Text coinText;
+
     // Update is called once per frame
     private void Start()
     {
@@ -29,6 +31,8 @@ public class InventoryPlayer : MonoBehaviour
     }
     void Update()
     {
+        coinText.text = "" + FindObjectOfType<PlayerHealthScript>().coins;
+
         StopCoroutine(timer());
         if (Input.GetKeyDown("q"))
         {
@@ -145,6 +149,7 @@ public class InventoryPlayer : MonoBehaviour
                 ChangeImage();
 
                 inventoryList[selectedAttachemnt] = pistolList[selectedAttachemnt];
+
 
                 pistolList[selectedAttachemnt].SetActive(false);
                 pistolList[selectedAttachemnt] = null;

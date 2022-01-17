@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6563782373378266076}
   m_Layer: 0
   m_Name: ShotgunBullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,9 +46,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: -6563782373378266076}
-  timer: 6.5
-  Speed: 300
-  dmg: 1
+  timer: 13.5
+  Speed: 1503
+  dmg: 9
+  mytimer: 10
+  mySpeed: 500
+  mydmg: 32
 --- !u!54 &-6563782373378266076
 Rigidbody:
   m_ObjectHideFlags: 0

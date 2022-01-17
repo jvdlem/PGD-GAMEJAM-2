@@ -11,6 +11,7 @@ public class EnemyMove : GroundEnemyScript
     Vector3 retreatTarget = Vector3.zero;
     public LayerMask groundLayer;
     [SerializeField] Animator anim;
+    string attackSound, deathSound, hurtSound, windupSound, idleSound;
     enum States
     {
         Idle,
@@ -34,6 +35,12 @@ public class EnemyMove : GroundEnemyScript
         AttackRange = 0.5f;
         rushDistance = 5;
         rushSpeed = 8;
+        //Initialise Sounds
+        attackSound = "event:/Enemy/Goblin/GoblinAttack";
+        deathSound = "event:/Enemy/Goblin/GoblinDeath";
+        hurtSound = "event:/Enemy/Goblin/GoblinHurt";
+        windupSound = "event:/Enemy/Goblin/GoblinIdle";
+        idleSound = "event:/Enemy/Goblin/GoblinWindup";
     }
 
     // Update is called once per frame
@@ -92,7 +99,7 @@ public class EnemyMove : GroundEnemyScript
     {
         if (collision.gameObject.tag == "Projectile")
         {
-            //Sound
+            PlaySound(hurtSound, this.gameObject.transform.position);
             Health -= 1;
             Destroy(collision.gameObject);
         }
@@ -133,8 +140,8 @@ public class EnemyMove : GroundEnemyScript
     {
         anim.Play("Die");
         Speed = idleSpeed;
-        navMeshAgent.SetDestination(this.transform.position); 
-        //Sound
+        navMeshAgent.SetDestination(this.transform.position);
+        PlaySound(deathSound, this.gameObject.transform.position);
         DeathTimer += Time.deltaTime;
         if (DeathTimer > 1.65f)
         {
@@ -152,7 +159,7 @@ public class EnemyMove : GroundEnemyScript
         if (IdleTimer > 8)
         {
             IdleTimer = 0;
-            //play the idleing sound.
+            PlaySound(idleSound, this.gameObject.transform.position);
         }
     }
 
@@ -165,7 +172,7 @@ public class EnemyMove : GroundEnemyScript
         if (AttackTimer > 1.5f)
         {
             anim.Play("Attack_01");
-            //play the attacking sound.
+            PlaySound(attackSound, this.gameObject.transform.position);
             attemptAttack = true;
             AttackTimer = 0;
         }
@@ -183,5 +190,11 @@ public class EnemyMove : GroundEnemyScript
         Speed = rushSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         anim.Play("Run");
+        PlaySound(windupSound, this.gameObject.transform.position);
+    }
+
+    private void PlaySound(string sound, Vector3 pos)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(sound, pos);
     }
 }
