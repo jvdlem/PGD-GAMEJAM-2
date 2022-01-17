@@ -549,11 +549,11 @@ MonoBehaviour:
   CollisionTag: Player
   EventReference:
     Guid:
-      Data1: -1009714564
-      Data2: 1121554796
-      Data3: -1011555157
-      Data4: 337674494
-    Path: event:/MISC/ElevatorMusic
+      Data1: -1024489110
+      Data2: 1332055187
+      Data3: 695194556
+      Data4: 636738661
+    Path: event:/MISC/Elevator/ElevatorMusic
   Event: 
   PlayEvent: 3
   StopEvent: 4
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ElevatorButton: {fileID: 8173100714956903138}
-  AudioEmitter: {fileID: 0}
+  AudioEmitter: {fileID: 824911451232693382}
 --- !u!65 &4673952505846566094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1075,11 +1075,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 932676344
-      Data2: 1168329349
-      Data3: -1186046022
-      Data4: -449673675
-    Path: event:/MISC/ConfirmOpen
+      Data1: 654185112
+      Data2: 1207255455
+      Data3: -863179090
+      Data4: -1222152288
+    Path: event:/MISC/Elevator/ElevatorDing
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -1229,7 +1229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 1.6502569
+      value: 1.6501607
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.z
@@ -1478,7 +1478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 0.00000073277096
+      value: -0.00000073277096
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.y

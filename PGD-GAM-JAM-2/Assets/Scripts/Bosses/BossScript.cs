@@ -42,6 +42,9 @@ public class BossScript : MonoBehaviour
     private float bossIsWaitingTime = 5;
     private float bossIsWaitingTimer;
 
+    private FMODUnity.StudioEventEmitter AudioEmitter;
+    public FMODUnity.EventReference[] SoundEffects;
+
     void Start()
     {
         bossState = 0;
@@ -51,6 +54,7 @@ public class BossScript : MonoBehaviour
             Eyes[i] = gameObject.transform.GetChild(i).GetComponent<EyeBossScript>();
         }
         Player = GameObject.FindGameObjectWithTag("Player");
+        AudioEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
         healthSlider.maxValue = bossMaxHealth;
     }
 
@@ -70,7 +74,11 @@ public class BossScript : MonoBehaviour
                 }
                 BossHealth = bossMaxHealth;
                 CycleToNextEye = false;
+
+                AudioEmitter.EventReference = SoundEffects[0];
+                AudioEmitter.Play();
                 bossState = 1;
+
                 break;
 
             //boss is waiting state
@@ -112,6 +120,10 @@ public class BossScript : MonoBehaviour
                 {
                     Instantiate(Bullets, Eyes[0].transform.position, Eyes[0].transform.rotation, transform);
                     eyeShootDelay = Random.Range(0.1f, 0.8f); //change shoot delay so that the shots are eratic instead of linear intervals
+
+                    AudioEmitter.EventReference = SoundEffects[1];
+                    AudioEmitter.Play();
+
                     eyeShootTimer = 0;
                 }
 
@@ -135,6 +147,9 @@ public class BossScript : MonoBehaviour
                         Instantiate(Minions, MinionSpawnLocation.position, MinionSpawnLocation.rotation, MinionSpawnLocation);
                     }
                     minionsSpawned = true;
+
+                    AudioEmitter.EventReference = SoundEffects[2];
+                    AudioEmitter.Play();
                 }
 
                 if (CycleToNextEye)
@@ -161,6 +176,9 @@ public class BossScript : MonoBehaviour
                     if (Eyes[2].transform.childCount == 0)
                     {
                         Instantiate(Laser, Eyes[2].transform.position, Quaternion.Euler(Eyes[2].transform.rotation.eulerAngles.x - 90, Eyes[2].transform.rotation.eulerAngles.y, Eyes[2].transform.rotation.eulerAngles.z), Eyes[2].transform);
+
+                        AudioEmitter.EventReference = SoundEffects[3];
+                        AudioEmitter.Play();
                     }
                     Eyes[2].renderer.material.color = Color.red;
                 }
@@ -171,6 +189,7 @@ public class BossScript : MonoBehaviour
                     if(Eyes[2].transform.childCount != 0)
                     {
                         Destroy(Eyes[2].transform.GetChild(0).gameObject);
+                        AudioEmitter.Stop();
                     }
                     Eyes[2].lookSpeed = EyeLookSpeedDefault;
                     laserChargeTimer = 0;
@@ -180,6 +199,10 @@ public class BossScript : MonoBehaviour
 
             //boss dies state;
             case 5:
+
+                AudioEmitter.EventReference = SoundEffects[4];
+                AudioEmitter.Play();
+
                 if (Eyes[2].transform.childCount != 0)
                 {
                     Destroy(Eyes[2].transform.GetChild(0).gameObject);
