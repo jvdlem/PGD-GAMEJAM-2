@@ -13,7 +13,6 @@ public class DisplayItems : MonoBehaviour
     public int index;
     public List<GameObject> shopItems;
     private Vector3 boughtItemPos;
-
     private PlayerHealthScript PlayerScript;
 
     public void Start()
