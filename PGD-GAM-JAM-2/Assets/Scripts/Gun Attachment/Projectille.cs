@@ -29,14 +29,14 @@ public class Projectille : MonoBehaviour
         }
     }
 
-    public void Stats(float speed, float timer, float dmg)
+    public virtual void Stats(float speed, float timer, float dmg)
     {
         this.timer = timer;
         this.Speed = speed;
         this.dmg = dmg;
         this.timer += mytimer;
         this.Speed += mySpeed;
-        this.mydmg += mydmg;
+        this.dmg += mydmg;
         
     }
     public void Reset()

@@ -10,13 +10,25 @@ public class Transport : MonoBehaviour
     public Vector3 worldPos;
     public bool doitpls;
 
-    public void StartTransport()
+    public void StartTransportToGame()
     {
-        StartCoroutine(TransportPlayer());
+        StartCoroutine(TransportToGame());
     }
-    public IEnumerator TransportPlayer()
+    public IEnumerator TransportToGame()
     {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("cave system");
     }
+
+    public void StartTransportToMenu()
+    {
+        StartCoroutine(TransportPlayerToMenu());
+    }
+    public IEnumerator TransportPlayerToMenu()
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene("Main");
+    }
 }
+
+
