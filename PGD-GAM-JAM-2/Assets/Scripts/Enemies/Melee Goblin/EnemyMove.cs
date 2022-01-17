@@ -92,7 +92,16 @@ public class EnemyMove : GroundEnemyScript
                 attemptAttack = false;
             }
         }
+
+        if (collision.gameObject.tag == "Projectile" && !ded)
+        {
+            PlaySound(hurtSound, this.gameObject.transform.position);
+            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            Health -= dmg;
+            Destroy(collision.gameObject);
+        }
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Projectile" && !ded)
@@ -126,6 +135,7 @@ public class EnemyMove : GroundEnemyScript
             currentGoblinState = States.Following;
         }
     }
+
     void SearchRetreatTarget()
     {
         float backOffDistance = -1;
