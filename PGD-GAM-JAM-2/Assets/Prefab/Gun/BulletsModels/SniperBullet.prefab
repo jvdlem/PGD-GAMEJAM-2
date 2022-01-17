@@ -63,12 +63,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 1672247644449899743}
-  timer: 1
-  Speed: 0
-  dmg: 1
+  timer: 4
+  Speed: 100
+  dmg: Infinity
   mytimer: 4
   mySpeed: 100
-  mydmg: 1
+  mydmg: Infinity
 --- !u!64 &1409117853303511378
 MeshCollider:
   m_ObjectHideFlags: 0

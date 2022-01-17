@@ -20,7 +20,7 @@ public class WatchUi : MonoBehaviour
         
         healthText.text = "" + PlayerScript.currentHealth;
         coinCount.text = "" + PlayerScript.coins;
-        if (this.transform.eulerAngles.z >= 150f && this.transform.eulerAngles.z <= 260f && !WatchUiOpen)
+        if (this.transform.eulerAngles.z >= 60f && this.transform.eulerAngles.z <= 150f && !WatchUiOpen)
         {
 
             Canvas.SetActive(true);
@@ -28,7 +28,7 @@ public class WatchUi : MonoBehaviour
             WatchUiOpen = true;
 
         }
-        else if (this.transform.eulerAngles.z <= 150f && WatchUiOpen || this.transform.eulerAngles.z >= 260f && WatchUiOpen)
+        else if (this.transform.eulerAngles.z <= 60f && WatchUiOpen || this.transform.eulerAngles.z >= 150f && WatchUiOpen)
         {
             WatchUiAnim.Play("WatchAnimClose");
             
