@@ -7,6 +7,7 @@ public class SocketCheck : XRSocketInteractor
 {
     public string targetTag = string.Empty;
     public XRBaseInteractable Attatchment;
+    public GameObject exitAttachment;
     public int attached = 2;
     public float scaleSize = 1;
 
@@ -32,9 +33,15 @@ public class SocketCheck : XRSocketInteractor
     {
         attached = 1;
         //Debug.Log(interactable);
+        exitAttachment = interactable.gameObject;
         interactable.transform.localScale /= scaleSize;
+        interactable.gameObject.GetComponent<AttachmentPowerUP>().ChangeColorstate();
+        if (interactable.gameObject.GetComponent<AttachmentPowerUP>() != null)
+        {
+            interactable.gameObject.GetComponent<AttachmentPowerUP>().ChangeColorstate();
+        }
         base.OnSelectExited(interactable);
-     
+
         Attatchment = null;
     }
 

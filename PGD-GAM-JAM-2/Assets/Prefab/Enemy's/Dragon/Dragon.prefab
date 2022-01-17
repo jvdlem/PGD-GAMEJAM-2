@@ -1250,11 +1250,10 @@ MonoBehaviour:
   Coin: {fileID: 0}
   flyingSpeed: 5
   timerMax: 150
-  targetObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
-  radius: 0
+    m_Bits: 512
+  radius: 25
 --- !u!136 &7592419149211803940
 CapsuleCollider:
   m_ObjectHideFlags: 0
