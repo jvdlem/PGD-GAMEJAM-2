@@ -28,12 +28,8 @@ public class AttachmentStatsUi : MonoBehaviour
     {
 
         controller = this.gameObject.GetComponent<XRDirectInteractor>().selectTarget.gameObject;
-        if (controller.GetComponent<AttachmentStats>() != null && gameObject != gun)
-        {
-            state(default);
-            getStats();
-            showStats();
-        }
+        state(default);
+       
         
      
 
@@ -45,7 +41,15 @@ public class AttachmentStatsUi : MonoBehaviour
         switch (state)
         {
             case 1:
-                attachmentStatsUi.GetComponent<Canvas>().enabled = true;
+                if (controller.GetComponent<AttachmentStats>() != null && gameObject != gun)
+                {
+                    getStats();
+                    showStats();
+                    attachmentStatsUi.GetComponent<Canvas>().enabled = true;
+
+                }
+                
+
                 break;
            
             default:
