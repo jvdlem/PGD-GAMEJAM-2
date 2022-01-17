@@ -238,11 +238,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statList: []
-  spread: -20
+  spread: -5
   amountOfBullets: 0
-  damage: 10
+  damage: 3
   bulletTime: 1
-  bulletSpeed: 5000
+  bulletSpeed: 0
   miniGunSet: 0
   grenadeSet: 0
   shotGunSet: 0
@@ -506,11 +506,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6989383949593718963, guid: 99ee52b2da480e34c930c146fafc8375, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0552
+      value: -0.059
       objectReference: {fileID: 0}
     - target: {fileID: 6989383949593718963, guid: 99ee52b2da480e34c930c146fafc8375, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.222
+      value: -0.219
       objectReference: {fileID: 0}
     - target: {fileID: 6989383949593718963, guid: 99ee52b2da480e34c930c146fafc8375, type: 3}
       propertyPath: m_LocalRotation.w
