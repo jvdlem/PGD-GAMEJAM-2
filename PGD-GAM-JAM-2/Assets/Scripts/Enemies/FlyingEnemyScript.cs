@@ -26,14 +26,6 @@ public class FlyingEnemyScript : EnemyBaseScript
         return target;
     }
 
-    ///<summary>Give the velocity a specified target vector</summary>
-    virtual protected Vector3 FlyTo(Vector3 targetVector, float speed)
-    {
-        velocity = targetVector * speed;
-
-        return velocity;
-    }
-
     /// <summary>Sets object rotation.</summary>
     virtual protected Quaternion SetRotation(Vector3 targetRotation) 
     {
