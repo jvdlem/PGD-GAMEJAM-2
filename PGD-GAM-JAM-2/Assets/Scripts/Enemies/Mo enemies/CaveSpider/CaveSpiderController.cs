@@ -14,7 +14,6 @@ public class CaveSpiderController : Moenemies
         hurtSound = "event:/Enemy/Spider/Spider Hurt";
         attack = "Lunge";
         attackTimer = 1f;
-        Damage = 1;
     }
 
     public override void Update()
