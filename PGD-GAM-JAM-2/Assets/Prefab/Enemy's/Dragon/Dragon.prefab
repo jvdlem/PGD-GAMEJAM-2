@@ -1189,7 +1189,6 @@ GameObject:
   - component: {fileID: 7592419149276134905}
   - component: {fileID: -7446035393999857564}
   - component: {fileID: 7592419149211803940}
-  - component: {fileID: -517296045908481389}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -1251,11 +1250,10 @@ MonoBehaviour:
   Coin: {fileID: 0}
   flyingSpeed: 5
   timerMax: 150
-  targetObject: {fileID: 0}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
-  radius: 0
+    m_Bits: 512
+  radius: 25
 --- !u!136 &7592419149211803940
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1270,28 +1268,6 @@ CapsuleCollider:
   m_Height: 1.19
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!195 &-517296045908481389
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7592419149283544687}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &7592419149283544689
 GameObject:
   m_ObjectHideFlags: 0
