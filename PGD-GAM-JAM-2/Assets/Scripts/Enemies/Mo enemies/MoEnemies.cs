@@ -198,7 +198,7 @@ public class Moenemies : GroundEnemyScript
         navMeshAgent.SetDestination(this.transform.position);
         PlaySound(hurtSound, soundPosition);
         AnimationTrigger("TakeDamage");
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(1f);
         Debug.Log("CHASE");
         currentState = States.Chasing;
     }
