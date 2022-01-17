@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FPSPlayerMovement : MonoBehaviour
 {
+    [SerializeField] ExitMenuScript exitmenuscript;
     [SerializeField] public Camera mainCamera;
-    [SerializeField] public Transport transport;
     public CharacterController controller;
     public Transform groundCheck;
 
@@ -41,39 +41,44 @@ public class FPSPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transport.doitpls)
+        if (exitmenuscript != null)
         {
-            this.transform.position = transport.worldPos;
-            transport.doitpls = false;
+            if (Input.GetKeyDown(KeyCode.Escape) && exitmenuscript.menuOn)
+            {
+                exitmenuscript.ToggleExitMenuScreenOff();
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && !exitmenuscript.menuOn)
+            {
+                exitmenuscript.ToggleExitMenuScreenOn();
+            }
         }
-        else
+
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded && Velocity.y < 0)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-            if (isGrounded && Velocity.y < 0)
-            {
-                Velocity.y = -2f;
-            }
-
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-            //Debug.Log(Input.GetAxis("Vertical"));
-            if (Input.GetAxis("Horizontal") >= 0.5f || Input.GetAxis("Vertical") <= 0.5f)
-            {
-                //Debug.Log("dis when sound should play");
-            }
-
-                Vector3 move = transform.right * x + transform.forward * z;
-
-            controller.Move(move * speed * Time.deltaTime);
-
-            Velocity.y += gravity * Time.deltaTime;
-            controller.Move(Velocity * Time.deltaTime);
-
-            if (canCrouch) HandleCrouch();
-            if (isCrouching) speed = crouchSpeed;
-            else speed = walkSpeed;
+            Velocity.y = -2f;
         }
+
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        //Debug.Log(Input.GetAxis("Vertical"));
+        if (Input.GetAxis("Horizontal") >= 0.5f || Input.GetAxis("Vertical") <= 0.5f)
+        {
+            //Debug.Log("dis when sound should play");
+        }
+
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        controller.Move(move * speed * Time.deltaTime);
+
+        Velocity.y += gravity * Time.deltaTime;
+        controller.Move(Velocity * Time.deltaTime);
+
+        if (canCrouch) HandleCrouch();
+        if (isCrouching) speed = crouchSpeed;
+        else speed = walkSpeed;
+
     }
 
     private void HandleCrouch()

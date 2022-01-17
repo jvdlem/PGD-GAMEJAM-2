@@ -15,9 +15,15 @@ public class FlyingEnemyScript : EnemyBaseScript
     {
         base.Start();
 
-        Rigidbody.useGravity = false; //Turn off gravity for proper movement
+        Rigidbody.useGravity = false; //Turn off gravity for proper movement      
+    }
 
-        transform.position = new Vector3(0, 10); //Spawn above ground       
+    /// <summary>Fly in specified direction.</summary>
+    virtual protected Vector3 FlyTo(Vector3 targetVector, float speed) 
+    {
+        velocity = targetVector * speed;
+
+        return target;
     }
 
     ///<summary>Give the velocity a specified target vector</summary>
@@ -29,9 +35,9 @@ public class FlyingEnemyScript : EnemyBaseScript
     }
 
     /// <summary>Sets object rotation.</summary>
-    virtual protected Quaternion SetRotation(Vector3 newRotation) 
+    virtual protected Quaternion SetRotation(Vector3 targetRotation) 
     {
-        transform.rotation = Quaternion.LookRotation(newRotation);
+        transform.rotation = Quaternion.LookRotation(targetRotation);
 
         return transform.rotation;
     }

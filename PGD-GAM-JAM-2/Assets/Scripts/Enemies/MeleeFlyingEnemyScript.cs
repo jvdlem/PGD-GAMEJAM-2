@@ -20,17 +20,17 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
                 Track(target); //Follow target from above
                 break;
             case States.Attacking:
-                ChargeAt(target);
+                ChargeAt(target); //Charge at target
                 break;
         }
 
         FlyTo(target, flyingSpeed); //Always fly in direction of target
 
-        //Follow target when chasing or attacking
-        if (currentState == States.Chasing || currentState == States.Attacking) 
-        { 
-            SetRotation(target); // Aim at target
-            target = Player.transform.position;
+        //Follow target if chasing or attacking
+        if (currentState == States.Chasing || currentState == States.Attacking)
+        {
+            SetRotation(target); //Aim at target
+            target = Player.transform.position; //Target is player position
         }
 
         //Attack target when in range and chasing
@@ -40,7 +40,7 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     /// <summary>Charge at a specified target.</summary>
     protected Vector3 ChargeAt(Vector3 targetVector) 
     {
-        target = targetVector - transform.position; //Position vectors directly compared to each other
+        target = targetVector - transform.position; //Compare position vectors
         target.Normalize();
 
         return target;

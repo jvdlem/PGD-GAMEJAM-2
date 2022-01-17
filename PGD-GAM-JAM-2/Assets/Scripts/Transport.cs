@@ -18,22 +18,5 @@ public class Transport : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("cave system");
-       
-        /**
-        doitpls = true;
-        if (goal == null)
-        {
-            this.transform.position = worldPos;
-            //player.GetComponent<PlayerHealthScript>().FadeIn();
-            doitpls = true;
-        }
-        else
-        {
-            yield return new WaitForSeconds(5f);
-
-            this.transform.position = goal.transform.position;
-            player.GetComponent<PlayerHealthScript>().FadeIn();
-        }
-        **/
     }
 }
