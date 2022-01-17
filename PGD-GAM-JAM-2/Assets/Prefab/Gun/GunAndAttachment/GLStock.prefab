@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: -5600009081694609962}
   - component: {fileID: 8045988229523825192}
   - component: {fileID: 112171308708585934}
+  - component: {fileID: 652341768084106994}
   m_Layer: 6
   m_Name: GLStock
   m_TagString: Stock
@@ -375,6 +376,22 @@ MonoBehaviour:
   amountOfBullets: 0
   damage: 0
   range: 0
+--- !u!114 &652341768084106994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 5
+  itemName: Grenade Launcher Stock
+  itemDescription: Increased damage.
+  isBought: 0
 --- !u!1001 &655029157143601320
 PrefabInstance:
   m_ObjectHideFlags: 0

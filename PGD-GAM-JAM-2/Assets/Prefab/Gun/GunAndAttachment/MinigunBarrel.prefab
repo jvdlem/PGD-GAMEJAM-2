@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 662007905384925324}
   - component: {fileID: 3617966980746239411}
   - component: {fileID: 3819465013657059352}
+  - component: {fileID: 3901118937039833289}
   m_Layer: 6
   m_Name: MinigunBarrel
   m_TagString: Barrel
@@ -422,6 +423,22 @@ MonoBehaviour:
   amountOfBullets: 0
   damage: 0
   range: 0
+--- !u!114 &3901118937039833289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 3
+  itemName: Minigun Barrel
+  itemDescription: Slightly increased accuracy.
+  isBought: 0
 --- !u!64 &3047411480985417421
 MeshCollider:
   m_ObjectHideFlags: 0
