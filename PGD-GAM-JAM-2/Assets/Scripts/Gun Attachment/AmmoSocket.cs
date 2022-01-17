@@ -20,10 +20,11 @@ public class AmmoSocket : SocketCheck
     }
     public void ReloadAmmo()
     {
-        
-        GameObject newAmmo = Instantiate(ammo, this.transform.position, this.transform.rotation);
-        newAmmo.GetComponent<Rigidbody>().isKinematic = false;
-        newAmmo.GetComponent<Rigidbody>().useGravity = true;
-
+        if (ammo != null)
+        {
+            GameObject newAmmo = Instantiate(ammo, this.transform.position, this.transform.rotation);
+            newAmmo.GetComponent<Rigidbody>().isKinematic = false;
+            newAmmo.GetComponent<Rigidbody>().useGravity = true;
+        }
     }
 }
