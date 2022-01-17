@@ -57,11 +57,11 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{1eed3e61-464e-4066-9f35-d78b67942ac2}">
-		<property name="maxVoices">
-			<value>2</value>
-		</property>
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>80</value>
+		</property>
+		<property name="triggerCooldown">
+			<value>2000</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{dac23073-5e8c-4f83-99c9-eb4b7513cb98}" />
@@ -143,7 +143,7 @@
 			<value>1</value>
 		</property>
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>80</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{bbb674c8-bdb6-4827-a34a-f40b5ea79a23}" />
