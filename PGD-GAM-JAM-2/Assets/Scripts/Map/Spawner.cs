@@ -4,41 +4,23 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    bool checking_Player = true;
-    [SerializeField] private GameObject spawn;
-    [SerializeField] float radius = 10;
-    [SerializeField] ParticleSystem spawnParticle;
     [SerializeField] List<GameObject> spawnList;
-    // Start is called before the first frame update
-    void Start()
-    {
-        radius = 10;
-        if (spawnList.Count > 0)
-        {
-            this.spawn = spawnList[Mathf.RoundToInt(Random.Range(0, spawnList.Count))];
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
+   
+    public void SpawnEnemy()
     {
-        if (checking_Player == true)
+        foreach (GameObject aGameobject in spawnList)
         {
-            checkforspawn(this.transform.position,radius);
+            Debug.Log("Instantiete");
+            Instantiate(aGameobject.GetComponent<Enemy>().myEnemy, aGameobject.transform.position,Quaternion.identity);
         }
     }
-    void checkforspawn(Vector3 center, float radius)
+    void Awake()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(center, radius);
-        foreach (var hitCollider in hitColliders)
+        for (int i = 0; i < this.gameObject.transform.childCount; i++)
         {
-            if (hitCollider.tag == "Player")
-            {
-                
-                spawnParticle.Play();
-                Instantiate(spawn, this.transform.position + new Vector3(0, 2, 0), Quaternion.identity);
-                checking_Player = false;
-            }
+            spawnList.Add(this.gameObject.transform.GetChild(i).gameObject);
         }
+        SpawnEnemy();
     }
 }
