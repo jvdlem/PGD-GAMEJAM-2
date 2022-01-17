@@ -17,6 +17,7 @@ public class GolemScript : Moenemies
     }
     public override void Update()
     {
+        if (Input.GetKeyUp(KeyCode.Space)) particles.Play();
         soundPosition = this.gameObject.transform.position;
         RandomAttackVariations("Punch", "Slam");
         base.Update();

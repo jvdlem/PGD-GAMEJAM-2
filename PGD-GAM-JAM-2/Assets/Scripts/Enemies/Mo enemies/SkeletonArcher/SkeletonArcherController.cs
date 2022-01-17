@@ -48,6 +48,12 @@ public class SkeletonArcherController : Moenemies
 
         //Create a new instantiation of an arrow
         Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+
+        //Rotate arrow
+        Vector3 direction = new Vector3(transform.position.x, shootPoint.position.y, transform.position.z) - shootPoint.position;
+        Vector3 lookDirection = direction.normalized;
+        currentArrow.rotation = Quaternion.LookRotation(lookDirection);
+
         currentArrow.AddForce(transform.forward * 10f, ForceMode.Impulse);
         currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
     }

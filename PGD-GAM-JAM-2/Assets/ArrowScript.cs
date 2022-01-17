@@ -21,9 +21,23 @@ public class ArrowScript : MonoBehaviour
         playerHealth = GetComponent<PlayerHealthScript>();
         //Getcomponent Archer script
     }
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        //Destroy bullet once it hits player
+    //        playerHealth.takeDamage(1);
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        //Destroy bullet once it hits something else
+    //        Destroy(this.gameObject);
+    //    }
+
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")
         {
             //Destroy bullet once it hits player
             playerHealth.takeDamage(1);
@@ -34,7 +48,5 @@ public class ArrowScript : MonoBehaviour
             //Destroy bullet once it hits something else
             Destroy(this.gameObject);
         }
-
     }
-    
 }
