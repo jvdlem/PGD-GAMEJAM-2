@@ -22,8 +22,6 @@ public class ProjectileEnemyScript : Moenemies
     }
     override public void Update()
     {
-        Debug.Log(currentState);
-
         soundPosition = this.gameObject.transform.position;
         base.Update();
     }
