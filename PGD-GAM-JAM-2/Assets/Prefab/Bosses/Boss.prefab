@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6080821360456235410}
   - component: {fileID: 6080821360456235411}
+  - component: {fileID: 4430796182121664320}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -218,6 +219,67 @@ MonoBehaviour:
   NextHealthTrigger: 0
   CycleToNextEye: 0
   bossState: 1
+  SoundEffects:
+  - Guid:
+      Data1: 233573580
+      Data2: 1131398265
+      Data3: 1672866970
+      Data4: 246157816
+    Path: event:/Enemy/Eye Boss/Noises/Evil Laugh
+  - Guid:
+      Data1: -1118564370
+      Data2: 1103115771
+      Data3: -1686357322
+      Data4: -770130458
+    Path: event:/Enemy/Eye Boss/Attacks/Laser
+  - Guid:
+      Data1: -1849551133
+      Data2: 1185486331
+      Data3: -1491801961
+      Data4: 2004166271
+    Path: event:/Enemy/Eye Boss/Attacks/Summoning
+  - Guid:
+      Data1: 2145954952
+      Data2: 1080222978
+      Data3: -1424061009
+      Data4: 1726669349
+    Path: event:/Enemy/Eye Boss/Attacks/Big Laser
+  - Guid:
+      Data1: 79646664
+      Data2: 1266303905
+      Data3: -895164513
+      Data4: -756828083
+    Path: event:/Enemy/Eye Boss/Noises/Death
+--- !u!114 &4430796182121664320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6080821360456235409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: -1
+  OverrideMaxDistance: -1
 --- !u!114 &1684142513503910827
 MonoBehaviour:
   m_ObjectHideFlags: 0

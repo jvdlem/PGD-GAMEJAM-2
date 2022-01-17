@@ -41,7 +41,7 @@ Transform:
   m_GameObject: {fileID: 7653344342960995391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.61, y: 1, z: 10.13}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 4508382499041610261}
   - {fileID: 6880361752651328153}
@@ -62,11 +62,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentSong:
     Guid:
-      Data1: -1815559111
-      Data2: 1240803836
-      Data3: -249419597
-      Data4: 1918652756
-    Path: event:/MISC/Music/BackGroundMusic1
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   BackGroundMusic:
   - Guid:
       Data1: -1815559111
@@ -102,11 +102,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1815559111
-      Data2: 1240803836
-      Data3: -249419597
-      Data4: 1918652756
-    Path: event:/MISC/Music/BackGroundMusic1
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -282,11 +282,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 1.6502385
+      value: 1.6502491
       objectReference: {fileID: 0}
     - target: {fileID: 3916104094692562287, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: -0.0000018179417
+      value: 0.0000006221235
       objectReference: {fileID: 0}
     - target: {fileID: 7201627931916378745, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.size
