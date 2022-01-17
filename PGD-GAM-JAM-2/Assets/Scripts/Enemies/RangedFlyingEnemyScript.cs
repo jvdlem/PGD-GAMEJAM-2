@@ -12,14 +12,14 @@ public class RangedFlyingEnemyScript : FlyingEnemyScript
     {
         base.Update();
 
-        TrackObject(targetObject); //Follow target
-        FireOn(targetObject); //Fire projectile at target
+        Track(target); //Follow target
+        FireOn(target); //Fire projectile at target
 
-        navMeshAgent.SetDestination(target); //Fly in direction of target
+        FlyTo(target, flyingSpeed); //Fly in direction of target
     }
 
     /// <summary>Launches projectile at a target.</summary>
-    private void FireOn(GameObject targetObject) 
+    private void FireOn(Vector3 targetVector) 
     {
         Instantiate(projectile, transform.position + target, transform.rotation);
     }
