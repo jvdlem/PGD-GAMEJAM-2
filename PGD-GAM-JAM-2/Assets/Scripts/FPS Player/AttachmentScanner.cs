@@ -6,6 +6,7 @@ public class AttachmentScanner : MonoBehaviour
 {
     [SerializeField] private GameObject Inventory;
     [SerializeField] private GameObject pressText;
+    [SerializeField] public playerAimScript aimingScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class AttachmentScanner : MonoBehaviour
     {
         int layer_mask = LayerMask.GetMask("Interactible");
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer_mask))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer_mask) && !aimingScript.aiming)
         {
             pressText.SetActive(true);
             if (Input.GetKeyDown("e"))

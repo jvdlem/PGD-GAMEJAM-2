@@ -4817,7 +4817,7 @@ GameObject:
   - component: {fileID: 3175338978026733510}
   m_Layer: 0
   m_Name: PistolBullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4851,12 +4851,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 3175338978026733510}
-  timer: 2
-  Speed: 600
-  dmg: 1
+  timer: 1.5
+  Speed: 1100
+  dmg: 6
   mytimer: 1
   mySpeed: 100
-  mydmg: 9.90352e+28
+  mydmg: 1
 --- !u!54 &3175338978026733510
 Rigidbody:
   m_ObjectHideFlags: 0
