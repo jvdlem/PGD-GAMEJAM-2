@@ -12,6 +12,6 @@ public class DragonController : MeleeFlyingEnemyScript
         Health = 100;
         Damage = 10;
 
-        currentState = States.Patrolling; //Enemy starts patrolling
+        currentState = States.Chasing; //Enemy starts patrolling
     }
 }

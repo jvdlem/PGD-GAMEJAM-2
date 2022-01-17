@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedFlyingEnemyScript : FlyingEnemyScript
@@ -12,10 +10,10 @@ public class RangedFlyingEnemyScript : FlyingEnemyScript
     {
         base.Update();
 
-        TrackObject(targetObject); //Follow target
+        Track(target); //Follow target
         FireOn(targetObject); //Fire projectile at target
 
-        navMeshAgent.SetDestination(target); //Fly in direction of target
+        FlyTo(target, flyingSpeed); //Fly in direction of target
     }
 
     /// <summary>Launches projectile at a target.</summary>
