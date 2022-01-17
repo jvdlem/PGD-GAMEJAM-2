@@ -655,7 +655,6 @@ MonoBehaviour:
     m_Bits: 512
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
-  timeBetweenAttacks: 0
   timeofLastAttack: 0
   isAttacking: 0
   alreadyAttacking: 0
@@ -664,8 +663,13 @@ MonoBehaviour:
   die: Die
   detectionDistance: 25
   attackDistance: 20
+  attackSound: 
+  deathSound: 
+  hurtSound: 
+  windUpSound: 
+  soundPosition: {x: 0, y: 0, z: 0}
   shootPoint: {fileID: 8757337557021523739}
-  arrow: {fileID: 4150077041025866044, guid: cd25ccc9bdaa49b4e82a063b6a19415f, type: 3}
+  arrow: {fileID: 7331997527603947025, guid: 903ccafe56485a44a97af88dae5c260f, type: 3}
 --- !u!1 &8149715165076670914
 GameObject:
   m_ObjectHideFlags: 0

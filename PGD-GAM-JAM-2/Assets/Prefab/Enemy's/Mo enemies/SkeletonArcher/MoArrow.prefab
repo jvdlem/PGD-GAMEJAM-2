@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1080288338027454090}
   - component: {fileID: 111403441136958488}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: MoArrow
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,13 +107,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7331997527603947025}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5d308403f6ff14f8f8f98b2782f8af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Skeleton: {fileID: 8149715165076670912, guid: 1ab32f7978b9b684d984c9cdd4038889, type: 3}
-  shootPoint: {fileID: 0}
 --- !u!65 &111403441136958488
 BoxCollider:
   m_ObjectHideFlags: 0

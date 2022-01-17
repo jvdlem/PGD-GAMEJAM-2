@@ -6,6 +6,7 @@ public class Moenemies : GroundEnemyScript
 {  // Start is called before the first frame update
     [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
+    [SerializeField] ParticleSystem particles;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
@@ -61,6 +62,7 @@ public class Moenemies : GroundEnemyScript
             default:
                 //Enemy patrols if no player is detected
                 if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+                EnableParticles();
                 Die(die);
                 break;
         }
@@ -189,5 +191,10 @@ public class Moenemies : GroundEnemyScript
     public virtual void PlaySound(string soundPath, Vector3 position)
     {
         FMODUnity.RuntimeManager.PlayOneShot(soundPath,position);
+    }
+
+    public void EnableParticles()
+    {
+       // if (this.Tier > 1) particles.enableEmission = particles.emission.enabled;
     }
 }
