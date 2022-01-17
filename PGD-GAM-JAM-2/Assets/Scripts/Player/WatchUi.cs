@@ -27,19 +27,16 @@ public class WatchUi : MonoBehaviour
         coinCount.text = "" + PlayerScript.coins;
         if (this.transform.eulerAngles.z >= zAngleMin && this.transform.eulerAngles.z <= zAngleMax && !WatchUiOpen)
         {
-
-            
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Watch/Open Watch");
             WatchUiAnim.Play("WatchAnimOpen");
             WatchUiOpen = true;
 
         }
         else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMin && WatchUiOpen)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Watch/Close Watch");
             WatchUiAnim.Play("WatchAnimClose");
-            
-            
             WatchUiOpen = false;
-            
         }
         
     }
