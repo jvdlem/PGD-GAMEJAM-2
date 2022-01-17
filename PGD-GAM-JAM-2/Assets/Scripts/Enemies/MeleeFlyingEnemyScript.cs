@@ -34,7 +34,7 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
         }
 
         //Attack target when in range and chasing
-        if (InRange() && currentState == States.Chasing) { currentState = States.Attacking; }
+        if (InRange()) { currentState = States.Attacking; }
     }
 
     /// <summary>Charge at a specified target.</summary>
@@ -48,15 +48,4 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
 
     //Checks if enemy is in range of target
     protected bool InRange() { return Physics.CheckSphere(transform.position, radius, playerLayer); }
-
-    protected void OnTriggerEnter(Collider other)
-    {
-        transform.position = new Vector3(other.gameObject.transform.position.x,
-            25, other.gameObject.transform.position.z); //Reset position above target
-
-        currentState = States.Patrolling; //Start patrolling for new target
-
-        //If collision with player, damage player health
-        if (other.gameObject.tag == "Player") { Player.GetComponent<PlayerHealthScript>().takeDamage(3); }
-    }
 }

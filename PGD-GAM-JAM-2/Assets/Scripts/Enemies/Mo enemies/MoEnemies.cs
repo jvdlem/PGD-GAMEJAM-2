@@ -6,6 +6,7 @@ public class Moenemies : GroundEnemyScript
 {  // Start is called before the first frame update
     [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
+    [SerializeField] public ParticleSystem particles;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
@@ -24,6 +25,11 @@ public class Moenemies : GroundEnemyScript
     [Header("States")]
     [SerializeField]public float detectionDistance;
     [SerializeField]public  float attackDistance;
+
+    [Header("Sounds")]
+    public string attackSound, deathSound, hurtSound, windUpSound;
+    public Vector3 soundPosition;
+
     public bool Radius(float distance) => Physics.CheckSphere(this.gameObject.transform.position, distance, playerLayer);
     public bool playerDetected => Radius(detectionDistance);
     public bool playerInAttackRange => Radius(attackDistance);
@@ -34,11 +40,17 @@ public class Moenemies : GroundEnemyScript
         Player = GameObject.FindGameObjectWithTag("Player");
         attackDistance = navMeshAgent.stoppingDistance;
         currentState = States.Patrolling;
+        Damage = 1;
     }
 
     // Update is called once per frame
     override public void Update()
     {
+        //Enemy patrols if no player is detected
+        if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
+        EnableParticles();
+        Die(die);
+
         switch (currentState)
         {
             case States.Patrolling:
@@ -52,11 +64,6 @@ public class Moenemies : GroundEnemyScript
             case States.Attacking:
                 Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
-                break;
-            default:
-                //Enemy patrols if no player is detected
-                if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
-                Die(die);
                 break;
         }
     }
@@ -138,10 +145,10 @@ public class Moenemies : GroundEnemyScript
             isAttacking = false;
         }
     }
-
     virtual public IEnumerator TimedAttack()
     {
         yield return new WaitForSeconds(attackTimer);
+        PlaySound(attackSound, soundPosition);
         AnimationTrigger(attack);
         isAttacking = false;
     }
@@ -155,6 +162,7 @@ public class Moenemies : GroundEnemyScript
         if (Health <= 0)
         {
             AnimationTrigger(animation);
+            PlaySound(deathSound, soundPosition);
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Invoke(nameof(DeSpawn), 3f);
         }
@@ -168,7 +176,9 @@ public class Moenemies : GroundEnemyScript
         //Projectile hurts enemy on collision
         if (collision.gameObject.tag == "Projectile")
         {
+            PlaySound(hurtSound, soundPosition);
             AnimationTrigger("TakeDamage");
+            //INSERT Damage modifier from GUNS
             TakeDamage(1);
         }
 
@@ -178,5 +188,13 @@ public class Moenemies : GroundEnemyScript
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
         }
+    }
+    public virtual void PlaySound(string soundPath, Vector3 position)
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(soundPath,position);
+    }
+    public virtual void EnableParticles()
+    {
+        if (Tier > 1) particles.Play();
     }
 }

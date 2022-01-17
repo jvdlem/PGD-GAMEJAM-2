@@ -13,13 +13,14 @@ public class JukeBox : MonoBehaviour
     {
         CurrentSongID = 0;
         CurrentSong = BackGroundMusic[CurrentSongID];
-        AudioEmitter.Play();
         if (AudioEmitter == null) AudioEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
+        AudioEmitter.EventReference = CurrentSong;
+        AudioEmitter.Play();
     }
 
     private void Update()
     {
-        if (!AudioEmitter.IsPlaying())
+        if (AudioEmitter.IsPlaying() == false)
         {
             PlayNextSong();
         }
@@ -28,7 +29,6 @@ public class JukeBox : MonoBehaviour
     public void PlayNextSong()
     {
         AudioEmitter.Stop();
-        AudioEmitter.Lookup();
 
         if (CurrentSongID == BackGroundMusic.Length - 1)
         {
@@ -42,6 +42,8 @@ public class JukeBox : MonoBehaviour
         CurrentSong = BackGroundMusic[CurrentSongID];
 
         AudioEmitter.EventReference = CurrentSong;
+
+        AudioEmitter.Lookup();
         AudioEmitter.PlayInstance();
     }
 }

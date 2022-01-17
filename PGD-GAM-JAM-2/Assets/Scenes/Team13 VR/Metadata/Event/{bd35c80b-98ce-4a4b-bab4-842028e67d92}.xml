@@ -131,6 +131,10 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{ed49824e-113e-4743-92f7-724d13a1e974}" />
-	<object class="SpatialiserEffect" id="{d336bba2-4937-4c1e-b545-1a78e82d3d60}" />
+	<object class="SpatialiserEffect" id="{d336bba2-4937-4c1e-b545-1a78e82d3d60}">
+		<property name="distanceRolloffType">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{950e180c-f279-48cb-b032-c1e7e6660c78}" />
 </objects>

@@ -90,26 +90,26 @@ public class Pistol : MonoBehaviour
         {
             allStats.list[0] = 0;
         }
-        
+
         if (isInMenu == false)
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                if (startControlSystem != null)
+                if (startControlSystem != null && startControlSystem.Keyboard)
                 {
                     shoot();
                 }
-                /*else if (controlManager.Keyboard)
+                else if (startControlSystem != null && controlManager.Keyboard)
                 {
                     shoot();
                 }
-                */
-
             }
+
             if (Input.GetButtonUp("Fire1"))
             {
                 fullAuto = false;
             }
+
             if (Input.GetKeyDown("r"))
             {
                 StartCoroutine(Reload());
