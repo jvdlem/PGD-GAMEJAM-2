@@ -195,6 +195,6 @@ public class Moenemies : GroundEnemyScript
 
     public void EnableParticles()
     {
-       // if (this.Tier > 1) particles.enableEmission = particles.emission.enabled;
+        if (this.Tier > 1) particles.Play();
     }
 }
