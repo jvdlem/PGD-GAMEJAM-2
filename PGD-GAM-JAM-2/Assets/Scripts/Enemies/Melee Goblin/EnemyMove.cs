@@ -98,7 +98,6 @@ public class EnemyMove : GroundEnemyScript
             PlaySound(hurtSound, this.gameObject.transform.position);
             int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
             Health -= dmg;
-            Destroy(collision.gameObject);
         }
     }
 
@@ -109,7 +108,6 @@ public class EnemyMove : GroundEnemyScript
             PlaySound(hurtSound, this.gameObject.transform.position);
             int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
             Health -= dmg;
-            Destroy(collision.gameObject);
         }
     }
 

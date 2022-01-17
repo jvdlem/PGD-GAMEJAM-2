@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 950337068866917725}
   - component: {fileID: 7022671567105450086}
   - component: {fileID: 7734916404697227014}
+  - component: {fileID: 1298271098278464773}
   m_Layer: 6
   m_Name: GLBarrel
   m_TagString: Barrel
@@ -378,6 +379,22 @@ MonoBehaviour:
   amountOfBullets: 0
   damage: 0
   range: 0
+--- !u!114 &1298271098278464773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5500370889774544324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6e8c96a2175d1f4a872d53ea9409910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrice: 5
+  itemName: Grenade Launcher Barrel
+  itemDescription: Increased accuracy.
+  isBought: 0
 --- !u!1 &6835444297443820549
 GameObject:
   m_ObjectHideFlags: 0
