@@ -5,7 +5,6 @@ using UnityEngine;
 public class GolemScript : Moenemies
 {
     // Start is called before the first frame update
-    private bool attackBool = false;
     public override void Start()
     {
         attackSound = "event:/Enemy/Golem/GolemAttackSwing";
@@ -17,7 +16,6 @@ public class GolemScript : Moenemies
     }
     public override void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space)) particles.Play();
         soundPosition = this.gameObject.transform.position;
         RandomAttackVariations("Punch", "Slam");
         base.Update();

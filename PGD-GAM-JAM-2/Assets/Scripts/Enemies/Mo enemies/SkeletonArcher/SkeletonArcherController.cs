@@ -7,7 +7,7 @@ public class SkeletonArcherController : Moenemies
     // Start is called before the first frame update
     [SerializeField] Transform shootPoint;
     [SerializeField] GameObject arrow;
-    private float arrowWaitTime =.6f;
+    public float arrowWaitTime =.5f;
 
     override public void Start()
     {
@@ -16,8 +16,7 @@ public class SkeletonArcherController : Moenemies
         deathSound = "event:/Enemy/Skeleton/Skeleton Death";
         hurtSound = "event:/Enemy/Skeleton/Skeleton Hurt";
         attack = "Shoot";
-        detectionDistance = 25f;
-        attackDistance = 20f;
+
         Damage = 1;
     }
     public override void Update()

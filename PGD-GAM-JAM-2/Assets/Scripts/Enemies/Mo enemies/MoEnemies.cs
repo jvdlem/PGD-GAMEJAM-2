@@ -40,6 +40,7 @@ public class Moenemies : GroundEnemyScript
         Player = GameObject.FindGameObjectWithTag("Player");
         attackDistance = navMeshAgent.stoppingDistance;
         currentState = States.Patrolling;
+        Damage = 1;
     }
 
     // Update is called once per frame
@@ -177,6 +178,7 @@ public class Moenemies : GroundEnemyScript
         {
             PlaySound(hurtSound, soundPosition);
             AnimationTrigger("TakeDamage");
+            //INSERT Damage modifier from GUNS
             TakeDamage(1);
         }
 

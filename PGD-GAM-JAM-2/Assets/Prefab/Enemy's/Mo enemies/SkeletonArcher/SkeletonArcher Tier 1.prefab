@@ -6397,7 +6397,7 @@ GameObject:
   - component: {fileID: 6532801666877251454}
   - component: {fileID: 6532801666877251449}
   m_Layer: 0
-  m_Name: SkeletonArcher
+  m_Name: SkeletonArcher Tier 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6525,6 +6525,7 @@ MonoBehaviour:
   soundPosition: {x: 0, y: 0, z: 0}
   shootPoint: {fileID: 6532801666816730673}
   arrow: {fileID: 5796340289533906740, guid: 4788be4084b20af4fbb7ff2ef76bf097, type: 3}
+  arrowWaitTime: 0.5
 --- !u!1 &6532801666992626659
 GameObject:
   m_ObjectHideFlags: 0
