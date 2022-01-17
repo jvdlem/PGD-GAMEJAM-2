@@ -6,10 +6,6 @@ public class FlyingEnemyScript : EnemyBaseScript
 
     [SerializeField] protected float flyingSpeed = 5; //Sets movement speed
 
-    //Timer for movement
-     protected int moveTimer = 0;
-    [SerializeField] protected int timerMax = 150;
-
     // Start is called before the first frame update
     public override void Start()
     {
@@ -32,31 +28,6 @@ public class FlyingEnemyScript : EnemyBaseScript
         transform.rotation = Quaternion.LookRotation(targetRotation);
 
         return transform.rotation;
-    }
-
-    ///<summary>Generates a random target vector.</summary>
-    virtual protected Vector3 SetTarget() 
-    {
-        target = new Vector3(
-                Random.Range(-flyingSpeed, flyingSpeed),
-                0,
-                Random.Range(-flyingSpeed, flyingSpeed));
-
-        return target;
-    }
-
-    /// <summary>Handles use of movement timer.</summary>
-    virtual protected int TimeManager() 
-    {
-        moveTimer++; //Timer keeps counting
-
-        if (moveTimer > timerMax)
-        {
-            moveTimer = 0; //Reset timer
-            SetTarget(); //Set new target/direction
-        }
-
-        return moveTimer;
     }
 
     /// <summary>Track object based on its position.</summary>
