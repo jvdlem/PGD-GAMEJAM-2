@@ -9,6 +9,7 @@ public class WatchUi : MonoBehaviour
     [SerializeField] float zAngleMax;
   
     public Animation WatchUiAnim;
+    public Animation WatchFaceAnim;
     public Text healthText;
     public Text coinCount;
     private PlayerHealthScript PlayerScript;
@@ -28,13 +29,14 @@ public class WatchUi : MonoBehaviour
         if (this.transform.eulerAngles.z >= zAngleMin && this.transform.eulerAngles.z <= zAngleMax && !WatchUiOpen)
         {
 
-            
+            WatchFaceAnim.Play("WatchFaceAnimation");
             WatchUiAnim.Play("WatchAnimOpen");
             WatchUiOpen = true;
 
         }
         else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMin && WatchUiOpen)
         {
+            WatchFaceAnim.Play("WatchFaceAnimationClose");
             WatchUiAnim.Play("WatchAnimClose");
             
             
