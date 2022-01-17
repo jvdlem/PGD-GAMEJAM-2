@@ -80,9 +80,6 @@ public class EnemyMove : GroundEnemyScript
             default:
                 break;
         }
-
-        Debug.Log("state" + currentState);
-        Debug.Log(dist);
     }
 
     private void OnTriggerEnter(Collider collision)

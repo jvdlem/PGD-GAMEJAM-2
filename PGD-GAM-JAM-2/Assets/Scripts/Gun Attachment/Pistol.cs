@@ -93,24 +93,25 @@ public class Pistol : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                if (startControlSystem != null)
+                if (startControlSystem != null && startControlSystem.Keyboard)
                 {
                     shoot();
                 }
-                else if (controlManager.Keyboard)
+                else if (startControlSystem != null && controlManager.Keyboard)
                 {
                     shoot();
                 }
-
             }
+
             if (Input.GetButtonUp("Fire1"))
             {
                 fullAuto = false;
             }
+
             if (Input.GetKeyDown("r"))
             {
                 StartCoroutine(Reload());
-                
+
             }
             if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
@@ -187,7 +188,7 @@ public class Pistol : MonoBehaviour
         {
             StopCoroutine(CanFullAuto());
         }
-       
+
     }
     IEnumerator Reload()
     {
@@ -199,7 +200,7 @@ public class Pistol : MonoBehaviour
             StopCoroutine(Reload());
         }
     }
-        public void stopFullAuto()
+    public void stopFullAuto()
     {
         fullAuto = false;
         allStats.list[0] = startSpread;
@@ -247,7 +248,7 @@ public class Pistol : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Out of Ammo", this.gameObject.transform.position);
         }
-                
+
     }
 
     private void CheckSet(int scale, SocketCheck aSocket)
@@ -312,7 +313,7 @@ public class Pistol : MonoBehaviour
                         {
                             if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
-                                
+
                                 SuperPowerAttachment(scale);
                                 if (scale >= 1)
                                 {
