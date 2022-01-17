@@ -16,6 +16,8 @@ public class ProjectileEnemyScript : Moenemies
         deathSound = "event:/Enemy/Wizard/WizardDeath";
         hurtSound = "event:/Enemy/Wizard/WizardHurt";
         attack = "Cast";
+        detectionDistance = 40;
+        attackDistance = 30;
         base.Start();
     }
     override public void Update()
