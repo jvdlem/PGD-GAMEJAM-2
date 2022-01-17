@@ -12,13 +12,14 @@ public class ProjectileEnemyScript : Moenemies
     public float spellDelay;
     override public void Start()
     {
+        base.Start();
         attackSound = "event:/Enemy/Wizard/Wizard Attack";
         deathSound = "event:/Enemy/Wizard/WizardDeath";
         hurtSound = "event:/Enemy/Wizard/WizardHurt";
         attack = "Cast";
         detectionDistance = 40;
         attackDistance = 30;
-        base.Start();
+        currentState = States.Chasing;
     }
     override public void Update()
     {
