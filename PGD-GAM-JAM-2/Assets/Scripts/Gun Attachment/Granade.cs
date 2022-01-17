@@ -8,6 +8,7 @@ public class Granade : Projectille
     [SerializeField] private ParticleSystem Sparks;
     [SerializeField] private ParticleSystem Smoke;
     [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private GameObject Parent;
     private float delay = 3;
     private float scale;
     private float Timer;
@@ -33,33 +34,12 @@ public class Granade : Projectille
 
         if (add >= 1)
         {
-                Sparks.startSize *= explosionSize;
-                Sparks.startSpeed *= explosionSize;
-                Sparks.gravityModifier *= explosionSize;
-                ParticleSystem.ForceOverLifetimeModule force = Sparks.forceOverLifetime;
-                force.yMultiplier *= explosionSize;
-                Smoke.startSize *= explosionSize;
-                Smoke.startSpeed *= explosionSize;
-                ParticleSystem.ForceOverLifetimeModule force2 = Smoke.forceOverLifetime;
-                force2.yMultiplier *= explosionSize;
-                explosion.startSize *= explosionSize;
-                explosion.startSpeed *= explosionSize;
-                radius *= explosionSize;
+            Parent.transform.localScale *= explosionSize;
+                
         }
         if(add <= -1)
         {
-            Sparks.startSize /= explosionSize;
-            Sparks.startSpeed /= explosionSize;
-            Sparks.gravityModifier /= explosionSize;
-            ParticleSystem.ForceOverLifetimeModule force = Sparks.forceOverLifetime;
-            force.yMultiplier /= explosionSize;
-            Smoke.startSize /= explosionSize;
-            Smoke.startSpeed /= explosionSize;
-            ParticleSystem.ForceOverLifetimeModule force2 = Smoke.forceOverLifetime;
-            force2.yMultiplier /= explosionSize;
-            explosion.startSize /= explosionSize;
-            explosion.startSpeed /= explosionSize;
-            radius /= explosionSize;
+            Parent.transform.localScale /= explosionSize;
         }
         onCollision = OnHit;
     }
@@ -68,20 +48,23 @@ public class Granade : Projectille
     // Update is called once per frame
     void FixedUpdate()
     {
-        Timer -= Time.deltaTime;
-        if (Timer <= 0 && canExplode == true)
+        if (Timer >= 0)
         {
-            Sparks.startDelay = delay;
-            Smoke.startDelay = delay;
-            explosion.startDelay = delay;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Grenade Launcher/Explosion/Grenade Explosion", this.gameObject.transform.position);
-            Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius);
-            canExplode = false;
-            foreach (var hitCollider in hitColliders)
+            Timer -= Time.deltaTime;
+            if (Timer <= 0 && canExplode == true)
             {
-                if (hitCollider.GetComponent<EnemyBaseScript>() != null)
+                Sparks.startDelay = delay;
+                Smoke.startDelay = delay;
+                explosion.startDelay = delay;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Grenade Launcher/Explosion/Grenade Explosion", this.gameObject.transform.position);
+                Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius);
+                canExplode = false;
+                foreach (var hitCollider in hitColliders)
                 {
-                    hitCollider.GetComponent<EnemyBaseScript>().TakeDamage((int)(radius / Vector3.Distance(this.transform.position, hitCollider.transform.position)));
+                    if (hitCollider.GetComponent<EnemyBaseScript>() != null)
+                    {
+                        hitCollider.GetComponent<EnemyBaseScript>().TakeDamage((int)(radius / Vector3.Distance(this.transform.position, hitCollider.transform.position)));
+                    }
                 }
             }
         }
@@ -89,7 +72,7 @@ public class Granade : Projectille
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (onCollision)
+        if (onCollision && collision.transform.tag != "Projectile")
         {
             delay = 0;
             Timer = 0;
