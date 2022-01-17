@@ -7,6 +7,7 @@ public class SkeletonArcherController : Moenemies
     // Start is called before the first frame update
     [SerializeField] Transform shootPoint;
     [SerializeField] GameObject arrow;
+    private float arrowWaitTime =.6f;
 
     override public void Start()
     {
@@ -38,21 +39,21 @@ public class SkeletonArcherController : Moenemies
     public override IEnumerator TimedAttack()
     {
         PlaySound(attackSound, soundPosition);
-        yield return new WaitForSeconds(attackTimer);
+        AnimationTrigger(attack);
+        yield return new WaitForSeconds(arrowWaitTime);
         Shoot();
+        yield return new WaitForSeconds(attackTimer);
         isAttacking = false;
-    }  
+    }
     public void Shoot()
     {
-        AnimationTrigger(attack);
+        Vector3 direction = shootPoint.position - new Vector3(transform.position.x, shootPoint.position.y, transform.position.z) ;
 
         //Create a new instantiation of an arrow
-        Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.identity).GetComponent<Rigidbody>();
+        Rigidbody currentArrow = Instantiate(arrow, shootPoint.position, Quaternion.LookRotation(direction)).GetComponent<Rigidbody>();
 
-        //Rotate arrow
-        Vector3 direction = new Vector3(transform.position.x, shootPoint.position.y, transform.position.z) - shootPoint.position;
-        Vector3 lookDirection = direction.normalized;
-        currentArrow.rotation = Quaternion.LookRotation(lookDirection);
+        //Rotate the arrow
+       // currentArrow.rotation = Quaternion.LookRotation(direction);
 
         currentArrow.AddForce(transform.forward * 10f, ForceMode.Impulse);
         currentArrow.AddForce(transform.up * .25f, ForceMode.Impulse);
