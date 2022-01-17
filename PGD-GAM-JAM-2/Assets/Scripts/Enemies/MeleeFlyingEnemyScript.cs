@@ -13,9 +13,6 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
         //Changes enemy behavior based on state
         switch (currentState) 
         {
-            case States.Patrolling:
-                TimeManager(); //Fly in random directions based on timer
-                break;
             case States.Chasing:
                 Track(target); //Follow target from above
                 break;
