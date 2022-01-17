@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class WatchUi : MonoBehaviour
 {
-    public GameObject Canvas;
+    [SerializeField] float zAngleMin;
+    [SerializeField] float zAngleMax;
+  
     public Animation WatchUiAnim;
     public Text healthText;
     public Text coinCount;
@@ -12,6 +15,8 @@ public class WatchUi : MonoBehaviour
     private bool WatchUiOpen;
     private void Start()
     {
+        zAngleMax = 150;
+        zAngleMin = 60;
         PlayerScript = FindObjectOfType<PlayerHealthScript>();
     }
 
@@ -20,15 +25,15 @@ public class WatchUi : MonoBehaviour
         
         healthText.text = "" + PlayerScript.currentHealth;
         coinCount.text = "" + PlayerScript.coins;
-        if (this.transform.eulerAngles.z >= 60f && this.transform.eulerAngles.z <= 150f && !WatchUiOpen)
+        if (this.transform.eulerAngles.z >= zAngleMin && this.transform.eulerAngles.z <= zAngleMax && !WatchUiOpen)
         {
 
-            Canvas.SetActive(true);
+            
             WatchUiAnim.Play("WatchAnimOpen");
             WatchUiOpen = true;
 
         }
-        else if (this.transform.eulerAngles.z <= 60f && WatchUiOpen || this.transform.eulerAngles.z >= 150f && WatchUiOpen)
+        else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMin && WatchUiOpen)
         {
             WatchUiAnim.Play("WatchAnimClose");
             
@@ -37,6 +42,23 @@ public class WatchUi : MonoBehaviour
             
         }
         
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    public void Exit()
+    {
+        //this should work in a build... 
+        Application.Quit();
     }
 
 
