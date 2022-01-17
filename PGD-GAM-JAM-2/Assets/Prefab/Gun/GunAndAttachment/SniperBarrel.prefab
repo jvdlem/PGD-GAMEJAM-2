@@ -101,7 +101,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
 --- !u!114 &6981617334960871570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,9 +272,9 @@ MonoBehaviour:
   statList: []
   spread: -20
   amountOfBullets: 0
-  damage: 100
-  bulletTime: 2
-  bulletSpeed: 5000
+  damage: 1
+  bulletTime: 0
+  bulletSpeed: 400
   miniGunSet: 0
   grenadeSet: 0
   shotGunSet: 0

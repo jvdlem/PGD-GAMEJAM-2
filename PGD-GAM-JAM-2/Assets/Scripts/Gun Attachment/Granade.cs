@@ -19,6 +19,7 @@ public class Granade : Projectille
     protected override void Awake()
     {
         base.Awake();
+
     }
 
     void Start()
@@ -31,15 +32,11 @@ public class Granade : Projectille
 
     public void UpdateScale(float explosionSize, bool OnHit, int add)
     {
-
+        Parent.transform.localScale /= Parent.transform.localScale.x;
         if (add >= 1)
         {
             Parent.transform.localScale *= explosionSize;
                 
-        }
-        if(add <= -1)
-        {
-            Parent.transform.localScale /= explosionSize;
         }
         onCollision = OnHit;
     }
