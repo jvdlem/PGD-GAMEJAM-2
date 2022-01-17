@@ -4900,12 +4900,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 7458745881642210414}
-  timer: 15
-  Speed: 802
-  dmg: 5
+  timer: 10
+  Speed: 500
+  dmg: 160
   mytimer: 10
   mySpeed: 500
-  mydmg: 1.3421773e+9
+  mydmg: 160
   Sparks: {fileID: 2902947935863812567}
   Smoke: {fileID: 7724763439467015959}
   explosion: {fileID: 6398040281165451369}
@@ -4950,7 +4950,7 @@ Transform:
   m_GameObject: {fileID: 6737425802037542318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1000, y: 1000, z: 1000}
+  m_LocalScale: {x: -100, y: -100, z: -100}
   m_Children:
   - {fileID: 4185688652931822418}
   - {fileID: 4849364873773049986}
