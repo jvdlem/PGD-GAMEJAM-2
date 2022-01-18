@@ -355,7 +355,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109434732395284509}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: ca20b3907ff1c794cb89c1ad2cce8282, type: 3}
   m_Controller: {fileID: 9100000, guid: caa20ce3fee2b4b489ee57b00f4ff201, type: 2}
   m_CullingMode: 1
@@ -399,6 +399,7 @@ MonoBehaviour:
   attachmentStatsUi: {fileID: 8745205083312791954}
   currentState: 0
   statList: []
+  player: {fileID: 1406093315410647121, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
   gun: {fileID: 5500370889774544324, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
   sprite: {fileID: 0}
   TstatList:
@@ -1424,7 +1425,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3400401680259986213}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
