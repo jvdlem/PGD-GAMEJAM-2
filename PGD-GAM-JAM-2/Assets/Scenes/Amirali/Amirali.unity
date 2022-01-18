@@ -1776,7 +1776,7 @@ GameObject:
   - component: {fileID: 1527336632}
   - component: {fileID: 1527336631}
   m_Layer: 5
-  m_Name: Image
+  m_Name: SlideShow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1814,14 +1814,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slides:
-  - {fileID: 21300000, guid: c1b418819493b0346bd26d9da2567958, type: 3}
-  - {fileID: 21300000, guid: 689b585c23f162c488a227decfaf988a, type: 3}
-  - {fileID: 21300000, guid: e0e50303a92812546bc8dbd4ca480fcd, type: 3}
-  - {fileID: 21300000, guid: f6b8d9e0cabb9454286ff003b1bd34da, type: 3}
-  - {fileID: 21300000, guid: 3edbbc239efaf0b409501088776947b5, type: 3}
-  - {fileID: 21300000, guid: 1cda642b7718cae4f98da56a7ceb7ccb, type: 3}
+  - {fileID: 21300000, guid: cd646cfc5234d8542883aa83f6f3ee1b, type: 3}
+  - {fileID: 21300000, guid: e5aacb7e0df58874eacc7ae80a1672ca, type: 3}
+  - {fileID: 21300000, guid: 04e099da619694f4dbc7d81c800ab366, type: 3}
+  - {fileID: 21300000, guid: 8c89becdaaa9b11449a5e409b9d25df9, type: 3}
   currentSlide: {fileID: 1527336632}
-  test: 0
+  timeBetweenFrames: 5
 --- !u!114 &1527336632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1842,7 +1840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: cd646cfc5234d8542883aa83f6f3ee1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
