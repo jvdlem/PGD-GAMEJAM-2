@@ -290,6 +290,11 @@ public class Moenemies : GroundEnemyScript
                 }
             }
         }
+        if (other.gameObject.tag == "Player")
+        {
+            //Player loses health
+            Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
+        }
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
     {

@@ -1,29 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> spawnList;
+    public UnityEvent onWaveDone;
+    public bool opened = false, spawned = false;
 
-   
-    public void SpawnEnemy()
+    public void Update()
     {
-        foreach (GameObject aGameobject in spawnList)
+        if (spawned == true)
         {
-            if (aGameobject != null)
+            foreach (GameObject gameObject in spawnList)
             {
-                Debug.Log("Instantiete");
-                Instantiate(aGameobject.GetComponent<Enemy>().myEnemy, aGameobject.transform.position, Quaternion.identity);
+                if (gameObject.transform.childCount <= 0)
+                {
+                    spawnList.Remove(gameObject);
+                    Destroy(gameObject);
+                }
+            }
+            if (spawnList.Count >= 1)
+            {
+                opened = false;
+            }
+            if (spawnList.Count == 0 && opened == false)
+            {
+                opened = true;
+                OpenRoom();
             }
         }
+
     }
-    void Awake()
+
+    void OpenRoom()
+    {
+        onWaveDone.Invoke();
+    }
+
+    public void SpawnEnemy()
+    {
+        foreach (GameObject aEnemy in spawnList)
+        {
+            if (aEnemy != null)
+            {
+                GameObject parent = aEnemy;
+               
+                GameObject Test = Instantiate(aEnemy.GetComponent<Enemy>().myEnemy, aEnemy.transform.position, Quaternion.identity);
+                Test.transform.SetParent(parent.transform);
+            }
+        }
+        spawned = true;
+    }
+    public void Awake()
     {
         for (int i = 0; i < this.gameObject.transform.childCount; i++)
         {
             spawnList.Add(this.gameObject.transform.GetChild(i).gameObject);
         }
-        SpawnEnemy();
+        //SpawnEnemy();
+
     }
 }
