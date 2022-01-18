@@ -189,7 +189,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -253,7 +253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8109714427962658509, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
@@ -1007,6 +1007,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045361929}
   m_CullTransparentMesh: 1
+--- !u!1 &1077267177 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1406093315907955557, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
+  m_PrefabInstance: {fileID: 592945250194956969}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1077267178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077267177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65854c2608ffc2d438c58084f5eaf22a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1092717404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,7 +1541,12 @@ MonoBehaviour:
   slides:
   - {fileID: 21300000, guid: c1b418819493b0346bd26d9da2567958, type: 3}
   - {fileID: 21300000, guid: 689b585c23f162c488a227decfaf988a, type: 3}
+  - {fileID: 21300000, guid: e0e50303a92812546bc8dbd4ca480fcd, type: 3}
+  - {fileID: 21300000, guid: f6b8d9e0cabb9454286ff003b1bd34da, type: 3}
+  - {fileID: 21300000, guid: 3edbbc239efaf0b409501088776947b5, type: 3}
+  - {fileID: 21300000, guid: 1cda642b7718cae4f98da56a7ceb7ccb, type: 3}
   currentSlide: {fileID: 1527336632}
+  test: 0
 --- !u!114 &1527336632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1874,6 +1896,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1406093315073977535, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1406093315410647120, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1924,7 +1950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1406093315410647121, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
