@@ -48,11 +48,6 @@ public class PlayerHealthScript : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentHealth -= 3;
-        }
     }
 
     public void takeDamage(int damage)

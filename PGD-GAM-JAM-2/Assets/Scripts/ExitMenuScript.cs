@@ -44,11 +44,14 @@ public class ExitMenuScript : MonoBehaviour
 
     public void ToggleExitMenuScreenOn()
     {
-        gameObject.SetActive(true);
-        menuOn = true;
-        gun.GetComponent<Pistol>().isInMenu = isActive;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if (gun.GetComponent<Pistol>().isInMenu == false)
+        {
+            gameObject.SetActive(true);
+            menuOn = true;
+            gun.GetComponent<Pistol>().isInMenu = isActive;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void ToggleExitMenuScreenOff()
