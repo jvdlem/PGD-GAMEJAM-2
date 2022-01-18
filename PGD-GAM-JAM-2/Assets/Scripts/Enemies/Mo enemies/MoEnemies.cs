@@ -23,11 +23,12 @@ public class Moenemies : GroundEnemyScript
     public string attack;
     public string die = "Die";
     public bool triggerDeathAnimation = true, triggerHurtAnimation = true, canBeHurt = true;
-    public float deathTimer =0;
+    public int deathTimer =0;
 
     [Header("States")]
     [SerializeField] public float detectionDistance;
     [SerializeField] public float attackDistance;
+    public float hurtTimer;
 
     [Header("Sounds")]
     public string attackSound, deathSound, hurtSound, windUpSound;
@@ -54,9 +55,6 @@ public class Moenemies : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
-
-        Debug.Log(currentState);
-
         NonStatesRelatedFunctions();
 
         switch (currentState)
@@ -98,6 +96,17 @@ public class Moenemies : GroundEnemyScript
         if (currentState != States.Hurt) triggerHurtAnimation = true;
         EnableParticles();
         if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
+
+        if (currentState == States.Hurt)
+        {
+            hurtTimer += Time.deltaTime;
+            if (hurtTimer >= 2)
+            {
+                hurtTimer = 0;
+                currentState = States.Chasing;
+                Debug.Log("YES");
+            }
+        }
     }
     float CalculateHealth()
     {
@@ -215,18 +224,6 @@ public class Moenemies : GroundEnemyScript
             triggerDeathAnimation = false;
         }
     }
-    //virtual public void Death()
-    //{
-    //    AnimationTrigger(die);
-    //    PlaySound(deathSound, this.gameObject.transform.position);
-    //    deathTimer += Time.deltaTime;
-    //    if (deathTimer > 1.65f)
-    //    {
-    //        deathTimer = 0;
-    //        Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-    //        Destroy(this.gameObject);
-    //    }
-    //}
     virtual public void Hurting()
     {
         if (triggerHurtAnimation)
