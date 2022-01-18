@@ -46,10 +46,7 @@ public class Dummy : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Projectille>() != null)
             {
-                elapsedTime = 0;
-                myText.GetComponent<Text>().text = other.gameObject.GetComponent<Projectille>().dmg.ToString("#.00;#.00");
-                wobble(other.gameObject.GetComponent<Projectille>().dmg);
-                other.gameObject.GetComponent<Projectille>().Speed = 0;
+                GetDamage(other.gameObject);
             }
         }
     }

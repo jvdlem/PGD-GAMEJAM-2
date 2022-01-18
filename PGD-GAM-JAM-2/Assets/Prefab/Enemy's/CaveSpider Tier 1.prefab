@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 7736330151748564150}
   - component: {fileID: 7219962538192040602}
   - component: {fileID: 7219962537494459779}
+  - component: {fileID: -1155021708337984590}
   m_Layer: 0
   m_Name: CaveSpider Tier 1
   m_TagString: Spider
@@ -302,6 +303,22 @@ MonoBehaviour:
   maxHealth: 0
   healthBarUI: {fileID: 804920671233544074}
   slider: {fileID: 2465252756869004547}
+--- !u!54 &-1155021708337984590
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8882800748357898011}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8882800748357898013
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +677,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8882800748358128465}
+  - component: {fileID: 3824173164291138405}
+  - component: {fileID: 913248131940349235}
   m_Layer: 0
   m_Name: Bip001
   m_TagString: Untagged
@@ -682,6 +701,32 @@ Transform:
   m_Father: {fileID: 8882800748358128509}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -6.666965, y: 0.000038824455, z: 89.999916}
+--- !u!136 &3824173164291138405
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8882800748357898097}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.5
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &913248131940349235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8882800748357898097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31ad242d9c0547042969de91d99e152d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8882800748357898099
 GameObject:
   m_ObjectHideFlags: 0
