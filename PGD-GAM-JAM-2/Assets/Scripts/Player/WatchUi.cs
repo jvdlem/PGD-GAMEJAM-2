@@ -16,6 +16,7 @@ public class WatchUi : MonoBehaviour
     private bool WatchUiOpen;
     private void Start()
     {
+        WatchUiOpen = false;
         zAngleMax = 150;
         zAngleMin = 60;
         PlayerScript = FindObjectOfType<PlayerHealthScript>();
@@ -29,21 +30,22 @@ public class WatchUi : MonoBehaviour
         if (this.transform.eulerAngles.z >= zAngleMin && this.transform.eulerAngles.z <= zAngleMax && !WatchUiOpen)
         {
 
+            
             WatchFaceAnim.Play("WatchFaceAnimation");
             WatchUiAnim.Play("WatchAnimOpen");
             WatchUiOpen = true;
-
         }
-        else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMin && WatchUiOpen)
+        else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMax && WatchUiOpen)
         {
+
             WatchFaceAnim.Play("WatchFaceAnimationClose");
             WatchUiAnim.Play("WatchAnimClose");
-            
-            
+
+
             WatchUiOpen = false;
-            
+
         }
-        
+
     }
     public void Restart()
     {
