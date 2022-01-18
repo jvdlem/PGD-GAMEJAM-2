@@ -10,6 +10,13 @@ public class Transport : MonoBehaviour
     public Vector3 worldPos;
     public bool doitpls;
 
+    private FMOD.Studio.Bus MasterBus;
+
+    private void Start()
+    {
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+    }
+
     public void StartTransportToGame()
     {
         StartCoroutine(TransportToGame());
@@ -17,6 +24,7 @@ public class Transport : MonoBehaviour
     public IEnumerator TransportToGame()
     {
         yield return new WaitForSeconds(5f);
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("cave system");
     }
 
@@ -27,6 +35,7 @@ public class Transport : MonoBehaviour
     public IEnumerator TransportPlayerToMenu()
     {
         yield return new WaitForSeconds(5f);
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         SceneManager.LoadScene("Main");
     }
 }
