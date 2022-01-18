@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CrystalChange : MonoBehaviour
 {
-    [SerializeField] private Color battleColor;
-    [SerializeField] private Light crystalLight;
-    [SerializeField] private Color beginColor;
-    [SerializeField] private Color beginLightColor;
-    [SerializeField] private float desiredDuration = 3f;
-    private float elapsedTime;
-    private bool inBattle = false;
-    private void Start()
+    [SerializeField] protected Color battleColor;
+    [SerializeField] protected Light crystalLight;
+    [SerializeField] protected Color beginColor;
+    [SerializeField] protected Color beginLightColor;
+    [SerializeField] protected float desiredDuration = 3f;
+    protected float elapsedTime;
+    protected bool inBattle = false;
+    protected virtual void Start()
     {
         beginColor = this.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_EmissionColor");
         crystalLight = this.transform.GetChild(1).GetComponent<Light>();

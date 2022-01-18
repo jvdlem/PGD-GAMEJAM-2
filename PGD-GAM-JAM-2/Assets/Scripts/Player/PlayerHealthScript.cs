@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthScript : MonoBehaviour
 {
@@ -38,7 +39,10 @@ public class PlayerHealthScript : MonoBehaviour
         {
             currentHealth = 0;
             FadeOut();
-            deathscreenscript.ToggleDeathScreen();
+            if (deathscreenscript != null)
+            {
+                deathscreenscript.ToggleDeathScreen();
+            }
         }
     }
 
@@ -67,7 +71,9 @@ public class PlayerHealthScript : MonoBehaviour
     public void FadeOut()
     {
         HudDeath.SetActive(true);
-        HudDeath.GetComponent<Animation>().Play("DeathFade");
+        StartCoroutine(FadeOutEmum());
+        
+        
     }
     public void FadeIn()
     {
@@ -90,5 +96,13 @@ public class PlayerHealthScript : MonoBehaviour
 
 
         HudDeath.SetActive(false);
+    }
+    private IEnumerator FadeOutEmum()
+    {
+        HudDeath.GetComponent<Animation>().Play("DeathFade");
+
+        yield return new WaitForSeconds(1.4f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
