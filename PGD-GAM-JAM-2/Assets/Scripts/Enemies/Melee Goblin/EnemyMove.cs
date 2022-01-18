@@ -14,6 +14,7 @@ public class EnemyMove : GroundEnemyScript
     public LayerMask groundLayer;
     [SerializeField] Animator anim;
     string attackSound, deathSound, hurtSound, windupSound, idleSound;
+
     public int maxHealth;
     public GameObject healthBarUI;
     public Slider slider;
@@ -34,7 +35,6 @@ public class EnemyMove : GroundEnemyScript
         base.Start();
         maxHealth = 10;
         currentGoblinState = States.Idle;
-        Health = 10;
         Tier = 1;
         checkForPlayerDistance = 20;
         //WalkSpeed = 4;
