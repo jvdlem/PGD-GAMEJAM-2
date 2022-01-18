@@ -218,7 +218,7 @@ public class Moenemies : GroundEnemyScript
         navMeshAgent.SetDestination(this.transform.position);
         PlaySound(hurtSound, soundPosition);
         AnimationTrigger("TakeDamage");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         currentState = States.Chasing;
     }
     public void OnCollisionEnter(Collision collision)

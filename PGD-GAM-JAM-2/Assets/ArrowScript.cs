@@ -11,16 +11,17 @@ public class ArrowScript : MonoBehaviour
     {
         playerHealth = GetComponent<PlayerHealthScript>();
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Player")
         {
-            //Destroy bullet once it hits player
-            playerHealth.takeDamage(1);
-            Destroy(this.gameObject);
+            //add what happens if projectile hits the player here
+            //Sound
+            //Destroy bullet once it hits something else
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(3);
         }
-
-        //Destroy bullet once it hits something else
-        Destroy(this.gameObject);
+        else Destroy(gameObject);
     }
 }
