@@ -56,11 +56,18 @@ public class DragonController : MeleeFlyingEnemyScript
                 coinDropped = true;
             }
 
+            Invoke(nameof(Despawn), 3f);
+
             deathTriggered = true;
         }
 
         if (currentState != States.Attacking) { attackTriggered = false; }
         else if (Health > 0) { deathTriggered = false; }
+    }
+
+    private void Despawn() 
+    {
+        Destroy(gameObject);
     }
 
     protected void OnTriggerEnter(Collider other)
