@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyCollisionEffect : MonoBehaviour
+public class SpiderOnCollisionEffect : MonoBehaviour
 {
     // Start is called before the first frame update
-    GolemScript golem;
+    CaveSpiderController spider;
     private void Start()
     {
-        golem = GetComponent<GolemScript>();
+        spider = GetComponent<CaveSpiderController>();
 
     }
     private void OnCollisionEnter(Collision collision)
@@ -16,7 +16,7 @@ public class EnemyCollisionEffect : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //add what happens if projectile hits the player here
-            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(golem.Damage);
+            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(spider.Damage);
         }
     }
 
@@ -25,7 +25,8 @@ public class EnemyCollisionEffect : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //add what happens if projectile hits the player here
-            other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(golem.Damage);
+            other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(spider.Damage);
         }
     }
 }
+
