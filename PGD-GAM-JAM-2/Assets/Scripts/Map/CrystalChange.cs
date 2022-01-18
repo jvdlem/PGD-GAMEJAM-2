@@ -19,28 +19,30 @@ public class CrystalChange : MonoBehaviour
     }
     public void BattelForm()
     {
+        elapsedTime = 0;
         inBattle = true;
 
     }
     public void normalForm()
     {
+        elapsedTime = 0;
         inBattle = false;
-        this.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", beginColor);
-        crystalLight.color = beginLightColor;
     }
     private void Update()
     {
-        if (inBattle)
+        if (inBattle&&elapsedTime<desiredDuration)
         {
             elapsedTime += Time.deltaTime;
             float percantageComplete = elapsedTime / desiredDuration;
             this.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(beginColor,battleColor, percantageComplete));
             crystalLight.color = Color.Lerp(beginLightColor, battleColor, percantageComplete);
         }
-        else
+        else if(elapsedTime < desiredDuration)
         {
-
-
+            elapsedTime += Time.deltaTime;
+            float percantageComplete = elapsedTime / desiredDuration;
+            this.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(battleColor, beginColor, percantageComplete));
+            crystalLight.color = Color.Lerp(battleColor, beginColor, percantageComplete);
         }
     }
 }

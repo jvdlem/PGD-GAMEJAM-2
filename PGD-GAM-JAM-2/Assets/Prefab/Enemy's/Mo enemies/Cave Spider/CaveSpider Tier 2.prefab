@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 5721109376343331163}
   m_Layer: 0
   m_Name: CaveSpider Tier 2
-  m_TagString: Untagged
+  m_TagString: Spider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -661,6 +661,7 @@ MonoBehaviour:
   deathTimer: 0
   detectionDistance: 20
   attackDistance: 2.5
+  hurtTimer: 0
   attackSound: 
   deathSound: 
   hurtSound: 

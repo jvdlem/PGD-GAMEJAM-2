@@ -14,7 +14,7 @@ public class ProjectileOnHitEffect : MonoBehaviour
             //Sound
             
             Destroy(gameObject);
-            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(3);
+            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(1);
         }
         else Destroy(gameObject);
     }
