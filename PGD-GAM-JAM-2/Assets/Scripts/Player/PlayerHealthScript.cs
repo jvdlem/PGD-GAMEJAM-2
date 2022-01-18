@@ -16,8 +16,8 @@ public class PlayerHealthScript : MonoBehaviour
 
     [Header("Damage")]
     public float damageDuration = 0.5f;
-    [SerializeField] private float invincibilityDurationSeconds;
-    private bool isInvincible = false;
+    [SerializeField] public float invincibilityDurationSeconds;
+    public bool isInvincible = false;
 
     [Header("Resources")]
     public int coins = 0;
