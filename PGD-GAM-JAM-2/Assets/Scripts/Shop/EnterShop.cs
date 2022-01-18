@@ -11,6 +11,7 @@ public class EnterShop : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            Destroy(this.gameObject);
             foreach (GameObject itemSpawners in itemSpawners)
             {
                 shopScript.DisplayItem(itemSpawners);
