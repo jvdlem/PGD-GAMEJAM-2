@@ -387,7 +387,7 @@ GameObject:
   - component: {fileID: 2458806953929719633}
   m_Layer: 0
   m_Name: Wizard Tier 2
-  m_TagString: Untagged
+  m_TagString: Wizard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -510,6 +510,7 @@ MonoBehaviour:
   deathTimer: 0
   detectionDistance: 40
   attackDistance: 30
+  hurtTimer: 0
   attackSound: 
   deathSound: 
   hurtSound: 

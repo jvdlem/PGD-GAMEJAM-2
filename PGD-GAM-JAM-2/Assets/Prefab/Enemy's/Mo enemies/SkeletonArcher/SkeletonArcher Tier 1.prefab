@@ -6398,7 +6398,7 @@ GameObject:
   - component: {fileID: 6532801666877251449}
   m_Layer: 0
   m_Name: SkeletonArcher Tier 1
-  m_TagString: Untagged
+  m_TagString: SkeletonArcher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6523,6 +6523,7 @@ MonoBehaviour:
   deathTimer: 0
   detectionDistance: 25
   attackDistance: 20
+  hurtTimer: 0
   attackSound: 
   deathSound: 
   hurtSound: 
