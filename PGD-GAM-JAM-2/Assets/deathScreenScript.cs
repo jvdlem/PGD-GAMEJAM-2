@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class deathScreenScript : MonoBehaviour
 {
+
+    public GameObject gun;
+    private bool isActive = false;
     private void Start()
     {
         gameObject.SetActive(false);
@@ -31,6 +34,7 @@ public class deathScreenScript : MonoBehaviour
     public void ToggleDeathScreen()
     {
         gameObject.SetActive(true);
+        gun.GetComponent<Pistol>().isInMenu = isActive;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
