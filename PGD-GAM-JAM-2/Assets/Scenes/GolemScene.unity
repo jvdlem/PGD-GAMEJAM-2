@@ -3203,6 +3203,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 408680690055959265, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 408680690055959265, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.292999
+      objectReference: {fileID: 0}
+    - target: {fileID: 408680690055959265, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6167296
+      objectReference: {fileID: 0}
+    - target: {fileID: 408680690055959265, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 408680690055959265, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10.9
+      objectReference: {fileID: 0}
     - target: {fileID: 5861923615507599371, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -3251,6 +3271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Guide VR Shoot
       objectReference: {fileID: 0}
+    - target: {fileID: 6145299930069468655, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9fc68cb429cfbcc4c831b4a82e34fc91, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5266c4731117c4847815da9f50014d4f, type: 3}
 --- !u!114 &2899730854751129795
@@ -3334,6 +3358,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 893800668440005440, guid: aac8f91108005f940afe34d4924ac03a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7171955
+      objectReference: {fileID: 0}
+    - target: {fileID: 893800668440005440, guid: aac8f91108005f940afe34d4924ac03a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -18.9
+      objectReference: {fileID: 0}
     - target: {fileID: 6383072284575959466, guid: aac8f91108005f940afe34d4924ac03a, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -3378,6 +3410,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6666730076798803022, guid: aac8f91108005f940afe34d4924ac03a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bce40119a46e3ae4dae5baaa56c255be, type: 3}
     - target: {fileID: 6703366022970498336, guid: aac8f91108005f940afe34d4924ac03a, type: 3}
       propertyPath: m_Name
       value: UI Guide VR Grab
