@@ -6,11 +6,12 @@ public class Elevator : MonoBehaviour
 {
     public Rigidbody ElevatorButton;
 
-    private FMODUnity.StudioEventEmitter AudioEmitter;
+    public FMODUnity.StudioEventEmitter AudioEmitter;
 
     // Start is called before the first frame update
     void Start()
     {
         ElevatorButton.AddRelativeForce(Vector3.down * 10);
+        AudioEmitter.Play();
     }
 }
