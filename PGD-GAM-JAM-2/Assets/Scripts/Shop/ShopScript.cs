@@ -29,6 +29,7 @@ public class ShopScript : MonoBehaviour
 
     public void DisplayItem(GameObject itemSpawn)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/EnterShop");
         GameObject instantiatedItem;
         instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], itemSpawn.transform.position, itemSpawn.transform.rotation);
         shopItems.Add(instantiatedItem);
@@ -50,11 +51,5 @@ public class ShopScript : MonoBehaviour
         else if (PlayerScript.coins < price && shopItems[i].GetComponent<ShopStatDisplay>().isBought == false) FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/InsufficientMoney");
         //Item already bought
         else if (shopItems[i].GetComponent<ShopStatDisplay>().isBought == true) FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/NoMoreItem");
-    }
-
-    public void PlayShopAudio()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/EnterShop");
-        audioEmitter.Play();
     }
 }
