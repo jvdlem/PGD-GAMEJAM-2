@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove : GroundEnemyScript
 {
@@ -13,6 +14,10 @@ public class EnemyMove : GroundEnemyScript
     public LayerMask groundLayer;
     [SerializeField] Animator anim;
     string attackSound, deathSound, hurtSound, windupSound, idleSound;
+    public int maxHealth;
+    public GameObject healthBarUI;
+    public Slider slider;
+
     enum States
     {
         Idle,
@@ -27,6 +32,7 @@ public class EnemyMove : GroundEnemyScript
     public override void Start()
     {
         base.Start();
+        maxHealth = 10;
         currentGoblinState = States.Idle;
         Health = 10;
         Tier = 1;
@@ -42,11 +48,21 @@ public class EnemyMove : GroundEnemyScript
         hurtSound = "event:/Enemy/Goblin/GoblinHurt";
         windupSound = "event:/Enemy/Goblin/GoblinWindup";
         idleSound = "event:/Enemy/Goblin/GoblinIdle";
+
+        Health = maxHealth;
+        //slider.value = CalculateHealth();
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        //slider.value = CalculateHealth();
+
+        if (Health < maxHealth)
+        {
+            //healthBarUI.SetActive(true);
+        }
+
         navMeshAgent.speed = Speed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
         base.Update();
@@ -206,5 +222,10 @@ public class EnemyMove : GroundEnemyScript
     private void PlaySound(string sound, Vector3 pos)
     {
         FMODUnity.RuntimeManager.PlayOneShot(sound, pos);
+    }
+
+    float CalculateHealth()
+    {
+        return (float)Health / (float)maxHealth;
     }
 }

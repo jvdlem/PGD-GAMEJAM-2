@@ -6,11 +6,12 @@ using UnityEngine.Events;
 public class TriggerEventsystem : MonoBehaviour
 {
     public UnityEvent onTriggerEnter, onTriggerExit;
+    public MusicLoop musicLoop;
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Player")
         {
-            Tiggerd();
+            Triggerd();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -20,11 +21,9 @@ public class TriggerEventsystem : MonoBehaviour
             Deactivate();
         }
     }
-    private void Tiggerd()
+    private void Triggerd()
     {
-        //myAudio.Play();
         onTriggerEnter.Invoke();
-
     }
 
     private void Deactivate()

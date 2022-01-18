@@ -5,16 +5,17 @@ using UnityEngine.Events;
 
 public class EnterShop : MonoBehaviour
 {
-    [SerializeField] DisplayItems displayItems;
+    [SerializeField] ShopScript shopScript;
     [SerializeField] List<GameObject> itemSpawners = new List<GameObject>();
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
+            shopScript.PlayShopAudio();
             Destroy(this.gameObject);
             foreach (GameObject itemSpawners in itemSpawners)
             {
-                displayItems.DisplayItem(itemSpawners);
+                shopScript.DisplayItem(itemSpawners);
             }
         }
     }

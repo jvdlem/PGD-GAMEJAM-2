@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6374859734159831051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6883552456346077639}
+  - component: {fileID: 4267958867798288924}
+  - component: {fileID: 4267958867798288927}
+  m_Layer: 0
+  m_Name: ActionMusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6883552456346077639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374859734159831051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -54.073032, y: 57.36857, z: 7.340515}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4267958867798288924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374859734159831051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1815559111
+      Data2: 1240803836
+      Data3: -249419597
+      Data4: 1918652756
+    Path: event:/MISC/Music/BackGroundMusic1
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4267958867798288927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374859734159831051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0fd201dbe928f47af42da37cb78da3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentSong:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  BackGroundMusic:
+  - Guid:
+      Data1: -1815559111
+      Data2: 1240803836
+      Data3: -249419597
+      Data4: 1918652756
+    Path: event:/MISC/Music/BackGroundMusic1
+  - Guid:
+      Data1: -169515915
+      Data2: 1335580178
+      Data3: 1494165677
+      Data4: -2006179872
+    Path: event:/MISC/Music/BackGroundMusic2
+  - Guid:
+      Data1: 1793932000
+      Data2: 1339852939
+      Data3: 1880864398
+      Data4: 1816382038
+    Path: event:/MISC/Music/BackGroundMusic3
+  AudioEmitter: {fileID: 4267958867798288924}
+  PlayMusic: 0

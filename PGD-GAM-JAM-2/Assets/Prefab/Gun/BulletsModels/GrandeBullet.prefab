@@ -4900,7 +4900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 7458745881642210414}
-  timer: 0
+  timer: 10
   Speed: 500
   dmg: 10
   mytimer: 3
@@ -4910,7 +4910,9 @@ MonoBehaviour:
   Smoke: {fileID: 7724763439467015959}
   explosion: {fileID: 6398040281165451369}
   Parent: {fileID: 6737425802037542318}
-  onCollision: 0
+  delay: 3
+  onCollision: 1
+  radius: 6
 --- !u!64 &5333742690179101648
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5013,7 +5015,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2
+    scalar: 200
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -9893,7 +9895,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2
+    scalar: 200
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -14773,7 +14775,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 2
+    scalar: 200
     minScalar: 0
     maxCurve:
       serializedVersion: 2
