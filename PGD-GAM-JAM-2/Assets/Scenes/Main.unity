@@ -832,6 +832,10 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8104987934075019524, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8231529546713689660, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -0.000013556262
@@ -4309,7 +4313,7 @@ PrefabInstance:
     - target: {fileID: 2244731634176322393, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: displayItems
       value: 
-      objectReference: {fileID: 1549417271}
+      objectReference: {fileID: 0}
     - target: {fileID: 2244731634176322393, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: playerHealthScript
       value: 
@@ -4388,15 +4392,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -72.082
+      value: 405.23
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.961
+      value: 3.46
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.54
+      value: 993.06
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6089,6 +6093,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrandeBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 4036158279038460054, guid: 619c5b28233068b4ca32206b0b7d36e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6777202100062435691, guid: 619c5b28233068b4ca32206b0b7d36e5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -6356,17 +6364,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527164586}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1549417271 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7204696148535741132, guid: 61ef487fec62ce94c8cd257e6208b86e, type: 3}
-  m_PrefabInstance: {fileID: 1132747434}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e08a8030dc1f7a4eb6508e790b36343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1577122634 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
