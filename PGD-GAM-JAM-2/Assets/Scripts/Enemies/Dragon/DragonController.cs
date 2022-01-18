@@ -1,10 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DragonController : MeleeFlyingEnemyScript
 {
 
+    [Header("Animation")]
     [SerializeField]
     public Animator anim;
+
+    [Header("Health")]
+    public int maxHealth;
+    public GameObject healthBarUI;
+    public Slider slider;
 
     private bool attackTriggered = false;
     private bool deathTriggered = false;
@@ -15,10 +22,12 @@ public class DragonController : MeleeFlyingEnemyScript
     { 
         base.Start();
 
+        healthBarUI.SetActive(false);
+
         Tier = 1;
 
         Health = 100;
-        Damage = 10;
+        Damage = 2;
 
         currentState = States.Chasing; //Enemy starts chasing
     }
@@ -33,9 +42,18 @@ public class DragonController : MeleeFlyingEnemyScript
         if (!isTriggered) FMODUnity.RuntimeManager.PlayOneShot(soundPath, position);
     }
 
+    float CalculateHealth()
+    {
+        return (float)Health / (float)maxHealth;
+    }
+
     public override void Update()
     {
         base.Update();
+
+        slider.value = CalculateHealth();
+
+        if (Health < maxHealth) { healthBarUI.SetActive(true); }
 
         if (currentState == States.Attacking) 
         {
@@ -43,31 +61,32 @@ public class DragonController : MeleeFlyingEnemyScript
             PlayAnimation("Attack");
             attackTriggered = true;
         }
-        else { PlayAnimation("Idle"); }
 
-        if (Health <= 0) 
+        if (Health <= 0) { currentState = States.Death; }
+
+        if (currentState == States.Death) 
         {
             PlaySound("event:/Enemy/Bat/BatDeath", transform.position, deathTriggered);
             PlayAnimation("Die");
 
-            if (!coinDropped) 
-            {
-                Instantiate(Coin, transform.position, transform.rotation);
-                coinDropped = true;
-            }
+            velocity = Vector3.zero;
 
             Invoke(nameof(Despawn), 3f);
 
             deathTriggered = true;
         }
-
-        if (currentState != States.Attacking) { attackTriggered = false; }
-        else if (Health > 0) { deathTriggered = false; }
     }
 
     private void Despawn() 
     {
         Destroy(gameObject);
+
+        //Drop coin
+        if (!coinDropped)
+        {
+            Instantiate(Coin, transform.position, transform.rotation);
+            coinDropped = true;
+        }
     }
 
     protected void OnTriggerEnter(Collider other)
