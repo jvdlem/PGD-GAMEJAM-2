@@ -6,8 +6,8 @@ public class DragonController : MeleeFlyingEnemyScript
     [SerializeField]
     public Animator anim;
 
-    private bool attackTrigger;
-    private bool deathTrigger;
+    private bool attackTriggered = false;
+    private bool deathTriggered = false;
 
     private bool coinDropped;
 
@@ -17,7 +17,7 @@ public class DragonController : MeleeFlyingEnemyScript
 
         Tier = 1;
 
-        Health = -1;
+        Health = 100;
         Damage = 10;
 
         currentState = States.Chasing; //Enemy starts chasing
@@ -28,9 +28,9 @@ public class DragonController : MeleeFlyingEnemyScript
         anim.SetTrigger(animation);
     }
 
-    public virtual void PlaySound(string soundPath, Vector3 position)
+    public virtual void PlaySound(string soundPath, Vector3 position, bool isTriggered)
     {
-        FMODUnity.RuntimeManager.PlayOneShot(soundPath, position);
+        if (!isTriggered) FMODUnity.RuntimeManager.PlayOneShot(soundPath, position);
     }
 
     public override void Update()
@@ -38,14 +38,16 @@ public class DragonController : MeleeFlyingEnemyScript
         base.Update();
 
         if (currentState == States.Attacking) 
-        {          
+        {
+            PlaySound("event:/Enemy/Bat/BatAttack", transform.position, attackTriggered);
             PlayAnimation("Attack");
-            attackTrigger = true;
+            attackTriggered = true;
         }
         else { PlayAnimation("Idle"); }
 
         if (Health <= 0) 
         {
+            PlaySound("event:/Enemy/Bat/BatDeath", transform.position, deathTriggered);
             PlayAnimation("Die");
 
             if (!coinDropped) 
@@ -54,20 +56,18 @@ public class DragonController : MeleeFlyingEnemyScript
                 coinDropped = true;
             }
 
-            deathTrigger = true;
+            Invoke(nameof(Despawn), 3f);
+
+            deathTriggered = true;
         }
 
-        if (attackTrigger) 
-        {
-            PlaySound("event:/Enemy/Bat/BatAttack", transform.position);
-            attackTrigger = false;
-        }
+        if (currentState != States.Attacking) { attackTriggered = false; }
+        else if (Health > 0) { deathTriggered = false; }
+    }
 
-        if (deathTrigger)
-        {
-            PlaySound("event:/Enemy/Bat/BatDeath", transform.position);
-            deathTrigger = false;
-        }
+    private void Despawn() 
+    {
+        Destroy(gameObject);
     }
 
     protected void OnTriggerEnter(Collider other)
