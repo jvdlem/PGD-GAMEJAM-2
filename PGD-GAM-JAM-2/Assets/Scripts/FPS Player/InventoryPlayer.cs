@@ -15,6 +15,7 @@ public class InventoryPlayer : MonoBehaviour
     [SerializeField] private GameObject images;
     [SerializeField] private GameObject currentSelect;
     [SerializeField] private GameObject subInventory;
+    [SerializeField] private Sprite defaultSprite;
     private bool isActive = false;
     private bool swaped = false;
 
@@ -98,21 +99,21 @@ public class InventoryPlayer : MonoBehaviour
     public void SwapAttachment()
     {
 
-                pistolList[selectedAttachemnt].SetActive(false);
-                StartCoroutine(timer());
-                ChangeImage();
-                GameObject temp;
-                
-                temp = pistolList[selectedAttachemnt];
-                pistolList[selectedAttachemnt].SetActive(false);
-                pistolList[selectedAttachemnt].transform.position = inventoryList[selectedAttachemnt].transform.position;
-                gun.GetComponent<Pistol>().aCurrentAddon = null;
-                inventoryList[selectedAttachemnt].transform.position = gun.transform.GetChild(selectedAttachemnt + 1).position;
-                inventoryList[selectedAttachemnt].SetActive(true);
+        pistolList[selectedAttachemnt].SetActive(false);
+        StartCoroutine(timer());
+        ChangeImage();
+        GameObject temp;
 
-                pistolList[selectedAttachemnt] = inventoryList[selectedAttachemnt];
-                inventoryList[selectedAttachemnt] = temp;
-                swaped = true;
+        temp = pistolList[selectedAttachemnt];
+        pistolList[selectedAttachemnt].SetActive(false);
+        pistolList[selectedAttachemnt].transform.position = inventoryList[selectedAttachemnt].transform.position;
+        gun.GetComponent<Pistol>().aCurrentAddon = null;
+        inventoryList[selectedAttachemnt].transform.position = gun.transform.GetChild(selectedAttachemnt + 1).position;
+        inventoryList[selectedAttachemnt].SetActive(true);
+
+        pistolList[selectedAttachemnt] = inventoryList[selectedAttachemnt];
+        inventoryList[selectedAttachemnt] = temp;
+        swaped = true;
 
     }
     public void Attach()
@@ -157,6 +158,20 @@ public class InventoryPlayer : MonoBehaviour
         }
     }
 
+    public void Drop()
+    {
+        if (inventoryList[selectedAttachemnt] != null)
+        {
+            GameObject dropAttachment = inventoryList[selectedAttachemnt];
+            dropAttachment.SetActive(true);
+            inventoryList[selectedAttachemnt] = null;
+            dropAttachment.transform.position = new Vector3(gun.transform.position.x-0.2f, gun.transform.position.y - 0.2f, gun.transform.position.z - 0.2f);
+            ResetImage();
+
+        }
+
+    }
+
     public void SelectAttachment(int attachemntslot)
     {
         selectedAttachemnt = attachemntslot;
@@ -189,5 +204,10 @@ public class InventoryPlayer : MonoBehaviour
         tempIMG = images.transform.GetChild(selectedAttachemnt).GetComponent<Image>().sprite;
         images.transform.GetChild(selectedAttachemnt).GetComponent<Image>().sprite = images.transform.GetChild(selectedAttachemnt + gunslots).GetComponent<Image>().sprite;
         images.transform.GetChild(selectedAttachemnt + gunslots).GetComponent<Image>().sprite = tempIMG;
+    }
+
+    public void ResetImage()
+    {
+        images.transform.GetChild(selectedAttachemnt).GetComponent<Image>().sprite = defaultSprite;
     }
 }

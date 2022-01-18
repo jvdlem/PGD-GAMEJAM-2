@@ -12,6 +12,7 @@ public class AttachmentPowerUP : MonoBehaviour
     private bool canPowerUp = true;
     private bool canPowerDown = false;
     private float elapsedTime;
+    private bool colorPower;
     [SerializeField] private float desiredDuration = 1f;
     [SerializeField] private AnimationCurve myCurve;
     [SerializeField] private ParticleSystem myParticle;
@@ -21,7 +22,11 @@ public class AttachmentPowerUP : MonoBehaviour
     void Start()
     {
         this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", startEmmision);
-        powerEmmision *= 3;
+        if (colorPower == false)
+        {
+            colorPower = true;
+            powerEmmision *= 3;
+        }
     }
 
     // Update is called once per frame
@@ -71,6 +76,8 @@ public class AttachmentPowerUP : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/LoseBonus4", this.gameObject.transform.position);
         }
     }
+
+    
 
     public void NormalPowered(int aOperator)
     {
