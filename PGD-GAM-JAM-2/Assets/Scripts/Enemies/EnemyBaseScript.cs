@@ -10,7 +10,7 @@ public class EnemyBaseScript : MonoBehaviour
     protected Rigidbody Rigidbody;
     public GameObject Player;
     public GameObject Coin;
-    private float animationTime = 1;
+    protected float animationTime = 1;
     private bool canDie = true;
 
     protected Vector3 velocity; //Velocity for movement

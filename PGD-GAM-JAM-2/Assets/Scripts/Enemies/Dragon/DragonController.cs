@@ -4,6 +4,10 @@ using UnityEngine.UI;
 public class DragonController : MeleeFlyingEnemyScript
 {
 
+    [Header("Player Info")]
+    [SerializeField]
+    PlayerHealthScript healthScript;
+
     [Header("Animation")]
     [SerializeField]
     public Animator anim;
@@ -24,6 +28,8 @@ public class DragonController : MeleeFlyingEnemyScript
 
         healthBarUI.SetActive(false);
 
+        animationTime = 3;
+
         Tier = 1;
 
         Health = 100;
@@ -32,9 +38,9 @@ public class DragonController : MeleeFlyingEnemyScript
         currentState = States.Chasing; //Enemy starts chasing
     }
 
-    private void PlayAnimation(string animation)
+    private void PlayAnimation(string animation, bool isTriggered = false)
     {
-        anim.SetTrigger(animation);
+        if (!isTriggered) anim.SetTrigger(animation);
     }
 
     public virtual void PlaySound(string soundPath, Vector3 position, bool isTriggered)
@@ -42,10 +48,7 @@ public class DragonController : MeleeFlyingEnemyScript
         if (!isTriggered) FMODUnity.RuntimeManager.PlayOneShot(soundPath, position);
     }
 
-    float CalculateHealth()
-    {
-        return (float)Health / (float)maxHealth;
-    }
+    float CalculateHealth() { return (float)Health / (float)maxHealth; }
 
     public override void Update()
     {
@@ -55,7 +58,7 @@ public class DragonController : MeleeFlyingEnemyScript
 
         if (Health < maxHealth) { healthBarUI.SetActive(true); }
 
-        if (currentState == States.Attacking) 
+        if (currentState == States.Attacking)
         {
             PlaySound("event:/Enemy/Bat/BatAttack", transform.position, attackTriggered);
             PlayAnimation("Attack");
@@ -67,39 +70,39 @@ public class DragonController : MeleeFlyingEnemyScript
         if (currentState == States.Death) 
         {
             PlaySound("event:/Enemy/Bat/BatDeath", transform.position, deathTriggered);
-            PlayAnimation("Die");
+            PlayAnimation("Die", deathTriggered);
 
             velocity = Vector3.zero;
 
-            Invoke(nameof(Despawn), 3f);
+            Invoke(nameof(Despawn), 2.5f);
 
             deathTriggered = true;
         }
+
+        //If in range for collision, despawn
+        if (CollisionRange()) 
+        {
+            healthScript.takeDamage(2);
+            Despawn(); 
+        }
     }
 
-    private void Despawn() 
+    public void Despawn() 
     {
         Destroy(gameObject);
-
-        //Drop coin
-        if (!coinDropped)
+       
+        if (!coinDropped) 
         {
-            Instantiate(Coin, transform.position, transform.rotation);
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             coinDropped = true;
         }
     }
 
-    protected void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        transform.position = new Vector3(other.gameObject.transform.position.x,
-            25, other.gameObject.transform.position.z); //Reset position above target
-
-        currentState = States.Patrolling; //Start patrolling for new target
-
-        //If collision with player, damage player health
-        if (other.gameObject.tag == "Player") { Player.GetComponent<PlayerHealthScript>().takeDamage(3); }
-
         //Lose health if hit by projectile
         if (other.gameObject.tag == "Projectile") { TakeDamage(1); }
     }
+
+    private bool CollisionRange() { return Physics.CheckSphere(transform.position, 0.5f, playerLayer); }
 }
