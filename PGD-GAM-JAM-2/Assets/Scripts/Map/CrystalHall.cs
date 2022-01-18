@@ -2,20 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalChange : MonoBehaviour
+public class CrystalHall : CrystalChange
 {
-    [SerializeField] protected Color battleColor;
-    [SerializeField] protected Light crystalLight;
-    [SerializeField] protected Color beginColor;
-    [SerializeField] protected Color beginLightColor;
-    [SerializeField] protected float desiredDuration = 3f;
-    protected float elapsedTime;
-    protected bool inBattle = false;
-    protected virtual void Start()
+    protected override void Start()
     {
-        beginColor = this.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_EmissionColor");
         crystalLight = this.transform.GetChild(1).GetComponent<Light>();
-        beginLightColor = this.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_EmissionColor");
     }
     public void BattelForm()
     {

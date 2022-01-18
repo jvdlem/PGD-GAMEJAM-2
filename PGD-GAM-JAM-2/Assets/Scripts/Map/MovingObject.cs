@@ -31,7 +31,7 @@ public class MovingObject : MonoBehaviour
             }
             elapsedTime += Time.deltaTime;
             float percantageComplete = elapsedTime / desiredDuration;
-            transform.position = Vector3.Lerp(realStart, realEndPos, percantageComplete);
+            transform.localPosition = Vector3.Lerp(realStart, realEndPos, percantageComplete);
         }
     }
     public void MoveObject(float add)
