@@ -11,7 +11,7 @@ public class FlyingEnemyScript : EnemyBaseScript
     {
         base.Start();
 
-        Rigidbody.useGravity = false; //Turn off gravity for proper movement      
+        Destroy(Rigidbody); //Remove rigidbody     
     }
 
     /// <summary>Fly in specified direction.</summary>
