@@ -70,6 +70,10 @@ public class Moenemies : GroundEnemyScript
                 break;
         }
     }
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+    }
     virtual public void NonStatesRelatedFunctions()
     {
         if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
