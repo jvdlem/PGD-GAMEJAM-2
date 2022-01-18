@@ -33,8 +33,9 @@ public class playerAimScript : MonoBehaviour
             anim.SetBool("aiming", false);
             aiming = false;
             anim.SetBool("reloading", true);
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Reload");
         }
+
+        if(reloadTimer <= 0.2f) FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Reload");
 
         if (reloadTimer <= 0)
         {
