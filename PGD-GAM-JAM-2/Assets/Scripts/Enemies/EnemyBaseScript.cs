@@ -21,6 +21,7 @@ public class EnemyBaseScript : MonoBehaviour
         Attacking,
         Patrolling,
         Chasing,
+        Hurt,
         Death
     }
 
@@ -54,6 +55,8 @@ public class EnemyBaseScript : MonoBehaviour
     public void TakeDamage(int pDamage)
     {
         Health -= pDamage;
+<<<<<<< HEAD
+=======
         if (Health <= 0 && canDie)
         {
             this.
@@ -61,6 +64,7 @@ public class EnemyBaseScript : MonoBehaviour
             DIE();
             //death
         }
+>>>>>>> main
     }
 
     IEnumerator DIE()

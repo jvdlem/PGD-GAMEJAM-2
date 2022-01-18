@@ -5,7 +5,6 @@ using UnityEngine;
 public class ProjectileOnHitEffect : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject player;
 
     private void OnCollisionEnter(Collision collision)
     {

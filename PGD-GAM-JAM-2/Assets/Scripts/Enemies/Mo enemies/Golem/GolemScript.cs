@@ -7,12 +7,12 @@ public class GolemScript : Moenemies
     // Start is called before the first frame update
     public override void Start()
     {
+        base.Start();
         attackSound = "event:/Enemy/Golem/GolemAttackSwing";
         deathSound = "event:/Enemy/Golem/GolemDeath";
         hurtSound = "event:/Enemy/Golem/GolemHurt";
         attackTimer = 2f;
         Damage = 2;
-        base.Start();
     }
     public override void Update()
     {
