@@ -47,6 +47,7 @@ public class Pistol : MonoBehaviour
     public bool isInMenu = false;
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
+
     void Start()
     {
         startSpread = spread;
@@ -119,11 +120,11 @@ public class Pistol : MonoBehaviour
                 fullAuto = false;
             }
 
-            if (Input.GetKeyDown("r"))
+            if (Input.GetKeyDown("r") )
             {
                 StartCoroutine(Reload());
-
             }
+
             if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
         for (int i = 1; i < lists.Count; i++)
