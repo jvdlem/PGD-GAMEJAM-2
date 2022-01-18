@@ -1001,7 +1001,7 @@ GameObject:
   - component: {fileID: 8336410065955454569}
   - component: {fileID: 8309494791598502177}
   - component: {fileID: 3525746512072664839}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Restart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1300,7 @@ GameObject:
   - component: {fileID: 2248460581022960371}
   - component: {fileID: 7511100516236698986}
   - component: {fileID: 2300698590890709051}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: WatchMainUi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3400401680259986213}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
   m_Name: 
@@ -1407,8 +1407,8 @@ MonoBehaviour:
   m_CheckFor3DOcclusion: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
-  m_RaycastTriggerInteraction: 2
+    m_Bits: 32
+  m_RaycastTriggerInteraction: 0
 --- !u!111 &2248460581022960371
 Animation:
   m_ObjectHideFlags: 0
@@ -1554,7 +1554,7 @@ GameObject:
   - component: {fileID: 7389005009002377455}
   - component: {fileID: 6149726658635000939}
   - component: {fileID: 514118380394014642}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1686,7 +1686,7 @@ GameObject:
   - component: {fileID: 6456966689295766805}
   - component: {fileID: 4595021777298445908}
   - component: {fileID: 330305367720750785}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1766,7 +1766,7 @@ GameObject:
   - component: {fileID: 2165834475887866779}
   - component: {fileID: 4958189355774252914}
   - component: {fileID: 8818015936838376957}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Exit Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1979,7 +1979,7 @@ GameObject:
   - component: {fileID: 1960143591927062872}
   - component: {fileID: 326822875127724004}
   - component: {fileID: 7341515798957144253}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2192,7 +2192,7 @@ GameObject:
   - component: {fileID: 6221719868785348558}
   - component: {fileID: 5819605963768462517}
   - component: {fileID: 3674303307664033866}
-  m_Layer: 11
+  m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
