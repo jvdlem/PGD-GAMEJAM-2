@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 1003274511163013456}
   - component: {fileID: 1003274511163013471}
   - component: {fileID: 1003274511163013470}
+  - component: {fileID: 6452551027554898057}
   m_Layer: 0
   m_Name: MoArrowParent
   m_TagString: Projectile
@@ -122,7 +123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5796340289533906740}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e5d308403f6ff14f8f8f98b2782f8af, type: 3}
   m_Name: 
@@ -156,3 +157,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.03046601, y: 0.080778, z: 0.7779303}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6452551027554898057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5796340289533906740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85e04f7634259a48821d00cfa642c62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
