@@ -58,7 +58,10 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{bc857f7c-c7cb-45d6-aff7-80d2dabd8688}">
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>80</value>
+		</property>
+		<property name="triggerCooldown">
+			<value>200</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{cc435baa-0ac3-444e-9393-f86c58438911}" />
@@ -110,6 +113,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7a7ab956-48e1-4760-a5c5-fe0e065ed1dc}">
+		<property name="volume">
+			<value>2</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -163,7 +169,7 @@
 			<value>1</value>
 		</property>
 		<property name="maximumDistance">
-			<value>100</value>
+			<value>80</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{64e3a2c0-b5a4-4006-bd6d-f00f9b044a00}" />

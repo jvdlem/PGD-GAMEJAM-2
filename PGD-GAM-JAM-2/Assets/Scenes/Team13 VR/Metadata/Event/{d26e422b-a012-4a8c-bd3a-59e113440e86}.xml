@@ -58,7 +58,10 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{27e6b50d-f417-4bbb-844a-dc847c6e7dd3}">
 		<property name="maximumDistance">
-			<value>150</value>
+			<value>60</value>
+		</property>
+		<property name="triggerCooldown">
+			<value>340</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{a8a093e2-b961-4c2b-a722-35ed379b9795}" />
@@ -140,7 +143,7 @@
 			<value>1</value>
 		</property>
 		<property name="maximumDistance">
-			<value>150</value>
+			<value>60</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{aefbb0e3-8cf4-4671-ba1c-8db36aa1a0e4}" />

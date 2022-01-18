@@ -11,8 +11,11 @@ public class Spawner : MonoBehaviour
     {
         foreach (GameObject aGameobject in spawnList)
         {
-            Debug.Log("Instantiete");
-            Instantiate(aGameobject.GetComponent<Enemy>().myEnemy, aGameobject.transform.position,Quaternion.identity);
+            if (aGameobject != null)
+            {
+                Debug.Log("Instantiete");
+                Instantiate(aGameobject.GetComponent<Enemy>().myEnemy, aGameobject.transform.position, Quaternion.identity);
+            }
         }
     }
     void Awake()

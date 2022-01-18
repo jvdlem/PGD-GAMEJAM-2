@@ -6,15 +6,25 @@ using UnityEngine.SceneManagement;
 public class ExitMenuScript : MonoBehaviour
 {
     public bool menuOn;
+    public FMOD.Studio.Bus MasterBus;
     // Start is called before the first frame update
     private void Start()
     {
         gameObject.SetActive(false);
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+    }
+
+    public void BackToGame()
+    {
+        gameObject.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

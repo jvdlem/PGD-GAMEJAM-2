@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove : GroundEnemyScript
 {
     float AttackTimer, IdleTimer, DeathTimer, retreatDistance = 2f, attackDistance = 2.5f;
     int rushDistance = 10, rushSpeed = 14, idleSpeed = 0, walkSpeed = 8, Speed;
     private bool playOnce;
+    bool ded = false;
     bool gotRetreatTarget, attemptAttack;
     Vector3 retreatTarget = Vector3.zero;
     public LayerMask groundLayer;
     [SerializeField] Animator anim;
     string attackSound, deathSound, hurtSound, windupSound, idleSound;
+    public int maxHealth;
+    public GameObject healthBarUI;
+    public Slider slider;
+
     enum States
     {
         Idle,
@@ -26,6 +32,7 @@ public class EnemyMove : GroundEnemyScript
     public override void Start()
     {
         base.Start();
+        maxHealth = 10;
         currentGoblinState = States.Idle;
         Health = 10;
         Tier = 1;
@@ -39,13 +46,23 @@ public class EnemyMove : GroundEnemyScript
         attackSound = "event:/Enemy/Goblin/GoblinAttack";
         deathSound = "event:/Enemy/Goblin/GoblinDeath";
         hurtSound = "event:/Enemy/Goblin/GoblinHurt";
-        windupSound = "event:/Enemy/Goblin/GoblinIdle";
-        idleSound = "event:/Enemy/Goblin/GoblinWindup";
+        windupSound = "event:/Enemy/Goblin/GoblinWindup";
+        idleSound = "event:/Enemy/Goblin/GoblinIdle";
+
+        Health = maxHealth;
+        slider.value = CalculateHealth();
     }
 
     // Update is called once per frame
     public override void Update()
     {
+        slider.value = CalculateHealth();
+
+        if (Health < maxHealth)
+        {
+            healthBarUI.SetActive(true);
+        }
+
         navMeshAgent.speed = Speed;
         float dist = Vector3.Distance(Player.transform.position, this.transform.position);
         base.Update();
@@ -79,9 +96,6 @@ public class EnemyMove : GroundEnemyScript
             default:
                 break;
         }
-
-        Debug.Log("state" + currentState);
-        Debug.Log(dist);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -94,18 +108,26 @@ public class EnemyMove : GroundEnemyScript
                 attemptAttack = false;
             }
         }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Projectile")
+
+        if (collision.gameObject.tag == "Projectile" && !ded)
         {
             PlaySound(hurtSound, this.gameObject.transform.position);
-            Health -= 1;
-            Destroy(collision.gameObject);
+            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            Health -= dmg;
         }
     }
 
-        void Retreat()
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Projectile" && !ded)
+        {
+            PlaySound(hurtSound, this.gameObject.transform.position);
+            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            Health -= dmg;
+        }
+    }
+
+    void Retreat()
     {
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         Speed = walkSpeed;
@@ -127,6 +149,7 @@ public class EnemyMove : GroundEnemyScript
             currentGoblinState = States.Following;
         }
     }
+
     void SearchRetreatTarget()
     {
         float backOffDistance = -1;
@@ -138,6 +161,7 @@ public class EnemyMove : GroundEnemyScript
 
     void Death()
     {
+        ded = true;
         anim.Play("Die");
         Speed = idleSpeed;
         navMeshAgent.SetDestination(this.transform.position);
@@ -146,9 +170,11 @@ public class EnemyMove : GroundEnemyScript
         if (DeathTimer > 1.65f)
         {
             DeathTimer = 0;
+
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Destroy(this.gameObject);
         }
+
     }
 
     void Idle()
@@ -196,5 +222,10 @@ public class EnemyMove : GroundEnemyScript
     private void PlaySound(string sound, Vector3 pos)
     {
         FMODUnity.RuntimeManager.PlayOneShot(sound, pos);
+    }
+
+    float CalculateHealth()
+    {
+        return (float)Health / (float)maxHealth;
     }
 }

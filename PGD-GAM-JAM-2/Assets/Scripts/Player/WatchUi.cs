@@ -9,12 +9,14 @@ public class WatchUi : MonoBehaviour
     [SerializeField] float zAngleMax;
   
     public Animation WatchUiAnim;
+    public Animation WatchFaceAnim;
     public Text healthText;
     public Text coinCount;
     private PlayerHealthScript PlayerScript;
     private bool WatchUiOpen;
     private void Start()
     {
+        WatchUiOpen = false;
         zAngleMax = 150;
         zAngleMin = 60;
         PlayerScript = FindObjectOfType<PlayerHealthScript>();
@@ -29,19 +31,21 @@ public class WatchUi : MonoBehaviour
         {
 
             
+            WatchFaceAnim.Play("WatchFaceAnimation");
             WatchUiAnim.Play("WatchAnimOpen");
             WatchUiOpen = true;
+        }
+        else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMax && WatchUiOpen)
+        {
+
+            WatchFaceAnim.Play("WatchFaceAnimationClose");
+            WatchUiAnim.Play("WatchAnimClose");
+
+
+            WatchUiOpen = false;
 
         }
-        else if (this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen || this.transform.eulerAngles.z >= zAngleMin && WatchUiOpen)
-        {
-            WatchUiAnim.Play("WatchAnimClose");
-            
-            
-            WatchUiOpen = false;
-            
-        }
-        
+
     }
     public void Restart()
     {

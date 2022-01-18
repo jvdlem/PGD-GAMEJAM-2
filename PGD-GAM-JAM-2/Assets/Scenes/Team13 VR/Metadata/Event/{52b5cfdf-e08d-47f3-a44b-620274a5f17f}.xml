@@ -57,8 +57,8 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{05b1e5ad-a034-4ca4-bb6a-0796b02bd048}">
-		<property name="maximumDistance">
-			<value>100</value>
+		<property name="triggerCooldown">
+			<value>320</value>
 		</property>
 	</object>
 	<object class="MarkerTrack" id="{21be1343-ca37-4f29-94e2-c58903add82e}" />
@@ -152,9 +152,6 @@
 	<object class="SpatialiserEffect" id="{f1be78dd-a9ec-4654-8ddd-f319efefe56a}">
 		<property name="distanceRolloffType">
 			<value>1</value>
-		</property>
-		<property name="maximumDistance">
-			<value>100</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{4c19a134-552a-4b92-aa6b-9e1f686db08f}">
