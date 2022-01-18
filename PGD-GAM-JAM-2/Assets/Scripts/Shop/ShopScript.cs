@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayItems : MonoBehaviour
+public class ShopScript : MonoBehaviour
 {
+    [Header("Items")]
     [SerializeField] public List<GameObject> items = new List<GameObject>();
+    public List<GameObject> shopItems;
+    [Header("Item Information")]
     public List<Text> itemNameAndPrice = new List<Text>();
-    public GameObject shopCounterPos;
-    public GameObject Player;
     public int price;
     public int index;
-    public List<GameObject> shopItems;
+    public GameObject shopCounterPos;
     private Vector3 boughtItemPos;
+    [Header("Player")]
+    public GameObject Player;
     private PlayerHealthScript PlayerScript;
+    [Header("Music")]
+    public FMODUnity.StudioEventEmitter audioEmitter;
 
     public void Start()
     {
@@ -24,7 +29,6 @@ public class DisplayItems : MonoBehaviour
 
     public void DisplayItem(GameObject itemSpawn)
     {
-        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/EnterShop");
         GameObject instantiatedItem;
         instantiatedItem = Instantiate(items[Random.Range(0, items.Count)], itemSpawn.transform.position, itemSpawn.transform.rotation);
         shopItems.Add(instantiatedItem);
@@ -46,5 +50,11 @@ public class DisplayItems : MonoBehaviour
         else if (PlayerScript.coins < price && shopItems[i].GetComponent<ShopStatDisplay>().isBought == false) FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/InsufficientMoney");
         //Item already bought
         else if (shopItems[i].GetComponent<ShopStatDisplay>().isBought == true) FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/NoMoreItem");
+    }
+
+    public void PlayShopAudio()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/EnterShop");
+        audioEmitter.Play();
     }
 }
