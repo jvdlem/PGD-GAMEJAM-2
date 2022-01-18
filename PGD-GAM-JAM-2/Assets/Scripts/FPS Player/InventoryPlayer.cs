@@ -124,6 +124,7 @@ public class InventoryPlayer : MonoBehaviour
     }
     public void Attach()
     {
+        //Debug.Log("at");
         if (selectedAttachemnt <= pistolList.Count)
         {
             if (pistolList[selectedAttachemnt] != null && inventoryList[selectedAttachemnt] != null)
@@ -151,6 +152,7 @@ public class InventoryPlayer : MonoBehaviour
     {
         if (selectedAttachemnt <= pistolList.Count)
         {
+            //Debug.Log("Det");
             if (pistolList[selectedAttachemnt] != null && inventoryList[selectedAttachemnt] == null)
             {
                 ChangeImage();
@@ -169,14 +171,11 @@ public class InventoryPlayer : MonoBehaviour
         if (inventoryList[selectedAttachemnt] != null)
         {
 
-            inventoryList[selectedAttachemnt].gameObject.transform.position = new Vector3(1, gun.transform.position.y - 0.2f, 1);
-            GameObject dropAttachment = new GameObject();
-            dropAttachment = inventoryList[selectedAttachemnt];
-
-            dropAttachment.transform.position = new Vector3(1, 1, 1);
-            dropAttachment.SetActive(true);
-            inventoryList[selectedAttachemnt] = null;
             ResetImage();
+            GameObject aAttachment = Instantiate(inventoryList[selectedAttachemnt],gun.transform.position,Quaternion.identity);
+            aAttachment.SetActive(true);
+            Destroy(inventoryList[selectedAttachemnt]);
+            inventoryList[selectedAttachemnt] = null;
 
         }
 

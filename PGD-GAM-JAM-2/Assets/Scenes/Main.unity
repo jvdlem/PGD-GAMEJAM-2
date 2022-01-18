@@ -696,6 +696,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 458065849723463811, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 458065849723463811, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_Color.b
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 458065849723463811, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_Color.g
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 458065849723463811, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_Color.r
+      value: 0.78431374
+      objectReference: {fileID: 0}
     - target: {fileID: 4669990544349914784, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -760,6 +776,42 @@ PrefabInstance:
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 1356664714}
+    - target: {fileID: 4987564218168052961, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0000077188015
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987564218168052961, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.650259
+      objectReference: {fileID: 0}
+    - target: {fileID: 4987564218168052961, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.0000042170286
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231529546713689660, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000013556262
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231529546713689660, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.00000073277084
+      objectReference: {fileID: 0}
+    - target: {fileID: 8231529547834177698, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6505642
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545554199473077943, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.00000834465
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545554199473077943, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6500764
+      objectReference: {fileID: 0}
+    - target: {fileID: 8545554200391644946, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0000017881393
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
 --- !u!1001 &252794100
@@ -7762,7 +7814,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1498
+  m_Name: pb_Mesh-125462
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
