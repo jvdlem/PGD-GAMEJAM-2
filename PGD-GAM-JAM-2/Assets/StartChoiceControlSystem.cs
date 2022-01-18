@@ -13,6 +13,9 @@ public class StartChoiceControlSystem : MonoBehaviour
     [SerializeField]
     public Pistol VRGun;
 
+    public GameObject gun;
+    private bool isActive = false;
+
     public bool VR = false;
     public bool Keyboard = false;
 
@@ -50,6 +53,7 @@ public class StartChoiceControlSystem : MonoBehaviour
     public void ToggleChoiceScreen()
     {
         this.gameObject.SetActive(true);
+        gun.GetComponent<Pistol>().isInMenu = isActive;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Debug.Log("Both Toggle");
