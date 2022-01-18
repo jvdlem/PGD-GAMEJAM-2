@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 9136336921311445590}
   m_Layer: 0
   m_Name: Golem Tier 1
-  m_TagString: Untagged
+  m_TagString: Golem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -630,6 +630,7 @@ MonoBehaviour:
   deathTimer: 0
   detectionDistance: 15
   attackDistance: 2.5
+  hurtTimer: 0
   attackSound: 
   deathSound: 
   hurtSound: 
