@@ -54,6 +54,9 @@ public class Moenemies : GroundEnemyScript
     // Update is called once per frame
     override public void Update()
     {
+
+        Debug.Log(currentState);
+
         NonStatesRelatedFunctions();
 
         switch (currentState)
