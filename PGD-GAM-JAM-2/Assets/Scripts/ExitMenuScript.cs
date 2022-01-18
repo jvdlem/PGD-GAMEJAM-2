@@ -14,6 +14,13 @@ public class ExitMenuScript : MonoBehaviour
         MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
+    public void BackToGame()
+    {
+        gameObject.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
