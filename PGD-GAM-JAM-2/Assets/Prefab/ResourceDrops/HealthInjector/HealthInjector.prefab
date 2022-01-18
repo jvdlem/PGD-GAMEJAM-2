@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 3479395944689698440}
   m_Layer: 6
   m_Name: HealthInjector
-  m_TagString: Untagged
+  m_TagString: HealthInjector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,6 +265,7 @@ MonoBehaviour:
   itemPrice: 5
   itemName: Health Injector
   itemDescription: Restores health when used
+  isBought: 0
 --- !u!1 &1046928646715545736
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ExitMenuScript : MonoBehaviour
 {
+    public GameObject gun;
+    private bool isActive = false;
     public bool menuOn;
     public FMOD.Studio.Bus MasterBus;
     // Start is called before the first frame update
@@ -42,17 +44,21 @@ public class ExitMenuScript : MonoBehaviour
 
     public void ToggleExitMenuScreenOn()
     {
-        menuOn = true;
-        gameObject.SetActive(true);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if (gun.GetComponent<Pistol>().isInMenu == false)
+        {
+            gameObject.SetActive(true);
+            menuOn = true;
+            gun.GetComponent<Pistol>().isInMenu = isActive;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
     public void ToggleExitMenuScreenOff()
     {
-        menuOn = false;
-        gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        menuOn = false;
+        gameObject.SetActive(false);
     }
 }

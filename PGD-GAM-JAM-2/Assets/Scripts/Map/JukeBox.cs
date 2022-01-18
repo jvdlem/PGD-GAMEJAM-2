@@ -9,6 +9,8 @@ public class JukeBox : MonoBehaviour
     public FMODUnity.EventReference[] BackGroundMusic;
     public FMODUnity.StudioEventEmitter AudioEmitter;
 
+    public Elevator elevator;
+
     private void Start()
     {
         CurrentSongID = 0;
@@ -20,9 +22,16 @@ public class JukeBox : MonoBehaviour
 
     private void Update()
     {
-        if (AudioEmitter.IsPlaying() == false)
+        if (elevator.PlayerInElevator == false)
         {
-            PlayNextSong();
+            if (AudioEmitter.IsPlaying() == false)
+            {
+                PlayNextSong();
+            }
+        }
+        else
+        {
+            AudioEmitter.Stop();
         }
     }
 

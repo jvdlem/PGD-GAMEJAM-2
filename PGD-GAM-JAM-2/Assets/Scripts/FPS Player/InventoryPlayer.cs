@@ -91,6 +91,12 @@ public class InventoryPlayer : MonoBehaviour
                     aAttachment.SetActive(false);
                 }
                 break;
+            case "HealthInjector":
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Health/Heal");
+                FindObjectOfType<PlayerHealthScript>().currentHealth += 3;
+                Destroy(aAttachment);
+
+                break;
             default:
                 break;
         }
@@ -162,7 +168,7 @@ public class InventoryPlayer : MonoBehaviour
     {
         if (inventoryList[selectedAttachemnt] != null)
         {
-            
+
             inventoryList[selectedAttachemnt].gameObject.transform.position = new Vector3(1, gun.transform.position.y - 0.2f, 1);
             GameObject dropAttachment = new GameObject();
             dropAttachment = inventoryList[selectedAttachemnt];
@@ -191,7 +197,7 @@ public class InventoryPlayer : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             swaped = true;
             SwapAttachment();
-            
+
         }
         else
         {

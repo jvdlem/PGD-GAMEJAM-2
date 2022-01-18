@@ -16,8 +16,8 @@ public class PlayerHealthScript : MonoBehaviour
 
     [Header("Damage")]
     public float damageDuration = 0.5f;
-    [SerializeField] private float invincibilityDurationSeconds;
-    private bool isInvincible = false;
+    [SerializeField] public float invincibilityDurationSeconds;
+    public bool isInvincible = false;
 
     [Header("Resources")]
     public int coins = 0;
@@ -48,11 +48,6 @@ public class PlayerHealthScript : MonoBehaviour
         {
             currentHealth = maxHealth;
         }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            currentHealth -= 3;
-        }
     }
 
     public void takeDamage(int damage)
@@ -61,6 +56,7 @@ public class PlayerHealthScript : MonoBehaviour
 
 
         currentHealth -= damage;
+
         ShowDamageIndicator();
         CancelInvoke("HideDamageIndicator");
         Invoke("HideDamageIndicator", damageDuration);
@@ -80,7 +76,7 @@ public class PlayerHealthScript : MonoBehaviour
     private IEnumerator BecomeInvincible()
     {
         isInvincible = true;
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Health/Damage");
         yield return new WaitForSeconds(invincibilityDurationSeconds);
 
 
