@@ -47,6 +47,7 @@ public class Pistol : MonoBehaviour
     public bool isInMenu = false;
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
+
     void Start()
     {
         startSpread = spread;
@@ -73,7 +74,10 @@ public class Pistol : MonoBehaviour
                 aList.list.Add(sniperSet);
             }
         }
-        currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
+        if (currentAmmo != null)
+        {
+            currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
+        }
 
     }
 
@@ -84,8 +88,14 @@ public class Pistol : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void FixedUpdate()
+    {
+        MuzzleFlash.transform.position = currentShootPoint.transform.position;
+        MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
+    }
     void Update()
     {
+
         if (allStats.list[0] <= 0)
         {
             allStats.list[0] = 0;
@@ -110,11 +120,11 @@ public class Pistol : MonoBehaviour
                 fullAuto = false;
             }
 
-            if (Input.GetKeyDown("r"))
+            if (Input.GetKeyDown("r") )
             {
                 StartCoroutine(Reload());
-
             }
+
             if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
         for (int i = 1; i < lists.Count; i++)
@@ -185,8 +195,7 @@ public class Pistol : MonoBehaviour
             }
 
         }
-        MuzzleFlash.transform.position = currentShootPoint.transform.position;
-        MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
+
         if (canfullAuto == false)
         {
             fullAuto = false;
@@ -223,9 +232,12 @@ public class Pistol : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
+            MuzzleFlash.transform.position = currentShootPoint.transform.position;
+            MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
             if (canResize) { allStats.list[0] *= 0.9f; }
             myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+
             yield return new WaitForSeconds(0.1f);
         }
 
@@ -243,6 +255,8 @@ public class Pistol : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) , Random.Range(-allStats.list[0], allStats.list[0]) , 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
+            MuzzleFlash.transform.position = currentShootPoint.transform.position;
+            MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
 
         }
         if (hasAmmo && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
@@ -255,6 +269,8 @@ public class Pistol : MonoBehaviour
             }
             myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+            MuzzleFlash.transform.position = currentShootPoint.transform.position;
+            MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
         }
         else
         {

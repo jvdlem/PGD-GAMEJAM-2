@@ -13,6 +13,7 @@ public class MovingObject : MonoBehaviour
     private float move = 0;
     public float threshold = 1;
     private bool playsound = true;
+    [SerializeField]private string mySound;
 
     private void Start()
     {
@@ -23,10 +24,10 @@ public class MovingObject : MonoBehaviour
     {
         if (move >= threshold)
         {
-            if (playsound)
+            if (playsound && mySound != null)
             {
-                //Sound
                 playsound = false;
+                FMODUnity.RuntimeManager.PlayOneShot(mySound, this.gameObject.transform.position);
             }
             elapsedTime += Time.deltaTime;
             float percantageComplete = elapsedTime / desiredDuration;

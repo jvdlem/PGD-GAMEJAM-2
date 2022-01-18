@@ -23,7 +23,7 @@ public class Moenemies : GroundEnemyScript
     public string attack;
     public string die = "Die";
     public bool triggerDeathAnimation = true, triggerHurtAnimation = true, canBeHurt = true;
-    public int deathTimer =0;
+    public int deathTimer = 0;
 
     [Header("States")]
     [SerializeField] public float detectionDistance;
@@ -237,11 +237,19 @@ public class Moenemies : GroundEnemyScript
         navMeshAgent.SetDestination(this.transform.position);
         PlaySound(hurtSound, soundPosition);
         AnimationTrigger("TakeDamage");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(.7f);
         currentState = States.Chasing;
     }
-    public void OnCollisionEnter(Collision collision)
+    virtual public void OnCollisionEnter(Collision collision)
     {
+        //Enemy hurts player on collision
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("HIT");
+            //Player loses health
+            Player.GetComponent<PlayerHealthScript>().takeDamage(1);
+        }
+
         //Gets the damage modifier from the current gun
         int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
@@ -252,6 +260,7 @@ public class Moenemies : GroundEnemyScript
             {
                 if (collision.gameObject.tag == "Projectile")
                 {
+
                     //INSERT Damage modifier from GUNS
                     GetDamage(gunDmg);
 
@@ -261,15 +270,15 @@ public class Moenemies : GroundEnemyScript
             }
         }
 
-        //Enemy hurts player on collision
-        if (collision.gameObject.tag == "Player")
+
+    }
+    virtual public void OnTriggerEnter(Collider other)
+    {  
+        if (other.gameObject.tag == "Player")
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
         }
-    }
-    public void OnTriggerEnter(Collider other)
-    {
         //Gets the damage modifier from the current gun
         int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
 
@@ -290,11 +299,7 @@ public class Moenemies : GroundEnemyScript
                 }
             }
         }
-        if (other.gameObject.tag == "Player")
-        {
-            //Player loses health
-            Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
-        }
+     
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
     {

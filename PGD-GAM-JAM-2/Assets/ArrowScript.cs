@@ -20,7 +20,7 @@ public class ArrowScript : MonoBehaviour
             //Sound
             //Destroy bullet once it hits something else
             Destroy(gameObject);
-            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(3);
+            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(1);
         }
         else Destroy(gameObject);
     }

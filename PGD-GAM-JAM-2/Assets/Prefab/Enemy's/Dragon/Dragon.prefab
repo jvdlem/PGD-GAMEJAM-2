@@ -1188,7 +1188,7 @@ GameObject:
   - component: {fileID: 7592419149283643981}
   - component: {fileID: 7592419149276134905}
   - component: {fileID: -7446035393999857564}
-  - component: {fileID: 7592419149211803940}
+  - component: {fileID: 6376228686868188554}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   maxHealth: 100
   healthBarUI: {fileID: 1719002267454780420}
   slider: {fileID: 4523564780702631565}
---- !u!136 &7592419149211803940
+--- !u!136 &6376228686868188554
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1268,10 +1268,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.36
-  m_Height: 1.19
+  m_Radius: 0.11
+  m_Height: 0.2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.41, z: 0}
 --- !u!1 &7592419149283544689
 GameObject:
   m_ObjectHideFlags: 0
