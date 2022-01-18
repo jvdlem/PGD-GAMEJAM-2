@@ -7,6 +7,7 @@ public class deathScreenScript : MonoBehaviour
 {
 
     public GameObject gun;
+    public PlayerHealthScript healthScript;
     private bool isActive = false;
     private void Start()
     {
@@ -34,6 +35,8 @@ public class deathScreenScript : MonoBehaviour
     public void ToggleDeathScreen()
     {
         gameObject.SetActive(true);
+        healthScript.isInvincible = true;
+        healthScript.invincibilityDurationSeconds = 10000;
         gun.GetComponent<Pistol>().isInMenu = isActive;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;

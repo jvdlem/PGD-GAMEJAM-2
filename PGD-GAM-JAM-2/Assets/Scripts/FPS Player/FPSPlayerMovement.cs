@@ -14,6 +14,8 @@ public class FPSPlayerMovement : MonoBehaviour
     private float crouchSpeed = 6f;
     public float gravity = -9.81f;
     public float groundDistance = 0.4f;
+    float x;
+    float z;
 
     public LayerMask groundMask;
 
@@ -60,8 +62,18 @@ public class FPSPlayerMovement : MonoBehaviour
             Velocity.y = -2f;
         }
 
+        /**
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+        **/
+
+        if (Input.GetKey(KeyCode.W)) z = 1;
+        else if (Input.GetKey(KeyCode.S)) z = -1;
+        else z = 0;
+
+        if (Input.GetKey(KeyCode.D)) x = 1;
+        else if (Input.GetKey(KeyCode.A)) x = -1;
+        else x = 0;
 
         Vector3 move = transform.right * x + transform.forward * z;
 

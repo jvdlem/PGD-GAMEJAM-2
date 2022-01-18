@@ -1059,9 +1059,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2227,6 +2225,7 @@ MonoBehaviour:
   currentHealth: 9
   damageDuration: 0.5
   invincibilityDurationSeconds: 0
+  isInvincible: 0
   coins: 0
 --- !u!114 &463088590
 MonoBehaviour:
@@ -2271,6 +2270,10 @@ PrefabInstance:
       propertyPath: VR
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 1075579547}
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: FPSUI
       value: 
@@ -4115,6 +4118,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 0}
@@ -4738,6 +4745,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5630420207260984228, guid: 4b9c7ee61b2151f45aecdbcd55b10e34, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 1075579547}
     - target: {fileID: 7622461320852830413, guid: 4b9c7ee61b2151f45aecdbcd55b10e34, type: 3}
       propertyPath: m_Name
       value: ExitMenuScreen
@@ -5991,6 +6002,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8486469146956152935, guid: 91e318e6862b054469ae24ae7dec02b3, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 1075579547}
+    - target: {fileID: 8486469146956152935, guid: 91e318e6862b054469ae24ae7dec02b3, type: 3}
+      propertyPath: healthScript
+      value: 
+      objectReference: {fileID: 1356664719}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91e318e6862b054469ae24ae7dec02b3, type: 3}
 --- !u!114 &1503657626 stripped
