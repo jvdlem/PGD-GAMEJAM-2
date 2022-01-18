@@ -56,6 +56,7 @@ public class PlayerHealthScript : MonoBehaviour
 
 
         currentHealth -= damage;
+
         ShowDamageIndicator();
         CancelInvoke("HideDamageIndicator");
         Invoke("HideDamageIndicator", damageDuration);
@@ -75,7 +76,7 @@ public class PlayerHealthScript : MonoBehaviour
     private IEnumerator BecomeInvincible()
     {
         isInvincible = true;
-
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Health/Damage");
         yield return new WaitForSeconds(invincibilityDurationSeconds);
 
 

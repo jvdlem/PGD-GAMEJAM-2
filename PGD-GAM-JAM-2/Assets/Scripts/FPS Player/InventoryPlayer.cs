@@ -92,7 +92,7 @@ public class InventoryPlayer : MonoBehaviour
                 }
                 break;
             case "HealthInjector":
-
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Health/Heal");
                 FindObjectOfType<PlayerHealthScript>().currentHealth += 3;
                 Destroy(aAttachment);
 
