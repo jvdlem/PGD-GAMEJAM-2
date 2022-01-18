@@ -5,10 +5,10 @@ using UnityEngine;
 public class Projectille : MonoBehaviour
 {
     [SerializeField] private Rigidbody myRigitbody;
-    [SerializeField] private float timer = 10;
+    [SerializeField] protected float timer = 10;
     [SerializeField] public float Speed = 500;
     public float dmg = 1;
-    [SerializeField] private float mytimer = 10;
+    [SerializeField] protected float mytimer = 10;
     [SerializeField] private float mySpeed = 500;
     public float mydmg = 1;
     // Start is called before the first frame update

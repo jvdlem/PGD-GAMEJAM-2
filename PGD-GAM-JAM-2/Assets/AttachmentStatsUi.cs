@@ -30,7 +30,7 @@ public class AttachmentStatsUi : MonoBehaviour
     public void Update()
     {
         
-        if (this.gameObject.GetComponent<XRGrabInteractable>().selectingInteractor.gameObject != null)
+        if (this.gameObject.GetComponent<XRGrabInteractable>().selectingInteractor != null)
         {
             controller = this.gameObject.GetComponent<XRGrabInteractable>().selectingInteractor.gameObject;
             attachmentCanvas = controller.GetComponentInChildren<Canvas>();
