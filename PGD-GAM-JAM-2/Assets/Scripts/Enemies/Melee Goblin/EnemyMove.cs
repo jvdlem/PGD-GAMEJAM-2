@@ -50,17 +50,17 @@ public class EnemyMove : GroundEnemyScript
         idleSound = "event:/Enemy/Goblin/GoblinIdle";
 
         Health = maxHealth;
-        slider.value = CalculateHealth();
+        //slider.value = CalculateHealth();
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        slider.value = CalculateHealth();
+        //slider.value = CalculateHealth();
 
         if (Health < maxHealth)
         {
-            healthBarUI.SetActive(true);
+            //healthBarUI.SetActive(true);
         }
 
         navMeshAgent.speed = Speed;

@@ -9,12 +9,13 @@ public class Granade : Projectille
     [SerializeField] private ParticleSystem Smoke;
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private GameObject Parent;
-    private float delay = 3;
+    [SerializeField] private float delay = 3;
     private float scale;
-    private float Timer;
+    [SerializeField]private float ExplodeTimer;
     [SerializeField]private bool onCollision = false;
-    private float radius = 30;
-    private bool canExplode = true;
+    [SerializeField]private float radius = 15;
+    private bool canExplode = false;
+    private bool damageTaken = false;
 
     protected override void Awake()
     {
@@ -27,7 +28,11 @@ public class Granade : Projectille
         myparticles.Add(Sparks);
         myparticles.Add(Smoke);
         myparticles.Add(explosion);
-        Timer = delay;
+        Sparks.startDelay = delay;
+        Smoke.startDelay = delay;
+        explosion.startDelay = delay;
+        ExplodeTimer = timer - 1;
+
     }
 
     public void UpdateScale(float explosionSize, bool OnHit, int add)
@@ -45,24 +50,34 @@ public class Granade : Projectille
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Timer >= 0)
+        if (ExplodeTimer >= 0)
         {
-            Timer -= Time.deltaTime;
-            if (Timer <= 0 && canExplode == true)
+            ExplodeTimer -= Time.deltaTime;
+            
+            if (ExplodeTimer <= 0 && canExplode == true)
             {
+                delay = 0;
                 Sparks.startDelay = delay;
                 Smoke.startDelay = delay;
                 explosion.startDelay = delay;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Grenade Launcher/Explosion/Grenade Explosion", this.gameObject.transform.position);
+
                 Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, radius);
-                canExplode = false;
-                foreach (var hitCollider in hitColliders)
+
+                if (canExplode)
                 {
-                    if (hitCollider.GetComponent<EnemyBaseScript>() != null)
+                    foreach (var collider in hitColliders)
                     {
-                        hitCollider.GetComponent<EnemyBaseScript>().TakeDamage((int)(radius / Vector3.Distance(this.transform.position, hitCollider.transform.position)));
+                        if (collider.gameObject.transform.GetComponent<EnemyBaseScript>() != null)
+                        {
+                            Debug.Log("Boom");
+                            collider.gameObject.GetComponent<EnemyBaseScript>().TakeDamage((int)((radius) * 6 / (Vector3.Distance(this.transform.position, collider.gameObject.transform.position))));
+                            Debug.Log(collider.gameObject.name + ": " + (int)((radius) * 6 / (Vector3.Distance(this.transform.position, collider.gameObject.transform.position))));
+                        }
+
                     }
                 }
+                canExplode = false;
             }
         }
     }
@@ -71,11 +86,20 @@ public class Granade : Projectille
     {
         if (onCollision && collision.transform.tag != "Projectile")
         {
-            delay = 0;
-            Timer = 0;
-            canExplode = true;
+            if (delay >= 1)
+            {
+                delay = 0;
+                ExplodeTimer = 0;
+                canExplode = true;
+            }
         }
     }
 
+    void OnDrawGizmosSelected()
+    {
+        // Draw a yellow sphere at the transform's position
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 
 }
