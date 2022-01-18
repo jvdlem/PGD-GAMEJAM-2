@@ -55,6 +55,14 @@ public class EnemyBaseScript : MonoBehaviour
     public void TakeDamage(int pDamage)
     {
         Health -= pDamage;
+
+        if (Health <= 0 && canDie)
+        {
+            this.
+            canDie = false;
+            DIE();
+            //death
+        }
     }
 
     IEnumerator DIE()
