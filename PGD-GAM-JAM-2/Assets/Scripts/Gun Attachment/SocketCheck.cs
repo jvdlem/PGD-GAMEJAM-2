@@ -35,7 +35,6 @@ public class SocketCheck : XRSocketInteractor
         //Debug.Log(interactable);
         exitAttachment = interactable.gameObject;
         interactable.transform.localScale /= scaleSize;
-        interactable.gameObject.GetComponent<AttachmentPowerUP>().ChangeColorstate();
         if (interactable.gameObject.GetComponent<AttachmentPowerUP>() != null)
         {
             interactable.gameObject.GetComponent<AttachmentPowerUP>().ChangeColorstate();
