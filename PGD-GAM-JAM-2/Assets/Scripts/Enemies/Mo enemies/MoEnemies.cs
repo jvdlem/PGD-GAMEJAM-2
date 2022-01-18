@@ -75,6 +75,7 @@ public class Moenemies : GroundEnemyScript
         if (!playerInAttackRange && !playerDetected) { currentState = States.Patrolling; }
         if (currentState != States.Hurt) triggerHurtAnimation = true;
         EnableParticles();
+        if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
     }
     virtual public void Patrolling()
     {
