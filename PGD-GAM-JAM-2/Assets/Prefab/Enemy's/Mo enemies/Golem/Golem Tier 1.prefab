@@ -39,6 +39,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4305578003762274563}
+  - component: {fileID: 6412483944574266356}
+  - component: {fileID: 5247586722740413280}
   m_Layer: 0
   m_Name: Bip001 L Forearm
   m_TagString: Untagged
@@ -61,6 +63,32 @@ Transform:
   m_Father: {fileID: 4305578003762274585}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.000003514344, y: -0.0000029027894, z: 60.919468}
+--- !u!114 &6412483944574266356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305578003762248995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5ce8ad5921f4d4083c63b082f265e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &5247586722740413280
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305578003762248995}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.4
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4305578003762248997
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4305578003762274569}
+  - component: {fileID: 6516381631866656472}
   m_Layer: 0
   m_Name: Bip001
   m_TagString: Untagged
@@ -153,6 +182,20 @@ Transform:
   m_Father: {fileID: 4305578003762274595}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 89.999916, z: 0}
+--- !u!136 &6516381631866656472
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305578003762249001}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.7
+  m_Height: 1.94
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.21}
 --- !u!1 &4305578003762249003
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +358,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4305578003762274581}
+  - component: {fileID: 570124772447526225}
+  - component: {fileID: 6231841726451429468}
   m_Layer: 0
   m_Name: Bip001 R Forearm
   m_TagString: Untagged
@@ -337,6 +382,32 @@ Transform:
   m_Father: {fileID: 4305578003762274603}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000011450541, y: -0.0000076655315, z: 35.183495}
+--- !u!136 &570124772447526225
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305578003762249013}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.4
+  m_Direction: 0
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6231841726451429468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305578003762249013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5ce8ad5921f4d4083c63b082f265e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4305578003762249015
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +577,7 @@ GameObject:
   - component: {fileID: 4305578004025247903}
   - component: {fileID: 9136336921304634748}
   - component: {fileID: 9136336921311445590}
+  - component: {fileID: 2346585712592437046}
   m_Layer: 0
   m_Name: Golem Tier 1
   m_TagString: Golem
@@ -639,6 +711,22 @@ MonoBehaviour:
   maxHealth: 0
   healthBarUI: {fileID: 2046402745719351466}
   slider: {fileID: 3853877537700076067}
+--- !u!54 &2346585712592437046
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4305578003762249027}
+  serializedVersion: 2
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4305578003762249029
 GameObject:
   m_ObjectHideFlags: 0
