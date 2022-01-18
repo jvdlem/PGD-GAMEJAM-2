@@ -186,6 +186,7 @@ public class Pistol : MonoBehaviour
 
         }
         MuzzleFlash.transform.position = currentShootPoint.transform.position;
+        MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
         if (canfullAuto == false)
         {
             fullAuto = false;
@@ -331,12 +332,14 @@ public class Pistol : MonoBehaviour
                                 SuperPowerAttachment(scale);
                                 if (scale >= 1)
                                 {
-                                    currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
+                                    currentAmmo.transform.GetComponent<BoxCollider>().enabled = true;
+                                    currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
                                     currentShotSound = "event:/Gun/Sniper/Shot/Sniper_Set";
                                 }
                                 if (scale <= -1)
                                 {
-                                    currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().isTrigger = scale >= 1;
+                                    currentAmmo.transform.GetComponent<BoxCollider>().enabled = false;
+                                    currentAmmo.transform.GetChild(0).GetComponent<MeshCollider>().enabled = true;
                                     currentShotSound = "event:/Gun/Sniper/Shot/Sniper_Barrel";
                                 }
                             }

@@ -1386,6 +1386,7 @@ GameObject:
   - component: {fileID: 3014827026257542066}
   - component: {fileID: 2850759170708195801}
   - component: {fileID: 144111144798853556}
+  - component: {fileID: 1031649820927038800}
   m_Layer: 0
   m_Name: ms05_04_Goblin
   m_TagString: Enemy
@@ -1492,3 +1493,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   anim: {fileID: 1762879350155233998}
+--- !u!65 &1031649820927038800
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044120127843282706}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
