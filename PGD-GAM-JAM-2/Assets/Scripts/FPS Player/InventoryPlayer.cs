@@ -162,10 +162,14 @@ public class InventoryPlayer : MonoBehaviour
     {
         if (inventoryList[selectedAttachemnt] != null)
         {
-            GameObject dropAttachment = inventoryList[selectedAttachemnt];
+            
+            inventoryList[selectedAttachemnt].gameObject.transform.position = new Vector3(1, gun.transform.position.y - 0.2f, 1);
+            GameObject dropAttachment = new GameObject();
+            dropAttachment = inventoryList[selectedAttachemnt];
+
+            dropAttachment.transform.position = new Vector3(1, 1, 1);
             dropAttachment.SetActive(true);
             inventoryList[selectedAttachemnt] = null;
-            dropAttachment.transform.position = new Vector3(gun.transform.position.x-0.2f, gun.transform.position.y - 0.2f, gun.transform.position.z - 0.2f);
             ResetImage();
 
         }
