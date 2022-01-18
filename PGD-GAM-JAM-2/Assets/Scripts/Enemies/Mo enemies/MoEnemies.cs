@@ -21,6 +21,7 @@ public class Moenemies : GroundEnemyScript
     [Header("Animation Variables")]
     public string attack;
     public string die = "Die";
+    public bool triggerAnimation = true;
 
     [Header("States")]
     [SerializeField]public float detectionDistance;
@@ -30,10 +31,9 @@ public class Moenemies : GroundEnemyScript
     public string attackSound, deathSound, hurtSound, windUpSound;
     public Vector3 soundPosition;
 
-    public bool Radius(float distance) => Physics.CheckSphere(this.gameObject.transform.position, distance, playerLayer);
-    public bool playerDetected => Radius(detectionDistance);
-    public bool playerInAttackRange => Radius(attackDistance);
-
+    public virtual bool Radius(float distance) => Physics.CheckSphere(this.gameObject.transform.position, distance, playerLayer);
+    public virtual bool playerDetected => Radius(detectionDistance);
+    public virtual bool playerInAttackRange => Radius(attackDistance);
     override public void Start()
     {
         anim = GetComponent<Animator>();
@@ -42,7 +42,6 @@ public class Moenemies : GroundEnemyScript
         currentState = States.Patrolling;
         Damage = 1;
     }
-
     // Update is called once per frame
     override public void Update()
     {
@@ -161,25 +160,34 @@ public class Moenemies : GroundEnemyScript
     {
         if (Health <= 0)
         {
-            AnimationTrigger(animation);
-            PlaySound(deathSound, soundPosition);
-            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-            Invoke(nameof(DeSpawn), 3f);
+            //Stops the enemy movement
+           // navMeshAgent.SetDestination(this.transform.position);
+            if (triggerAnimation)
+            {
+                triggerAnimation = false;
+                AnimationTrigger(animation);
+                PlaySound(deathSound, soundPosition);
+                Invoke(nameof(Despawn), 3f);
+            }
         }
     }
-    public void DeSpawn()
+    public void Despawn()
     {
+        //Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
         Destroy(this.gameObject);
     }
-    public void OnTriggerEnter(Collider collision)
+    public void OnCollisionEnter(Collision collision)
     {
+        //Gets the damage modifier from the current gun
+        int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+
         //Projectile hurts enemy on collision
         if (collision.gameObject.tag == "Projectile")
         {
             PlaySound(hurtSound, soundPosition);
             AnimationTrigger("TakeDamage");
             //INSERT Damage modifier from GUNS
-            TakeDamage(1);
+            TakeDamage(gunDmg);
         }
 
         //Enemy hurts player on collision
@@ -187,6 +195,20 @@ public class Moenemies : GroundEnemyScript
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        //Gets the damage modifier from the current gun
+        int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
+
+        //Projectile hurts enemy on collision
+        if (other.gameObject.tag == "Projectile")
+        {
+            PlaySound(hurtSound, soundPosition);
+            AnimationTrigger("TakeDamage");
+            //INSERT Damage modifier from GUNS
+            TakeDamage(gunDmg);
         }
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
