@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9055980903775527295}
   - component: {fileID: 6412220440384694549}
   - component: {fileID: 6554678649483998805}
+  - component: {fileID: 585341697636683455}
   m_Layer: 9
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -156,6 +157,35 @@ MonoBehaviour:
   Inventory: {fileID: 0}
   pressText: {fileID: 0}
   aimingScript: {fileID: 0}
+--- !u!114 &585341697636683455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29369570615878822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db62defa6e189ad4b8fae2ec7a7afd94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attachmentStatsUi: {fileID: 6531972395199592190}
+  currentState: 0
+  set: 0
+  statList: []
+  TstatList:
+  - {fileID: 3170665538595174245}
+  - {fileID: 7340055628863683121}
+  - {fileID: 1454575395801408921}
+  - {fileID: 8404069130893202791}
+  amountofRays: 0
+  currentobject: {fileID: 0}
+  sprite: {fileID: 3436962589272057081}
+  spread: 0
+  amountOfBullets: 0
+  damage: 0
+  range: 0
+  setText: {fileID: 2339699545212001425}
 --- !u!1 &1603097009672363403
 GameObject:
   m_ObjectHideFlags: 0
