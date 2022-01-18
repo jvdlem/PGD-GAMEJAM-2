@@ -21,7 +21,8 @@ public class Moenemies : GroundEnemyScript
     [Header("Animation Variables")]
     public string attack;
     public string die = "Die";
-    public bool triggerDeathAnimation = true, triggerHurtAnimation = true;
+    public bool triggerDeathAnimation = true, triggerHurtAnimation = true, canBeHurt = true;
+    public float deathTimer =0;
 
     [Header("States")]
     [SerializeField] public float detectionDistance;
@@ -68,7 +69,6 @@ public class Moenemies : GroundEnemyScript
                 Dying();
                 break;
         }
-
     }
     virtual public void NonStatesRelatedFunctions()
     {
@@ -188,6 +188,18 @@ public class Moenemies : GroundEnemyScript
             triggerDeathAnimation = false;
         }
     }
+    //virtual public void Death()
+    //{
+    //    AnimationTrigger(die);
+    //    PlaySound(deathSound, this.gameObject.transform.position);
+    //    deathTimer += Time.deltaTime;
+    //    if (deathTimer > 1.65f)
+    //    {
+    //        deathTimer = 0;
+    //        Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+    //        Destroy(this.gameObject);
+    //    }
+    //}
     virtual public void Hurting()
     {
         if (triggerHurtAnimation)
@@ -212,15 +224,18 @@ public class Moenemies : GroundEnemyScript
         //Projectile hurts enemy on collision when not in hurting nor Death state
         if (currentState != States.Hurt && currentState != States.Death)
         {
-            if (collision.gameObject.tag == "Projectile")
+            if (canBeHurt)
             {
-                PlaySound(hurtSound, soundPosition);
-                AnimationTrigger("TakeDamage");
-                //INSERT Damage modifier from GUNS
-                TakeDamage(gunDmg);
+                if (collision.gameObject.tag == "Projectile")
+                {
+                    PlaySound(hurtSound, soundPosition);
+                    AnimationTrigger("TakeDamage");
+                    //INSERT Damage modifier from GUNS
+                    TakeDamage(gunDmg);
 
-                if (Health <= 0) { currentState = States.Death; }
-                else { currentState = States.Hurt; }
+                    if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
+                    else { currentState = States.Hurt; }
+                }
             }
         }
 
@@ -239,13 +254,18 @@ public class Moenemies : GroundEnemyScript
         //Projectile hurts enemy on collision when not in hurting nor Death state
         if (currentState != States.Hurt && currentState != States.Death)
         {
-            if (other.gameObject.tag == "Projectile")
+            if (canBeHurt)
             {
-                PlaySound(hurtSound, soundPosition);
-                AnimationTrigger("TakeDamage");
-                //INSERT Damage modifier from GUNS
-                TakeDamage(gunDmg);
-                currentState = States.Hurt;
+                if (other.gameObject.tag == "Projectile")
+                {
+                    PlaySound(hurtSound, soundPosition);
+                    AnimationTrigger("TakeDamage");
+                    //INSERT Damage modifier from GUNS
+                    TakeDamage(gunDmg);
+
+                    if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
+                    else { currentState = States.Hurt; }
+                }
             }
         }
     }
