@@ -13,18 +13,9 @@ public class SniperAmmo : Projectille
     }
     void Update()
     {
-        dmg = Mathf.RoundToInt((Vector3.Distance(startpos, this.transform.position)* Vector3.Distance(startpos, this.transform.position)) / 50) + mydmg;
+        dmg = Mathf.RoundToInt((Vector3.Distance(startpos, this.transform.position)* Vector3.Distance(startpos, this.transform.position)) / 45) + mydmg;
         base.Update();
 
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other);
-        if (other.GetComponent<Dummy>() != null)
-        {
-            other.GetComponent<Dummy>().GetDamage(other.gameObject);
-        }
     }
 }

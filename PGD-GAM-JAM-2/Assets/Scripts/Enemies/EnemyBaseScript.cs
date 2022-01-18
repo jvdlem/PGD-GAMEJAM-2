@@ -10,6 +10,8 @@ public class EnemyBaseScript : MonoBehaviour
     protected Rigidbody Rigidbody;
     public GameObject Player;
     public GameObject Coin;
+    private float animationTime = 1;
+    private bool canDie = true;
 
     protected Vector3 velocity; //Velocity for movement
 
@@ -19,6 +21,7 @@ public class EnemyBaseScript : MonoBehaviour
         Attacking,
         Patrolling,
         Chasing,
+        Hurt,
         Death
     }
 
@@ -52,10 +55,24 @@ public class EnemyBaseScript : MonoBehaviour
     public void TakeDamage(int pDamage)
     {
         Health -= pDamage;
-        if (Health <= 0)
+        if (Health <= 0 && canDie)
         {
-            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+            this.
+            canDie = false;
+            DIE();
             //death
         }
     }
+
+    IEnumerator DIE()
+    {
+        
+        this.Rigidbody.isKinematic = true;
+        yield return new WaitForSeconds(animationTime);
+        Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+        Destroy(this.gameObject);
+    }
+
+    
+
 }

@@ -12,6 +12,7 @@ public class SkeletonArcherController : Moenemies
     override public void Start()
     {
         base.Start();
+        currentState = States.Chasing;
         attackSound = "event:/Enemy/Skeleton/Skeleton Attacks";
         deathSound = "event:/Enemy/Skeleton/Skeleton Death";
         hurtSound = "event:/Enemy/Skeleton/Skeleton Hurt";
