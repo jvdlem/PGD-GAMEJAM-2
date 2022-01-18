@@ -15,7 +15,7 @@ public class CrystalChange : MonoBehaviour
     {
         beginColor = this.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_EmissionColor");
         crystalLight = this.transform.GetChild(1).GetComponent<Light>();
-        beginLightColor = this.transform.GetChild(1).GetComponent<Light>().color;
+        beginLightColor = this.transform.GetChild(0).GetComponent<Renderer>().material.GetColor("_EmissionColor");
     }
     public void BattelForm()
     {
