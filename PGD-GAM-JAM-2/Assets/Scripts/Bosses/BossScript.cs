@@ -8,6 +8,7 @@ public class BossScript : MonoBehaviour
     private static int amountOfEyes = 3;
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
     public GameObject Player;
+    public GameObject bulletspawn;
 
     private int bossMaxHealth = 1000;
     public int BossHealth;
@@ -118,7 +119,7 @@ public class BossScript : MonoBehaviour
                 }
                 else
                 {
-                    Instantiate(Bullets, Eyes[0].transform.position, Eyes[0].transform.rotation, transform);
+                    Instantiate(Bullets, bulletspawn.transform.position, bulletspawn.transform.rotation, transform);
                     eyeShootDelay = Random.Range(0.1f, 0.8f); //change shoot delay so that the shots are eratic instead of linear intervals
 
                     AudioEmitter.EventReference = SoundEffects[1];

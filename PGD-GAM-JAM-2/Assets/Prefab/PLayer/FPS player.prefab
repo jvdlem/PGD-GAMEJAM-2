@@ -358,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6808683226097789394
 RectTransform:
   m_ObjectHideFlags: 0
@@ -393,7 +393,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2324330551388085845}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -1438,7 +1438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_Materials.Array.data[0]
