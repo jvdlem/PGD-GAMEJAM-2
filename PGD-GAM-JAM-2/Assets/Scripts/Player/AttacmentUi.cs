@@ -24,6 +24,7 @@ public class AttacmentUi : MonoBehaviour
     [SerializeField] float damage;
     [SerializeField] float range;
     [SerializeField] Text setText;
+    [SerializeField] playerAimScript aimingScript;
 
 
 
@@ -66,7 +67,7 @@ public class AttacmentUi : MonoBehaviour
         switch (currentState)
         {
             case 1:
-                if (currentobject.GetComponent<AttachmentStats>() != null)
+                if (currentobject.GetComponent<AttachmentStats>() != null && !aimingScript.aiming)
                 {
                     getStats();
                     showStats();

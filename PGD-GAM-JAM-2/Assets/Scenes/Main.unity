@@ -1120,9 +1120,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4163,6 +4161,10 @@ PrefabInstance:
       propertyPath: listOfAttachements.Array.data[8]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 585341697636683455, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: aimingScript
+      value: 
+      objectReference: {fileID: 1356664717}
     - target: {fileID: 1093974408540518902, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: crosshair
       value: 
@@ -4213,7 +4215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
