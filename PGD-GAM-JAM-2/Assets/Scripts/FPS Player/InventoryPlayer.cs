@@ -16,7 +16,7 @@ public class InventoryPlayer : MonoBehaviour
     [SerializeField] private GameObject currentSelect;
     [SerializeField] private GameObject subInventory;
     [SerializeField] private Sprite defaultSprite;
-    private bool isActive = false;
+    public bool isActive = false;
     private bool swaped = false;
 
     [SerializeField] public Text coinText;
