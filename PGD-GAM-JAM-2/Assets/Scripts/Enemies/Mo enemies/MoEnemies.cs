@@ -251,7 +251,7 @@ public class Moenemies : GroundEnemyScript
         }
 
         //Gets the damage modifier from the current gun
-        int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
         //Projectile hurts enemy on collision when not in hurting nor Death state
         if (currentState != States.Hurt && currentState != States.Death)
