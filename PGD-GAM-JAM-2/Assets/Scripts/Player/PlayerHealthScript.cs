@@ -38,7 +38,12 @@ public class PlayerHealthScript : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
-            FadeOut();
+
+            if (HudDeath != null)
+            {
+                FadeOut();
+            }
+
             if (deathscreenscript != null)
             {
                 deathscreenscript.ToggleDeathScreen();

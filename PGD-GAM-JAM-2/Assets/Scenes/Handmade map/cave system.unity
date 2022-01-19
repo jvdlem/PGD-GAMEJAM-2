@@ -48082,11 +48082,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b324fdf19026cd745a4999a5fdc424cd, type: 3}
---- !u!1 &1195981205 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2575362161468223699, guid: b324fdf19026cd745a4999a5fdc424cd, type: 3}
-  m_PrefabInstance: {fileID: 1195981204}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1195981206 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2575362162424153427, guid: b324fdf19026cd745a4999a5fdc424cd, type: 3}
@@ -61748,7 +61743,7 @@ PrefabInstance:
     - target: {fileID: 3754700817438122498, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: HudDeath
       value: 
-      objectReference: {fileID: 1195981205}
+      objectReference: {fileID: 0}
     - target: {fileID: 3754700817438122498, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: damageIndicator
       value: 
