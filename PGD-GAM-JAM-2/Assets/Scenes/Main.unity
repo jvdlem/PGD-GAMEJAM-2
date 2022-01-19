@@ -1048,9 +1048,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1188,6 +1186,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311185144 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1406093315892823205, guid: ea04789b02c016b4ab8aab365e500c86, type: 3}
+  m_PrefabInstance: {fileID: 1968205255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f14d7fa63d2d92409343e5345d053eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &334861381
 GameObject:
   m_ObjectHideFlags: 0
@@ -2276,7 +2285,7 @@ PrefabInstance:
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: VRPlayer
       value: 
-      objectReference: {fileID: 463088588}
+      objectReference: {fileID: 311185144}
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: FPSPlayer
       value: 
@@ -3938,6 +3947,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed5465f81601e64cbb5953335a17f9b, type: 3}
+--- !u!114 &1036543452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1837509788765804211, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1047482475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1047482475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4253,6 +4273,10 @@ PrefabInstance:
       propertyPath: worldPos.x
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: myAmmoText
+      value: 
+      objectReference: {fileID: 1036543452}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: MuzzleFlash
       value: 
