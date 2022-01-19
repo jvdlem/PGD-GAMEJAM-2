@@ -104,7 +104,6 @@ public class Moenemies : GroundEnemyScript
             {
                 hurtTimer = 0;
                 currentState = States.Chasing;
-                Debug.Log("YES");
             }
         }
     }
@@ -245,13 +244,10 @@ public class Moenemies : GroundEnemyScript
         //Enemy hurts player on collision
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("HIT");
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(1);
         }
 
-        //Gets the damage modifier from the current gun
-            int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
         //Projectile hurts enemy on collision when not in hurting nor Death state
         if (currentState != States.Hurt && currentState != States.Death)
@@ -260,6 +256,8 @@ public class Moenemies : GroundEnemyScript
             {
                 if (collision.gameObject.tag == "Projectile")
                 {
+                    //Gets the damage modifier from the current gun
+                    int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
                     //INSERT Damage modifier from GUNS
                     GetDamage(gunDmg);
@@ -273,14 +271,13 @@ public class Moenemies : GroundEnemyScript
 
     }
     virtual public void OnTriggerEnter(Collider other)
-    {  
+    {
         if (other.gameObject.tag == "Player")
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
         }
-        //Gets the damage modifier from the current gun
-        int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
+
 
         //Projectile hurts enemy on collision when not in hurting nor Death state
         if (currentState != States.Hurt && currentState != States.Death)
@@ -289,6 +286,8 @@ public class Moenemies : GroundEnemyScript
             {
                 if (other.gameObject.tag == "Projectile")
                 {
+                    //Gets the damage modifier from the current gun
+                    int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
                     PlaySound(hurtSound, soundPosition);
                     AnimationTrigger("TakeDamage");
                     //INSERT Damage modifier from GUNS
@@ -299,7 +298,7 @@ public class Moenemies : GroundEnemyScript
                 }
             }
         }
-     
+
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
     {
