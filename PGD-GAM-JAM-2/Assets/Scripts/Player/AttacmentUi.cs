@@ -25,7 +25,7 @@ public class AttacmentUi : MonoBehaviour
     [SerializeField] float range;
     [SerializeField] Text setText;
     [SerializeField] playerAimScript aimingScript;
-
+    public GameObject gun;
 
 
     private void Start()
@@ -67,7 +67,7 @@ public class AttacmentUi : MonoBehaviour
         switch (currentState)
         {
             case 1:
-                if (currentobject.GetComponent<AttachmentStats>() != null && !aimingScript.aiming)
+                if (currentobject.GetComponent<AttachmentStats>() != null && !aimingScript.aiming && gun != null && gun.GetComponent<Pistol>().isInMenu == false)
                 {
                     getStats();
                     showStats();

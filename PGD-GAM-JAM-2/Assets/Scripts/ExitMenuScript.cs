@@ -47,8 +47,8 @@ public class ExitMenuScript : MonoBehaviour
         if (gun.GetComponent<Pistol>().isInMenu == false)
         {
             gameObject.SetActive(true);
-            menuOn = true;
             gun.GetComponent<Pistol>().isInMenu = isActive;
+            menuOn = true;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }

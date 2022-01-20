@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 6b6e012b084cd034891c44fe2896ded6
@@ -15,6 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Handmade map/cave system.unity
     guid: 5a68d128c05aeb44580cf4f146518c48
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 27fc13e2a56a72140a88263510c1ab0b, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: d7f1184775ea83a41a97c960bf542484, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1cecb511e2fae204db4b86f87c330af9, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 14f396e979349fb4e826728c194d83a4, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: fef846fb37102ac49b713de64ef2a83b, type: 2}

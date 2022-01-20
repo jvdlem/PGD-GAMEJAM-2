@@ -56,6 +56,5 @@ public class StartChoiceControlSystem : MonoBehaviour
         gun.GetComponent<Pistol>().isInMenu = isActive;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        Debug.Log("Both Toggle");
     }
 }

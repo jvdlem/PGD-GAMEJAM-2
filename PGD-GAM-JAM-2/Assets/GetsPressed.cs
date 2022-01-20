@@ -9,6 +9,6 @@ public class GetsPressed : MonoBehaviour
     float durationOfLerp = 10, lerpTime = 0;
     public void ButtonGetsPressed(RaycastHit hit)
     {
-        hit.rigidbody.AddRelativeForce(Vector3.down * 10);
+        hit.rigidbody.AddRelativeForce(Vector3.down * 15);
     }
 }
