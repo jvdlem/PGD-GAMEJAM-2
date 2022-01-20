@@ -6498,7 +6498,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   Coin: {fileID: 9218256390154230802, guid: c17f471f3e3578d49814f10080aaa831, type: 3}
   navMeshAgent: {fileID: 6532801666877251454}
-  checkForPlayerDistance: 15
+  checkForPlayerDistance: 100
   WalkSpeed: 0
   RotateSpeed: 0
   AttackRange: 0
@@ -6522,7 +6522,7 @@ MonoBehaviour:
   triggerHurtAnimation: 1
   canBeHurt: 1
   deathTimer: 0
-  detectionDistance: 25
+  detectionDistance: 80
   attackDistance: 20
   hurtTimer: 0
   attackSound: 

@@ -212,7 +212,7 @@ public class Pistol : MonoBehaviour
     }
     IEnumerator Reload()
     {
-        if (myMagazine.GetComponent<AmmoType>() != null)
+        if (myMagazine != null && myMagazine.GetComponent<AmmoType>() != null)
         {
             yield return new WaitForSeconds(1);
             myMagazine.GetComponent<AmmoType>().AmmoAmount = myMagazine.GetComponent<AmmoType>().maxAmmo;
@@ -227,7 +227,7 @@ public class Pistol : MonoBehaviour
     }
     IEnumerator CanFullAuto()
     {
-        if (myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
+        if (myMagazine != null && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
         {
             FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
             Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
@@ -259,7 +259,7 @@ public class Pistol : MonoBehaviour
             MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
 
         }
-        if (hasAmmo && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
+        if (myMagazine != null && hasAmmo && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
         {
             for (int i = 0; i < allStats.list[1]; i++)
             {
