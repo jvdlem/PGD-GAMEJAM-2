@@ -112,6 +112,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11ab954970c9464f9e57411d5cfafec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  Tier: 0
+  Player: {fileID: 0}
+  Coin: {fileID: 0}
   lookSpeed: 3
   renderer: {fileID: 0}
   EyeIsActive: 0
@@ -127,6 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11ab954970c9464f9e57411d5cfafec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  Tier: 0
+  Player: {fileID: 0}
+  Coin: {fileID: 0}
   lookSpeed: 3
   renderer: {fileID: 0}
   EyeIsActive: 0
@@ -209,7 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf10fd4792108f74cb6c900fbfcb5f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  Tier: 0
   Player: {fileID: 0}
+  Coin: {fileID: 0}
+  CurrentBossState: 0
   bulletspawn: {fileID: 7108166299992137111}
   BossHealth: 10
   healthSlider: {fileID: 9017185103105562324}
@@ -219,7 +234,6 @@ MonoBehaviour:
   Bullets: {fileID: 4775561982456228747, guid: f31e986f1e91a884e9ef04ee366fb8e9, type: 3}
   NextHealthTrigger: 0
   CycleToNextEye: 0
-  bossState: 1
   SoundEffects:
   - Guid:
       Data1: 233573580
@@ -293,6 +307,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11ab954970c9464f9e57411d5cfafec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
+  Damage: 0
+  Tier: 0
+  Player: {fileID: 0}
+  Coin: {fileID: 0}
   lookSpeed: 3
   renderer: {fileID: 0}
   EyeIsActive: 0

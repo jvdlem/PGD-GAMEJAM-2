@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EyeBossScript : MonoBehaviour
+public class EyeBossScript : EnemyBaseScript
 {
     private BossScript parentBoss;
     private GameObject player;
@@ -12,14 +12,14 @@ public class EyeBossScript : MonoBehaviour
 
     public bool EyeIsActive;
 
-    void Start()
+    override public void Start()
     {
         parentBoss = transform.parent.GetComponent<BossScript>();
         renderer = GetComponent<Renderer>();
         player = parentBoss.Player;
     }
 
-    void Update()
+    override public void Update()
     {
         float Distance = Vector3.Distance(transform.position, player.transform.position);
         //Look towards player
@@ -42,17 +42,20 @@ public class EyeBossScript : MonoBehaviour
         {
             if (collision.gameObject.tag == "Projectile")
             {
-                parentBoss.BossHealth -= (int)collision.gameObject.GetComponent<Projectille>().dmg;
-
-                if (parentBoss.BossHealth <= parentBoss.NextHealthTrigger)
+                if (collision.gameObject.GetComponent<Projectille>())
                 {
-                    parentBoss.BossHealth = parentBoss.NextHealthTrigger;
-                    parentBoss.CycleToNextEye = true;
-                }
+                    parentBoss.BossHealth -= (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
-                if (parentBoss.BossHealth <= 0)
-                {
-                    parentBoss.bossState = 5;
+                    if (parentBoss.BossHealth <= parentBoss.NextHealthTrigger)
+                    {
+                        parentBoss.BossHealth = parentBoss.NextHealthTrigger;
+                        parentBoss.CycleToNextEye = true;
+                    }
+
+                    if (parentBoss.BossHealth <= 0)
+                    {
+                        parentBoss.CurrentBossState = BossScript.BossStates.DieState;
+                    }
                 }
             }
         }
