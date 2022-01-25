@@ -2947,60 +2947,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: RayDistance
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: StepDistance
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: JumpInputName
       value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: StartRunningTime
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: SpeedParameterName
-      value: Speed Switch
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: MaterialParameterName
-      value: Material
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: FootstepsEventPath.Path
-      value: event:/Player/Walking/Footstep
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: JumpOrLandParameterName
       value: Jump or Land
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: MaterialTypes.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: MaterialTypes.Array.data[0]
-      value: Stone
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: FootstepsEventPath.Guid.Data1
-      value: -774535445
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: FootstepsEventPath.Guid.Data2
-      value: 1263216694
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: FootstepsEventPath.Guid.Data3
-      value: 1256342448
-      objectReference: {fileID: 0}
-    - target: {fileID: -7840446833240310638, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: FootstepsEventPath.Guid.Data4
-      value: -368865658
       objectReference: {fileID: 0}
     - target: {fileID: 29369570615878822, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_IsActive
@@ -3030,46 +2982,6 @@ PrefabInstance:
       propertyPath: slotText.Array.data[3]
       value: 
       objectReference: {fileID: 919145384}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[6]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[7]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 275690682563956845, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: listOfAttachements.Array.data[8]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 585341697636683455, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: gun
       value: 
@@ -3090,10 +3002,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gun
       objectReference: {fileID: 0}
-    - target: {fileID: 2244731634176322393, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: getsPressed
-      value: 
-      objectReference: {fileID: 1260164761859800337, guid: 860a7aac8cb9e804ba0855d0ee5a35b7, type: 3}
     - target: {fileID: 2244731634176322393, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: displayItems
       value: 
@@ -3258,10 +3166,6 @@ PrefabInstance:
       propertyPath: aimingScript
       value: 
       objectReference: {fileID: 1356664717}
-    - target: {fileID: 6617958425198376390, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: worldPos.x
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: myAmmoText
       value: 
@@ -3562,6 +3466,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106482270}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1144161868 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2526728787022937095, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+  m_PrefabInstance: {fileID: 2015890072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1144161870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144161868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f96a9eabc44a50489929a55b78dbad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1153243142
 GameObject:
   m_ObjectHideFlags: 0
@@ -5246,6 +5167,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1162619783783329439, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3604919033042245725, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -5289,6 +5214,10 @@ PrefabInstance:
     - target: {fileID: 3604919033042245725, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061308936318711688, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8051406633577797829, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
       propertyPath: gun
@@ -5813,6 +5742,10 @@ PrefabInstance:
     - target: {fileID: 2526728787022937095, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
       propertyPath: m_Name
       value: FPS HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 2526728787022937095, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: m_TagString
+      value: NoDestroy
       objectReference: {fileID: 0}
     - target: {fileID: 5240313328396088506, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
       propertyPath: m_RootOrder
