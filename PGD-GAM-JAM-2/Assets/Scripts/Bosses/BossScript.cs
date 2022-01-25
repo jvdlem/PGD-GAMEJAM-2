@@ -20,6 +20,7 @@ public class BossScript : EnemyBaseScript
 
     private static int amountOfEyes = 3;
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
+
     public GameObject bulletspawn;
 
     private int bossMaxHealth = 1000;
@@ -27,8 +28,7 @@ public class BossScript : EnemyBaseScript
     public Slider healthSlider;
     public Transform MinionSpawnLocation;
     public GameObject Minions;
-    private int minionAmount = 5;
-    private bool minionsSpawned;
+
     private BossStates previousEye;
 
     private float EyeLookSpeedDefault = 3;
@@ -36,10 +36,13 @@ public class BossScript : EnemyBaseScript
 
     private float laserChargeTime = 3;
     private float laserChargeTimer;
+    private float laserChargeColorSpeed = 3;
     public GameObject Laser;
 
     private float eyeShootDelay = 1;
     private float eyeShootTimer;
+    private float eyeShootDelayMinimum = 0.1f;
+    private float eyeShootDelayMaximum = 0.8f;
     public GameObject Bullets;
 
     private float minionSpawnDelay = 3f;
@@ -111,7 +114,7 @@ public class BossScript : EnemyBaseScript
                 }
                 else
                 {
-                    CurrentBossState = (BossStates)Random.Range(4, 5);
+                    CurrentBossState = (BossStates)Random.Range(2, 5);
                     while (CurrentBossState == previousEye)
                     {
                         CurrentBossState = (BossStates)Random.Range(2, 5);
@@ -122,8 +125,10 @@ public class BossScript : EnemyBaseScript
 
             //boss uses left eye state
             case BossStates.LeftEyeState:
-                Eyes[0].EyeIsActive = true;
-                Eyes[0].lookSpeed = EyeLookSpeedTracking;
+                EyeBossScript CurrentActiveEye = Eyes[0];
+
+                CurrentActiveEye.EyeIsActive = true;
+                CurrentActiveEye.lookSpeed = EyeLookSpeedTracking;
                 previousEye = CurrentBossState;
 
                 if (eyeShootTimer < eyeShootDelay)
@@ -133,7 +138,7 @@ public class BossScript : EnemyBaseScript
                 else
                 {
                     Instantiate(Bullets, bulletspawn.transform.position, bulletspawn.transform.rotation, transform);
-                    eyeShootDelay = Random.Range(0.1f, 0.8f); //change shoot delay so that the shots are eratic instead of linear intervals
+                    eyeShootDelay = Random.Range(eyeShootDelayMinimum, eyeShootDelayMaximum); //change shoot delay so that the shots are eratic instead of linear intervals
 
                     AudioEmitter.EventReference = SoundEffects[1];
                     AudioEmitter.Play();
@@ -144,17 +149,19 @@ public class BossScript : EnemyBaseScript
                 if (CycleToNextEye)
                 {
                     CycleToNextEye = false;
-                    Eyes[0].lookSpeed = EyeLookSpeedDefault;
+                    CurrentActiveEye.lookSpeed = EyeLookSpeedDefault;
                     CurrentBossState = BossStates.WaitingState;
                 }
                 break;
 
             //boss uses middle eye state
             case BossStates.MiddleEyeState:
-                Eyes[1].EyeIsActive = true;
+                CurrentActiveEye = Eyes[1];
+
+                CurrentActiveEye.EyeIsActive = true;
                 previousEye = CurrentBossState;
 
-                if (Minions != null && minionsSpawned == false)
+                if (Minions != null)
                 {
                     if (minionSpawnTimer < minionSpawnDelay)
                     {
@@ -174,43 +181,44 @@ public class BossScript : EnemyBaseScript
                 if (CycleToNextEye)
                 {
                     CycleToNextEye = false;
-                    minionsSpawned = false;
                     CurrentBossState = BossStates.WaitingState;
                 }
                 break;
 
             //boss uses right eye state
             case BossStates.RightEyeState:
-                Eyes[2].EyeIsActive = true;
-                Eyes[2].lookSpeed = EyeLookSpeedTracking;
+                CurrentActiveEye = Eyes[2];
+
+                CurrentActiveEye.EyeIsActive = true;
+                CurrentActiveEye.lookSpeed = EyeLookSpeedTracking;
                 previousEye = CurrentBossState;
 
                 if (laserChargeTimer < laserChargeTime)
                 {
                     laserChargeTimer += Time.deltaTime;
-                    Eyes[2].renderer.material.color = Color.Lerp(Color.white, Color.red, laserChargeTimer / 3);
+                    CurrentActiveEye.renderer.material.color = Color.Lerp(Color.white, Color.red, laserChargeTimer / laserChargeColorSpeed);
                 }
                 else
                 {
-                    if (Eyes[2].transform.childCount == 0)
+                    if (CurrentActiveEye.transform.childCount == 0)
                     {
-                        Instantiate(Laser, Eyes[2].transform.position, Quaternion.Euler(Eyes[2].transform.rotation.eulerAngles.x - 90, Eyes[2].transform.rotation.eulerAngles.y, Eyes[2].transform.rotation.eulerAngles.z), Eyes[2].transform);
+                        Instantiate(Laser, CurrentActiveEye.transform.position, Quaternion.Euler(CurrentActiveEye.transform.rotation.eulerAngles.x - 90, CurrentActiveEye.transform.rotation.eulerAngles.y, CurrentActiveEye.transform.rotation.eulerAngles.z), CurrentActiveEye.transform);
 
                         AudioEmitter.EventReference = SoundEffects[3];
                         AudioEmitter.Play();
                     }
-                    Eyes[2].renderer.material.color = Color.red;
+                    CurrentActiveEye.renderer.material.color = Color.red;
                 }
 
                 if (CycleToNextEye)
                 {
                     CycleToNextEye = false;
-                    if(Eyes[2].transform.childCount != 0)
+                    if (CurrentActiveEye.transform.childCount != 0)
                     {
-                        Destroy(Eyes[2].transform.GetChild(0).gameObject);
+                        Destroy(CurrentActiveEye.transform.GetChild(0).gameObject);
                         AudioEmitter.Stop();
                     }
-                    Eyes[2].lookSpeed = EyeLookSpeedDefault;
+                    CurrentActiveEye.lookSpeed = EyeLookSpeedDefault;
                     laserChargeTimer = 0;
                     CurrentBossState = BossStates.WaitingState;
                 }
@@ -240,7 +248,7 @@ public class BossScript : EnemyBaseScript
                             eyes.renderer.material.color.g,
                             eyes.renderer.material.color.b,
                             0),
-                            BossDiesFadeTimer/ 2);
+                            BossDiesFadeTimer / 2);
                     }
                 }
                 else
