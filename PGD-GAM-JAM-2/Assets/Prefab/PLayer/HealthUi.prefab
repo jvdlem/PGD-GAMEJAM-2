@@ -166,7 +166,6 @@ GameObject:
   - component: {fileID: 1404907380808005311}
   - component: {fileID: 6684563313175776406}
   - component: {fileID: 2966580016315094935}
-  - component: {fileID: 782534895466969269}
   - component: {fileID: 9067144304777680684}
   - component: {fileID: 722129030328361597}
   m_Layer: 0
@@ -279,23 +278,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
---- !u!111 &782534895466969269
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4240309356676628835}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 231861a2a524b574490703e2d07b786d, type: 2}
-  - {fileID: 7400000, guid: 770d488b1bbfd3f4c99281744233daad, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!222 &9067144304777680684
 CanvasRenderer:
   m_ObjectHideFlags: 0
