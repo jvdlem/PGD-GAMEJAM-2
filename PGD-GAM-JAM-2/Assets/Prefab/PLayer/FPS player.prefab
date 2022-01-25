@@ -1240,11 +1240,14 @@ MonoBehaviour:
     Path: event:/Player/Walking/Footstep
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
-  StepDistance: 2
+  StepDistance: 5
   RayDistance: 1.2
-  StartRunningTime: 0.1
   MaterialTypes:
+  - Earth
   - Stone
+  - Grass
+  - Puddle
+  - Wood
   DefulatMaterialValue: 0
 --- !u!114 &7544925859709373658
 MonoBehaviour:
