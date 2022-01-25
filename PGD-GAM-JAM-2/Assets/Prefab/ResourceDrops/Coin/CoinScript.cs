@@ -57,6 +57,7 @@ public class CoinScript : MonoBehaviour
     {
         if (other.gameObject == Player)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/CoinPickup");
             other.GetComponent<PlayerHealthScript>().coins++;
             Destroy(gameObject);
         }
