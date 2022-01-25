@@ -5,8 +5,6 @@ using UnityEngine;
 public class ControlManager : MonoBehaviour
 {
     [SerializeField]
-    public FPSUI FPSUI;
-    [SerializeField]
     public FPSPlayerMovement FPSPlayer;
     [SerializeField]
     public ChracterMovmentHelper VRPlayer;
@@ -49,6 +47,5 @@ public class ControlManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
-        FPSUI.ToggleFPSUI();
     }
 }

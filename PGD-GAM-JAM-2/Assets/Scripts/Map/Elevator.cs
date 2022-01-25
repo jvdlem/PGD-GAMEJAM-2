@@ -8,13 +8,20 @@ public class Elevator : MonoBehaviour
 
     public FMODUnity.StudioEventEmitter AudioEmitter;
 
-    public bool PlayerInElevator;
+    public bool PlayerInElevator, Done;
 
-    // Start is called before the first frame update
-    void Start()
+    float elevatorTimer = 2;
+
+    private void Update()
     {
-        ElevatorButton.AddRelativeForce(Vector3.down * 10);
-        AudioEmitter.Play();
+        elevatorTimer -= Time.deltaTime;
+        if (elevatorTimer <= 0 && !Done)
+        {
+            ElevatorButton.AddRelativeForce(Vector3.down * 15);
+            AudioEmitter.Play();
+            elevatorTimer = 5;
+            Done = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

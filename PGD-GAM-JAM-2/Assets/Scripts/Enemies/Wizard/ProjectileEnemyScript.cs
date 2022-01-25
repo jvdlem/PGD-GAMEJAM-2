@@ -17,7 +17,7 @@ public class ProjectileEnemyScript : Moenemies
         deathSound = "event:/Enemy/Wizard/WizardDeath";
         hurtSound = "event:/Enemy/Wizard/WizardHurt";
         attack = "Cast";
-        detectionDistance = 40;
+        detectionDistance = 100;
         attackDistance = 30;
         currentState = States.Chasing;
     }

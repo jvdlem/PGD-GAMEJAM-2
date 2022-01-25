@@ -36,7 +36,7 @@ public class EnemyMove : GroundEnemyScript
         maxHealth = 10;
         currentGoblinState = States.Idle;
         Tier = 1;
-        checkForPlayerDistance = 20;
+        checkForPlayerDistance = 100;
         //WalkSpeed = 4;
         RotateSpeed = 8;
         AttackRange = 0.5f;
@@ -102,7 +102,7 @@ public class EnemyMove : GroundEnemyScript
     {
         if (attemptAttack)
         {
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Player" && !ded)
             {
                 Player.GetComponent<PlayerHealthScript>().takeDamage(1);
                 attemptAttack = false;
