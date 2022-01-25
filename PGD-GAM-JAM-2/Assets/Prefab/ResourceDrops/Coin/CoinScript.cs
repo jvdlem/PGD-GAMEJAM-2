@@ -8,8 +8,8 @@ public class CoinScript : MonoBehaviour
     [Header("Values")]
     public float distanceFromGround;
     public float rotationSpeed;
-    public float lerpSpeed = 3;
-    public float maxDistanceFromPlayer = 10;
+    public float lerpSpeed = 15;
+    public float maxDistanceFromPlayer = 30;
     private float t , extents;
     LayerMask ground;
     public GameObject Player;

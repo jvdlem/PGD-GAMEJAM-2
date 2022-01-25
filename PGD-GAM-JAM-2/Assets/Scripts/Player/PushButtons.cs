@@ -15,7 +15,7 @@ public class PushButtons : MonoBehaviour
     private void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 10f, buttons))
+        if (Physics.Raycast(ray, out RaycastHit hit, 2f, buttons))
         {
             buttonCanBePressed = true;
             if (Input.GetKeyDown(KeyCode.E))
