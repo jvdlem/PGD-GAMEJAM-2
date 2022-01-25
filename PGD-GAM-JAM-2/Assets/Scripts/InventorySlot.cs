@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventorySlot : MonoBehaviour
@@ -9,7 +7,10 @@ public class InventorySlot : MonoBehaviour
 
     new string tag; //Stores tag of picked-up attachement
 
-    //Pick up item and store it in slot
+    /// <summary>
+    /// Pick up item and store it in slot.
+    /// </summary>
+    /// <param name="item">Item to be stored.</param>
     public void PickUpItem(GameObject item) 
     {
         for (int i = 0; i < tags.Length; i++) 
@@ -23,7 +24,10 @@ public class InventorySlot : MonoBehaviour
         }
     }
 
-    //Drop item and clear slot
+    /// <summary>
+    /// Drop item and clear slot.
+    /// </summary>
+    /// <param name="item">Item to be dropped.</param>
     public void DropItem(GameObject item) 
     {
         for (int i = 0; i < tags.Length; i++) 
