@@ -65724,6 +65724,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1162619783783329439, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3604919033042245725, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -65767,6 +65771,10 @@ PrefabInstance:
     - target: {fileID: 3604919033042245725, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061308936318711688, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8051406633577797829, guid: 6664f810a4ff12d4b97c8747eb82a3fd, type: 3}
       propertyPath: gun
@@ -78979,7 +78987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68aa13ba3d9e38349916ed5ccc07d68b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FPSUI: {fileID: 0}
   FPSPlayer: {fileID: 1319206902}
   VRPlayer: {fileID: 1429672799}
   VRGun: {fileID: 126453975}
