@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,14 +70,21 @@ public class Moenemies : GroundEnemyScript
                 Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
-            case States.Hurt:
-                Hurting();
-                break;
+            //case States.Hurt:
+            //    Hurting();
+            //    break;
             case States.Death:
+
                 Dying();
                 break;
         }
     }
+
+        void RemoveColliders()
+    {
+
+    }
+
     public void GetDamage(int damage)
     {
         Health -= damage;
@@ -223,22 +229,22 @@ public class Moenemies : GroundEnemyScript
             triggerDeathAnimation = false;
         }
     }
-    virtual public void Hurting()
-    {
-        if (triggerHurtAnimation)
-        {
-            triggerHurtAnimation = false;
-            StartCoroutine(Hurt());
-        }
-    }
-    virtual public IEnumerator Hurt()
-    {
-        navMeshAgent.SetDestination(this.transform.position);
-        PlaySound(hurtSound, soundPosition);
-        AnimationTrigger("TakeDamage");
-        yield return new WaitForSeconds(.7f);
-        currentState = States.Chasing;
-    }
+    //virtual public void Hurting()
+    //{
+    //    if (triggerHurtAnimation)
+    //    {
+    //        triggerHurtAnimation = false;
+    //        StartCoroutine(Hurt());
+    //    }
+    //}
+    //virtual public IEnumerator Hurt()
+    //{
+    //    navMeshAgent.SetDestination(this.transform.position);
+    //    PlaySound(hurtSound, soundPosition);
+    //    AnimationTrigger("TakeDamage");
+    //    yield return new WaitForSeconds(.7f);
+    //    currentState = States.Chasing;
+    //}
     virtual public void OnCollisionEnter(Collision collision)
     {
         //Enemy hurts player on collision
@@ -248,25 +254,36 @@ public class Moenemies : GroundEnemyScript
             Player.GetComponent<PlayerHealthScript>().takeDamage(1);
         }
 
-
-        //Projectile hurts enemy on collision when not in hurting nor Death state
-        if (currentState != States.Hurt && currentState != States.Death)
+        if (collision.gameObject.tag == "Projectile")
         {
-            if (canBeHurt)
-            {
-                if (collision.gameObject.tag == "Projectile")
-                {
-                    //Gets the damage modifier from the current gun
-                    int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            //Gets the damage modifier from the current gun
+            int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
-                    //INSERT Damage modifier from GUNS
-                    GetDamage(gunDmg);
+            //INSERT Damage modifier from GUNS
+            GetDamage(gunDmg);
 
-                    if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
-                    else { currentState = States.Hurt; }
-                }
-            }
+            if (this.Health <= 0) { currentState = States.Death; }
         }
+
+
+        ////Projectile hurts enemy on collision when not in hurting nor Death state
+        //if (currentState != States.Hurt && currentState != States.Death)
+        //{
+        //    if (canBeHurt)
+        //    {
+        //        if (collision.gameObject.tag == "Projectile")
+        //        {
+        //            //Gets the damage modifier from the current gun
+        //            int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+
+        //            //INSERT Damage modifier from GUNS
+        //            GetDamage(gunDmg);
+
+        //            if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
+        //            else { currentState = States.Hurt; }
+        //        }
+        //    }
+        //}
 
 
     }
@@ -278,26 +295,36 @@ public class Moenemies : GroundEnemyScript
             Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
         }
 
+        if (other.gameObject.tag == "Projectile")
+        {
+            //Gets the damage modifier from the current gun
+            int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
+
+            //INSERT Damage modifier from GUNS
+            GetDamage(gunDmg);
+
+            if (this.Health <= 0) { currentState = States.Death; }
+        }
 
         //Projectile hurts enemy on collision when not in hurting nor Death state
-        if (currentState != States.Hurt && currentState != States.Death)
-        {
-            if (canBeHurt)
-            {
-                if (other.gameObject.tag == "Projectile")
-                {
-                    //Gets the damage modifier from the current gun
-                    int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
-                    PlaySound(hurtSound, soundPosition);
-                    AnimationTrigger("TakeDamage");
-                    //INSERT Damage modifier from GUNS
-                    GetDamage(gunDmg);
+        //if (currentState != States.Hurt && currentState != States.Death)
+        //{
+        //    if (canBeHurt)
+        //    {
+        //        if (other.gameObject.tag == "Projectile")
+        //        {
+        //            //Gets the damage modifier from the current gun
+        //            int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
+        //            PlaySound(hurtSound, soundPosition);
+        //            AnimationTrigger("TakeDamage");
+        //            //INSERT Damage modifier from GUNS
+        //            GetDamage(gunDmg);
 
-                    if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
-                    else { currentState = States.Hurt; }
-                }
-            }
-        }
+        //            if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
+        //            else { currentState = States.Hurt; }
+        //        }
+        //    }
+        //}
 
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
