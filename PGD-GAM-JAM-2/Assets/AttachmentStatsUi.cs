@@ -10,10 +10,9 @@ public class AttachmentStatsUi : MonoBehaviour
     public int currentState;
     public List<float> statList;
     private GameObject controller;
-    public Canvas attachmentCanvas;
-    public GameObject gun;
+    private Canvas attachmentCanvas;
     [SerializeField] Image[] sprite;
-    public Text[] TstatList;
+    public Text[] statListUI;
     [Header("Stats")]
     [SerializeField] float spread;
     [SerializeField] float amountOfBullets;
@@ -22,19 +21,15 @@ public class AttachmentStatsUi : MonoBehaviour
 
 
 
-    public void Start()
-    {
-        
-    }
 
     public void Update()
     {
-        
+        //Get all the components needed that are attached to the controller
         if (this.gameObject.GetComponent<XRGrabInteractable>().selectingInteractor != null)
         {
             controller = this.gameObject.GetComponent<XRGrabInteractable>().selectingInteractor.gameObject;
             attachmentCanvas = controller.GetComponentInChildren<Canvas>();
-            TstatList = controller.GetComponentsInChildren<Text>();
+            statListUI = controller.GetComponentsInChildren<Text>();
             sprite = controller.GetComponentsInChildren<Image>();
         }
 
@@ -73,26 +68,26 @@ public class AttachmentStatsUi : MonoBehaviour
     }
     public void showStats()
     {
-        TstatList[0].GetComponent<Text>().text = "Spread = " + spread;
-        TstatList[1].GetComponent<Text>().text = "Bullets = " + amountOfBullets;
-        TstatList[2].GetComponent<Text>().text = "Damage = " + damage;
-        TstatList[3].GetComponent<Text>().text = "Range = " + range;
+        statListUI[0].GetComponent<Text>().text = "Spread = " + spread;
+        statListUI[1].GetComponent<Text>().text = "Bullets = " + amountOfBullets;
+        statListUI[2].GetComponent<Text>().text = "Damage = " + damage;
+        statListUI[3].GetComponent<Text>().text = "Range = " + range;
         
         for (int i = 5; i < statList.Count; i++)
         {
             switch (i - 5)
             {
                 case 0:
-                    if (statList[5] == 1) { TstatList[5].GetComponent<Text>().text = "Minigun"; }
+                    if (statList[5] == 1) { statListUI[5].GetComponent<Text>().text = "Minigun"; }
                     break;
                 case 1:
-                    if (statList[6] == 1) { TstatList[5].GetComponent<Text>().text = "Grenade"; }
+                    if (statList[6] == 1) { statListUI[5].GetComponent<Text>().text = "Grenade"; }
                     break;
                 case 2:
-                    if (statList[7] == 1) { TstatList[5].GetComponent<Text>().text = "Shotgun"; }
+                    if (statList[7] == 1) { statListUI[5].GetComponent<Text>().text = "Shotgun"; }
                     break;
                 case 3:
-                    if (statList[8] == 1) { TstatList[5].GetComponent<Text>().text = "Sniper"; }
+                    if (statList[8] == 1) { statListUI[5].GetComponent<Text>().text = "Sniper"; }
                     break;
             }
         }

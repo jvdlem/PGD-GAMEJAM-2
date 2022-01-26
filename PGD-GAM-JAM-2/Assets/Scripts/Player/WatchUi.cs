@@ -65,10 +65,10 @@ public class WatchUi : MonoBehaviour
         switch (state)
         {
             case 0:
-                //WatchCanvas.enabled = false;
+                WatchCanvas.enabled = false;
                 break;
             case 1:
-                //WatchCanvas.enabled = true;
+                WatchCanvas.enabled = true;
                 state = 2;
                 break;
             case 2:
