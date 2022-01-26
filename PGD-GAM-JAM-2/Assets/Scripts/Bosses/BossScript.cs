@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BossScript : EnemyBaseScript
 {
+    //Boss States
     public enum BossStates
     {
         ResetState,
@@ -18,47 +19,56 @@ public class BossScript : EnemyBaseScript
     }
     public BossStates CurrentBossState;
 
+    //The 3 Boss eye's
     private static int amountOfEyes = 3;
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
 
-    public GameObject bulletspawn;
-
-    private int bossMaxHealth = 1000;
+    //Boss Health Values
+    private int bossMaxHealth = 10;
     public int BossHealth;
     public Slider healthSlider;
-    public Transform MinionSpawnLocation;
-    public GameObject Minions;
 
+    //The eye that was active last
     private BossStates previousEye;
 
+    //Tracking speed of the eyes, can change depending on attack.
     private float EyeLookSpeedDefault = 3;
     private float EyeLookSpeedTracking = 10;
 
+    //Big Laser charge values
     private float laserChargeTime = 3;
     private float laserChargeTimer;
     private float laserChargeColorSpeed = 3;
     public GameObject Laser;
 
-    private float eyeShootDelay = 1;
+    //Small Laser shooting values
+    private float waitBeforefirstShot = 1, eyeShootDelay = 1; //Need to be the same value
     private float eyeShootTimer;
     private float eyeShootDelayMinimum = 0.1f;
     private float eyeShootDelayMaximum = 0.8f;
     public GameObject Bullets;
+    public GameObject bulletspawn;
 
+    //Minion Spawning values
     private float minionSpawnDelay = 3f;
     private float minionSpawnTimer;
+    public GameObject Minions;
+    public Transform MinionSpawnLocation;
 
+    //Boss Health Cycle values
     public int NextHealthTrigger;
     private int AmountOfCycles = 10;
 
-    public bool CycleToNextEye = false;
-
+    //Boss dies fade animation values
     private float BossDiesFadeTime = 3;
     private float BossDiesFadeTimer;
 
+    //Boss is waiting for next attack cycle values
     private float bossIsWaitingTime = 5;
     private float bossIsWaitingTimer;
+    public bool CycleToNextEye = false;
 
+    //FMOD Values
     private FMODUnity.StudioEventEmitter AudioEmitter;
     public FMODUnity.EventReference[] SoundEffects;
 
@@ -80,6 +90,7 @@ public class BossScript : EnemyBaseScript
         healthSlider.value = BossHealth;
         healthSlider.transform.LookAt(Player.transform);
 
+        //The switch statement for the boss state machine
         switch (CurrentBossState)
         {
             //boss spawnes/resets state
@@ -92,13 +103,13 @@ public class BossScript : EnemyBaseScript
                 BossHealth = bossMaxHealth;
                 CycleToNextEye = false;
 
+                //Play spawn Sound Effect
                 AudioEmitter.EventReference = SoundEffects[0];
                 AudioEmitter.Play();
                 CurrentBossState = BossStates.WaitingState;
-
                 break;
 
-            //boss is waiting state
+            //Boss is waiting state
             case BossStates.WaitingState:
                 foreach (EyeBossScript eye in Eyes)
                 {
@@ -114,6 +125,7 @@ public class BossScript : EnemyBaseScript
                 }
                 else
                 {
+                    //Set boss state to random eye attack, check if the new AttackingState isnt the same as the old AttackingState
                     CurrentBossState = (BossStates)Random.Range(2, 5);
                     while (CurrentBossState == previousEye)
                     {
@@ -123,7 +135,7 @@ public class BossScript : EnemyBaseScript
                 }
                 break;
 
-            //boss uses left eye state
+            //Boss uses left eye state - small lasers
             case BossStates.LeftEyeState:
                 EyeBossScript CurrentActiveEye = Eyes[0];
 
@@ -140,21 +152,24 @@ public class BossScript : EnemyBaseScript
                     Instantiate(Bullets, bulletspawn.transform.position, bulletspawn.transform.rotation, transform);
                     eyeShootDelay = Random.Range(eyeShootDelayMinimum, eyeShootDelayMaximum); //change shoot delay so that the shots are eratic instead of linear intervals
 
+                    //Play small laser shoot sound effect
                     AudioEmitter.EventReference = SoundEffects[1];
                     AudioEmitter.Play();
 
                     eyeShootTimer = 0;
                 }
 
+                //Reset this eye behaviour and go to WaitingState
                 if (CycleToNextEye)
                 {
                     CycleToNextEye = false;
+                    eyeShootDelay = waitBeforefirstShot; //Reset Delay to the first float given so that next cycle the eye will wait again before attacking
                     CurrentActiveEye.lookSpeed = EyeLookSpeedDefault;
                     CurrentBossState = BossStates.WaitingState;
                 }
                 break;
 
-            //boss uses middle eye state
+            //boss uses middle eye state - spawn minions
             case BossStates.MiddleEyeState:
                 CurrentActiveEye = Eyes[1];
 
@@ -163,14 +178,17 @@ public class BossScript : EnemyBaseScript
 
                 if (Minions != null)
                 {
+                    //Spawn a single minion every x seconds, x being minionSpawnDelay
                     if (minionSpawnTimer < minionSpawnDelay)
                     {
                         minionSpawnTimer += Time.deltaTime;
                     }
                     else
                     {
+                        //Spawn Minion
                         Instantiate(Minions, MinionSpawnLocation.position, MinionSpawnLocation.rotation, MinionSpawnLocation);
 
+                        //Play Minion spawn sound effect
                         AudioEmitter.EventReference = SoundEffects[2];
                         AudioEmitter.Play();
 
@@ -178,6 +196,7 @@ public class BossScript : EnemyBaseScript
                     }
                 }
 
+                //Reset this eye behaviour and go to WaitingState
                 if (CycleToNextEye)
                 {
                     CycleToNextEye = false;
@@ -185,7 +204,7 @@ public class BossScript : EnemyBaseScript
                 }
                 break;
 
-            //boss uses right eye state
+            //Boss uses right eye state - charge big laser
             case BossStates.RightEyeState:
                 CurrentActiveEye = Eyes[2];
 
@@ -193,6 +212,7 @@ public class BossScript : EnemyBaseScript
                 CurrentActiveEye.lookSpeed = EyeLookSpeedTracking;
                 previousEye = CurrentBossState;
 
+                //Charge laser and change the color of the eye to increasingly red
                 if (laserChargeTimer < laserChargeTime)
                 {
                     laserChargeTimer += Time.deltaTime;
@@ -200,19 +220,24 @@ public class BossScript : EnemyBaseScript
                 }
                 else
                 {
+                    //Spawn big laser if charge time is complete
                     if (CurrentActiveEye.transform.childCount == 0)
                     {
                         Instantiate(Laser, CurrentActiveEye.transform.position, Quaternion.Euler(CurrentActiveEye.transform.rotation.eulerAngles.x - 90, CurrentActiveEye.transform.rotation.eulerAngles.y, CurrentActiveEye.transform.rotation.eulerAngles.z), CurrentActiveEye.transform);
 
+                        //Play Big Laser sound effect
                         AudioEmitter.EventReference = SoundEffects[3];
                         AudioEmitter.Play();
                     }
                     CurrentActiveEye.renderer.material.color = Color.red;
                 }
 
+                //Reset this eye behaviour and go to WaitingState
                 if (CycleToNextEye)
                 {
                     CycleToNextEye = false;
+
+                    //Delete the big laser if it is present
                     if (CurrentActiveEye.transform.childCount != 0)
                     {
                         Destroy(CurrentActiveEye.transform.GetChild(0).gameObject);
@@ -227,14 +252,17 @@ public class BossScript : EnemyBaseScript
             //boss dies state;
             case BossStates.DieState:
 
+                //Play boss dies sound effect
                 AudioEmitter.EventReference = SoundEffects[4];
                 AudioEmitter.Play();
 
+                //Delete the big laser if it is still active
                 if (Eyes[2].transform.childCount != 0)
                 {
                     Destroy(Eyes[2].transform.GetChild(0).gameObject);
                 }
 
+                //Fade de boss transparant, then go to PrepareForIdleState
                 if (BossDiesFadeTimer < BossDiesFadeTime)
                 {
                     BossDiesFadeTimer += Time.deltaTime;
@@ -253,6 +281,7 @@ public class BossScript : EnemyBaseScript
                 }
                 else
                 {
+                    BossDiesFadeTimer = 0;
                     CurrentBossState = BossStates.PrepareForIdleState;
                 }
 
@@ -264,8 +293,7 @@ public class BossScript : EnemyBaseScript
                 {
                     eye.gameObject.SetActive(false);
                 }
-
-                BossDiesFadeTimer = 0;
+                healthSlider.gameObject.SetActive(false);
 
                 CurrentBossState = BossStates.IdleState;
                 break;

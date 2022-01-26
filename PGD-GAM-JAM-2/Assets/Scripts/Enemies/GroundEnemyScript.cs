@@ -32,6 +32,7 @@ public class GroundEnemyScript : EnemyBaseScript
         EnemyMovement();
     }
 
+    //Check if there is anything in the way of the enemy and the player, change target depending on result
     public void DetectPlayer()
     {
         RaycastHit hit;
@@ -73,6 +74,7 @@ public class GroundEnemyScript : EnemyBaseScript
         }
     }
 
+    //Draw a sphere at the Target Position
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(targetPosition, 1f);
