@@ -51,17 +51,17 @@ public class EyeBossScript : EnemyBaseScript
                 if (collision.gameObject.GetComponent<Projectille>())
                 {
                     //Deal x amount of damage to the boss parent, x being the damage the projectile does
-                    parentBoss.BossHealth -= (int)collision.gameObject.GetComponent<Projectille>().dmg;
+                    parentBoss.BossCurrentHealth -= (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
                     //Check if boss goes under the next health trigger, if yes set bool CycleToNextEye in parent boss scipt to true
-                    if (parentBoss.BossHealth <= parentBoss.NextHealthTrigger)
+                    if (parentBoss.BossCurrentHealth <= parentBoss.NextHealthTrigger)
                     {
-                        parentBoss.BossHealth = parentBoss.NextHealthTrigger;
+                        parentBoss.BossCurrentHealth = parentBoss.NextHealthTrigger;
                         parentBoss.CycleToNextEye = true;
                     }
 
                     //If the boss hits 0 HP or goes under, go to the Die State
-                    if (parentBoss.BossHealth <= 0)
+                    if (parentBoss.BossCurrentHealth <= 0)
                     {
                         parentBoss.CurrentBossState = BossScript.BossStates.DieState;
                     }

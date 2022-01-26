@@ -17,6 +17,7 @@ public class BossScript : EnemyBaseScript
         PrepareForIdleState,
         IdleState
     }
+    [Header("Boss")]
     public BossStates CurrentBossState;
 
     //The 3 Boss eye's
@@ -24,9 +25,9 @@ public class BossScript : EnemyBaseScript
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
 
     //Boss Health Values
-    private int bossMaxHealth = 10;
-    public int BossHealth;
-    public Slider healthSlider;
+    private int bossMaxHealth = 1000;
+    public int BossCurrentHealth;
+    public Slider HealthSlider;
 
     //The eye that was active last
     private BossStates previousEye;
@@ -81,14 +82,14 @@ public class BossScript : EnemyBaseScript
             Eyes[i] = gameObject.transform.GetChild(i).GetComponent<EyeBossScript>();
         }
         AudioEmitter = GetComponent<FMODUnity.StudioEventEmitter>();
-        healthSlider.maxValue = bossMaxHealth;
+        HealthSlider.maxValue = bossMaxHealth;
     }
 
     public override void Update()
     {
         //Update the health slider
-        healthSlider.value = BossHealth;
-        healthSlider.transform.LookAt(Player.transform);
+        HealthSlider.value = BossCurrentHealth;
+        HealthSlider.transform.LookAt(Player.transform);
 
         //The switch statement for the boss state machine
         switch (CurrentBossState)
@@ -100,7 +101,7 @@ public class BossScript : EnemyBaseScript
                     eye.gameObject.SetActive(true);
                     eye.renderer.material.color = Color.white;
                 }
-                BossHealth = bossMaxHealth;
+                BossCurrentHealth = bossMaxHealth;
                 CycleToNextEye = false;
 
                 //Play spawn Sound Effect
@@ -117,7 +118,7 @@ public class BossScript : EnemyBaseScript
                 }
 
                 //the next health trigger is calculated (1000 - (1000 / 10))
-                NextHealthTrigger = BossHealth - (bossMaxHealth / AmountOfCycles);
+                NextHealthTrigger = BossCurrentHealth - (bossMaxHealth / AmountOfCycles);
 
                 if (bossIsWaitingTimer < bossIsWaitingTime)
                 {
@@ -293,7 +294,7 @@ public class BossScript : EnemyBaseScript
                 {
                     eye.gameObject.SetActive(false);
                 }
-                healthSlider.gameObject.SetActive(false);
+                HealthSlider.gameObject.SetActive(false);
 
                 CurrentBossState = BossStates.IdleState;
                 break;
