@@ -13,6 +13,7 @@ public class AttacmentUi : MonoBehaviour
     public int currentState;
     public List<float> statList;
     public Text[] statListUI;
+    //NOTE amount of rays is more that in seems since there are 2 for loops and we start counting at negative amountofRays untill positive amountofRays
     [SerializeField] int amountofRays;
     [Header("CurrentAttachment")]
     [SerializeField] GameObject currentobject;
@@ -36,7 +37,7 @@ public class AttacmentUi : MonoBehaviour
     }
     private void Update()
     {
-
+        //shoot rays from the camera if we hit a attachment whit atleast single ray show the ui otherwise dont
         Vector3 pos = transform.position;
         AmountHit = 0;
 

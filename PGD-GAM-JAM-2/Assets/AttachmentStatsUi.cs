@@ -33,10 +33,6 @@ public class AttachmentStatsUi : MonoBehaviour
             sprite = controller.GetComponentsInChildren<Image>();
         }
 
-
-
-
-        //state(default);
     }
     public void state(int state)
     {
@@ -44,7 +40,7 @@ public class AttachmentStatsUi : MonoBehaviour
         switch (state)
         {
             case 1:
-                
+                //When in this case it means the attachment has been picked up by a controller First we get the stats from the attachment and show them on the controller UI
                     getStats();
                     showStats();
                     attachmentCanvas.GetComponent<Canvas>().enabled = true;
@@ -52,13 +48,14 @@ public class AttachmentStatsUi : MonoBehaviour
                 break;
            
             case 0:
+                //When in this State we turn of the UI of the controller (default state)
                 attachmentCanvas.GetComponent<Canvas>().enabled = false;
                 break;
         }
     }
     public void getStats()
     {
-
+        // get our current attachments stats
         statList = this.GetComponent<AttachmentStats>().statList;
         sprite[1].sprite = this.GetComponent<AttachmentUIPart>().getImage();
         spread = statList[0];
@@ -68,6 +65,7 @@ public class AttachmentStatsUi : MonoBehaviour
     }
     public void showStats()
     {
+        //show our current attachments stats
         statListUI[0].GetComponent<Text>().text = "Spread = " + spread;
         statListUI[1].GetComponent<Text>().text = "Bullets = " + amountOfBullets;
         statListUI[2].GetComponent<Text>().text = "Damage = " + damage;
@@ -75,8 +73,10 @@ public class AttachmentStatsUi : MonoBehaviour
         
         for (int i = 5; i < statList.Count; i++)
         {
+            //check what SET this attachment belongs to and show it.
             switch (i - 5)
             {
+                //TO DO add matching colors for each set to the UI?
                 case 0:
                     if (statList[5] == 1) { statListUI[5].GetComponent<Text>().text = "Minigun"; }
                     break;

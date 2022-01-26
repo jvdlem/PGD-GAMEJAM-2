@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class WatchUi : MonoBehaviour
 {
+    //Angles that the players watch will open if looked at 
     [SerializeField] float zAngleMin;
     [SerializeField] float zAngleMax;
 
@@ -35,7 +36,7 @@ public class WatchUi : MonoBehaviour
 
     private void Update()
     {
-
+        //Set the current health and coins of the player on the UI.
         healthText.text = "" + PlayerScript.currentHealth;
         coinCount.text = "" + PlayerScript.coins;
         //if (this.transform.eulerAngles.z >= zAngleMin && this.transform.eulerAngles.z <= zAngleMax && !WatchUiOpen && lookedAt)
@@ -56,10 +57,12 @@ public class WatchUi : MonoBehaviour
 
         if (lookedAt && state != 2)
         {
+            // if looked at and state is not already 2 open the watch
             state = 1;
         }
         else if ( this.transform.eulerAngles.z <= zAngleMin && WatchUiOpen && state != 0 || this.transform.eulerAngles.z >= zAngleMax && WatchUiOpen && state != 0)
         {
+            //Watch is not within the angles acceptable for it to open go to state 3 where the watch closes if we are not already closed.
             state = 3;
         }
         switch (state)
