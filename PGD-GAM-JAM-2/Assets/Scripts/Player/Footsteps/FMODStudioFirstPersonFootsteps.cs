@@ -21,7 +21,7 @@ public class FMODStudioFirstPersonFootsteps : MonoBehaviour
     //These variables are used when checking the Material type the player is on top of.
     private RaycastHit hit;    // Raycast hit
     private int F_MaterialValue;  // Sets value to determine material type
-    //These booleans will hold values that tell us if the player is touching the ground currently and if they were touching it during the last frame.
+    //These booleans will hold values that tell if the player is touching the ground currently and if they were touching it during the last frame.
     private bool PlayerTouchingGround; //Check if player is touching ground  
     private bool PreviosulyTouchingGround; //Check if player was touching ground                                    
 
