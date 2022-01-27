@@ -1118,8 +1118,11 @@ MonoBehaviour:
   groundCheck: {fileID: 2659135250990850454}
   speed: 12
   walkSpeed: 12
+  crouchSpeed: 6
   gravity: -9.81
   groundDistance: 0.4
+  x: 0
+  z: 0
   groundMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1477,6 +1480,10 @@ PrefabInstance:
       value: GunBase
       objectReference: {fileID: 0}
     - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_Materials.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -1487,6 +1494,10 @@ PrefabInstance:
     - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8829679984161963317, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}

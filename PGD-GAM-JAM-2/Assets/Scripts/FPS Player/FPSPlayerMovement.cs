@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class FPSPlayerMovement : MonoBehaviour
 {
+    //contains all the variables used for the non-vr player
+    #region variables
     [SerializeField] ExitMenuScript exitmenuscript;
     [SerializeField] public Camera mainCamera;
     public CharacterController controller;
     public Transform groundCheck;
-
-    public float speed = 12f;
-    public float walkSpeed = 12f;
-    private float crouchSpeed = 6f;
-    public float gravity = -9.81f;
-    public float groundDistance = 0.4f;
-    float x;
-    float z;
+    //movement variables
+    public float speed = 12f, walkSpeed = 12f, crouchSpeed = 6f, gravity = -9.81f, groundDistance = 0.4f, x, z;
 
     public LayerMask groundMask;
 
@@ -34,6 +30,7 @@ public class FPSPlayerMovement : MonoBehaviour
     //Crouch misc
     private KeyCode crouchKey = KeyCode.LeftControl;
     private bool shouldCrouch => Input.GetKeyDown(crouchKey) && !duringCrouchAnimation && controller.isGrounded;
+    #endregion
 
     private void Start()
     {
@@ -45,16 +42,12 @@ public class FPSPlayerMovement : MonoBehaviour
     {
         if (exitmenuscript != null)
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && exitmenuscript.menuOn)
-            {
-                exitmenuscript.ToggleExitMenuScreenOff();
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape) && !exitmenuscript.menuOn)
-            {
-                exitmenuscript.ToggleExitMenuScreenOn();
-            }
+            if (Input.GetKeyDown(KeyCode.Escape) && exitmenuscript.menuOn) exitmenuscript.ToggleExitMenuScreenOff();
+            else if (Input.GetKeyDown(KeyCode.Escape) && !exitmenuscript.menuOn) exitmenuscript.ToggleExitMenuScreenOn();
         }
 
+        //contains movement of the non-vr player
+        #region movement
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && Velocity.y < 0)
@@ -62,11 +55,12 @@ public class FPSPlayerMovement : MonoBehaviour
             Velocity.y = -2f;
         }
 
-        /**
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        **/
 
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+
+        //old code
+        /**
         if (Input.GetKey(KeyCode.W)) z = 1;
         else if (Input.GetKey(KeyCode.S)) z = -1;
         else z = 0;
@@ -74,6 +68,7 @@ public class FPSPlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) x = 1;
         else if (Input.GetKey(KeyCode.A)) x = -1;
         else x = 0;
+        **/
 
         Vector3 move = transform.right * x + transform.forward * z;
 
@@ -85,9 +80,11 @@ public class FPSPlayerMovement : MonoBehaviour
         if (canCrouch) HandleCrouch();
         if (isCrouching) speed = crouchSpeed;
         else speed = walkSpeed;
+        #endregion
 
     }
-
+    //contains crouching of the non-vr player
+    #region crouching
     private void HandleCrouch()
     {
         if (shouldCrouch) StartCoroutine(CrouchStand());
@@ -121,6 +118,7 @@ public class FPSPlayerMovement : MonoBehaviour
 
         duringCrouchAnimation = false;
     }
+    #endregion
 
     public void ToggleFPSPlayer()
     {

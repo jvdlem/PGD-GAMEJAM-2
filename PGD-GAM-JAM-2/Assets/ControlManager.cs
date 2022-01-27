@@ -30,7 +30,6 @@ public class ControlManager : MonoBehaviour
 
     public void VRControls()
     {
-        Debug.Log("ControlManager VR");
         VR = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
@@ -40,7 +39,6 @@ public class ControlManager : MonoBehaviour
 
     public void KeyboardControls()
     {
-        Debug.Log("ControlManager Keyboard");
         Keyboard = true;
         gameObject.SetActive(false);
         Cursor.visible = false;

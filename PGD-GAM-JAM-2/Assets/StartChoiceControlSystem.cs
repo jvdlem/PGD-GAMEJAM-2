@@ -28,7 +28,6 @@ public class StartChoiceControlSystem : MonoBehaviour
 
     public void VRControls()
     {
-        Debug.Log("StartChoice VR");
         VR = true;
         this.gameObject.SetActive(false);
         Cursor.visible = false;
@@ -39,7 +38,6 @@ public class StartChoiceControlSystem : MonoBehaviour
 
     public void KeyboardControls()
     {
-        Debug.Log("StartChoice Keyboard");
         Keyboard = true;
         this.gameObject.SetActive(false);
         Cursor.visible = false;
