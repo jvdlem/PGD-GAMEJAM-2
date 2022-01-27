@@ -176,7 +176,7 @@ public class InventoryPlayer : MonoBehaviour
         {
 
             ResetImage();
-            GameObject aAttachment = Instantiate(inventoryList[selectedAttachemnt],gun.transform.position,Quaternion.identity);
+            GameObject aAttachment = Instantiate(inventoryList[selectedAttachemnt],gun.transform.position-new Vector3(0,1,0),Quaternion.identity);
             aAttachment.SetActive(true);
             Destroy(inventoryList[selectedAttachemnt]);
             inventoryList[selectedAttachemnt] = null;
