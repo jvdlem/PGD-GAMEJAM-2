@@ -98,15 +98,15 @@ public class FPSPlayerMovement : MonoBehaviour
         duringCrouchAnimation = true;
 
         float timeElapsed = 0;
-        float targetHeight = isCrouching ? standHeight : crouchHeigt;
-        float currentHeight = controller.height;
-        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter;
-        Vector3 currentCenter = controller.center;
+        float targetHeight = isCrouching ? standHeight : crouchHeigt; //If crouching targetHeigh is standheight else crouchheigt
+        float currentHeight = controller.height; //Set height
+        Vector3 targetCenter = isCrouching ? standingCenter : crouchingCenter; //if crouching standingCenter else crouchingcenter
+        Vector3 currentCenter = controller.center; //Set center of player object
 
         while (timeElapsed < timeToCrouch)
         {
-            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
-            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
+            controller.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch); //Change height to target height
+            controller.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch); //Change center to target center
             timeElapsed += Time.deltaTime;
             yield return null;
         }

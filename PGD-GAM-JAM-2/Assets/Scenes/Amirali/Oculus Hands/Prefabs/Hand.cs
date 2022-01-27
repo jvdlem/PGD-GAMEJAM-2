@@ -11,7 +11,7 @@ public class Hand : MonoBehaviour
     private float gripTarget;
     private float gripCurrent;
     private float triggerCurrent;
-    public float speed;
+    [SerializeField] float speed;
     private string animatorGripParam = "Grip";
     private string animatorTriggerParam = "Trigger";
 

@@ -6,14 +6,14 @@ using UnityEngine.UI;
 public class AttacmentUi : MonoBehaviour
 {
 
-    private float minDistanceFromAttachment = 5f;
+    [SerializeField] private float minDistanceFromAttachment = 5f;
     LayerMask attachments;
-    int AmountHit = 0;
+    private int AmountHit = 0;
     [SerializeField] public Canvas attachmentStatsUi;
     public int currentState;
-    public int set;
     public List<float> statList;
-    public Text[] TstatList;
+    public Text[] statListUI;
+    //NOTE amount of rays is more that in seems since there are 2 for loops and we start counting at negative amountofRays untill positive amountofRays
     [SerializeField] int amountofRays;
     [Header("CurrentAttachment")]
     [SerializeField] GameObject currentobject;
@@ -37,15 +37,15 @@ public class AttacmentUi : MonoBehaviour
     }
     private void Update()
     {
-
+        //shoot rays from the camera if we hit a attachment whit atleast single ray show the ui otherwise dont
         Vector3 pos = transform.position;
         AmountHit = 0;
 
         state();
 
-        for (int x = -1; x <= 1; x++)
+        for (int x = -amountofRays; x <= amountofRays; x++)
         {
-            for (int y = -1; y <= 1; y++)
+            for (int y = -amountofRays; y <= amountofRays; y++)
             {
                 Ray ray = new Ray(pos + new Vector3(x * 0.1f, y * 0.07f, 0), transform.TransformDirection(Vector3.forward));
                 RaycastHit hit;
@@ -96,10 +96,10 @@ public class AttacmentUi : MonoBehaviour
     }
     public void showStats()
     {
-        TstatList[0].GetComponent<Text>().text = "Spread = " + spread;
-        TstatList[1].GetComponent<Text>().text = "Bullets = " + amountOfBullets;
-        TstatList[2].GetComponent<Text>().text = "Damage = " + damage;
-        TstatList[3].GetComponent<Text>().text = "Range = " + range;
+        statListUI[0].GetComponent<Text>().text = "Spread = " + spread;
+        statListUI[1].GetComponent<Text>().text = "Bullets = " + amountOfBullets;
+        statListUI[2].GetComponent<Text>().text = "Damage = " + damage;
+        statListUI[3].GetComponent<Text>().text = "Range = " + range;
         for (int i = 5; i < statList.Count; i++)
         {
             switch (i - 5)
