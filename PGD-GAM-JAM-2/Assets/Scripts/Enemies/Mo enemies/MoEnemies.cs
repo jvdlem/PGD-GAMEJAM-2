@@ -256,11 +256,14 @@ public class Moenemies : GroundEnemyScript
 
         if (collision.gameObject.tag == "Projectile")
         {
-            //Gets the damage modifier from the current gun
-            int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            if(collision.gameObject.GetComponent<Projectille>() != null)
+            {
+                //Gets the damage modifier from the current gun
+                int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
-            //INSERT Damage modifier from GUNS
-            GetDamage(gunDmg);
+                //INSERT Damage modifier from GUNS
+                GetDamage(gunDmg);
+            }
 
             if (this.Health <= 0) { currentState = States.Death; }
         }
@@ -297,11 +300,14 @@ public class Moenemies : GroundEnemyScript
 
         if (other.gameObject.tag == "Projectile")
         {
-            //Gets the damage modifier from the current gun
-            int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
+            if (other.gameObject.GetComponent<Projectille>() != null)
+            {
+                //Gets the damage modifier from the current gun
+                int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
 
-            //INSERT Damage modifier from GUNS
-            GetDamage(gunDmg);
+                //INSERT Damage modifier from GUNS
+                GetDamage(gunDmg);
+            }
 
             if (this.Health <= 0) { currentState = States.Death; }
         }
