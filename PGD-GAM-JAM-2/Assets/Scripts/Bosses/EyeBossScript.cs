@@ -6,7 +6,6 @@ public class EyeBossScript : EnemyBaseScript
 {
     //The Boss parent scipts
     private BossScript parentBoss;
-    private GameObject player;
     public new Renderer renderer;
 
     //Default speed of the eyes tracking the player
@@ -20,13 +19,12 @@ public class EyeBossScript : EnemyBaseScript
         //Gets the components needed and fills them
         parentBoss = transform.parent.GetComponent<BossScript>();
         renderer = GetComponent<Renderer>();
-        player = parentBoss.Player;
     }
 
     override public void Update()
     {
         //Look towards player
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(player.transform.position - new Vector3(transform.position.x, transform.position.y, transform.position.z)), lookSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Player.transform.position - new Vector3(transform.position.x, transform.position.y, transform.position.z)), lookSpeed * Time.deltaTime);
 
         //Change color depending on if eye is active
         if (EyeIsActive)
