@@ -6,9 +6,10 @@ public class playerAimScript : MonoBehaviour
 {
     public GameObject crosshair;
     public Animator anim;
-    public bool aiming;
+    public bool aiming, allowPickUp;
     public static bool isAiming;
     public static float reloadTimer = 1;
+    public float pickUpTimer = 0.5f;
 
     // Update is called once per frame
     void Update()
@@ -24,6 +25,7 @@ public class playerAimScript : MonoBehaviour
             anim.SetBool("aiming", false);
             aiming = false;
             isAiming = false;
+            pickUpTimer = 0.5f;
         }
 
         if (Pistol.reloading)
@@ -39,11 +41,9 @@ public class playerAimScript : MonoBehaviour
             anim.SetBool("reloading", false);
             reloadTimer = 1;
         }
-
-
-
-
-
-
+        if (aiming) pickUpTimer = 0.5f;
+        pickUpTimer -= Time.deltaTime;
+        if (pickUpTimer <= 0) allowPickUp = true;
+        else allowPickUp = false;
     }
 }

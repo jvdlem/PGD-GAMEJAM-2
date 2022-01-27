@@ -24,7 +24,7 @@ public class AttachmentScanner : MonoBehaviour
         if (!invActive) {
             int layer_mask = LayerMask.GetMask("Interactible");
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer_mask) && !aimingScript.aiming)
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layer_mask) && aimingScript.allowPickUp)
             {
                 pressText.SetActive(true);
                 if (Input.GetKeyDown("e"))
