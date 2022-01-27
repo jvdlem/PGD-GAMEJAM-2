@@ -230,7 +230,7 @@ public class Pistol : MonoBehaviour
     public void stopFullAuto()
     {
         fullAuto = false;
-        allStats.list[0] = startSpread;
+        //allStats.list[0] = startSpread;
     }
     IEnumerator CanFullAuto()
     {
@@ -241,7 +241,7 @@ public class Pistol : MonoBehaviour
             MuzzleFlash.GetComponent<VisualEffect>().Play();
             MuzzleFlash.transform.position = currentShootPoint.transform.position;
             MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
-            if (canResize) { allStats.list[0] *= 0.9f; }
+            if (canResize) { allStats.list[0] *= 0.99f; }
             myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
 
@@ -338,11 +338,13 @@ public class Pistol : MonoBehaviour
                             if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[1] += 10 * scale;
+                                allStats.list[0] += 10 * scale;
                                 SuperPowerAttachment(scale);
                             }
                             if (allStats.list[i] == 2 && scale <= -1 && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale >= 1 && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[1] += 5 * scale;
+                                allStats.list[0] += 10 * scale;
                                 NormalPowerAttachment(scale);
                             }
                         }

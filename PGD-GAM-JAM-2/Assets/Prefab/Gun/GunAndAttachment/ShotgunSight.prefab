@@ -265,7 +265,7 @@ MonoBehaviour:
   spread: 0
   amountOfBullets: 0
   damage: 1
-  bulletTime: 0.2
+  bulletTime: -0.1
   bulletSpeed: 400
   miniGunSet: 0
   grenadeSet: 0
@@ -394,10 +394,8 @@ MonoBehaviour:
   attachmentStatsUi: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
   currentState: 0
   statList: []
-  attachmentCanvas: {fileID: 0}
-  gun: {fileID: 5500370889774544324, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
   sprite: []
-  TstatList: []
+  statListUI: []
   spread: 0
   amountOfBullets: 0
   damage: 0
