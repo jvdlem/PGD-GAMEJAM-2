@@ -201,8 +201,12 @@ public class EnemyMove : GroundEnemyScript
         if (collision.gameObject.tag == "Projectile" && !goblinDied)
         {
             PlaySound(hurtSound, this.gameObject.transform.position);
-            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
-            Health -= dmg;
+            if (collision.gameObject.GetComponent<Projectille>() != null)
+            {
+                int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+
+                Health -= dmg;
+            }
         }
     }
     #endregion
