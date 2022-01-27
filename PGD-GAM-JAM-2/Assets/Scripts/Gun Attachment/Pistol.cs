@@ -49,6 +49,7 @@ public class Pistol : MonoBehaviour
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
 
+
     void Start()
     {
         startSpread = spread;
