@@ -7,6 +7,8 @@ public class crosshairScript : MonoBehaviour
 {
     private RectTransform reticle;
     [SerializeField] private Pistol pistolle;
+    public GameObject subCrosshair;
+    public bool isActive = false;
 
     public float rectSize;
 
@@ -17,6 +19,15 @@ public class crosshairScript : MonoBehaviour
 
     private void Update()
     {
+        if (playerAimScript.isAiming)
+        {
+            subCrosshair.SetActive(isActive);
+        }
+        else
+        {
+            subCrosshair.SetActive(!isActive);
+        }
+
         rectSize = pistolle.allStats.list[0];
         reticle.sizeDelta = new Vector2(rectSize, rectSize);
     }
