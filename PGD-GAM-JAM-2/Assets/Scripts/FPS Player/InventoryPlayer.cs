@@ -62,6 +62,7 @@ public class InventoryPlayer : MonoBehaviour
             case "Barrel":
                 if (inventoryList[0] == null)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ItemPickup");
                     inventoryList[0] = aAttachment;
                     images.transform.GetChild(0).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
@@ -70,6 +71,7 @@ public class InventoryPlayer : MonoBehaviour
             case "Magazine":
                 if (inventoryList[1] == null)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ItemPickup");
                     inventoryList[1] = aAttachment;
                     images.transform.GetChild(1).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
@@ -78,6 +80,7 @@ public class InventoryPlayer : MonoBehaviour
             case "Sight":
                 if (inventoryList[2] == null)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ItemPickup");
                     inventoryList[2] = aAttachment;
                     images.transform.GetChild(2).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
@@ -86,6 +89,7 @@ public class InventoryPlayer : MonoBehaviour
             case "Stock":
                 if (inventoryList[3] == null)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ItemPickup");
                     inventoryList[3] = aAttachment;
                     images.transform.GetChild(3).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);

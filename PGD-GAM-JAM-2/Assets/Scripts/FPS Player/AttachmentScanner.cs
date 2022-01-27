@@ -29,7 +29,6 @@ public class AttachmentScanner : MonoBehaviour
                 pressText.SetActive(true);
                 if (Input.GetKeyDown("e"))
                 {
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/ItemPickup");
                     Inventory.GetComponent<InventoryPlayer>().AddAttachment(hit.transform.gameObject, hit.transform.tag);
                 }
             }
