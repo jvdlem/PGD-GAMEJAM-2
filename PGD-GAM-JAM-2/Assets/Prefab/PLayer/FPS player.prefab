@@ -169,15 +169,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db62defa6e189ad4b8fae2ec7a7afd94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minDistanceFromAttachment: 5
   attachmentStatsUi: {fileID: 6531972395199592190}
   currentState: 0
-  set: 0
   statList: []
-  TstatList:
-  - {fileID: 3170665538595174245}
-  - {fileID: 7340055628863683121}
-  - {fileID: 1454575395801408921}
-  - {fileID: 8404069130893202791}
+  statListUI: []
   amountofRays: 0
   currentobject: {fileID: 0}
   sprite: {fileID: 3436962589272057081}
@@ -1037,7 +1033,6 @@ GameObject:
   - component: {fileID: 6617958425198376390}
   - component: {fileID: 275690682563956845}
   - component: {fileID: -7840446833240310638}
-  - component: {fileID: 7544925859709373658}
   m_Layer: 9
   m_Name: FPS player
   m_TagString: Player
@@ -1253,33 +1248,6 @@ MonoBehaviour:
   - Puddle
   - Wood
   DefulatMaterialValue: 0
---- !u!114 &7544925859709373658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8109714427962658509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db62defa6e189ad4b8fae2ec7a7afd94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachmentStatsUi: {fileID: 6531972395199592190}
-  currentState: 0
-  set: 0
-  statList: []
-  TstatList: []
-  amountofRays: 0
-  currentobject: {fileID: 0}
-  sprite: {fileID: 0}
-  spread: 0
-  amountOfBullets: 0
-  damage: 0
-  range: 0
-  setText: {fileID: 2983772661767244379}
-  aimingScript: {fileID: 1093974408540518902}
-  gun: {fileID: 2305692400117588114}
 --- !u!1 &8818797543051265473
 GameObject:
   m_ObjectHideFlags: 0

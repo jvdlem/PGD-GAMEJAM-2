@@ -15,7 +15,7 @@ public class SlideShow : MonoBehaviour
 
     public void ShowSlides()
     {
-
+        //cool recursive method to show slides always starting over after the last slide
         StartCoroutine(SlideChange());
         IEnumerator SlideChange()
         {
