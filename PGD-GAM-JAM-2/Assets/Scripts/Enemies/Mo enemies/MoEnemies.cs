@@ -258,6 +258,7 @@ public class Moenemies : GroundEnemyScript
         {
             //Gets the damage modifier from the current gun
             int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            PlaySound(hurtSound, soundPosition);
 
             //INSERT Damage modifier from GUNS
             GetDamage(gunDmg);
@@ -299,6 +300,7 @@ public class Moenemies : GroundEnemyScript
         {
             //Gets the damage modifier from the current gun
             int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
+            PlaySound(hurtSound, soundPosition);
 
             //INSERT Damage modifier from GUNS
             GetDamage(gunDmg);
