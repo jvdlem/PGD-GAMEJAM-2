@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class GetsPressed : MonoBehaviour
 {
-    [SerializeField] GameObject buttonBase;
-    [SerializeField] GameObject push;
-    float durationOfLerp = 10, lerpTime = 0;
     public void ButtonGetsPressed(RaycastHit hit)
     {
-        hit.rigidbody.AddRelativeForce(Vector3.down * 15);
+        hit.rigidbody.AddRelativeForce(Vector3.down * 15); //Add force to push button
     }
 }

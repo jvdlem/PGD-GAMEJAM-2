@@ -45,6 +45,7 @@ public class Pistol : MonoBehaviour
     public bool canfullAuto = false;
     public bool fullAuto = false;
     public bool isInMenu = false;
+    public static bool reloading;
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
 
@@ -103,7 +104,7 @@ public class Pistol : MonoBehaviour
 
         if (isInMenu == false)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !reloading && playerAimScript.reloadTimer >= 1)
             {
                 if (startControlSystem != null && startControlSystem.Keyboard)
                 {
@@ -115,17 +116,22 @@ public class Pistol : MonoBehaviour
                 }
             }
 
+            if ( Input.GetKeyDown("r") && !reloading && hasAmmo)
+            {
+                StartCoroutine(Reload());
+                reloading = true;
+                fullAuto = false;
+                stopFullAuto();
+            }
+
             if (Input.GetButtonUp("Fire1"))
             {
                 fullAuto = false;
+                stopFullAuto();
             }
 
-            if (Input.GetKeyDown("r") )
-            {
-                StartCoroutine(Reload());
-            }
+            
 
-            if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
         for (int i = 1; i < lists.Count; i++)
         {
@@ -217,13 +223,14 @@ public class Pistol : MonoBehaviour
             yield return new WaitForSeconds(1);
             myMagazine.GetComponent<AmmoType>().AmmoAmount = myMagazine.GetComponent<AmmoType>().maxAmmo;
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+            reloading = false;
             StopCoroutine(Reload());
         }
     }
     public void stopFullAuto()
     {
         fullAuto = false;
-        allStats.list[0] = startSpread;
+        //allStats.list[0] = startSpread;
     }
     IEnumerator CanFullAuto()
     {
@@ -234,7 +241,7 @@ public class Pistol : MonoBehaviour
             MuzzleFlash.GetComponent<VisualEffect>().Play();
             MuzzleFlash.transform.position = currentShootPoint.transform.position;
             MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
-            if (canResize) { allStats.list[0] *= 0.9f; }
+            if (canResize) { allStats.list[0] *= 0.99f; }
             myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
 
@@ -331,11 +338,13 @@ public class Pistol : MonoBehaviour
                             if (allStats.list[i] >= 4 && scale >= incommingAttachment && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale <= outGoingAttachment && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[1] += 10 * scale;
+                                allStats.list[0] += 10 * scale;
                                 SuperPowerAttachment(scale);
                             }
                             if (allStats.list[i] == 2 && scale <= -1 && aSocket.exitAttachment.GetComponent<AttachmentStats>().statList[i] >= 1 || allStats.list[i] == 3 && scale >= 1 && aCurrentAddon.GetComponent<AttachmentStats>().statList[i] >= 1)
                             {
                                 allStats.list[1] += 5 * scale;
+                                allStats.list[0] += 10 * scale;
                                 NormalPowerAttachment(scale);
                             }
                         }
