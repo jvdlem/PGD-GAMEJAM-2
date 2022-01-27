@@ -9,14 +9,14 @@ public class ControlScreenKeyboard : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    public void turnOn()
+    public void TurnOn()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         this.gameObject.SetActive(true);
     }
 
-    public void turnOff()
+    public void TurnOff()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

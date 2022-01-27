@@ -11,8 +11,8 @@ public class ControlManager : MonoBehaviour
     [SerializeField]
     public Pistol VRGun;
 
-    public bool VR = false;
-    public bool Keyboard = false;
+    public bool VR, Keyboard;
+    public static bool doneChoosing;
 
     // Start is called before the first frame update
     void Start()
@@ -30,22 +30,22 @@ public class ControlManager : MonoBehaviour
 
     public void VRControls()
     {
-        Debug.Log("ControlManager VR");
         VR = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         FPSPlayer.ToggleFPSPlayer();
+        doneChoosing = true;
     }
 
     public void KeyboardControls()
     {
-        Debug.Log("ControlManager Keyboard");
         Keyboard = true;
         gameObject.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
+        doneChoosing = true;
     }
 }

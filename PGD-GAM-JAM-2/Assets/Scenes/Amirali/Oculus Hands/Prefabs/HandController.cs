@@ -18,6 +18,7 @@ public class HandController : MonoBehaviour
   
     void Update()
     {
+        //if we have a hand model with script check the value of trigger and grip and set the values for our other script
         if (hand == null) { hand = GetComponentInChildren<Hand>(); }
         hand.Setgrip(controller.activateAction.action.ReadValue<float>());
         hand.SetTrigger(controller.selectAction.action.ReadValue<float>());

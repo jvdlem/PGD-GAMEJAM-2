@@ -12,8 +12,8 @@ public class EnemyMove : GroundEnemyScript
     public GameObject healthBarUI;
     public Slider slider;
 
-    float attackDistance = 2.5f, AttackTimer, IdleTimer, DeathTimer, distance;
-    int rushDistance = 10, rushSpeed = 11, idleSpeed = 0, walkSpeed = 7, playerDistCheck = 100, Speed, maxHealth;
+    float attackDistance = 2.5f, attackTimer, idleTimer, deathTimer, distance;
+    int rushDistance = 10, rushSpeed = 11, idleSpeed = 0, walkSpeed = 7, playerDistCheck = 100, speed, maxHealth;
     bool attemptAttack, goblinDied;
     public LayerMask groundLayer;
     string attackSound, deathSound, hurtSound, windupSound, idleSound;
@@ -59,10 +59,10 @@ public class EnemyMove : GroundEnemyScript
     public override void Update()
     {
         distance = Vector3.Distance(Player.transform.position, this.transform.position); //checks for distance between the goblin and the player.
-        slider.value = CalculateHealth(); //set the hitpoint bar slider to the health of the goblin.
+        slider.value = CalculateHealth(); //set the health bar slider to the health of the goblin.
         if (Health < maxHealth) healthBarUI.SetActive(true); //enables the slider once the goblin loses so hitpoints.
         if (Health <= 0) currentGoblinState = GoblinStates.Death; //if the goblin has no more health. Dies.
-        navMeshAgent.speed = Speed; //sets the speed of the navMeshAgent to the goblin speed. The goblin speed changes depending on if the goblin is walking or rushing.
+        navMeshAgent.speed = speed; //sets the speed of the navMeshAgent to the goblin speed. The goblin speed changes depending on if the goblin is walking or rushing.
         base.Update();
 
         //contains the switchcase
@@ -70,27 +70,22 @@ public class EnemyMove : GroundEnemyScript
         switch (currentGoblinState)
         {
             case GoblinStates.Idle:
-                Debug.Log("idle");
                 Idle();
                 if (distance <= playerDistCheck && distance > rushDistance) currentGoblinState = GoblinStates.Following;
                 break;
             case GoblinStates.Following:
-                Debug.Log("follow");
                 Following();
                 if (distance > attackDistance && distance <= rushDistance) currentGoblinState = GoblinStates.Rushing;
                 break;
             case GoblinStates.Rushing:
-                Debug.Log("rush");
                 Rush();
                 if (distance <= attackDistance) currentGoblinState = GoblinStates.Attacking;
                 break;
             case GoblinStates.Attacking:
-                Debug.Log("attack");
                 Attacking();
                 if (distance > attackDistance) currentGoblinState = GoblinStates.Following;
                 break;
             case GoblinStates.Death:
-                Debug.Log("death");
                 Death();
                 break;
             default:
@@ -103,26 +98,26 @@ public class EnemyMove : GroundEnemyScript
     #region states
     void Idle()
     {
-        Speed = idleSpeed;
+        speed = idleSpeed;
         anim.Play("Idle");
-        IdleTimer += Time.deltaTime;
-        if (IdleTimer > 8)
+        idleTimer += Time.deltaTime;
+        if (idleTimer > 8)
         {
-            IdleTimer = 0;
+            idleTimer = 0;
             PlaySound(idleSound, this.gameObject.transform.position);
         }
     }
 
     void Following()
     {
-        Speed = walkSpeed;
+        speed = walkSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         anim.Play("Walk");
     }
 
     private void Rush()
     {
-        Speed = rushSpeed;
+        speed = rushSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         anim.Play("Run");
         PlaySound(windupSound, this.gameObject.transform.position);
@@ -131,13 +126,13 @@ public class EnemyMove : GroundEnemyScript
     void Attacking()
     {
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-        Speed = idleSpeed;
+        speed = idleSpeed;
 
-        AttackTimer += Time.deltaTime;
-        if (AttackTimer > 1.5f)
+        attackTimer += Time.deltaTime;
+        if (attackTimer > 1.5f)
         {
             attemptAttack = true;
-            AttackTimer = 0;
+            attackTimer = 0;
         }
     }
 
@@ -145,13 +140,13 @@ public class EnemyMove : GroundEnemyScript
     {
         goblinDied = true;
         anim.Play("Die");
-        Speed = idleSpeed;
+        speed = idleSpeed;
         navMeshAgent.SetDestination(this.transform.position);
         PlaySound(deathSound, this.gameObject.transform.position);
-        DeathTimer += Time.deltaTime;
-        if (DeathTimer > 1.65f)
+        deathTimer += Time.deltaTime;
+        if (deathTimer > 1.65f)
         {
-            DeathTimer = 0;
+            deathTimer = 0;
 
             Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
             Destroy(this.gameObject);
