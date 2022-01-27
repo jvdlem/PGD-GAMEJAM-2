@@ -67,7 +67,7 @@ public class AttacmentUi : MonoBehaviour
         switch (currentState)
         {
             case 1:
-                if (currentobject.GetComponent<AttachmentStats>() != null)
+                if (currentobject.GetComponent<AttachmentStats>() != null && !aimingScript.aiming && gun != null && gun.GetComponent<Pistol>().isInMenu == false)
                 {
                     getStats();
                     showStats();
