@@ -6,6 +6,7 @@ public class Moenemies : GroundEnemyScript
 {  // Start is called before the first frame update
     [SerializeField] public Animator anim;
     public LayerMask groundLayer, playerLayer;
+    private Collider collider;
     [SerializeField] public ParticleSystem particles;
 
     [Header("Movement variables")]
@@ -43,6 +44,7 @@ public class Moenemies : GroundEnemyScript
     public virtual bool playerInAttackRange => Radius(attackDistance);
     override public void Start()
     {
+        collider = GetComponent<Collider>();
         healthBarUI.SetActive(false);
         anim = GetComponent<Animator>();
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -80,13 +82,9 @@ public class Moenemies : GroundEnemyScript
         }
     }
 
-        void RemoveColliders()
-    {
-
-    }
-
     public void GetDamage(int damage)
     {
+        PlaySound(hurtSound, soundPosition);
         Health -= damage;
     }
     virtual public void NonStatesRelatedFunctions()
@@ -209,6 +207,9 @@ public class Moenemies : GroundEnemyScript
     }
     virtual public IEnumerator Die(string animation)
     {
+        //Deactivate the colliders
+        collider.enabled = false;
+
         //Stops the enemy movement
         navMeshAgent.SetDestination(this.transform.position);
         AnimationTrigger(animation);
@@ -248,7 +249,7 @@ public class Moenemies : GroundEnemyScript
     virtual public void OnCollisionEnter(Collision collision)
     {
         //Enemy hurts player on collision
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && currentState != States.Death)
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(1);
@@ -292,7 +293,7 @@ public class Moenemies : GroundEnemyScript
     }
     virtual public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && currentState!=States.Death)
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(Damage);
