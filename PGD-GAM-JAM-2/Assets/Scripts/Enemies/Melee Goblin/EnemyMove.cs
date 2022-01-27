@@ -70,27 +70,22 @@ public class EnemyMove : GroundEnemyScript
         switch (currentGoblinState)
         {
             case GoblinStates.Idle:
-                Debug.Log("idle");
                 Idle();
                 if (distance <= playerDistCheck && distance > rushDistance) currentGoblinState = GoblinStates.Following;
                 break;
             case GoblinStates.Following:
-                Debug.Log("follow");
                 Following();
                 if (distance > attackDistance && distance <= rushDistance) currentGoblinState = GoblinStates.Rushing;
                 break;
             case GoblinStates.Rushing:
-                Debug.Log("rush");
                 Rush();
                 if (distance <= attackDistance) currentGoblinState = GoblinStates.Attacking;
                 break;
             case GoblinStates.Attacking:
-                Debug.Log("attack");
                 Attacking();
                 if (distance > attackDistance) currentGoblinState = GoblinStates.Following;
                 break;
             case GoblinStates.Death:
-                Debug.Log("death");
                 Death();
                 break;
             default:
