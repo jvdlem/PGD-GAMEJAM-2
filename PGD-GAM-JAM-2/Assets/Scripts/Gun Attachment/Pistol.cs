@@ -45,6 +45,7 @@ public class Pistol : MonoBehaviour
     public bool canfullAuto = false;
     public bool fullAuto = false;
     public bool isInMenu = false;
+    public static bool reloading;
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
 
@@ -103,7 +104,7 @@ public class Pistol : MonoBehaviour
 
         if (isInMenu == false)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !reloading && playerAimScript.reloadTimer >= 1)
             {
                 if (startControlSystem != null && startControlSystem.Keyboard)
                 {
@@ -115,17 +116,22 @@ public class Pistol : MonoBehaviour
                 }
             }
 
+            if ( Input.GetKeyDown("r") && !reloading && hasAmmo)
+            {
+                StartCoroutine(Reload());
+                reloading = true;
+                fullAuto = false;
+                stopFullAuto();
+            }
+
             if (Input.GetButtonUp("Fire1"))
             {
                 fullAuto = false;
+                stopFullAuto();
             }
 
-            if (Input.GetKeyDown("r") )
-            {
-                StartCoroutine(Reload());
-            }
+            
 
-            if (Input.GetButtonUp("Fire1")) stopFullAuto();
         }
         for (int i = 1; i < lists.Count; i++)
         {
@@ -217,6 +223,7 @@ public class Pistol : MonoBehaviour
             yield return new WaitForSeconds(1);
             myMagazine.GetComponent<AmmoType>().AmmoAmount = myMagazine.GetComponent<AmmoType>().maxAmmo;
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
+            reloading = false;
             StopCoroutine(Reload());
         }
     }

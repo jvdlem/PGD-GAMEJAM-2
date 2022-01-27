@@ -13,20 +13,32 @@ public class Spawner : MonoBehaviour
     {
         if (spawned == true)
         {
+            int activeEnemies = 0;
+            
             foreach (GameObject gameObject in spawnList)
             {
                 if (gameObject.transform.childCount <= 0)
                 {
-                    spawnList.Remove(gameObject);
-                    Destroy(gameObject);
+                    gameObject.SetActive(false);
+                }
+
+                if (gameObject == gameObject.activeSelf)
+                {
+                    activeEnemies++;
                 }
             }
-            if (spawnList.Count >= 1)
+            if (activeEnemies >= 1)
             {
                 opened = false;
             }
-            if (spawnList.Count == 0 && opened == false)
+            if (activeEnemies == 0 && opened == false)
             {
+                foreach (GameObject gameObject in spawnList)
+                {
+                    Destroy(gameObject);
+                }
+
+                spawnList.Clear();
                 opened = true;
                 OpenRoom();
             }

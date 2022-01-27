@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Transport : MonoBehaviour
 {
-    public GameObject goal;
     public GameObject player;
     public Vector3 worldPos;
     public bool doitpls;
@@ -19,7 +18,10 @@ public class Transport : MonoBehaviour
 
     public void StartTransportToGame()
     {
-        StartCoroutine(TransportToGame());
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(TransportToGame());
+        }
     }
     public IEnumerator TransportToGame()
     {
@@ -30,7 +32,10 @@ public class Transport : MonoBehaviour
 
     public void StartTransportToMenu()
     {
-        StartCoroutine(TransportPlayerToMenu());
+        if (this.gameObject.activeSelf)
+        {
+            StartCoroutine(TransportPlayerToMenu());
+        }
     }
     public IEnumerator TransportPlayerToMenu()
     {

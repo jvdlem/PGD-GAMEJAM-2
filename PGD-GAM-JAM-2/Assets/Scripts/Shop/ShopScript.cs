@@ -15,6 +15,7 @@ public class ShopScript : MonoBehaviour
     public int index;
     public GameObject shopCounterPos;
     private Vector3 boughtItemPos;
+    private bool doneLooking;
 
     [Header("Player")]
     public GameObject Player;
@@ -27,10 +28,17 @@ public class ShopScript : MonoBehaviour
     {
         //Set position for where the item should appear when bought
         boughtItemPos = shopCounterPos.transform.position;
+    }
 
-        //Get player components
-        Player = GameObject.FindGameObjectWithTag("Player");
-        PlayerScript = Player.GetComponent<PlayerHealthScript>();
+    public void Update()
+    {
+        if (ControlManager.doneChoosing && !doneLooking)
+        {
+            //Get player components
+            Player = GameObject.FindGameObjectWithTag("Player");
+            PlayerScript = Player.GetComponent<PlayerHealthScript>();
+            doneLooking = true;
+        }
     }
 
     public void DisplayItem(GameObject itemSpawn)
