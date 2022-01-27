@@ -109,7 +109,7 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.4
+    agentClimb: 0.5
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 31ed49dcdcf077744b0f752f6ace530f, type: 2}
 --- !u!4 &1960026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
@@ -509,6 +509,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010994580422, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000012410225674, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
       propertyPath: m_Name
       value: Cavern_Wall_Lrg-01
@@ -520,6 +524,10 @@ PrefabInstance:
     - target: {fileID: 1000012410225674, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012410225674, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010160563598, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
       propertyPath: m_RootOrder
@@ -9898,6 +9906,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (29)
@@ -9909,6 +9921,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -11815,6 +11831,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (7)
@@ -11826,6 +11846,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -14086,6 +14110,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (5)
@@ -14097,6 +14125,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -19764,6 +19796,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (14)
@@ -19775,6 +19811,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -20344,6 +20384,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (34)
@@ -20355,6 +20399,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -22923,6 +22971,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (28)
@@ -22934,6 +22986,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -25935,6 +25991,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010994580422, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000012410225674, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
       propertyPath: m_Name
       value: Cavern_Wall_Lrg-01 (1)
@@ -25946,6 +26006,10 @@ PrefabInstance:
     - target: {fileID: 1000012410225674, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012410225674, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010160563598, guid: d7e0b4363d8ff8642a2651ead38b0133, type: 3}
       propertyPath: m_RootOrder
@@ -31055,6 +31119,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (5)
@@ -31066,6 +31134,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -33691,7 +33763,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33699,23 +33771,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.008250165
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.9848078
+      value: 0.9847732
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.0014547273
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.17364825
+      value: 0.17364216
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -0.96
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -36961,6 +37033,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (14)
@@ -36972,6 +37048,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -39231,35 +39311,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 177
+      value: 176.99
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2.64
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 549.9
+      value: 549.91
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: -0.0031391224
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.38268343
+      value: -0.38267055
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.0075785127
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.92387956
+      value: 0.92384845
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 4000012910076698, guid: 99db9f8ddf5738d4f81152480bdaca78, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -41687,23 +41767,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8191521
+      value: 0.819135
       objectReference: {fileID: 0}
     - target: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.0052897395
       objectReference: {fileID: 0}
     - target: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5735764
+      value: 0.5735644
       objectReference: {fileID: 0}
     - target: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0037039146
       objectReference: {fileID: 0}
     - target: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -0.74
       objectReference: {fileID: 0}
     - target: {fileID: 4000010981509472, guid: 17d8e878ed57414429354f4fee8c9a03, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -48168,6 +48248,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (18)
@@ -48179,6 +48263,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -49337,6 +49425,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (27)
@@ -49348,6 +49440,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -51606,15 +51702,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.03
+      value: 21.8
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.57
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.784836
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52744,6 +52840,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (6)
@@ -52755,6 +52855,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -53677,6 +53781,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (33)
@@ -53688,6 +53796,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -54471,6 +54583,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (32)
@@ -54482,6 +54598,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -56305,7 +56425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013174705410, guid: dbddd9575da9bdb44a3d99d5f2ea7409, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4000013174705410, guid: dbddd9575da9bdb44a3d99d5f2ea7409, type: 3}
       propertyPath: m_LocalScale.y
@@ -56317,15 +56437,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013174705410, guid: dbddd9575da9bdb44a3d99d5f2ea7409, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 185.2
+      value: 187.8
       objectReference: {fileID: 0}
     - target: {fileID: 4000013174705410, guid: dbddd9575da9bdb44a3d99d5f2ea7409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.2476807
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4000013174705410, guid: dbddd9575da9bdb44a3d99d5f2ea7409, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 563.6
+      value: 565.6
       objectReference: {fileID: 0}
     - target: {fileID: 4000013174705410, guid: dbddd9575da9bdb44a3d99d5f2ea7409, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59460,6 +59580,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (25)
@@ -59471,6 +59595,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -65554,6 +65682,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (26)
@@ -65565,6 +65697,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -68762,7 +68898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4156313090529376, guid: a291ed6f46248e649abc1f0b30e836d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.69
+      value: 4.11
       objectReference: {fileID: 0}
     - target: {fileID: 4156313090529376, guid: a291ed6f46248e649abc1f0b30e836d4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -76790,6 +76926,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (13)
@@ -76801,6 +76941,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -82130,6 +82274,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (23)
@@ -82141,6 +82289,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -89400,6 +89552,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (31)
@@ -89411,6 +89567,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
@@ -99411,6 +99571,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Lava
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010509368366, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_Name
       value: Cavern_Floor_Border_Corner-02 (30)
@@ -99422,6 +99586,10 @@ PrefabInstance:
     - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_TagString
       value: Lava
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010864893716, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000011951052956, guid: b04ef1adc4658be44ac030b625f9cacf, type: 3}
       propertyPath: m_RootOrder
