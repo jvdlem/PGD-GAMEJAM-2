@@ -23,7 +23,7 @@ public class PlayerHealthScript : MonoBehaviour
     [Header("Resources")]
     public int coins = 0;
 
-
+    private FMOD.Studio.Bus MasterBus;
 
     void Start()
     {
@@ -31,6 +31,7 @@ public class PlayerHealthScript : MonoBehaviour
         //set current health to maxhealth
         HideDamageIndicator();
         currentHealth = maxHealth;
+        MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
 
@@ -50,6 +51,8 @@ public class PlayerHealthScript : MonoBehaviour
             if (deathscreenscript != null)
             {
                 deathscreenscript.ToggleDeathScreen();
+                MasterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
             }
         }
     }
