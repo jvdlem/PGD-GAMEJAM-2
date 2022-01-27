@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4036158279038460054}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -82.26138, y: 2.850124, z: 8.236578}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.2433, y: 5.2433, z: 5.2433}
   m_Children:
   - {fileID: 8229098861485924049}
   m_Father: {fileID: 0}
@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: -6563782373378266076}
-  timer: 0.5
-  Speed: 300
-  dmg: 1
-  mytimer: 0.5
+  timer: 0
+  Speed: 1000
+  dmg: 4
+  mytimer: 0
   mySpeed: 500
   mydmg: 1
 --- !u!54 &-6563782373378266076
