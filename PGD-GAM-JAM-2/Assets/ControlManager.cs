@@ -11,7 +11,8 @@ public class ControlManager : MonoBehaviour
     [SerializeField]
     public Pistol VRGun;
 
-    public static bool VR, Keyboard, doneChoosing;
+    public bool VR, Keyboard;
+    public static bool doneChoosing;
 
     // Start is called before the first frame update
     void Start()
