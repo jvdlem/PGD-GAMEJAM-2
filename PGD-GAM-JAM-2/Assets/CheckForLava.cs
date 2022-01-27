@@ -7,7 +7,7 @@ public class CheckForLava : MonoBehaviour
     private float lavaTimer = 0;
     private float hurtTimer = 3;
     private float rayDistance = 2f;
-    private bool lavaHurts;
+    private bool lavaHurts=true;
     [SerializeField]private PlayerHealthScript playerHP;
     // Start is called before the first frame update
     void Start()
