@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class crosshairScript : MonoBehaviour
 {
     private RectTransform reticle;
-    [SerializeField ]private Pistol pistolle;
+    [SerializeField] private Pistol pistolle;
 
     public float rectSize;
 
