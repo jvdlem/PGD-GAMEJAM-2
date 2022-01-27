@@ -37,12 +37,12 @@ public class MeleeFlyingEnemyScript : FlyingEnemyScript
     /// <summary>Charge at a specified target.</summary>
     protected Vector3 ChargeAt(Vector3 targetVector) 
     {
-        target = targetVector - transform.position; //Compare position vectors
+        target = targetVector - transform.position; //Set target vector
         target.Normalize();
 
         return target;
     }
 
-    //Checks if enemy is in range of target
+    /// <summary>Check if enemy is in range of target.</summary>
     protected bool InRange() { return Physics.CheckSphere(transform.position, radius, playerLayer); }
 }

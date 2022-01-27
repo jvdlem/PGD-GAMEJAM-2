@@ -38,7 +38,6 @@ public class ExitMenuScript : MonoBehaviour
 
     public void Exit()
     {
-        //this should work in a build... 
         Application.Quit();
     }
 

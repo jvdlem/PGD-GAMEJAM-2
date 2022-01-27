@@ -5,220 +5,163 @@ using UnityEngine.UI;
 
 public class EnemyMove : GroundEnemyScript
 {
-    float AttackTimer, IdleTimer, DeathTimer, retreatDistance = 2f, attackDistance = 2.5f;
-    int rushDistance = 10, rushSpeed = 14, idleSpeed = 0, walkSpeed = 8, Speed;
-    private bool playOnce;
-    bool ded = false;
-    bool gotRetreatTarget, attemptAttack;
-    Vector3 retreatTarget = Vector3.zero;
-    public LayerMask groundLayer;
-    [SerializeField] Animator anim;
-    string attackSound, deathSound, hurtSound, windupSound, idleSound;
+    #region variables
+    private GoblinStates currentGoblinState;
 
-    public int maxHealth;
+    [SerializeField] Animator anim;
     public GameObject healthBarUI;
     public Slider slider;
 
-    enum States
+    float attackDistance = 2.5f, attackTimer, idleTimer, deathTimer, distance;
+    int rushDistance = 10, rushSpeed = 11, idleSpeed = 0, walkSpeed = 7, playerDistCheck = 100, speed, maxHealth;
+    bool attemptAttack, goblinDied;
+    public LayerMask groundLayer;
+    string attackSound, deathSound, hurtSound, windupSound, idleSound;
+    #endregion
+
+    enum GoblinStates
     {
         Idle,
         Following,
         Rushing,
         Attacking,
-        Retreating,
         Death
     }
-    private States currentGoblinState;
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
+
+        //contains some misc variables from GroundEnemyScript
+        #region miscVariables
         maxHealth = 10;
-        currentGoblinState = States.Idle;
+        currentGoblinState = GoblinStates.Idle;
         Tier = 1;
-        checkForPlayerDistance = 100;
-        //WalkSpeed = 4;
         RotateSpeed = 8;
         AttackRange = 0.5f;
-        rushDistance = 5;
-        rushSpeed = 8;
+        checkForPlayerDistance = playerDistCheck;
+        Health = maxHealth;
+        slider.value = CalculateHealth();
+        #endregion
+
         //Initialise Sounds
+        #region initialise sounds
         attackSound = "event:/Enemy/Goblin/GoblinAttack";
         deathSound = "event:/Enemy/Goblin/GoblinDeath";
         hurtSound = "event:/Enemy/Goblin/GoblinHurt";
         windupSound = "event:/Enemy/Goblin/GoblinWindup";
         idleSound = "event:/Enemy/Goblin/GoblinIdle";
-
-        Health = maxHealth;
-        slider.value = CalculateHealth();
+        #endregion   
     }
 
     // Update is called once per frame
     public override void Update()
     {
-        slider.value = CalculateHealth();
-
-        if (Health < maxHealth)
-        {
-            healthBarUI.SetActive(true);
-        }
-
-        navMeshAgent.speed = Speed;
-        float dist = Vector3.Distance(Player.transform.position, this.transform.position);
+        distance = Vector3.Distance(Player.transform.position, this.transform.position); //checks for distance between the goblin and the player.
+        slider.value = CalculateHealth(); //set the health bar slider to the health of the goblin.
+        if (Health < maxHealth) healthBarUI.SetActive(true); //enables the slider once the goblin loses so hitpoints.
+        if (Health <= 0) currentGoblinState = GoblinStates.Death; //if the goblin has no more health. Dies.
+        navMeshAgent.speed = speed; //sets the speed of the navMeshAgent to the goblin speed. The goblin speed changes depending on if the goblin is walking or rushing.
         base.Update();
-        if (Health <= 0) currentGoblinState = States.Death;
-        else if (dist > checkForPlayerDistance) currentGoblinState = States.Idle;
-        else if (dist <= checkForPlayerDistance && dist > rushDistance) currentGoblinState = States.Following;
-        else if (dist <= rushDistance && dist > attackDistance) currentGoblinState = States.Rushing;
-        else if (dist <= attackDistance) currentGoblinState = States.Attacking;
-        //else if (dist < retreatDistance) currentState = States.Retreating;
 
+        //contains the switchcase
+        #region Switchcase
         switch (currentGoblinState)
         {
-            case States.Idle:
+            case GoblinStates.Idle:
+                Debug.Log("idle");
                 Idle();
+                if (distance <= playerDistCheck && distance > rushDistance) currentGoblinState = GoblinStates.Following;
                 break;
-            case States.Following:
+            case GoblinStates.Following:
+                Debug.Log("follow");
                 Following();
+                if (distance > attackDistance && distance <= rushDistance) currentGoblinState = GoblinStates.Rushing;
                 break;
-            case States.Rushing:
+            case GoblinStates.Rushing:
+                Debug.Log("rush");
                 Rush();
+                if (distance <= attackDistance) currentGoblinState = GoblinStates.Attacking;
                 break;
-            case States.Attacking:
+            case GoblinStates.Attacking:
+                Debug.Log("attack");
                 Attacking();
+                if (distance > attackDistance) currentGoblinState = GoblinStates.Following;
                 break;
-            case States.Retreating:
-                Retreat();
-                break;
-            case States.Death:
+            case GoblinStates.Death:
+                Debug.Log("death");
                 Death();
                 break;
             default:
                 break;
         }
+        #endregion
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (attemptAttack)
-        {
-            if (collision.gameObject.tag == "Player" && !ded)
-            {
-                Player.GetComponent<PlayerHealthScript>().takeDamage(1);
-                attemptAttack = false;
-            }
-        }
-
-        if (collision.gameObject.tag == "Projectile" && !ded)
-        {
-            PlaySound(hurtSound, this.gameObject.transform.position);
-            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
-            Health -= dmg;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Projectile" && !ded)
-        {
-            PlaySound(hurtSound, this.gameObject.transform.position);
-            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
-            Health -= dmg;
-        }
-    }
-
-    void Retreat()
-    {
-        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-        Speed = walkSpeed;
-        anim.Play("Walk");
-
-        if (!gotRetreatTarget)
-        {
-            SearchRetreatTarget();
-        }
-        if (gotRetreatTarget)
-        {
-            navMeshAgent.SetDestination(retreatTarget);
-        }
-
-        Vector3 distanceToBackOffPoint = transform.position - retreatTarget;
-
-        if (distanceToBackOffPoint.magnitude < 1f)
-        {
-            currentGoblinState = States.Following;
-        }
-    }
-
-    void SearchRetreatTarget()
-    {
-        float backOffDistance = -1;
-
-        retreatTarget = new Vector3(transform.position.x, transform.position.y, transform.position.z + backOffDistance);
-
-        if (Physics.Raycast(retreatTarget, -transform.up, 2f, groundLayer)) gotRetreatTarget = true;
-    }
-
-    void Death()
-    {
-        ded = true;
-        anim.Play("Die");
-        Speed = idleSpeed;
-        navMeshAgent.SetDestination(this.transform.position);
-        PlaySound(deathSound, this.gameObject.transform.position);
-        DeathTimer += Time.deltaTime;
-        if (DeathTimer > 1.65f)
-        {
-            DeathTimer = 0;
-
-            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
-            Destroy(this.gameObject);
-        }
-
-    }
-
+    //contains all the states
+    #region states
     void Idle()
     {
-        Speed = idleSpeed;
+        speed = idleSpeed;
         anim.Play("Idle");
-        IdleTimer += Time.deltaTime;
-        if (IdleTimer > 8)
+        idleTimer += Time.deltaTime;
+        if (idleTimer > 8)
         {
-            IdleTimer = 0;
+            idleTimer = 0;
             PlaySound(idleSound, this.gameObject.transform.position);
-        }
-    }
-
-    void Attacking()
-    {
-        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
-        Speed = idleSpeed;
-
-        AttackTimer += Time.deltaTime;
-        if (AttackTimer > 1.5f)
-        {
-            anim.Play("Attack_01");
-            PlaySound(attackSound, this.gameObject.transform.position);
-            attemptAttack = true;
-            AttackTimer = 0;
         }
     }
 
     void Following()
     {
-        Speed = walkSpeed;
+        speed = walkSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         anim.Play("Walk");
     }
 
     private void Rush()
     {
-        Speed = rushSpeed;
+        speed = rushSpeed;
         this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
         anim.Play("Run");
         PlaySound(windupSound, this.gameObject.transform.position);
     }
 
+    void Attacking()
+    {
+        this.transform.LookAt(new Vector3(Player.transform.position.x, this.transform.position.y, Player.transform.position.z));
+        speed = idleSpeed;
+
+        attackTimer += Time.deltaTime;
+        if (attackTimer > 1.5f)
+        {
+            attemptAttack = true;
+            attackTimer = 0;
+        }
+    }
+
+    void Death()
+    {
+        goblinDied = true;
+        anim.Play("Die");
+        speed = idleSpeed;
+        navMeshAgent.SetDestination(this.transform.position);
+        PlaySound(deathSound, this.gameObject.transform.position);
+        deathTimer += Time.deltaTime;
+        if (deathTimer > 1.65f)
+        {
+            deathTimer = 0;
+
+            Instantiate(Coin, transform.position + new Vector3(0, 1, 0), transform.rotation);
+            Destroy(this.gameObject);
+        }
+
+    }
+    #endregion
+
+    //contains playsound and calculate health
+    #region misc
     private void PlaySound(string sound, Vector3 pos)
     {
         FMODUnity.RuntimeManager.PlayOneShot(sound, pos);
@@ -228,4 +171,44 @@ public class EnemyMove : GroundEnemyScript
     {
         return (float)Health / (float)maxHealth;
     }
+    #endregion
+
+    //contains all checks for collision
+    #region collision checks
+    private void OnTriggerEnter(Collider collision)
+    {
+        //if an attack is possible the goblin will attempt to attack
+        if (attemptAttack)
+        {
+            anim.Play("Attack_01");
+            PlaySound(attackSound, this.gameObject.transform.position);
+            if (collision.gameObject.tag == "Player" && !goblinDied)
+            {
+                Player.GetComponent<PlayerHealthScript>().takeDamage(1);
+
+            }
+            attemptAttack = false;
+        }
+
+        //collision for sniper bullets
+        if (collision.gameObject.tag == "Projectile" && !goblinDied)
+        {
+            PlaySound(hurtSound, this.gameObject.transform.position);
+            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            Health -= dmg;
+        }
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //collision for normal bullets
+        if (collision.gameObject.tag == "Projectile" && !goblinDied)
+        {
+            PlaySound(hurtSound, this.gameObject.transform.position);
+            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+            Health -= dmg;
+        }
+    }
+    #endregion
 }

@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) PickUp();
         else if (Input.GetKeyDown(KeyCode.Q)) Drop();
 
-        SetNewSlot();
+        SetNewSlot(); //Sets new empty slot
     }
 
     private void PickUp()
@@ -48,6 +48,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change new empty slot.
+    /// </summary>
     private void SetNewSlot() 
     {
         if (attachements[currentSlot] != null)
@@ -69,6 +72,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Put attachement in inventory.
+    /// </summary>
+    /// <param name="attachement">Attachement to be added.</param>
+    /// <param name="slot">Slot number.</param>
     private void PutInInventory(GameObject attachement, int slot) 
     {
         if (attachements[slot] == null)
@@ -78,9 +86,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Remove attachement from inventory.
+    /// </summary>
     private void Drop() 
     {
-        ClearInventory(currentSlot); // Remove attachement from inventory
+        ClearInventory(currentSlot);
     }
 
     private void ClearInventory(int slot) 
@@ -93,6 +104,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change text based on slot value.
+    /// </summary>
+    /// <param name="slot">Slot number.</param>
+    /// <param name="value">New value of slot.</param>
     private void ChangeText(int slot, string value) 
     {
         slots[slot].text = value;
