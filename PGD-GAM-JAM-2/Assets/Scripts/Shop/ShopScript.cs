@@ -16,6 +16,7 @@ public class ShopScript : MonoBehaviour
     public GameObject shopCounterPos;
     private Vector3 boughtItemPos;
     private bool doneLooking;
+    public int priceMultiplier;
 
     [Header("Player")]
     public GameObject Player;
@@ -53,7 +54,7 @@ public class ShopScript : MonoBehaviour
         //Display the description and price for each item
         itemNameAndPrice[index].text = instantiatedItem.GetComponent<ShopStatDisplay>().GetShopStats();
         index++;
-        price = instantiatedItem.GetComponent<ShopStatDisplay>().itemPrice;
+        price = instantiatedItem.GetComponent<ShopStatDisplay>().itemPrice * priceMultiplier;
     }
     public void BuyItems(int i)
     {
