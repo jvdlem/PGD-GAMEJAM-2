@@ -20,9 +20,12 @@ public class CheckForLava : MonoBehaviour
         RaycastHit ray;
         Physics.Raycast(transform.position, Vector3.down, out ray, rayDistance);
 
-        if(ray.collider.gameObject.tag == "Lava")
+        if (ray.collider != null)
         {
-            CheckLava();
+            if (ray.collider.gameObject.tag == "Lava")
+            {
+                CheckLava();
+            }
         }
     }
 
