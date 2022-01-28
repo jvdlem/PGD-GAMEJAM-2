@@ -13,6 +13,7 @@ public class EnemyBaseScript : MonoBehaviour
     public GameObject Coin;
     protected float animationTime = 1;
     private bool canDie = true;
+    private bool doneLooking;
 
     protected Vector3 velocity; //Velocity for movement
 
@@ -31,8 +32,14 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Start()
     {
-        Players = GameObject.FindGameObjectsWithTag("Player");
+        if (ControlManager.doneChoosing && !doneLooking)
+        {
+            //Get player components
+            Player = GameObject.FindGameObjectWithTag("Player");
+            doneLooking = true;
+        }
 
+        /**
         foreach (GameObject PlayerObject in Players)
         {
             print(PlayerObject);
@@ -41,6 +48,7 @@ public class EnemyBaseScript : MonoBehaviour
                 Player = PlayerObject;
             }
         }
+        **/
 
         //Gets Rigidbody of gameobject, if null, create and add new.
         Rigidbody = GetComponent<Rigidbody>();
