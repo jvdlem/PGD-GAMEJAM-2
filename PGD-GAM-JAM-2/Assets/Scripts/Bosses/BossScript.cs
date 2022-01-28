@@ -73,8 +73,21 @@ public class BossScript : EnemyBaseScript
     private FMODUnity.StudioEventEmitter AudioEmitter;
     public FMODUnity.EventReference[] SoundEffects;
 
+    private GameObject[] Players;
+
     public override void Start()
     {
+        Players = GameObject.FindGameObjectsWithTag("Player");
+
+        foreach (GameObject PlayerObject in Players)
+        {
+            print(PlayerObject);
+            if (PlayerObject.activeSelf == true)
+            {
+                Player = PlayerObject;
+            }
+        }
+
         CurrentBossState = 0;
 
         for (int i = 0; i < amountOfEyes; i++)
