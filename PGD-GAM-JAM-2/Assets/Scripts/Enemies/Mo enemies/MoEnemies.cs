@@ -8,6 +8,7 @@ public class Moenemies : GroundEnemyScript
     public LayerMask groundLayer, playerLayer;
     private Collider collider;
     [SerializeField] public ParticleSystem particles;
+    //Rigidbody rb;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
@@ -44,6 +45,7 @@ public class Moenemies : GroundEnemyScript
     public virtual bool playerInAttackRange => Radius(attackDistance);
     override public void Start()
     {
+       // rb = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
         healthBarUI.SetActive(false);
         anim = GetComponent<Animator>();
@@ -209,6 +211,7 @@ public class Moenemies : GroundEnemyScript
     {
         //Deactivate the colliders
         collider.enabled = false;
+        //rb.freezeRotation = true;
 
         //Stops the enemy movement
         navMeshAgent.SetDestination(this.transform.position);

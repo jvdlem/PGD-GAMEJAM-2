@@ -188,9 +188,13 @@ public class EnemyMove : GroundEnemyScript
         //collision for sniper bullets
         if (collision.gameObject.tag == "Projectile" && !goblinDied)
         {
-            PlaySound(hurtSound, this.gameObject.transform.position);
-            int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
-            Health -= dmg;
+            if (collision.gameObject.GetComponent<Projectille>() != null)
+            {
+                PlaySound(hurtSound, this.gameObject.transform.position);
+                int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
+
+                Health -= dmg;
+            }
         }
     }
 
@@ -200,9 +204,9 @@ public class EnemyMove : GroundEnemyScript
         //collision for normal bullets
         if (collision.gameObject.tag == "Projectile" && !goblinDied)
         {
-            PlaySound(hurtSound, this.gameObject.transform.position);
             if (collision.gameObject.GetComponent<Projectille>() != null)
             {
+                PlaySound(hurtSound, this.gameObject.transform.position);
                 int dmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
 
                 Health -= dmg;

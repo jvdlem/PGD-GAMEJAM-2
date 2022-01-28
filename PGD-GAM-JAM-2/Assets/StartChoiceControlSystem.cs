@@ -46,6 +46,7 @@ public class StartChoiceControlSystem : MonoBehaviour
         VRPlayer.ToggleVRPlayer();
         FPSUI.ToggleFPSUI();
         PlayerPrefs.SetInt("ControlSystem", 1);
+
     }
 
     public void ToggleChoiceScreen()

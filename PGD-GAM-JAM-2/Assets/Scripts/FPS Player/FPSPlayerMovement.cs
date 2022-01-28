@@ -56,8 +56,7 @@ public class FPSPlayerMovement : MonoBehaviour
         }
 
 
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
+
 
         //old code
         /**
@@ -70,12 +69,7 @@ public class FPSPlayerMovement : MonoBehaviour
         else x = 0;
         **/
 
-        Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
-
-        Velocity.y += gravity * Time.deltaTime;
-        controller.Move(Velocity * Time.deltaTime);
 
         if (canCrouch) HandleCrouch();
         if (isCrouching) speed = crouchSpeed;
@@ -83,6 +77,19 @@ public class FPSPlayerMovement : MonoBehaviour
         #endregion
 
     }
+
+    private void FixedUpdate()
+    {
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
+        Vector3 move = transform.right * x + transform.forward * z;
+
+        controller.Move(move * speed * Time.deltaTime);
+
+        Velocity.y += gravity * Time.deltaTime;
+        controller.Move(Velocity * Time.deltaTime);
+    }
+
     //contains crouching of the non-vr player
     #region crouching
     private void HandleCrouch()

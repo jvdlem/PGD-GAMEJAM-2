@@ -33,7 +33,7 @@ public class CheckForLava : MonoBehaviour
         {
             //add what happens if the player enters lava here
             //Burn Sound
-            Debug.Log("LAVA");
+            //Debug.Log("LAVA");
             playerHP.takeDamage(1);
             lavaHurts = false;
         }
