@@ -9,11 +9,9 @@ public class EnemyBaseScript : MonoBehaviour
     public int Tier;
     protected Rigidbody Rigidbody;
     public GameObject Player;
-    private GameObject[] Players;
     public GameObject Coin;
     protected float animationTime = 1;
     private bool canDie = true;
-    private bool doneLooking;
 
     protected Vector3 velocity; //Velocity for movement
 
@@ -32,23 +30,7 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Start()
     {
-        if (ControlManager.doneChoosing && !doneLooking)
-        {
-            //Get player components
-            Player = GameObject.FindGameObjectWithTag("Player");
-            doneLooking = true;
-        }
-
-        /**
-        foreach (GameObject PlayerObject in Players)
-        {
-            print(PlayerObject);
-            if (PlayerObject.activeSelf == true)
-            {
-                Player = PlayerObject;
-            }
-        }
-        **/
+        Player = GameObject.FindGameObjectWithTag("Player");
 
         //Gets Rigidbody of gameobject, if null, create and add new.
         Rigidbody = GetComponent<Rigidbody>();

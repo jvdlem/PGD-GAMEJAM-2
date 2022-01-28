@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Transport : MonoBehaviour
 {
-    public GameObject player;
-    public Vector3 worldPos;
-    public bool doitpls;
-
     private FMOD.Studio.Bus MasterBus;
 
     private void Start()

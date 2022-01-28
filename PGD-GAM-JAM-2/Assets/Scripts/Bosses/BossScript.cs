@@ -63,11 +63,15 @@ public class BossScript : EnemyBaseScript
     //Boss dies fade animation values
     private float BossDiesFadeTime = 3;
     private float BossDiesFadeTimer;
+    private bool PlayBossDieSoundOnce;
 
     //Boss is waiting for next attack cycle values
     private float bossIsWaitingTime = 5;
     private float bossIsWaitingTimer;
     public bool CycleToNextEye = false;
+
+    //End Elevator
+    public GameObject EndText;
 
     //FMOD Values
     private FMODUnity.StudioEventEmitter AudioEmitter;
@@ -81,7 +85,6 @@ public class BossScript : EnemyBaseScript
 
         foreach (GameObject PlayerObject in Players)
         {
-            print(PlayerObject);
             if (PlayerObject.activeSelf == true)
             {
                 Player = PlayerObject;
@@ -116,6 +119,7 @@ public class BossScript : EnemyBaseScript
                 }
                 BossCurrentHealth = bossMaxHealth;
                 CycleToNextEye = false;
+                PlayBossDieSoundOnce = false;
 
                 //Play spawn Sound Effect
                 AudioEmitter.EventReference = SoundEffects[0];
@@ -267,8 +271,12 @@ public class BossScript : EnemyBaseScript
             case BossStates.DieState:
 
                 //Play boss dies sound effect
-                AudioEmitter.EventReference = SoundEffects[4];
-                AudioEmitter.Play();
+                if (PlayBossDieSoundOnce == false)
+                {
+                    PlayBossDieSoundOnce = true;
+                    AudioEmitter.EventReference = SoundEffects[4];
+                    AudioEmitter.Play();
+                }
 
                 //Delete the big laser if it is still active
                 if (Eyes[2].transform.childCount != 0)
@@ -296,6 +304,7 @@ public class BossScript : EnemyBaseScript
                 else
                 {
                     BossDiesFadeTimer = 0;
+                    PlayBossDieSoundOnce = false;
                     CurrentBossState = BossStates.PrepareForIdleState;
                 }
 
@@ -310,6 +319,11 @@ public class BossScript : EnemyBaseScript
                 HealthSlider.gameObject.SetActive(false);
 
                 CurrentBossState = BossStates.IdleState;
+
+                if (EndText != null)
+                {
+                    EndText.SetActive(true);
+                }
                 break;
 
             //boss is inactive state

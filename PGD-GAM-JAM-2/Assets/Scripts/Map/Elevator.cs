@@ -8,20 +8,28 @@ public class Elevator : MonoBehaviour
 
     public FMODUnity.StudioEventEmitter AudioEmitter;
 
-    public bool PlayerInElevator, Done;
+    public bool PlayerInElevator, Done, OpenElevatorDoors;
 
     float elevatorTimer = 2;
 
     private void Update()
     {
-        elevatorTimer -= Time.deltaTime;
-        if (elevatorTimer <= 0 && !Done)
+        if (OpenElevatorDoors)
         {
-            ElevatorButton.AddRelativeForce(Vector3.down * 15);
-            AudioEmitter.Play();
-            elevatorTimer = 5;
-            Done = true;
+            elevatorTimer -= Time.deltaTime;
+            if (elevatorTimer <= 0 && !Done)
+            {
+                ElevatorButton.AddRelativeForce(Vector3.down * 15);
+                AudioEmitter.Play();
+                elevatorTimer = 5;
+                Done = true;
+            }
         }
+    }
+
+    public void OpenElevator()
+    {
+        OpenElevatorDoors = true;
     }
 
     private void OnTriggerEnter(Collider other)
