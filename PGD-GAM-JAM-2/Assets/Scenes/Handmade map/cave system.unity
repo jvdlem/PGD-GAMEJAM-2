@@ -6328,9 +6328,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -70078,10 +70076,6 @@ PrefabInstance:
     - target: {fileID: 3440041105713002521, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_RenderPostProcessing
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754700817438122498, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: damageIndicator
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3754700817438122498, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: deathscreenscript
