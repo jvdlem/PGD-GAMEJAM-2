@@ -19,6 +19,8 @@ public class EyeBossScript : EnemyBaseScript
         //Gets the components needed and fills them
         parentBoss = transform.parent.GetComponent<BossScript>();
         renderer = GetComponent<Renderer>();
+
+        Player = parentBoss.Player;
     }
 
     override public void Update()

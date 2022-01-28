@@ -70,9 +70,9 @@ public class Granade : Projectille
                     {
                         if (collider.gameObject.transform.GetComponent<EnemyBaseScript>() != null)
                         {
-                            Debug.Log("Boom");
+                            //Debug.Log("Boom");
                             collider.gameObject.GetComponent<EnemyBaseScript>().TakeDamage((int)((radius) * 6 / (Vector3.Distance(this.transform.position, collider.gameObject.transform.position))));
-                            Debug.Log(collider.gameObject.name + ": " + (int)((radius) * 6 / (Vector3.Distance(this.transform.position, collider.gameObject.transform.position))));
+                            //Debug.Log(collider.gameObject.name + ": " + (int)((radius) * 6 / (Vector3.Distance(this.transform.position, collider.gameObject.transform.position))));
                         }
 
                     }
