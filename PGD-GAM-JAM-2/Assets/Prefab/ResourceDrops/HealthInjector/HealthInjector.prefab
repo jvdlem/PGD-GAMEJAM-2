@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d35b45e15d836bb48ac226fa6c28df6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healAmount: 3
 --- !u!114 &3479395944689698440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrice: 5
   itemName: Health Injector
-  itemDescription: Restores health when used
+  itemDescription: Restores health when picked up
   isBought: 0
 --- !u!1 &1046928646715545736
 GameObject:

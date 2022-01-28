@@ -58,7 +58,7 @@ public class ShopScript : MonoBehaviour
     public void BuyItems(int i)
     {
         //Buying items
-        if (PlayerScript.coins >= price && shopItems[i].GetComponent<ShopStatDisplay>().isBought == false)
+        if (PlayerScript.coins >= shopItems[i].GetComponent<ShopStatDisplay>().itemPrice && shopItems[i].GetComponent<ShopStatDisplay>().isBought == false)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/BoughtItem");
             shopItems[i].transform.position = boughtItemPos;
