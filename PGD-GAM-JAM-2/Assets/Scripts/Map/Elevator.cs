@@ -12,6 +12,8 @@ public class Elevator : MonoBehaviour
 
     float elevatorTimer = 2;
 
+    public GameObject EndText;
+
     private void Update()
     {
         if (OpenElevatorDoors)
@@ -32,6 +34,11 @@ public class Elevator : MonoBehaviour
         OpenElevatorDoors = true;
     }
 
+    public void ShowEndText()
+    {
+        EndText.SetActive(true);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
@@ -47,4 +54,6 @@ public class Elevator : MonoBehaviour
             PlayerInElevator = false;
         }
     }
+
+
 }
