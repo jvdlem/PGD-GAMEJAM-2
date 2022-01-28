@@ -117,8 +117,8 @@ MonoBehaviour:
   Tier: 0
   Player: {fileID: 0}
   Coin: {fileID: 0}
-  lookSpeed: 3
   renderer: {fileID: 0}
+  lookSpeed: 3
   EyeIsActive: 0
 --- !u!114 &6622819495008092304
 MonoBehaviour:
@@ -137,8 +137,8 @@ MonoBehaviour:
   Tier: 0
   Player: {fileID: 0}
   Coin: {fileID: 0}
-  lookSpeed: 3
   renderer: {fileID: 0}
+  lookSpeed: 3
   EyeIsActive: 0
 --- !u!1 &6080821360308910234
 GameObject:
@@ -225,13 +225,13 @@ MonoBehaviour:
   Player: {fileID: 0}
   Coin: {fileID: 0}
   CurrentBossState: 0
-  bulletspawn: {fileID: 7108166299992137111}
-  BossHealth: 10
-  healthSlider: {fileID: 9017185103105562324}
-  MinionSpawnLocation: {fileID: 6080821360308910235}
-  Minions: {fileID: 4998840696291270717, guid: 26a75325336bde84597997f9ea26ec6b, type: 3}
+  BossCurrentHealth: 0
+  HealthSlider: {fileID: 9017185103105562324}
   Laser: {fileID: 5956617192687934308, guid: a1745dcc08f6d3f4abf7c8330bbfe5ce, type: 3}
   Bullets: {fileID: 4775561982456228747, guid: f31e986f1e91a884e9ef04ee366fb8e9, type: 3}
+  bulletspawn: {fileID: 7108166299992137111}
+  Minions: {fileID: 4998840696291270717, guid: 26a75325336bde84597997f9ea26ec6b, type: 3}
+  MinionSpawnLocation: {fileID: 6080821360308910235}
   NextHealthTrigger: 0
   CycleToNextEye: 0
   SoundEffects:
@@ -312,8 +312,8 @@ MonoBehaviour:
   Tier: 0
   Player: {fileID: 0}
   Coin: {fileID: 0}
-  lookSpeed: 3
   renderer: {fileID: 0}
+  lookSpeed: 3
   EyeIsActive: 0
 --- !u!1 &7108166299992137111
 GameObject:
