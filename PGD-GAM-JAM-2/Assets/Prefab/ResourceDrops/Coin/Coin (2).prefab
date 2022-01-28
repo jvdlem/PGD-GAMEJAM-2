@@ -96,8 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46751718adc18148b4ce540f9879d59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 0
+  distanceFromGround: 0.7
+  rotationSpeed: 0
   lerpSpeed: 3
+  maxDistanceFromPlayer: 10
   Player: {fileID: 0}
 --- !u!65 &4666407745821276548
 BoxCollider:
