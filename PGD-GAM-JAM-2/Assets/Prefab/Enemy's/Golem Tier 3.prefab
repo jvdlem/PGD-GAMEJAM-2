@@ -577,7 +577,6 @@ GameObject:
   - component: {fileID: 1437652784340799276}
   - component: {fileID: 6267084271915307727}
   - component: {fileID: 6267084271922120165}
-  - component: {fileID: 622432102264158341}
   m_Layer: 0
   m_Name: Golem Tier 3
   m_TagString: Golem
@@ -646,8 +645,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
-  m_Acceleration: 3
+  m_Speed: 2.96
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 2.5
@@ -711,22 +710,6 @@ MonoBehaviour:
   maxHealth: 0
   healthBarUI: {fileID: 3771102243704106777}
   slider: {fileID: 2110029632390389136}
---- !u!54 &622432102264158341
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437652784604183280}
-  serializedVersion: 2
-  m_Mass: 50
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &1437652784604183286
 GameObject:
   m_ObjectHideFlags: 0
