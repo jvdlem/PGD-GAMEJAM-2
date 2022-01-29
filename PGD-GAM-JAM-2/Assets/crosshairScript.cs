@@ -14,6 +14,7 @@ public class crosshairScript : MonoBehaviour
 
     private void Start()
     {
+        gameObject.SetActive(false);
         reticle = GetComponent<RectTransform>();
     }
 
@@ -30,6 +31,11 @@ public class crosshairScript : MonoBehaviour
 
         rectSize = pistolle.allStats.list[0];
         reticle.sizeDelta = new Vector2(rectSize, rectSize);
+    }
+
+    public void ToggleFPSCrosshair()
+    {
+        gameObject.SetActive(true);
     }
 }
 

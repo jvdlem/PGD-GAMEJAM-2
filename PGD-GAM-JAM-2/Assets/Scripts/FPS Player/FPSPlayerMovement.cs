@@ -80,14 +80,17 @@ public class FPSPlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        x = Input.GetAxis("Horizontal");
-        z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * x + transform.forward * z;
+        if (exitmenuscript.menuOn == false)
+        {
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
+            Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+            controller.Move(move * speed * Time.deltaTime);
 
-        Velocity.y += gravity * Time.deltaTime;
-        controller.Move(Velocity * Time.deltaTime);
+            Velocity.y += gravity * Time.deltaTime;
+            controller.Move(Velocity * Time.deltaTime);
+        }
     }
 
     //contains crouching of the non-vr player
