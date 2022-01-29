@@ -231,7 +231,6 @@ public class Pistol : MonoBehaviour
         {
             Vector3 direction = hitInfo.point - Gun.position;
             Gun.rotation = Quaternion.LookRotation(direction);
-            Debug.Log("direction" + direction);
         }
     }
     IEnumerator Reload()
