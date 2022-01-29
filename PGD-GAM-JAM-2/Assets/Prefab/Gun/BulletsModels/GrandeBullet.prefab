@@ -4900,8 +4900,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 7458745881642210414}
-  timer: 5
-  Speed: 1250
+  timer: 6
+  Speed: 3050
   dmg: 6
   mytimer: 3
   mySpeed: 500
@@ -4912,7 +4912,7 @@ MonoBehaviour:
   Parent: {fileID: 6737425802037542318}
   delay: 3
   ExplodeTimer: 0
-  onCollision: 1
+  onCollision: 0
   radius: 6
 --- !u!64 &5333742690179101648
 MeshCollider:

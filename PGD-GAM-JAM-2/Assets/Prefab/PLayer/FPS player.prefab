@@ -1514,9 +1514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c38dc8a8474e7514e8ce66daf105b96c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8109714427962658509}
-  worldPos: {x: 0, y: 0, z: 0}
-  doitpls: 0
 --- !u!114 &275690682563956845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1935,10 +1932,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1170738091200377317}
     m_Modifications:
-    - target: {fileID: 2360686444871573535, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
-      propertyPath: m_Constraints
-      value: 126
-      objectReference: {fileID: 0}
     - target: {fileID: 4534814921810314738, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: anim
       value: 
