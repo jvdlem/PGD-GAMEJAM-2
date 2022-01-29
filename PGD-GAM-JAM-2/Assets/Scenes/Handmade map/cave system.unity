@@ -7612,7 +7612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 1, y: 0, z: 4}
+  endPosition: {x: -1, y: 0, z: 4.5}
   desiredDuration: 1
   threshold: 1
   mySound: 
@@ -10646,6 +10646,10 @@ PrefabInstance:
       value: 262.45
       objectReference: {fileID: 0}
     - target: {fileID: 2705222665972561131, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705222665972561131, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.1
       objectReference: {fileID: 0}
@@ -13382,7 +13386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 1, y: 0, z: 5}
+  endPosition: {x: -3, y: 0, z: 4.5}
   desiredDuration: 3
   threshold: 1
   mySound: 
@@ -20733,7 +20737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 3, y: 0, z: 3}
+  endPosition: {x: 2, y: 0, z: 5.5}
   desiredDuration: 3
   threshold: 1
   mySound: 
@@ -28226,7 +28230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -270
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -28234,7 +28238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 590.5
+      value: 735.9
       objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_LocalRotation.w
