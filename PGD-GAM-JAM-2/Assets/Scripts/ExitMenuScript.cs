@@ -18,9 +18,7 @@ public class ExitMenuScript : MonoBehaviour
 
     public void BackToGame()
     {
-        gameObject.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        ToggleExitMenuScreenOff();
     }
 
     public void Restart()
