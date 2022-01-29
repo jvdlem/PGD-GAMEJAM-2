@@ -12,6 +12,8 @@ public class StartChoiceControlSystem : MonoBehaviour
     public ChracterMovmentHelper VRPlayer;
     [SerializeField]
     public Pistol VRGun;
+    [SerializeField]
+    public crosshairScript reticle;
 
     public GameObject gun;
     private bool isActive = false;
@@ -44,7 +46,8 @@ public class StartChoiceControlSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
-        FPSUI.ToggleFPSUI();
+        reticle.ToggleFPSCrosshair();
+        if (FPSUI != null) FPSUI.ToggleFPSUI();
         PlayerPrefs.SetInt("ControlSystem", 1);
 
     }
