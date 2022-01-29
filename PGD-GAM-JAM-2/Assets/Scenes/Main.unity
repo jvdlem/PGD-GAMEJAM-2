@@ -1359,6 +1359,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71572c36cf1dbec469e523b12040bef7, type: 3}
+--- !u!4 &1018466732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2016919740116785048, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1047482475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1047482475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,9 +1452,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 912675610}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: bulletSpeed
-      value: 2000
-      objectReference: {fileID: 0}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1018466732}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: startControlSystem
       value: 

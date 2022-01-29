@@ -37,6 +37,8 @@ public class Pistol : MonoBehaviour
     public GameObject holster;
     public GameObject ammoholster;
     public Text myAmmoText;
+    public Transform Gun;
+    public Transform cam;
 
     private int incommingAttachment = 1;
     private int outGoingAttachment = -1;
@@ -95,8 +97,14 @@ public class Pistol : MonoBehaviour
         MuzzleFlash.transform.position = currentShootPoint.transform.position;
         MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
     }
+
+
     void Update()
     {
+        if ((startControlSystem != null && startControlSystem.Keyboard) || (controlManager != null && controlManager.Keyboard))
+        {
+            RotateGun();
+        }
 
         if (allStats.list[0] <= 0)
         {
@@ -215,7 +223,16 @@ public class Pistol : MonoBehaviour
         {
             StopCoroutine(CanFullAuto());
         }
-
+        
+    }
+    void RotateGun()
+    {
+        if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo))
+        {
+            Vector3 direction = hitInfo.point - Gun.position;
+            Gun.rotation = Quaternion.LookRotation(direction);
+            Debug.Log("direction" + direction);
+        }
     }
     IEnumerator Reload()
     {
