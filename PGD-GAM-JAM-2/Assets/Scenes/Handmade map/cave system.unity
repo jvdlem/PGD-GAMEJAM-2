@@ -1583,7 +1583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: -2, y: 0, z: 3}
+  endPosition: {x: -3.5, y: 0, z: 5}
   desiredDuration: 1
   threshold: 1
   mySound: 
@@ -10573,6 +10573,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2705222665125174277, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2705222665277030882, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalScale.x
       value: 5
@@ -10616,6 +10620,10 @@ PrefabInstance:
     - target: {fileID: 2705222665539877617, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 755.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705222665597021295, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2705222665627881589, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10928,6 +10936,10 @@ PrefabInstance:
     - target: {fileID: 2705222667159340876, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705222667159571723, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.3
       objectReference: {fileID: 0}
     - target: {fileID: 2705222667171634948, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalScale.y
@@ -11269,15 +11281,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 113.12
+      value: 112.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 65.52
+      value: 66.9
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 52.6
+      value: 53.8
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14296,7 +14308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 0, y: 0, z: 5}
+  endPosition: {x: -4, y: 0, z: 4.5}
   desiredDuration: 3
   threshold: 1
   mySound: 
@@ -41863,7 +41875,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.38
+      value: -0.57
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.z
