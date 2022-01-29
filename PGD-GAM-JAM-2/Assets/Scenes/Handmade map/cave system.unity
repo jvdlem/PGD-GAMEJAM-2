@@ -1395,6 +1395,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   musicLoop: {fileID: 0}
+--- !u!4 &75324242 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2016919740116785048, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1533932698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &78027428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10435,6 +10440,10 @@ PrefabInstance:
     - target: {fileID: 2703519131729326955, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2703519131768066017, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2703519131768066017, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_IsActive
@@ -25635,6 +25644,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4534814921810314738, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 75324242}
+    - target: {fileID: 4534814921810314738, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: holster
       value: 
       objectReference: {fileID: 0}
@@ -28251,6 +28264,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 75324242}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: MuzzleFlash
       value: 
