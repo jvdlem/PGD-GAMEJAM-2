@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class Pistol : MonoBehaviour
 {
+    [SerializeField] ExitMenuScript exitmenuscript;
+
     [SerializeField] private float spread = 100;
     [SerializeField] private float amountOfBullets = 1;
     [SerializeField] private float damage = 1;
@@ -37,6 +39,8 @@ public class Pistol : MonoBehaviour
     public GameObject holster;
     public GameObject ammoholster;
     public Text myAmmoText;
+    public Transform Gun;
+    public Transform cam;
 
     private int incommingAttachment = 1;
     private int outGoingAttachment = -1;
@@ -48,7 +52,6 @@ public class Pistol : MonoBehaviour
     public static bool reloading;
     private string pistolShotSound = "event:/Gun/Pistol/Shot/PistolShot";
     private string currentShotSound = "";
-
 
     void Start()
     {
@@ -95,45 +98,56 @@ public class Pistol : MonoBehaviour
         MuzzleFlash.transform.position = currentShootPoint.transform.position;
         MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
     }
+
+
     void Update()
     {
+        if ((startControlSystem != null && startControlSystem.Keyboard) || (controlManager != null && controlManager.Keyboard))
+        {
+            RotateGun();
+        }
 
         if (allStats.list[0] <= 0)
         {
             allStats.list[0] = 0;
         }
 
-        if (isInMenu == false)
+        if (exitmenuscript.menuOn == false)
         {
-            if (Input.GetButtonDown("Fire1") && !reloading && playerAimScript.reloadTimer >= 1)
+
+            if (isInMenu == false)
             {
-                if (startControlSystem != null && startControlSystem.Keyboard)
+                if (Input.GetButtonDown("Fire1") && !reloading && playerAimScript.reloadTimer >= 1)
                 {
-                    shoot();
+                    if (startControlSystem != null && startControlSystem.Keyboard)
+                    {
+                        shoot();
+                    }
+                    else if (controlManager != null && controlManager.Keyboard)
+                    {
+                        shoot();
+                    }
                 }
-                else if (controlManager != null && controlManager.Keyboard)
+
+                if (Input.GetKeyDown("r") && !reloading && hasAmmo)
                 {
-                    shoot();
+                    StartCoroutine(Reload());
+                    reloading = true;
+                    fullAuto = false;
+                    stopFullAuto();
                 }
+
+                if (Input.GetButtonUp("Fire1"))
+                {
+                    fullAuto = false;
+                    stopFullAuto();
+                }
+
+
+
             }
-
-            if ( Input.GetKeyDown("r") && !reloading && hasAmmo)
-            {
-                StartCoroutine(Reload());
-                reloading = true;
-                fullAuto = false;
-                stopFullAuto();
-            }
-
-            if (Input.GetButtonUp("Fire1"))
-            {
-                fullAuto = false;
-                stopFullAuto();
-            }
-
-            
-
         }
+
         for (int i = 1; i < lists.Count; i++)
         {
 
@@ -215,7 +229,15 @@ public class Pistol : MonoBehaviour
         {
             StopCoroutine(CanFullAuto());
         }
-
+        
+    }
+    void RotateGun()
+    {
+        if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo))
+        {
+            Vector3 direction = hitInfo.point - Gun.position;
+            Gun.rotation = Quaternion.LookRotation(direction);
+        }
     }
     IEnumerator Reload()
     {

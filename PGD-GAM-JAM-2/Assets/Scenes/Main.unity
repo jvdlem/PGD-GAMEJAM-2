@@ -691,6 +691,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c638087eb691bf34eaf9dabb08b100bc, type: 3}
+--- !u!114 &420864999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2793520208305012034, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1047482475}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d28a6be545446a43a7a474369497a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &441212735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -799,6 +810,10 @@ PrefabInstance:
       propertyPath: VRGun
       value: 
       objectReference: {fileID: 492103174}
+    - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
+      propertyPath: reticle
+      value: 
+      objectReference: {fileID: 420864999}
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: VRPlayer
       value: 
@@ -1359,6 +1374,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71572c36cf1dbec469e523b12040bef7, type: 3}
+--- !u!4 &1018466732 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2016919740116785048, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1047482475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1047482475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1447,9 +1467,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 912675610}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-      propertyPath: bulletSpeed
-      value: 2000
-      objectReference: {fileID: 0}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1018466732}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: startControlSystem
       value: 
@@ -1474,23 +1494,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08b7806c005f0b44c88ef9653dd6306f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1144161868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2526728787022937095, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
-  m_PrefabInstance: {fileID: 2015890072}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1144161870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1144161868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f96a9eabc44a50489929a55b78dbad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1153243142
