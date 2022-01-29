@@ -1753,15 +1753,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 60.33
+      value: 60.3
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 31.67
+      value: 29.11
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.3
+      value: 22.26
       objectReference: {fileID: 0}
     - target: {fileID: 4000010986585094, guid: 0792e596d40cb04409ab01f749934e99, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10453,6 +10453,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2704228860644994965, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2704228860717881220, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_Layer
       value: 12
@@ -10596,6 +10600,10 @@ PrefabInstance:
     - target: {fileID: 2705222665429778761, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 262.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2705222665432978335, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2705222665483235642, guid: aa03fac67d023394ba68a9379ee20e6c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12896,7 +12904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!1001 &839707296
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13307,15 +13315,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.998453
+      value: -52.8
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.49
+      value: -1.72
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 26.44609
+      value: 21.1
       objectReference: {fileID: 0}
     - target: {fileID: 2510122628545944866, guid: 4dd9b84c7e233eb43b9ab16dbc6984db, type: 3}
       propertyPath: m_LocalRotation.w
@@ -19220,7 +19228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!1001 &1109713702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20041,7 +20049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!1 &1145167794
 GameObject:
   m_ObjectHideFlags: 0
@@ -23093,7 +23101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!1 &1244558330
 GameObject:
   m_ObjectHideFlags: 0
@@ -31977,7 +31985,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675141078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -35.46, y: -2.5, z: -13.77}
+  m_LocalPosition: {x: -49.69, y: -2.5, z: -11.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1394017793}
@@ -32566,7 +32574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: -3, y: 0, z: -2}
+  endPosition: {x: -1, y: 0, z: -5}
   desiredDuration: 3
   threshold: 1
   mySound: 
@@ -35279,7 +35287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!1001 &1807105275
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38845,7 +38853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!4 &1935517302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8415718763628626113, guid: c860ddb77e2005640bae121b27b66d45, type: 3}
@@ -39047,7 +39055,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f364bfdafbd9b24e8403354ad466f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endPosition: {x: 3, y: 0, z: -2}
+  endPosition: {x: 7, y: 0, z: -1}
   desiredDuration: 1
   threshold: 1
   mySound: 
@@ -39989,7 +39997,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c012f4e1f8ab55a4ea1dfa736f9bc75c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEnemy: {fileID: 750015123895880620, guid: 7d4619db745a49e46aeea2cb4dc6089a, type: 3}
+  myEnemy: {fileID: 4166181465079250454, guid: a5f438737a78e174e8a350bda3d76bb7, type: 3}
 --- !u!1 &1987397515
 GameObject:
   m_ObjectHideFlags: 0
