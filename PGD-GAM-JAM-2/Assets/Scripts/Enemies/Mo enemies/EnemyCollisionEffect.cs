@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCollisionEffect : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField]
     GolemScript golem;
     private void Start()
     {

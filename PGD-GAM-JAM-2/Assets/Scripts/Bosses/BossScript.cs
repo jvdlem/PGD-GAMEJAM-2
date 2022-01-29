@@ -70,9 +70,6 @@ public class BossScript : EnemyBaseScript
     private float bossIsWaitingTimer;
     public bool CycleToNextEye = false;
 
-    //End Elevator
-    public GameObject EndText;
-
     //FMOD Values
     private FMODUnity.StudioEventEmitter AudioEmitter;
     public FMODUnity.EventReference[] SoundEffects;
@@ -320,10 +317,8 @@ public class BossScript : EnemyBaseScript
 
                 CurrentBossState = BossStates.IdleState;
 
-                if (EndText != null)
-                {
-                    EndText.SetActive(true);
-                }
+                gameObject.SetActive(false);
+                transform.parent.gameObject.SetActive(false);
                 break;
 
             //boss is inactive state

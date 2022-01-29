@@ -8,7 +8,7 @@ public class SpiderOnCollisionEffect : MonoBehaviour
     CaveSpiderController spider;
     private void Start()
     {
-        spider = GetComponent<CaveSpiderController>();
+        spider = transform.parent.GetComponent<CaveSpiderController>();
 
     }
     private void OnCollisionEnter(Collision collision)
