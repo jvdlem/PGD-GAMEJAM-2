@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 5892697826461589623}
+  exitmenuscript: {fileID: 0}
 --- !u!114 &6412220440384694549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1462,6 +1463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c2b3f88f9896114685982da6948f581, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  exitmenuscript: {fileID: 0}
   crosshair: {fileID: 3444045654107199975}
   anim: {fileID: 374079619459936399}
   aiming: 0
@@ -1932,10 +1934,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1170738091200377317}
     m_Modifications:
+    - target: {fileID: 3526573307363526957, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534814921810314738, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2016919740116785048}
     - target: {fileID: 4534814921810314738, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: anim
       value: 
       objectReference: {fileID: 374079619459936399}
+    - target: {fileID: 4534814921810314738, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: MuzzleFlash
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5495624573907032693, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1990,7 +2004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8829679984161963316, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_Materials.Array.data[0]
