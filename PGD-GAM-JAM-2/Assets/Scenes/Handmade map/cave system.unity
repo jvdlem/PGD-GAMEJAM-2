@@ -631,6 +631,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemy: {fileID: 4998840696291270717, guid: 26a75325336bde84597997f9ea26ec6b, type: 3}
+--- !u!4 &62757234 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2016919740116785048, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1533932698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &68443142
 GameObject:
   m_ObjectHideFlags: 0
@@ -2001,9 +2006,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25098,9 +25101,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 62757234}
+    - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: MuzzleFlash
       value: 
-      objectReference: {fileID: 164072530}
+      objectReference: {fileID: 1834059916}
     - target: {fileID: 7873610523602817188, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: controlManager
       value: 
@@ -31998,6 +32005,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myEnemy: {fileID: 1112504162266939272, guid: 3a3ee9b1edd3265498880d293092333a, type: 3}
+--- !u!1 &1834059916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2964241579791034467, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+  m_PrefabInstance: {fileID: 1533932698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1834947522
 PrefabInstance:
   m_ObjectHideFlags: 0
