@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class ShopScript : MonoBehaviour
 {
@@ -64,6 +65,7 @@ public class ShopScript : MonoBehaviour
             shopItems[i].transform.position = boughtItemPos;
             shopItems[i].GetComponent<ShopStatDisplay>().isBought = true;
             PlayerScript.coins -= shopItems[i].GetComponent<ShopStatDisplay>().itemPrice;
+            Analytics.CustomEvent("TypeofItemBought" + shopItems[i].tag);
         }
         //Not enough money
         else if (PlayerScript.coins < price && shopItems[i].GetComponent<ShopStatDisplay>().isBought == false) FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/InsufficientMoney");

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class deathScreenScript : MonoBehaviour
@@ -9,6 +10,7 @@ public class deathScreenScript : MonoBehaviour
     public GameObject gun;
     public PlayerHealthScript healthScript;
     private bool isActive = false;
+    public int amountOfDeaths;
     private void Start()
     {
         gameObject.SetActive(false);
@@ -28,6 +30,7 @@ public class deathScreenScript : MonoBehaviour
 
     public void Exit()
     {
+        Analytics.CustomEvent("Amount of Deaths" + amountOfDeaths);
         Application.Quit();
     }
 
@@ -39,5 +42,6 @@ public class deathScreenScript : MonoBehaviour
         gun.GetComponent<Pistol>().isInMenu = isActive;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        amountOfDeaths++;
     }
 }
