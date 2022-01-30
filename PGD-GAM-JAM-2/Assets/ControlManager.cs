@@ -11,21 +11,21 @@ public class ControlManager : MonoBehaviour
     [SerializeField]
     public Pistol VRGun;
 
+    [SerializeField] private crosshairScript Croshare;
+    public GameObject crosshair;
+    int controlSystem;
     public bool VR, Keyboard;
     public static bool doneChoosing;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        int controlSystem = PlayerPrefs.GetInt("ControlSystem");
-        if (controlSystem == 0)
-        {
-            VRControls();
-        }
-        else if (controlSystem == 1)
-        {
-            KeyboardControls();
-        }
+        controlSystem = PlayerPrefs.GetInt("ControlSystem");
+        crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+        Croshare = crosshair.GetComponent<crosshairScript>();
+
+        if (controlSystem == 0) VRControls();
+        else if (controlSystem == 1) KeyboardControls();
     }
 
     public void VRControls()
@@ -46,6 +46,7 @@ public class ControlManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
+        Croshare.ToggleFPSCrosshair();
         doneChoosing = true;
     }
 }

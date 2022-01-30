@@ -186,9 +186,7 @@ VFXRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1438,7 +1436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2964241579791034466, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -1951,6 +1949,8 @@ MonoBehaviour:
   FPSPlayer: {fileID: 1319206902}
   VRPlayer: {fileID: 1429672799}
   VRGun: {fileID: 126453975}
+  Croshare: {fileID: 0}
+  crosshair: {fileID: 0}
   VR: 0
   Keyboard: 1
 --- !u!4 &1863190733

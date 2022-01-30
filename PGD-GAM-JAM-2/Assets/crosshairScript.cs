@@ -7,9 +7,10 @@ public class crosshairScript : MonoBehaviour
 {
     private RectTransform reticle;
     [SerializeField] private Pistol pistolle;
+    public GameObject Pistol;
     public GameObject subCrosshair;
     public bool isActive = false;
-
+    private bool doneLooking;
     public float rectSize;
 
     private void Start()
@@ -20,6 +21,14 @@ public class crosshairScript : MonoBehaviour
 
     private void Update()
     {
+        if (ControlManager.doneChoosing && !doneLooking)
+        {
+            Pistol = GameObject.FindGameObjectWithTag("Gun");
+            pistolle = Pistol.GetComponent<Pistol>();
+            doneLooking = true;
+        }
+
+
         if (playerAimScript.isAiming)
         {
             subCrosshair.SetActive(isActive);

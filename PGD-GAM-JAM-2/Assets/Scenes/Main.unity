@@ -463,17 +463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f14d7fa63d2d92409343e5345d053eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &420864999 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2793520208305012034, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
-  m_PrefabInstance: {fileID: 1047482475}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d28a6be545446a43a7a474369497a7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &479632302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,7 +517,7 @@ PrefabInstance:
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: reticle
       value: 
-      objectReference: {fileID: 420864999}
+      objectReference: {fileID: 2057206175}
     - target: {fileID: 3627281383016243264, guid: ccd91fca98c2a5849b90cd6b1b792729, type: 3}
       propertyPath: VRPlayer
       value: 
@@ -1084,6 +1073,10 @@ PrefabInstance:
       propertyPath: deathscreenscript
       value: 
       objectReference: {fileID: 1503657626}
+    - target: {fileID: 5412231599974646120, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5892697826461589623, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -2173,6 +2166,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 540474749783598272, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: Pistol
+      value: 
+      objectReference: {fileID: 1075579547}
+    - target: {fileID: 540474749783598272, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: pistolle
+      value: 
+      objectReference: {fileID: 1075579548}
     - target: {fileID: 2526728787022937095, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
       propertyPath: m_Name
       value: FPS HUD
@@ -2180,6 +2181,10 @@ PrefabInstance:
     - target: {fileID: 2526728787022937095, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
       propertyPath: m_TagString
       value: NoDestroy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3970648455130710021, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: m_TagString
+      value: Crosshair
       objectReference: {fileID: 0}
     - target: {fileID: 5240313328396088506, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
       propertyPath: m_RootOrder
@@ -2231,6 +2236,17 @@ PrefabInstance:
       objectReference: {fileID: 1075579548}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+--- !u!114 &2057206175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 540474749783598272, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+  m_PrefabInstance: {fileID: 2015890072}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d28a6be545446a43a7a474369497a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2108697263 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2964241579791034467, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
