@@ -29,6 +29,9 @@ public class Pistol : MonoBehaviour
     [SerializeField] StartChoiceControlSystem startControlSystem;
     [SerializeField] ControlManager controlManager;
     [SerializeField] private GameObject MuzzleFlash;
+    [SerializeField] private crosshairScript Croshare;
+    public GameObject crosshair;
+    private bool doneLooking;
 
     public List<Attachment> lists = new List<Attachment>();
     public Attachment allStats = new Attachment();
@@ -105,6 +108,13 @@ public class Pistol : MonoBehaviour
         if ((startControlSystem != null && startControlSystem.Keyboard) || (controlManager != null && controlManager.Keyboard))
         {
             RotateGun();
+        }
+
+        if (ControlManager.doneChoosing && !doneLooking)
+        {
+            crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+            Croshare = crosshair.GetComponent<crosshairScript>();
+            doneLooking = true;
         }
 
         if (allStats.list[0] <= 0)
