@@ -15,7 +15,6 @@ public class crosshairScript : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(false);
         reticle = GetComponent<RectTransform>();
     }
 
