@@ -46,8 +46,8 @@ public class StartChoiceControlSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
-        reticle.ToggleFPSCrosshair();
         if (FPSUI != null) FPSUI.ToggleFPSUI();
+        reticle.ToggleFPSCrosshair();
         PlayerPrefs.SetInt("ControlSystem", 1);
 
     }
