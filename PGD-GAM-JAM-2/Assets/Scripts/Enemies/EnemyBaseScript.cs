@@ -9,7 +9,6 @@ public class EnemyBaseScript : MonoBehaviour
     public int Tier;
     protected Rigidbody Rigidbody;
     public GameObject Player;
-    private GameObject[] Players;
     public GameObject Coin;
     protected float animationTime = 1;
     private bool canDie = true;
@@ -31,16 +30,7 @@ public class EnemyBaseScript : MonoBehaviour
 
     public virtual void Start()
     {
-        Players = GameObject.FindGameObjectsWithTag("Player");
-
-        foreach (GameObject PlayerObject in Players)
-        {
-            print(PlayerObject);
-            if (PlayerObject.activeSelf == true)
-            {
-                Player = PlayerObject;
-            }
-        }
+        Player = GameObject.FindGameObjectWithTag("Player");
 
         //Gets Rigidbody of gameobject, if null, create and add new.
         Rigidbody = GetComponent<Rigidbody>();

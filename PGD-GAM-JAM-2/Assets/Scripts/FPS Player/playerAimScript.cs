@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class playerAimScript : MonoBehaviour
 {
+    [SerializeField] ExitMenuScript exitmenuscript;
     public GameObject crosshair;
     public Animator anim;
     public bool aiming, allowPickUp;
@@ -21,22 +22,25 @@ public class playerAimScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire2") && !aiming)
+        if (exitmenuscript.menuOn == false)
         {
-            anim.SetBool("aiming", true);
-            aiming = true;
-            isAiming = true;
-            elapsedTime = 0;
-            MoveCamera();
-        }
-        else if (Input.GetButtonDown("Fire2") && aiming)
-        {
-            anim.SetBool("aiming", false);
-            aiming = false;
-            isAiming = false;
-            pickUpTimer = 0.5f;
-            elapsedTime = 0;
-            MoveCameraBack();
+            if (Input.GetButtonDown("Fire2") && !aiming)
+            {
+                anim.SetBool("aiming", true);
+                aiming = true;
+                isAiming = true;
+                elapsedTime = 0;
+                MoveCamera();
+            }
+            else if (Input.GetButtonDown("Fire2") && aiming)
+            {
+                anim.SetBool("aiming", false);
+                aiming = false;
+                isAiming = false;
+                pickUpTimer = 0.5f;
+                elapsedTime = 0;
+                MoveCameraBack();
+            }
         }
 
         if (Pistol.reloading)
