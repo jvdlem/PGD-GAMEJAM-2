@@ -22,6 +22,8 @@ public class ButtonPhysics : MonoBehaviour
     {
         startPos = transform.localPosition;
         myJoint = GetComponent<ConfigurableJoint>();
+
+        rend = transform.GetChild(0).GetComponent<Renderer>();
     }
 
     // Update is called once per frame
