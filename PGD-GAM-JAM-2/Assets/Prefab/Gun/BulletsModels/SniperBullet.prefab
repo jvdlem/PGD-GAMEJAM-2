@@ -65,8 +65,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 1672247644449899743}
   timer: 6
-  Speed: 900
-  dmg: 3
+  Speed: 13800
+  dmg: 4
   mytimer: 4
   mySpeed: 100
   mydmg: 2
@@ -79,7 +79,7 @@ BoxCollider:
   m_GameObject: {fileID: 4036158279038460054}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
@@ -92,7 +92,7 @@ MeshCollider:
   m_GameObject: {fileID: 4949418813159945638}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
