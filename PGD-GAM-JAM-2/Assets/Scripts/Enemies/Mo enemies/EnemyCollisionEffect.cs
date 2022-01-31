@@ -17,7 +17,7 @@ public class EnemyCollisionEffect : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //add what happens if projectile hits the player here
-            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(golem.Damage);
+            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(1);
         }
     }
 
@@ -26,7 +26,7 @@ public class EnemyCollisionEffect : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             //add what happens if projectile hits the player here
-            other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(golem.Damage);
+            other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(1);
         }
     }
 }
