@@ -152,9 +152,6 @@ public class Pistol : MonoBehaviour
                     fullAuto = false;
                     stopFullAuto();
                 }
-
-
-
             }
         }
 
@@ -243,7 +240,7 @@ public class Pistol : MonoBehaviour
     }
     void RotateGun()
     {
-        if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo))
+        if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo) && !playerAimScript.isAiming)
         {
             Vector3 direction = hitInfo.point - Gun.position;
             Gun.rotation = Quaternion.LookRotation(direction);
