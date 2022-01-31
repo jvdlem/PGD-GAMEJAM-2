@@ -23,6 +23,7 @@ public class PlayerHealthScript : MonoBehaviour
     [Header("Resources")]
     public int coins = 0;
 
+    public static bool indicatorOnOrOff;
     private FMOD.Studio.Bus MasterBus;
 
     void Start()
@@ -34,9 +35,9 @@ public class PlayerHealthScript : MonoBehaviour
         MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
-
     void Update()
     {
+
         //always check if the players health is either exciding the limit or the player is at 0 health
         MaxHealth();
         if (currentHealth <= 0)
@@ -79,16 +80,22 @@ public class PlayerHealthScript : MonoBehaviour
         //make sure player goes invincible for a set duration
         StartCoroutine(BecomeInvincible());
     }
-    
-    public void ShowDamageIndicator() { damageIndicator.SetActive(true); }
-    public void HideDamageIndicator() { damageIndicator.SetActive(false); }
+
+    public void ShowDamageIndicator()
+    {
+        if (damageIndicator != null) damageIndicator.SetActive(true);
+        indicatorOnOrOff = true;
+    }
+    public void HideDamageIndicator()
+    {
+        if (damageIndicator != null) damageIndicator.SetActive(false);
+        indicatorOnOrOff = false;
+    }
     public void FadeOut()
     {
         //used when death happens or player begins teleport...
         HudDeath.SetActive(true);
         StartCoroutine(FadeOutEmum());
-        
-        
     }
     public void FadeIn()
     {
