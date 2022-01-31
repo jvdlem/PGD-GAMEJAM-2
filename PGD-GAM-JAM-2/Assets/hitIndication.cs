@@ -17,7 +17,8 @@ public class hitIndication : MonoBehaviour
         if (PlayerHealthScript.indicatorOnOrOff)
         {
             subIndication.SetActive(true);
-        } else if (!PlayerHealthScript.indicatorOnOrOff)
+        }
+        else if (!PlayerHealthScript.indicatorOnOrOff)
         {
             subIndication.SetActive(false);
         }
