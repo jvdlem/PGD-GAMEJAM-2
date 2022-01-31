@@ -23,20 +23,27 @@ public class PlayerHealthScript : MonoBehaviour
     [Header("Resources")]
     public int coins = 0;
 
+    private bool doneLooking;
     private FMOD.Studio.Bus MasterBus;
 
     void Start()
     {
         //make sure damageindicator is hidden
         //set current health to maxhealth
+        damageIndicator = GameObject.FindGameObjectWithTag("HitIndicator");
         HideDamageIndicator();
         currentHealth = maxHealth;
         MasterBus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
-
     void Update()
-    {
+    { 
+        if (ControlManager.doneChoosing && !doneLooking)
+        {
+            damageIndicator = GameObject.FindGameObjectWithTag("HitIndicator");
+            doneLooking = true;
+        }
+
         //always check if the players health is either exciding the limit or the player is at 0 health
         MaxHealth();
         if (currentHealth <= 0)

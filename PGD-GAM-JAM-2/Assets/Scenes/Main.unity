@@ -1082,6 +1082,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3754700817438122498, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
+      propertyPath: damageIndicator
+      value: 
+      objectReference: {fileID: 2015890073}
+    - target: {fileID: 3754700817438122498, guid: fb213e5baf8518d4aa8b6cd5647bae6b, type: 3}
       propertyPath: deathscreenscript
       value: 
       objectReference: {fileID: 1503657626}
@@ -2194,6 +2198,22 @@ PrefabInstance:
       propertyPath: m_TagString
       value: NoDestroy
       objectReference: {fileID: 0}
+    - target: {fileID: 3764240141925280748, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764240141925280748, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: m_TagString
+      value: HitIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764240142612913772, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3764240143298032821, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+      propertyPath: m_TagString
+      value: HitIndicator
+      objectReference: {fileID: 0}
     - target: {fileID: 3970648455130710021, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
       propertyPath: m_TagString
       value: Crosshair
@@ -2248,6 +2268,11 @@ PrefabInstance:
       objectReference: {fileID: 1075579548}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+--- !u!1 &2015890073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3764240143298032821, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
+  m_PrefabInstance: {fileID: 2015890072}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2057206175 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 540474749783598272, guid: 3a59ba4d31fc0b948a258ae3fe43a7f1, type: 3}
