@@ -42,6 +42,7 @@ public class deathScreenScript : MonoBehaviour
         gun.GetComponent<Pistol>().isInMenu = isActive;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        amountOfDeaths++;
+        amountOfDeaths += 1;
+        Debug.Log(amountOfDeaths);
     }
 }

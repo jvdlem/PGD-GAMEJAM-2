@@ -65,7 +65,8 @@ public class ShopScript : MonoBehaviour
             shopItems[i].transform.position = boughtItemPos;
             shopItems[i].GetComponent<ShopStatDisplay>().isBought = true;
             PlayerScript.coins -= shopItems[i].GetComponent<ShopStatDisplay>().itemPrice;
-            Analytics.CustomEvent("TypeofItemBought" + shopItems[i].tag);
+            AnalyticsResult analyticsResult = Analytics.CustomEvent("TypeofItemBought" + shopItems[i].tag);
+            Debug.Log(analyticsResult);
         }
         //Not enough money
         else if (PlayerScript.coins < price && shopItems[i].GetComponent<ShopStatDisplay>().isBought == false) FMODUnity.RuntimeManager.PlayOneShot("event:/MISC/Shop/InsufficientMoney");
