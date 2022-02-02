@@ -230,6 +230,18 @@ PrefabInstance:
       propertyPath: m_Intensity
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 3818750091101047863, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000004053116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818750091101047863, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6502304
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818750091101047863, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.000010523945
+      objectReference: {fileID: 0}
     - target: {fileID: 3892287618377865433, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
@@ -356,19 +368,31 @@ PrefabInstance:
       objectReference: {fileID: 1855401305}
     - target: {fileID: 4987564218168052961, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: -0.0000077188015
+      value: -0.0000067949295
       objectReference: {fileID: 0}
     - target: {fileID: 4987564218168052961, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 1.650259
+      value: 1.6502589
       objectReference: {fileID: 0}
     - target: {fileID: 4987564218168052961, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_ConnectedAnchor.z
-      value: 0.0000042170286
+      value: 0.0000040698797
       objectReference: {fileID: 0}
     - target: {fileID: 5209100728994670532, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773184734967953724, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.00000071525574
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773184734967953724, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 1.6502459
+      objectReference: {fileID: 0}
+    - target: {fileID: 5773184734967953724, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0000012516975
       objectReference: {fileID: 0}
     - target: {fileID: 5896094794110467780, guid: b8e2c8ee38a5d124e8c7cc9924e9e506, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1705,7 +1729,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-31346
+  m_Name: pb_Mesh-981096
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

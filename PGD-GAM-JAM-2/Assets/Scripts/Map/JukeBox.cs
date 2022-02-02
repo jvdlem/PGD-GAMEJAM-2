@@ -29,10 +29,8 @@ public class JukeBox : MonoBehaviour
                 PlayNextSong();
             }
         }
-        else
-        {
-            AudioEmitter.Stop();
-        }
+        else AudioEmitter.Stop();
+        
     }
 
     public void PlayNextSong()
