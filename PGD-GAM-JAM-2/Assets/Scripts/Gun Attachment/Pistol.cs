@@ -252,6 +252,9 @@ public class Pistol : MonoBehaviour
         {
             Vector3 direction = hitInfo.point - Gun.position;
             Gun.rotation = Quaternion.LookRotation(direction);
+        } else
+        {
+            Gun.rotation = this.transform.rotation;
         }
     }
     IEnumerator Reload()

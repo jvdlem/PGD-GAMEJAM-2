@@ -28,7 +28,7 @@ public class crosshairScript : MonoBehaviour
         }
 
 
-        if (playerAimScript.isAiming)
+        if (playerAimScript.isAiming || InventoryPlayer.inventoryOn)
         {
             subCrosshair.SetActive(isActive);
         }
