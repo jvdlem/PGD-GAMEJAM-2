@@ -12,7 +12,7 @@ public class playerAimScript : MonoBehaviour
     public static float reloadTimer = 1;
     public float pickUpTimer = 0.5f;
     public Camera aCamera;
-    private int zoom = 10;
+    public int zoom = 25;
     private int noZoom = 60;
     private bool zooming = false;
     [SerializeField] protected float desiredDuration = 0.5f;

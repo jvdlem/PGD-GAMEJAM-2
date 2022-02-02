@@ -43,7 +43,7 @@ public class FPSPlayerMovement : MonoBehaviour
         if (exitmenuscript != null)
         {
             if (Input.GetKeyDown(KeyCode.Escape) && exitmenuscript.menuOn) exitmenuscript.ToggleExitMenuScreenOff();
-            else if (Input.GetKeyDown(KeyCode.Escape) && !exitmenuscript.menuOn) exitmenuscript.ToggleExitMenuScreenOn();
+            else if (Input.GetKeyDown(KeyCode.Escape) && !exitmenuscript.menuOn && !InventoryPlayer.inventoryOn) exitmenuscript.ToggleExitMenuScreenOn();
         }
 
         //contains movement of the non-vr player

@@ -186,6 +186,10 @@ public class Pistol : MonoBehaviour
                     hasAmmo = true;
 
                 }
+                if (i == 3 && aCurrentAddon.transform.GetChild(1).GetComponent<ScopeCamera>() != null)
+                {
+                    aCurrentAddon.transform.GetChild(1).gameObject.SetActive(true);
+                }
                 CheckSet(1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Attach", this.gameObject.transform.position);
                 this.transform.GetChild(i).GetComponent<SocketCheck>().attached = 2;
@@ -214,6 +218,10 @@ public class Pistol : MonoBehaviour
                     currentAmmo.GetComponent<Projectille>().Reset();
                     currentAmmo = bullet;
 
+                }
+                if (i == 3 && aCurrentAddon.transform.GetChild(1).GetComponent<ScopeCamera>() != null)
+                {
+                    aCurrentAddon.transform.GetChild(1).gameObject.SetActive(false);
                 }
                 CheckSet(-1, this.transform.GetChild(i).GetComponent<SocketCheck>());
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/Dettach", this.gameObject.transform.position);
@@ -244,6 +252,9 @@ public class Pistol : MonoBehaviour
         {
             Vector3 direction = hitInfo.point - Gun.position;
             Gun.rotation = Quaternion.LookRotation(direction);
+        } else
+        {
+            Gun.rotation = this.transform.rotation;
         }
     }
     IEnumerator Reload()

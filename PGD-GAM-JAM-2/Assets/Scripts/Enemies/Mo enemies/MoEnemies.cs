@@ -9,6 +9,7 @@ public class Moenemies : GroundEnemyScript
     private Collider collider;
     [SerializeField] public ParticleSystem particles;
     //Rigidbody rb;
+    bool ded;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
@@ -78,7 +79,7 @@ public class Moenemies : GroundEnemyScript
             //    Hurting();
             //    break;
             case States.Death:
-
+                ded = true;
                 Dying();
                 break;
         }
@@ -252,7 +253,7 @@ public class Moenemies : GroundEnemyScript
     virtual public void OnCollisionEnter(Collision collision)
     {
         //Enemy hurts player on collision
-        if (collision.gameObject.tag == "Player" && currentState != States.Death)
+        if (collision.gameObject.tag == "Player" && currentState != States.Death && !ded)
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(1);
