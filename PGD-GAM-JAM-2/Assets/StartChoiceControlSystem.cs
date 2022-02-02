@@ -7,6 +7,8 @@ public class StartChoiceControlSystem : MonoBehaviour
     [SerializeField]
     public FPSUI FPSUI;
     [SerializeField]
+    public ControlScreenKeyboard controlscreenkeyboard;
+    [SerializeField]
     public FPSPlayerMovement FPSPlayer;
     [SerializeField]
     public ChracterMovmentHelper VRPlayer;
@@ -46,6 +48,7 @@ public class StartChoiceControlSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
+        controlscreenkeyboard.TurnOn();
         if (FPSUI != null) FPSUI.ToggleFPSUI();
         reticle.ToggleFPSCrosshair();
         PlayerPrefs.SetInt("ControlSystem", 1);

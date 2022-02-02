@@ -18,6 +18,7 @@ public class InventoryPlayer : MonoBehaviour
     [SerializeField] private Sprite defaultSprite;
     public bool isActive = false;
     private bool swaped = false;
+    public static bool inventoryOn;
 
     [SerializeField] public Text coinText;
 
@@ -35,9 +36,9 @@ public class InventoryPlayer : MonoBehaviour
         coinText.text = "" + FindObjectOfType<PlayerHealthScript>().coins;
 
         StopCoroutine(timer());
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("q") || (isActive && Input.GetKeyDown(KeyCode.Escape)))
         {
-
+            inventoryOn = !inventoryOn;
             isActive = !isActive;
             Cursor.visible = isActive;
             gun.GetComponent<Pistol>().isInMenu = isActive;
