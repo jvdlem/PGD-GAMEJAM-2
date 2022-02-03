@@ -113,7 +113,7 @@ public class Pistol : MonoBehaviour
         if (ControlManager.doneChoosing && !doneLooking)
         {
             crosshair = GameObject.FindGameObjectWithTag("Crosshair");
-            Croshare = crosshair.GetComponent<crosshairScript>();
+            if (crosshair != null) Croshare = crosshair.GetComponent<crosshairScript>();
             doneLooking = true;
         }
 
