@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1549951597405433114}
   - component: {fileID: 1153543116964017111}
   - component: {fileID: 7420194188128058420}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4816,7 +4816,7 @@ GameObject:
   - component: {fileID: 3363592179416034241}
   - component: {fileID: 3175338978026733510}
   - component: {fileID: 3549701046367020831}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: PistolBullet
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -4852,9 +4852,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 3175338978026733510}
-  timer: 0
-  Speed: 100
-  dmg: 0
+  timer: 1
+  Speed: 2100
+  dmg: 2
   mytimer: 0
   mySpeed: 100
   mydmg: 1
