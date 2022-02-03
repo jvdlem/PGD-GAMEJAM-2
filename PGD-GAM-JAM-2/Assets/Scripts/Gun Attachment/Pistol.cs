@@ -244,7 +244,7 @@ public class Pistol : MonoBehaviour
         {
             StopCoroutine(CanFullAuto());
         }
-        
+
     }
     void RotateGun()
     {
@@ -272,10 +272,10 @@ public class Pistol : MonoBehaviour
     }
     IEnumerator CanFullAuto()
     {
-        if (myMagazine != null && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
+        if (myMagazine != null && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1 || myMagazine == null)
         {
             FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
-            Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+            Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]), Random.Range(-allStats.list[0], allStats.list[0]), 1));
             MuzzleFlash.GetComponent<VisualEffect>().Play();
             MuzzleFlash.transform.position = currentShootPoint.transform.position;
             MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
@@ -297,20 +297,30 @@ public class Pistol : MonoBehaviour
         if (hasAmmo == false)
         {
             currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
-            FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
-            Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) , Random.Range(-allStats.list[0], allStats.list[0]) , 1));
-            MuzzleFlash.GetComponent<VisualEffect>().Play();
+            for (int i = 0; i < allStats.list[1]; i++)
+            {
+                float randomX = Random.Range(-allStats.list[0], allStats.list[0]);
+                float randomY = Random.Range(-allStats.list[0], allStats.list[0]);
+                FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
+                Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(randomX, randomY, randomX));
+                MuzzleFlash.GetComponent<VisualEffect>().Play();
+            }
             MuzzleFlash.transform.position = currentShootPoint.transform.position;
             MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
 
         }
         if (myMagazine != null && hasAmmo && myMagazine.GetComponent<AmmoType>().AmmoAmount >= 1)
         {
+            currentAmmo.GetComponent<Projectille>().Stats(allStats.list[4], allStats.list[3], allStats.list[2]);
             for (int i = 0; i < allStats.list[1]; i++)
             {
+
+                float randomX = Random.Range(-allStats.list[0], allStats.list[0]);
+                float randomY = Random.Range(-allStats.list[0], allStats.list[0]);
                 FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
-                Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), Random.Range(-allStats.list[0], allStats.list[0]) * (Mathf.PI / 180), 1));
+                Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(randomX, randomY, randomX));
                 MuzzleFlash.GetComponent<VisualEffect>().Play();
+                
             }
             myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
