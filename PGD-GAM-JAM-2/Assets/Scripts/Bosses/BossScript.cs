@@ -25,7 +25,7 @@ public class BossScript : EnemyBaseScript
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
 
     //Boss Health Values
-    private int bossMaxHealth = 3000;
+    private int bossMaxHealth = 5000;
     public int BossCurrentHealth;
     public Slider HealthSlider;
 
@@ -66,7 +66,7 @@ public class BossScript : EnemyBaseScript
     private bool PlayBossDieSoundOnce;
 
     //Boss is waiting for next attack cycle values
-    private float bossIsWaitingTime = 2;
+    private float bossIsWaitingTime = 1;
     private float bossIsWaitingTimer;
     public bool CycleToNextEye = false;
 
