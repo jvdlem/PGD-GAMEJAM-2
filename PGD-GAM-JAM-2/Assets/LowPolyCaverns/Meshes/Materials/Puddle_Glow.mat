@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 4
+  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 6
@@ -141,6 +141,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
@@ -185,7 +186,7 @@ Material:
     m_Colors:
     - WaveSpeed: {r: 19, g: 9, b: -16, a: -7}
     - _BaseColor: {r: 0.05493076, g: 0.2791994, b: 0.9338235, a: 0.291}
-    - _Color: {r: 0.05493079, g: 0.27919942, b: 0.9338235, a: 0.291}
+    - _Color: {r: 0.05493074, g: 0.27919936, b: 0.9338235, a: 0.291}
     - _EmissionColor: {r: 0.112500004, g: 0.16810346, b: 0.3, a: 1}
     - _HorizonColor: {r: 0.172, g: 0.463, b: 0.435, a: 1}
     - _RefrColor: {r: 0.34, g: 0.85, b: 0.92, a: 1}
