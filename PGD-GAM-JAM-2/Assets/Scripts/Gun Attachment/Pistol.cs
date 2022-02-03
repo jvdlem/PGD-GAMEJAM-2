@@ -248,13 +248,17 @@ public class Pistol : MonoBehaviour
     }
     void RotateGun()
     {
-        if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo) && !playerAimScript.isAiming)
+        if ((startControlSystem != null && !startControlSystem.VR) || (controlManager != null && !controlManager.VR))
         {
-            Vector3 direction = hitInfo.point - Gun.position;
-            Gun.rotation = Quaternion.LookRotation(direction);
-        } else
-        {
-            Gun.rotation = this.transform.rotation;
+            if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hitInfo) && !playerAimScript.isAiming)
+            {
+                Vector3 direction = hitInfo.point - Gun.position;
+                Gun.rotation = Quaternion.LookRotation(direction);
+            }
+            else
+            {
+                Gun.rotation = this.transform.rotation;
+            }
         }
     }
     IEnumerator Reload()
@@ -323,7 +327,7 @@ public class Pistol : MonoBehaviour
                 FMODUnity.RuntimeManager.PlayOneShot(currentShotSound, this.gameObject.transform.position);
                 Instantiate(currentAmmo, currentShootPoint.transform.position + (transform.forward * 0.5f), currentShootPoint.transform.rotation * Quaternion.Euler(randomX, randomY, randomX));
                 MuzzleFlash.GetComponent<VisualEffect>().Play();
-                
+
             }
             myMagazine.GetComponent<AmmoType>().removeAmmoAmount(1);
             myAmmoText.text = myMagazine.GetComponent<AmmoType>().GetAmmoAmount().ToString();
