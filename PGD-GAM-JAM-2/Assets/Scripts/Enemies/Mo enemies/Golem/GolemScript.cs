@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GolemScript : Moenemies
 {
+    public bool canDamage => currentState != States.Death;
+
     // Start is called before the first frame update
     public override void Start()
     {

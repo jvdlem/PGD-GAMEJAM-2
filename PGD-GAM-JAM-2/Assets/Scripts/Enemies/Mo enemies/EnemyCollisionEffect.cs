@@ -5,28 +5,27 @@ using UnityEngine;
 public class EnemyCollisionEffect : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    GolemScript golem;
-    private void Start()
-    {
-        golem = GetComponent<GolemScript>();
-
-    }
+    [SerializeField] public GolemScript golem;
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && golem.canBeHurt)
         {
             //add what happens if projectile hits the player here
-            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(1);
+            collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(golem.Damage);
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log(golem.canBeHurt);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && golem.canBeHurt)
         {
             //add what happens if projectile hits the player here
-            other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(1);
+            other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(golem.Damage);
         }
     }
 }

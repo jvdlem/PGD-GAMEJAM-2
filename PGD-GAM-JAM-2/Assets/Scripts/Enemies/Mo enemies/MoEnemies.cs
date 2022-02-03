@@ -74,9 +74,6 @@ public class Moenemies : GroundEnemyScript
                 Attacking();
                 if (!playerInAttackRange && playerDetected) { currentState = States.Chasing; }
                 break;
-            //case States.Hurt:
-            //    Hurting();
-            //    break;
             case States.Death:
                 ded = true;
                 Dying();
@@ -233,22 +230,7 @@ public class Moenemies : GroundEnemyScript
             triggerDeathAnimation = false;
         }
     }
-    //virtual public void Hurting()
-    //{
-    //    if (triggerHurtAnimation)
-    //    {
-    //        triggerHurtAnimation = false;
-    //        StartCoroutine(Hurt());
-    //    }
-    //}
-    //virtual public IEnumerator Hurt()
-    //{
-    //    navMeshAgent.SetDestination(this.transform.position);
-    //    PlaySound(hurtSound, soundPosition);
-    //    AnimationTrigger("TakeDamage");
-    //    yield return new WaitForSeconds(.7f);
-    //    currentState = States.Chasing;
-    //}
+
     virtual public void OnCollisionEnter(Collision collision)
     {
         //Enemy hurts player on collision

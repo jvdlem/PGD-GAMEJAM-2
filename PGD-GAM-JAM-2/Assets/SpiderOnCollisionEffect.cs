@@ -9,11 +9,10 @@ public class SpiderOnCollisionEffect : MonoBehaviour
     private void Start()
     {
         spider = transform.parent.GetComponent<CaveSpiderController>();
-
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && spider.canDamage)
         {
             //add what happens if projectile hits the player here
             collision.gameObject.GetComponent<PlayerHealthScript>().takeDamage(spider.Damage);
@@ -22,7 +21,7 @@ public class SpiderOnCollisionEffect : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && spider.canDamage)
         {
             //add what happens if projectile hits the player here
             other.gameObject.GetComponent<PlayerHealthScript>().takeDamage(spider.Damage);

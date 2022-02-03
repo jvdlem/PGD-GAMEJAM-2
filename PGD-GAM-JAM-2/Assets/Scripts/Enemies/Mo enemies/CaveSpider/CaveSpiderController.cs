@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class CaveSpiderController : Moenemies
 {
     // Start is called before the first frame update
+
+    public bool canDamage => currentState != States.Death;
     override public void Start()
     {
         base.Start();
