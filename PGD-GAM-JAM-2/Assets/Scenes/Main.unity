@@ -708,6 +708,10 @@ PrefabInstance:
       value: shoot
       objectReference: {fileID: 0}
     - target: {fileID: 2360686444871573535, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2360686444871573535, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -761,7 +765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5495624573907032693, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 99.653
+      value: 99.9574
       objectReference: {fileID: 0}
     - target: {fileID: 5495624573907032693, guid: 271ea6d64ccf6274080d98d75167fb94, type: 3}
       propertyPath: m_LocalRotation.w

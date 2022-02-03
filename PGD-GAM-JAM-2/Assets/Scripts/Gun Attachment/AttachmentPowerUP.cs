@@ -25,7 +25,6 @@ public class AttachmentPowerUP : MonoBehaviour
         if (colorPower == false)
         {
             colorPower = true;
-            powerEmmision *= 3;
         }
     }
 
@@ -38,14 +37,14 @@ public class AttachmentPowerUP : MonoBehaviour
         {
             for (int i = 0; i < this.transform.GetChild(0).childCount; i++)
             {
-                this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(startEmmision, powerEmmision, myCurve.Evaluate(elapsedTime)));
+                this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(startEmmision, powerEmmision*3, myCurve.Evaluate(elapsedTime)));
             }  
         }
         if (superPowered == false && canPowerDown)
         {
             for (int i = 0; i < this.transform.GetChild(0).childCount; i++)
             {
-                this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(powerEmmision, startEmmision, myCurve.Evaluate(elapsedTime)));
+                this.transform.GetChild(0).GetChild(0).GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.Lerp(powerEmmision * 3, startEmmision, myCurve.Evaluate(elapsedTime)));
             }
         }
     }
