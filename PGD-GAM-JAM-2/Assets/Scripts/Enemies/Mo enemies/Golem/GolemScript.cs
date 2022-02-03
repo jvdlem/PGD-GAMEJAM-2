@@ -11,8 +11,6 @@ public class GolemScript : Moenemies
         attackSound = "event:/Enemy/Golem/GolemAttackSwing";
         deathSound = "event:/Enemy/Golem/GolemDeath";
         hurtSound = "event:/Enemy/Golem/GolemHurt";
-        attackTimer = 2f;
-        Damage = 2;
     }
     public override void Update()
     {

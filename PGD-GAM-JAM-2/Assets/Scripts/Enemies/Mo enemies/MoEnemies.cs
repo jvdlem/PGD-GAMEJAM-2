@@ -54,7 +54,6 @@ public class Moenemies : GroundEnemyScript
         attackDistance = navMeshAgent.stoppingDistance;
         currentState = States.Patrolling;
         maxHealth = Health;
-        Damage = 1;
     }
     // Update is called once per frame
     override public void Update()
