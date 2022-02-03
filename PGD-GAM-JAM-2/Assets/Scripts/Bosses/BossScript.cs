@@ -200,9 +200,9 @@ public class BossScript : EnemyBaseScript
                     }
                     else
                     {
-                        int MinionSpawnPositionID = Random.Range(0, MinionSpawnLocations.Length - 1);
+                        Transform MinionSpawnPosition = MinionSpawnLocations[Random.Range(0, MinionSpawnLocations.Length - 1)];
                         //Spawn Minion
-                        Instantiate(Minions, MinionSpawnLocations[MinionSpawnPositionID].position, MinionSpawnLocations[MinionSpawnPositionID].rotation, MinionSpawnLocations[MinionSpawnPositionID]);
+                        Instantiate(Minions, MinionSpawnPosition.position, MinionSpawnPosition.rotation, MinionSpawnPosition);
 
                         //Play Minion spawn sound effect
                         AudioEmitter.EventReference = SoundEffects[2];
