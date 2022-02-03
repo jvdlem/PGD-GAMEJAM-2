@@ -68,6 +68,7 @@ public class InventoryPlayer : MonoBehaviour
                     images.transform.GetChild(0).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
                 }
+                else FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Pickup/Pickupbutinventoryfull");
                 break;
             case "Magazine":
                 if (inventoryList[1] == null)
@@ -77,6 +78,7 @@ public class InventoryPlayer : MonoBehaviour
                     images.transform.GetChild(1).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
                 }
+                else FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Pickup/Pickupbutinventoryfull");
                 break;
             case "Sight":
                 if (inventoryList[2] == null)
@@ -86,6 +88,7 @@ public class InventoryPlayer : MonoBehaviour
                     images.transform.GetChild(2).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
                 }
+                else FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Pickup/Pickupbutinventoryfull");
                 break;
             case "Stock":
                 if (inventoryList[3] == null)
@@ -95,6 +98,7 @@ public class InventoryPlayer : MonoBehaviour
                     images.transform.GetChild(3).GetComponent<Image>().sprite = aAttachment.GetComponent<AttachmentUIPart>().getImage();
                     aAttachment.SetActive(false);
                 }
+                else FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Pickup/Pickupbutinventoryfull");
                 break;
             case "HealthInjector":
                 FMODUnity.RuntimeManager.PlayOneShot("event:/Player/Health/Heal");
@@ -175,7 +179,7 @@ public class InventoryPlayer : MonoBehaviour
     {
         if (inventoryList[selectedAttachemnt] != null)
         {
-
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Attachements/AttachmentDrop");
             ResetImage();
             GameObject aAttachment = Instantiate(inventoryList[selectedAttachemnt],gun.transform.position-new Vector3(0,1,0),Quaternion.identity);
             aAttachment.SetActive(true);
