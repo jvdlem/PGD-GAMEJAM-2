@@ -22,7 +22,7 @@ public class ControlManager : MonoBehaviour
     {
         controlSystem = PlayerPrefs.GetInt("ControlSystem");
         crosshair = GameObject.FindGameObjectWithTag("Crosshair");
-        Croshare = crosshair.GetComponent<crosshairScript>();
+        if (crosshair != null) Croshare = crosshair.GetComponent<crosshairScript>();
 
         if (controlSystem == 0) VRControls();
         else if (controlSystem == 1) KeyboardControls();
@@ -46,7 +46,7 @@ public class ControlManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         VRGun.ToggleVRPistol();
         VRPlayer.ToggleVRPlayer();
-        Croshare.ToggleFPSCrosshair();
+        if(Croshare != null) Croshare.ToggleFPSCrosshair();
         doneChoosing = true;
     }
 }
