@@ -16,8 +16,6 @@ public class SkeletonArcherController : Moenemies
         attackSound = "event:/Enemy/Skeleton/Skeleton Attacks";
         deathSound = "event:/Enemy/Skeleton/Skeleton Death";
         hurtSound = "event:/Enemy/Skeleton/Skeleton Hurt";
-        detectionDistance =25;
-        attackDistance =20;
         attack = "Shoot";
     }
     public override void Update()

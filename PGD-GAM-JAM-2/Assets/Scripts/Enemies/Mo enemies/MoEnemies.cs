@@ -9,6 +9,7 @@ public class Moenemies : GroundEnemyScript
     private Collider collider;
     [SerializeField] public ParticleSystem particles;
     //Rigidbody rb;
+    bool ded;
 
     [Header("Movement variables")]
     public Vector3 walkPoint;
@@ -53,7 +54,6 @@ public class Moenemies : GroundEnemyScript
         attackDistance = navMeshAgent.stoppingDistance;
         currentState = States.Patrolling;
         maxHealth = Health;
-        Damage = 1;
     }
     // Update is called once per frame
     override public void Update()
@@ -78,7 +78,7 @@ public class Moenemies : GroundEnemyScript
             //    Hurting();
             //    break;
             case States.Death:
-
+                ded = true;
                 Dying();
                 break;
         }
@@ -252,7 +252,7 @@ public class Moenemies : GroundEnemyScript
     virtual public void OnCollisionEnter(Collision collision)
     {
         //Enemy hurts player on collision
-        if (collision.gameObject.tag == "Player" && currentState != States.Death)
+        if (collision.gameObject.tag == "Player" && currentState != States.Death && !ded)
         {
             //Player loses health
             Player.GetComponent<PlayerHealthScript>().takeDamage(1);
@@ -271,28 +271,6 @@ public class Moenemies : GroundEnemyScript
 
             if (this.Health <= 0) { currentState = States.Death; }
         }
-
-
-        ////Projectile hurts enemy on collision when not in hurting nor Death state
-        //if (currentState != States.Hurt && currentState != States.Death)
-        //{
-        //    if (canBeHurt)
-        //    {
-        //        if (collision.gameObject.tag == "Projectile")
-        //        {
-        //            //Gets the damage modifier from the current gun
-        //            int gunDmg = (int)collision.gameObject.GetComponent<Projectille>().dmg;
-
-        //            //INSERT Damage modifier from GUNS
-        //            GetDamage(gunDmg);
-
-        //            if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
-        //            else { currentState = States.Hurt; }
-        //        }
-        //    }
-        //}
-
-
     }
     virtual public void OnTriggerEnter(Collider other)
     {
@@ -315,27 +293,6 @@ public class Moenemies : GroundEnemyScript
 
             if (this.Health <= 0) { currentState = States.Death; }
         }
-
-        //Projectile hurts enemy on collision when not in hurting nor Death state
-        //if (currentState != States.Hurt && currentState != States.Death)
-        //{
-        //    if (canBeHurt)
-        //    {
-        //        if (other.gameObject.tag == "Projectile")
-        //        {
-        //            //Gets the damage modifier from the current gun
-        //            int gunDmg = (int)other.gameObject.GetComponent<Projectille>().dmg;
-        //            PlaySound(hurtSound, soundPosition);
-        //            AnimationTrigger("TakeDamage");
-        //            //INSERT Damage modifier from GUNS
-        //            GetDamage(gunDmg);
-
-        //            if (this.Health <= 0) { canBeHurt = false; currentState = States.Death; }
-        //            else { currentState = States.Hurt; }
-        //        }
-        //    }
-        //}
-
     }
     public virtual void PlaySound(string soundPath, Vector3 position)
     {

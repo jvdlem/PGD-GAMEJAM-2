@@ -25,7 +25,7 @@ public class BossScript : EnemyBaseScript
     private EyeBossScript[] Eyes = new EyeBossScript[amountOfEyes];
 
     //Boss Health Values
-    private int bossMaxHealth = 1000;
+    private int bossMaxHealth = 3000;
     public int BossCurrentHealth;
     public Slider HealthSlider;
 
@@ -51,10 +51,10 @@ public class BossScript : EnemyBaseScript
     public GameObject bulletspawn;
 
     //Minion Spawning values
-    private float minionSpawnDelay = 3f;
+    private float minionSpawnDelay = 2f;
     private float minionSpawnTimer;
     public GameObject Minions;
-    public Transform MinionSpawnLocation;
+    public Transform[] MinionSpawnLocations;
 
     //Boss Health Cycle values
     public int NextHealthTrigger;
@@ -66,7 +66,7 @@ public class BossScript : EnemyBaseScript
     private bool PlayBossDieSoundOnce;
 
     //Boss is waiting for next attack cycle values
-    private float bossIsWaitingTime = 5;
+    private float bossIsWaitingTime = 2;
     private float bossIsWaitingTimer;
     public bool CycleToNextEye = false;
 
@@ -200,8 +200,9 @@ public class BossScript : EnemyBaseScript
                     }
                     else
                     {
+                        int MinionSpawnPositionID = Random.Range(0, MinionSpawnLocations.Length - 1);
                         //Spawn Minion
-                        Instantiate(Minions, MinionSpawnLocation.position, MinionSpawnLocation.rotation, MinionSpawnLocation);
+                        Instantiate(Minions, MinionSpawnLocations[MinionSpawnPositionID].position, MinionSpawnLocations[MinionSpawnPositionID].rotation, MinionSpawnLocations[MinionSpawnPositionID]);
 
                         //Play Minion spawn sound effect
                         AudioEmitter.EventReference = SoundEffects[2];

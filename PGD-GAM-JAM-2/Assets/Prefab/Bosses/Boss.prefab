@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2315950231848957737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3595084966669947578}
+  m_Layer: 0
+  m_Name: MinionSpawnerLocation2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3595084966669947578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2315950231848957737}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 20, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6080821360308910235}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &2472521710567713061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3692708124702922185}
+  m_Layer: 0
+  m_Name: MinionSpawnerLocation3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3692708124702922185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472521710567713061}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -20, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6080821360308910235}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2887800738354575805
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +180,36 @@ MonoBehaviour:
   renderer: {fileID: 0}
   lookSpeed: 3
   EyeIsActive: 0
+--- !u!1 &4352982332364607198
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6863009489345832670}
+  m_Layer: 0
+  m_Name: MinionSpawnerLocation1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6863009489345832670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4352982332364607198}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6080821360308910235}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &6622819495008092304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6080821360308910235}
   m_Layer: 0
-  m_Name: MinionSpawnerLocation
+  m_Name: MinionSpawnerLocations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,9 +254,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6080821360308910234}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6863009489345832670}
+  - {fileID: 3595084966669947578}
+  - {fileID: 3692708124702922185}
   m_Father: {fileID: 6080821360456235410}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -231,7 +324,10 @@ MonoBehaviour:
   Bullets: {fileID: 4775561982456228747, guid: f31e986f1e91a884e9ef04ee366fb8e9, type: 3}
   bulletspawn: {fileID: 7108166299992137111}
   Minions: {fileID: 4998840696291270717, guid: 26a75325336bde84597997f9ea26ec6b, type: 3}
-  MinionSpawnLocation: {fileID: 6080821360308910235}
+  MinionSpawnLocations:
+  - {fileID: 6863009489345832670}
+  - {fileID: 3595084966669947578}
+  - {fileID: 3692708124702922185}
   NextHealthTrigger: 0
   CycleToNextEye: 0
   SoundEffects:
@@ -422,14 +518,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
---- !u!1 &3851799235391346021 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4286970718399506899, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
-  m_PrefabInstance: {fileID: 1011682469351226550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4485451447763144671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3473877898849710953, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
+  m_PrefabInstance: {fileID: 1011682469351226550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3851799235391346021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4286970718399506899, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
   m_PrefabInstance: {fileID: 1011682469351226550}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4368832230976438225
@@ -681,14 +777,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
---- !u!1 &6568739031215364905 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4286970718399506899, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
-  m_PrefabInstance: {fileID: 6941938731530187514}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5792484490301768083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3473877898849710953, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
+  m_PrefabInstance: {fileID: 6941938731530187514}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6568739031215364905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4286970718399506899, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
   m_PrefabInstance: {fileID: 6941938731530187514}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7695090195569346963
@@ -768,13 +864,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
---- !u!1 &5887351385576742976 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4286970718399506899, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
-  m_PrefabInstance: {fileID: 7695090195569346963}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6557173197496974074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3473877898849710953, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
+  m_PrefabInstance: {fileID: 7695090195569346963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5887351385576742976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4286970718399506899, guid: fe01cffb6d1f2ab46aea67062479d4e0, type: 3}
   m_PrefabInstance: {fileID: 7695090195569346963}
   m_PrefabAsset: {fileID: 0}
