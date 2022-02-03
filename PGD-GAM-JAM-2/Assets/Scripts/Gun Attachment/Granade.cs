@@ -31,7 +31,7 @@ public class Granade : Projectille
         Sparks.startDelay = delay;
         Smoke.startDelay = delay;
         explosion.startDelay = delay;
-        ExplodeTimer = timer - 1;
+        ExplodeTimer = delay;
 
     }
 
@@ -53,7 +53,10 @@ public class Granade : Projectille
         if (ExplodeTimer >= 0)
         {
             ExplodeTimer -= Time.deltaTime;
-            
+            if (ExplodeTimer <= 0 && canExplode == false)
+            {
+                canExplode = true;
+            }
             if (ExplodeTimer <= 0 && canExplode == true)
             {
                 delay = 0;

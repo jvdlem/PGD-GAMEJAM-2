@@ -334,7 +334,7 @@ public class Pistol : MonoBehaviour
             MuzzleFlash.transform.position = currentShootPoint.transform.position;
             MuzzleFlash.transform.rotation = currentShootPoint.transform.rotation;
         }
-        else
+        else if (myMagazine != null && myMagazine.GetComponent<AmmoType>().AmmoAmount <= 0)
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/Gun/Out of Ammo", this.gameObject.transform.position);
         }

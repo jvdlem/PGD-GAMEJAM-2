@@ -4900,9 +4900,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigitbody: {fileID: 7458745881642210414}
-  timer: 6
-  Speed: 2100
-  dmg: 11
+  timer: 3
+  Speed: 500
+  dmg: 2
   mytimer: 3
   mySpeed: 500
   mydmg: 2
@@ -4912,7 +4912,7 @@ MonoBehaviour:
   Parent: {fileID: 6737425802037542318}
   delay: 3
   ExplodeTimer: 0
-  onCollision: 1
+  onCollision: 0
   radius: 6
 --- !u!64 &5333742690179101648
 MeshCollider:
@@ -4953,7 +4953,7 @@ Transform:
   m_GameObject: {fileID: 6737425802037542318}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4185688652931822418}
   - {fileID: 4849364873773049986}
